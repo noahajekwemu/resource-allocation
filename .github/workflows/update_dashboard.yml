@@ -12,7 +12,7 @@ jobs:
 update-dashboard:
 runs-on: ubuntu-latest
 
-```
+
 steps:
   - name: Checkout repository
     uses: actions/checkout@v4
@@ -47,4 +47,3 @@ steps:
       git diff --staged --quiet || git commit -m "Automated dashboard update"
 
       git push
-```
