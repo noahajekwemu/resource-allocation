@@ -35,6 +35,12 @@ jobs:
         run: |
           python -m scripts.calculate_metrics
 
+      - name: Build Pages folder
+        run: |
+          rm -rf docs
+          mkdir docs
+          cp -r dashboard/* docs/
+
       - name: Commit updated dashboard data
         run: |
           git config --global user.name "github-actions"
