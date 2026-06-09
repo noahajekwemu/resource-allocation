@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Requisition Form</title>
+  <style>
+    :root {
+      --border: #d7dde8;
+      --ink: #1f2937;
+      --muted: #667085;
+      --surface: #f7f9fc;
+      --primary: #7c2d12;
+      --primary-hover: #9a3412;
+      --danger: #b42318;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--surface);
+      color: var(--ink);
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    main {
+      width: min(1120px, calc(100% - 32px));
+      margin: 32px auto;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+      font-size: clamp(1.6rem, 3vw, 2.25rem);
+    }
+
+    form {
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 24px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--ink);
+      font: inherit;
+      padding: 10px 12px;
+    }
+
+    textarea {
+      min-height: 92px;
+      resize: vertical;
+    }
+
+    .details {
+      margin-top: 24px;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 640px;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--border);
+      padding: 10px;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-transform: uppercase;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 6px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      min-height: 42px;
+      padding: 10px 16px;
+    }
+
+    .primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .primary:hover {
+      background: var(--primary-hover);
+    }
+
+    .secondary {
+      background: #e7edf6;
+      color: var(--ink);
+    }
+
+    .remove {
+      background: #fee4e2;
+      color: var(--danger);
+    }
+
+    #status {
+      color: var(--muted);
+      margin-top: 16px;
+    }
+
+    @media (max-width: 760px) {
+      main {
+        width: min(100% - 20px, 1120px);
+        margin: 20px auto;
+      }
+
+      form {
+        padding: 16px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Requisition Form</h1>
+    <form id="requisition-form">
+      <div class="grid">
+        <label>
+          Requisition date
+          <input type="date" name="Requisition_Date" required>
+        </label>
+        <label>
+          School
+          <select name="School_ID" id="school-select" required>
+            <option value="">Select school</option>
+          </select>
+        </label>
+        <label>
+          Status
+          <select name="Status">
+            <option value="Pending">Pending</option>
+            <option value="Approved">Approved</option>
+            <option value="Rejected">Rejected</option>
+          </select>
+        </label>
+      </div>
+
+      <label style="margin-top: 16px;">
+        Remarks
+        <textarea name="Remarks" placeholder="Reason for request or optional notes"></textarea>
+      </label>
+
+      <section class="details" aria-label="Requested items">
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Quantity</th>
+              <th>Condition</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody id="item-rows"></tbody>
+        </table>
+      </section>
+
+      <div class="actions">
+        <button type="button" class="secondary" id="add-row">Add item row</button>
+        <button type="submit" class="primary">Submit requisition</button>
+      </div>
+      <p id="status" role="status"></p>
+    </form>
+  </main>
+
+  <template id="item-row-template">
+    <tr>
+      <td>
+        <select class="item-select" name="Item_ID" required>
+          <option value="">Select item</option>
+        </select>
+      </td>
+      <td>
+        <input type="number" name="Quantity" min="1" step="1" required>
+      </td>
+      <td>
+        <select name="Condition">
+          <option value="Requested">Requested</option>
+          <option value="Good">Good</option>
+        </select>
+      </td>
+      <td>
+        <button type="button" class="remove">Remove</button>
+      </td>
+    </tr>
+  </template>
+
+  <script>
+    const form = document.querySelector("#requisition-form");
+    const rows = document.querySelector("#item-rows");
+    const template = document.querySelector("#item-row-template");
+    const statusText = document.querySelector("#status");
+    let items = [];
+
+    async function loadJson(url) {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error(`Failed to load ${url}`);
+      return response.json();
+    }
+
+    function optionLabel(record, idKey, nameKeys) {
+      const name = nameKeys.map((key) => record[key]).find(Boolean);
+      return name ? `${record[idKey]} - ${name}` : record[idKey];
+    }
+
+    function fillSelect(select, records, idKey, nameKeys) {
+      records.forEach((record) => {
+        const option = document.createElement("option");
+        option.value = record[idKey];
+        option.textContent = optionLabel(record, idKey, nameKeys);
+        select.appendChild(option);
+      });
+    }
+
+    function addRow() {
+      const row = template.content.firstElementChild.cloneNode(true);
+      fillSelect(row.querySelector(".item-select"), items, "Item_ID", ["Item_Name", "Item"]);
+      row.querySelector(".remove").addEventListener("click", () => {
+        if (rows.children.length > 1) row.remove();
+      });
+      rows.appendChild(row);
+    }
+
+    function collectPayload() {
+      const formData = new FormData(form);
+      return {
+        Requisition_Date: formData.get("Requisition_Date"),
+        School_ID: formData.get("School_ID"),
+        Status: formData.get("Status"),
+        Remarks: formData.get("Remarks"),
+        items: Array.from(rows.querySelectorAll("tr")).map((row) => ({
+          Item_ID: row.querySelector("[name='Item_ID']").value,
+          Quantity: Number(row.querySelector("[name='Quantity']").value),
+          Condition: row.querySelector("[name='Condition']").value
+        }))
+      };
+    }
+
+    async function init() {
+      try {
+        const [loadedItems, schools] = await Promise.all([
+          loadJson("/api/items"),
+          loadJson("/api/schools")
+        ]);
+        items = loadedItems;
+        fillSelect(document.querySelector("#school-select"), schools, "School_ID", ["School_Name", "School"]);
+      } catch (error) {
+        statusText.textContent = "Dropdown data could not be loaded. Connect this form to the form API endpoints.";
+      }
+      addRow();
+    }
+
+    document.querySelector("#add-row").addEventListener("click", addRow);
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      statusText.textContent = "Submitting...";
+      try {
+        const response = await fetch("/api/requisition", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(collectPayload())
+        });
+        if (!response.ok) throw new Error(await response.text());
+        form.reset();
+        rows.innerHTML = "";
+        addRow();
+        statusText.textContent = "Requisition submitted successfully.";
+      } catch (error) {
+        statusText.textContent = `Submission failed: ${error.message}`;
+      }
+    });
+
+    init();
+  </script>
+</body>
+</html>

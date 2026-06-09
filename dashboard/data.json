@@ -1,0 +1,116 @@
+{
+  "generated_at": "2026-06-09T12:40:32.419393+00:00",
+  "kpis": {
+    "inventory_accuracy": 100.0,
+    "total_inventory_items": 3,
+    "total_available_stock": 130,
+    "low_stock_items": 1,
+    "out_of_stock_items": 1,
+    "damaged_items": 0,
+    "schools_served": 1,
+    "pending_requisitions": 0,
+    "total_warehouses": 1,
+    "total_schools": 2,
+    "total_categories": 2
+  },
+  "charts": {
+    "inventory_by_category": [
+      {
+        "category": "Textbooks",
+        "quantity": 130
+      },
+      {
+        "category": "Furniture",
+        "quantity": 0
+      }
+    ],
+    "distribution_by_lga": [
+      {
+        "lga": "Makurdi",
+        "quantity": 20
+      }
+    ],
+    "distribution_by_school_type": [
+      {
+        "school_type": "Unknown",
+        "quantity": 20
+      }
+    ],
+    "top_distributed_items": [
+      {
+        "item": "Mathematics Textbook",
+        "quantity": 20
+      }
+    ],
+    "top_schools": [
+      {
+        "school": "Modern Primary School",
+        "quantity": 20
+      }
+    ],
+    "bottom_schools": [
+      {
+        "school": "Modern Primary School",
+        "quantity": 20
+      }
+    ],
+    "stock_source_analysis": [
+      {
+        "source": "UBEC",
+        "quantity": 150
+      }
+    ]
+  },
+  "tables": {
+    "stock_levels": [
+      {
+        "Item_ID": "ITEM-003",
+        "Item_Name": "Classroom Chair",
+        "Category": "Furniture",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM-002",
+        "Item_Name": "English Textbook",
+        "Category": "Textbooks",
+        "Current_Stock": 50,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM-001",
+        "Item_Name": "Mathematics Textbook",
+        "Category": "Textbooks",
+        "Current_Stock": 80,
+        "Reorder_Level": 0
+      }
+    ],
+    "low_stock_alerts": [
+      {
+        "Item_ID": "ITEM-003",
+        "Item_Name": "Classroom Chair",
+        "Category": "Furniture",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      }
+    ],
+    "recent_movements": [
+      {
+        "Transaction_ID": "TXN-2026-000009",
+        "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+        "Transaction_Type": "OUT",
+        "School_Name": "Modern Primary School",
+        "Warehouse_Name": "Makurdi Central Store",
+        "Total_Items": 20
+      },
+      {
+        "Transaction_ID": "TXN-2026-000008",
+        "Transaction_Date": "2026-06-09T11:48:27.344227+00:00",
+        "Transaction_Type": "IN",
+        "School_Name": "",
+        "Warehouse_Name": "Makurdi Central Store",
+        "Total_Items": 150
+      }
+    ]
+  }
+}
