@@ -40,6 +40,7 @@ jobs:
           rm -rf docs
           mkdir docs
           cp -r dashboard/* docs/
+          touch docs/.nojekyll
 
       - name: Commit updated dashboard data
         run: |
