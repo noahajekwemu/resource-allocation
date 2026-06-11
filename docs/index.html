@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Benue SUBEB Accountability Dashboard</title>
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+  <header class="portal-header">
+    <div class="portal-header__inner">
+      <img class="portal-logo" src="assets/Benue-SUBEB.jpg" alt="Benue SUBEB logo">
+      <div class="portal-title">
+        <p class="portal-label">Government Accountability Portal</p>
+        <h1>Benue State Universal Basic Education Board</h1>
+        <p>Educational Resource Allocation &amp; Accountability Dashboard</p>
+      </div>
+      <div class="last-updated" aria-live="polite">
+        <span>Last updated</span>
+        <strong id="last-updated">Loading</strong>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="dashboard-shell">
+    <section id="loading-state" class="state-panel" role="status">
+      <strong>Loading dashboard data</strong>
+      <span>Preparing the latest accountability report.</span>
+    </section>
+
+    <section id="error-state" class="state-panel state-panel--error" role="alert" hidden>
+      <strong>Data unavailable</strong>
+      <span>Dashboard data could not be loaded from dashboard/data.json.</span>
+    </section>
+
+    <div id="dashboard-content" hidden>
+      <section class="section-block" aria-labelledby="kpi-heading">
+        <div class="section-heading">
+          <h2 id="kpi-heading">Key Performance Indicators</h2>
+        </div>
+        <div id="kpi-grid" class="kpi-grid"></div>
+      </section>
+
+      <section class="section-block" aria-labelledby="charts-heading">
+        <div class="section-heading">
+          <h2 id="charts-heading">Accountability Charts</h2>
+        </div>
+        <div class="chart-grid">
+          <article class="chart-panel">
+            <h3>Inventory by Category</h3>
+            <div class="chart-frame"><canvas id="inventory-by-category"></canvas></div>
+          </article>
+          <article class="chart-panel">
+            <h3>Distribution by LGA</h3>
+            <div class="chart-frame"><canvas id="distribution-by-lga"></canvas></div>
+          </article>
+          <article class="chart-panel">
+            <h3>Distribution by School Type</h3>
+            <div class="chart-frame"><canvas id="distribution-by-school-type"></canvas></div>
+          </article>
+          <article class="chart-panel">
+            <h3>Top Distributed Items</h3>
+            <div class="chart-frame"><canvas id="top-distributed-items"></canvas></div>
+          </article>
+          <article class="chart-panel">
+            <h3>Top Schools</h3>
+            <div class="chart-frame"><canvas id="top-schools"></canvas></div>
+          </article>
+          <article class="chart-panel">
+            <h3>Bottom Schools</h3>
+            <div class="chart-frame"><canvas id="bottom-schools"></canvas></div>
+          </article>
+          <article class="chart-panel chart-panel--wide">
+            <h3>Stock Source Analysis</h3>
+            <div class="chart-frame"><canvas id="stock-source-analysis"></canvas></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block" aria-labelledby="tables-heading">
+        <div class="section-heading">
+          <h2 id="tables-heading">Accountability Tables</h2>
+        </div>
+
+        <article class="table-panel">
+          <h3>Stock Levels</h3>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Item ID</th>
+                  <th>Item Name</th>
+                  <th>Category</th>
+                  <th>Current Stock</th>
+                  <th>Reorder Level</th>
+                </tr>
+              </thead>
+              <tbody id="stock-levels-table"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="table-panel">
+          <h3>Low Stock Alerts</h3>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Item ID</th>
+                  <th>Item Name</th>
+                  <th>Category</th>
+                  <th>Current Stock</th>
+                  <th>Reorder Level</th>
+                </tr>
+              </thead>
+              <tbody id="low-stock-alerts-table"></tbody>
+            </table>
+          </div>
+        </article>
+
+        <article class="table-panel">
+          <h3>Recent Inventory Movements</h3>
+          <div class="table-scroll">
+            <table>
+              <thead>
+                <tr>
+                  <th>Transaction ID</th>
+                  <th>Date</th>
+                  <th>Type</th>
+                  <th>School</th>
+                  <th>Warehouse</th>
+                  <th>Total Items</th>
+                </tr>
+              </thead>
+              <tbody id="recent-movements-table"></tbody>
+            </table>
+          </div>
+        </article>
+      </section>
+    </div>
+  </main>
+
+  <footer class="portal-footer">
+    <strong>Benue State Universal Basic Education Board</strong>
+    <span>Educational Resource Allocation &amp; Accountability System</span>
+    <span id="footer-year"></span>
+  </footer>
+
+  <script src="js/charts.js"></script>
+  <script src="js/dashboard.js"></script>
+</body>
+</html>
