@@ -32,20 +32,18 @@ jobs:
           echo '${{ secrets.GOOGLE_CREDENTIALS }}' > credentials/service_account.json
 
       - name: Generate dashboard data
-        run: |
-          python -m scripts.calculate_metrics
+        run: python -m scripts.calculate_metrics
 
-      - name: Build Pages folder
+      - name: Sync dashboard to docs folder
         run: |
-          rm -rf docs
           mkdir docs
           cp -r dashboard/* docs/
-          touch docs/.nojekyll
 
       - name: Commit updated dashboard data
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add dashboard/data.json
+          # We add both the original data and the docs folder for deployment
+          git add dashboard/data.json docs/
           git diff --staged --quiet || git commit -m "Automated dashboard update"
           git push
