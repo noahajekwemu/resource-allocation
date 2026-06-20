@@ -18,6 +18,19 @@ SCHOOLS_WORKSHEET = "Schools"
 WAREHOUSES_WORKSHEET = "Warehouses"
 REQUISITIONS_WORKSHEET = "Requisitions"
 REQUISITION_DETAILS_WORKSHEET = "Requisition_Details"
+USERS_WORKSHEET = "Users"
+AUDIT_LOG_WORKSHEET = "Audit_Log"
+
+USER_COLUMNS = [
+    "User_ID", "Full_Name", "Email", "Role", "School_ID", "Password_Hash",
+    "Active", "Created_At",
+]
+
+AUDIT_LOG_COLUMNS = [
+    "Audit_ID", "Timestamp", "User_ID", "User_Email", "Role", "Action",
+    "Entity_Type", "Entity_ID", "Before_State", "After_State", "IPAddress",
+    "Status", "Remarks",
+]
 
 ALLOWED_REQUISITION_STATUSES = {
     "Pending",

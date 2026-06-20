@@ -1,11 +1,28 @@
 import logging
+import os
 import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 import pandas as pd
-from flask import Flask, jsonify, request
+from flask import (
+    Flask,
+    jsonify,
+    redirect,
+    render_template,
+    request,
+    send_from_directory,
+    session,
+    url_for,
+)
+
+try:
+    from scripts.audit_utils import write_audit_log
+    from scripts.security_utils import authenticate_user, current_user, require_role
+except (ImportError, ModuleNotFoundError):
+    from audit_utils import write_audit_log
+    from security_utils import authenticate_user, current_user, require_role
 
 try:
     from scripts.inventory_utils import calculate_available_stock
@@ -14,7 +31,11 @@ except (ImportError, ModuleNotFoundError):
 
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
-app = Flask(__name__)
+app = Flask(__name__, template_folder=str(Path(__file__).resolve().parents[1] / "forms"))
+app.secret_key = os.environ.get("FORM_API_SECRET_KEY")
+if not app.secret_key:
+    app.secret_key = "development-only-change-me"
+    logging.warning("FORM_API_SECRET_KEY is not set; using an insecure development fallback.")
 
 SPREADSHEET_NAME = "Educational_Supplies_Logs"
 ITEMS_WORKSHEET = "Items"
@@ -24,6 +45,62 @@ REQUISITIONS_WORKSHEET = "Requisitions"
 REQUISITION_DETAILS_WORKSHEET = "Requisition_Details"
 TRANSACTIONS_WORKSHEET = "Transactions"
 TRANSACTION_DETAILS_WORKSHEET = "Transaction_Details"
+BASE_DIR = Path(__file__).resolve().parent.parent
+FORMS_DIR = BASE_DIR / "forms"
+FORM_PAGE_ROLES = {
+    "approve_requisition.html": {"Admin", "Approver"},
+    "receive_stock.html": {"Admin", "Store_Officer"},
+    "issue_stock.html": {"Admin", "Store_Officer"},
+    "requisition_form.html": {"Admin", "School_User"},
+}
+ROLE_DEFAULT_REDIRECTS = {
+    "Admin": "/forms/approve_requisition.html",
+    "Approver": "/forms/approve_requisition.html",
+    "Store_Officer": "/forms/issue_stock.html",
+    "School_User": "/forms/requisition_form.html",
+    "Viewer": "/api/items",
+}
+SAFE_API_REDIRECTS = {"/api/items", "/api/schools", "/api/warehouses"}
+
+
+def _safe_next_path(value: Any, user: dict[str, Any] | None = None) -> str:
+    path = str(value or "").strip()
+    if not path.startswith("/") or path.startswith("//") or "?" in path or "#" in path:
+        return ""
+    if path in SAFE_API_REDIRECTS:
+        return path
+    prefix = "/forms/"
+    if not path.startswith(prefix):
+        return ""
+    filename = path.removeprefix(prefix)
+    if "/" in filename or "\\" in filename:
+        return ""
+    allowed_roles = FORM_PAGE_ROLES.get(filename)
+    if allowed_roles is None:
+        return ""
+    if user is not None and user.get("Role") not in allowed_roles:
+        return ""
+    return path
+
+
+def _default_redirect_for(user: dict[str, Any]) -> str:
+    return ROLE_DEFAULT_REDIRECTS.get(str(user.get("Role", "")), "/api/items")
+
+
+def _request_payload() -> dict[str, Any]:
+    if not request.is_json:
+        raise ValueError("Request body must be JSON.")
+    payload = request.get_json(silent=True)
+    if not isinstance(payload, dict):
+        raise ValueError("Request body must be a JSON object.")
+    return payload
+
+
+def _audit(action: str, entity_type: str, entity_id: str = "", before_state=None, after_state=None, status: str = "Success", remarks: str = "", user=None) -> None:
+    try:
+        write_audit_log(action, entity_type, entity_id, before_state, after_state, status, remarks, user=user)
+    except Exception as exc:
+        logging.exception("Failed to write audit log for %s: %s", action, exc)
 
 
 def _load_db_connector() -> Any:
@@ -1037,14 +1114,88 @@ def submit_requisition(payload: dict[str, Any]) -> dict[str, Any]:
 @app.after_request
 def add_cors_headers(response):
     """Allow local HTML forms to call this API directly."""
-    response.headers["Access-Control-Allow-Origin"] = "*"
+    origin = request.headers.get("Origin")
+    response.headers["Access-Control-Allow-Origin"] = origin or "*"
     response.headers["Access-Control-Allow-Headers"] = "Content-Type"
     response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
+    if origin:
+        response.headers["Access-Control-Allow-Credentials"] = "true"
+        response.headers.add("Vary", "Origin")
     return response
 
 
 def _json_error(exc: Exception, status_code: int = 400):
     return jsonify({"success": False, "error": str(exc)}), status_code
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login_route():
+    error = ""
+    next_path = _safe_next_path(request.args.get("next") or request.form.get("next"))
+    if request.method == "POST":
+        if request.is_json:
+            payload = request.get_json(silent=True) or {}
+            email = str(payload.get("email", "")).strip().lower()
+            password = str(payload.get("password", ""))
+        else:
+            email = str(request.form.get("email", "")).strip().lower()
+            password = str(request.form.get("password", ""))
+        try:
+            user = authenticate_user(email, password)
+        except Exception:
+            logging.exception("Authentication lookup failed for %s", email)
+            user = None
+        if user:
+            session.clear()
+            session["user"] = user
+            logging.info("Login succeeded for %s", email)
+            _audit("login", "User", str(user.get("User_ID", "")), None, {"Email": email}, user=user)
+            if request.is_json:
+                return jsonify({"success": True, "user": user})
+            return redirect(
+                _safe_next_path(next_path, user) or _default_redirect_for(user)
+            )
+        logging.warning("Login failed for %s", email)
+        _audit("login", "User", email, None, {"Email": email}, "Failed", "Invalid credentials", user={"Email": email})
+        error = "Invalid email or password, or the account is inactive."
+        if request.is_json:
+            return _json_error(ValueError(error), 401)
+    return render_template("login.html", error=error, next_path=next_path)
+
+
+@app.route("/logout", methods=["GET", "POST"])
+def logout_route():
+    user = current_user()
+    if user:
+        _audit("logout", "User", str(user.get("User_ID", "")), user, None, user=user)
+    session.clear()
+    if request.is_json:
+        return jsonify({"success": True})
+    return redirect(url_for("login_route"))
+
+
+@app.route("/forms/<path:filename>")
+def serve_form(filename):
+    if filename == "login.html":
+        return redirect(url_for("login_route"))
+
+    user = current_user()
+    if not user:
+        return redirect(url_for("login_route", next=f"/forms/{filename}"))
+
+    allowed_roles = FORM_PAGE_ROLES.get(filename)
+    if allowed_roles is None:
+        return jsonify({"success": False, "error": "Form not found."}), 404
+
+    if user.get("Role") not in allowed_roles:
+        return jsonify(
+            {
+                "success": False,
+                "error": "You do not have permission to access this page.",
+            }
+        ), 403
+
+    return send_from_directory(FORMS_DIR, filename)
 
 
 @app.get("/items")
@@ -1079,6 +1230,7 @@ def warehouses_route():
 
 @app.get("/pending_requisitions")
 @app.get("/api/pending-requisitions")
+@require_role("Admin", "Approver")
 def pending_requisitions_route():
     try:
         return jsonify({"success": True, "requisitions": get_pending_requisitions()})
@@ -1089,6 +1241,7 @@ def pending_requisitions_route():
 
 @app.get("/open_requisitions")
 @app.get("/api/open-requisitions")
+@require_role("Admin", "Store_Officer", "Approver")
 def open_requisitions_route():
     try:
         return jsonify({"success": True, "requisitions": get_open_requisitions()})
@@ -1111,11 +1264,20 @@ def requisition_route(requisition_id):
 
 @app.post("/approve_requisition")
 @app.post("/api/approve-requisition")
+@require_role("Admin", "Approver")
 def approve_requisition_route():
+    payload = {}
     try:
-        payload = request.get_json(silent=True) or {}
-        return jsonify(approve_requisition(payload))
+        payload = _request_payload()
+        user = current_user() or {}
+        payload["Approved_By"] = user.get("Full_Name") or user.get("Email") or user.get("User_ID")
+        entity_id = str(payload.get("Requisition_ID") or payload.get("requisition_id") or "")
+        before = get_requisition(entity_id) if entity_id else None
+        result = approve_requisition(payload)
+        _audit("approve requisition", "Requisition", entity_id, before, result)
+        return jsonify(result)
     except ValueError as exc:
+        _audit("approve requisition", "Requisition", str(payload.get("Requisition_ID", "")), None, payload, "Failed", str(exc))
         return _json_error(exc, 400)
     except Exception as exc:
         logging.exception("Failed to approve requisition request: %s", exc)
@@ -1124,11 +1286,18 @@ def approve_requisition_route():
 
 @app.post("/reject_requisition")
 @app.post("/api/reject-requisition")
+@require_role("Admin", "Approver")
 def reject_requisition_route():
+    payload = {}
     try:
-        payload = request.get_json(silent=True) or {}
-        return jsonify(reject_requisition(payload))
+        payload = _request_payload()
+        entity_id = str(payload.get("Requisition_ID") or payload.get("requisition_id") or "")
+        before = get_requisition(entity_id) if entity_id else None
+        result = reject_requisition(payload)
+        _audit("reject requisition", "Requisition", entity_id, before, result)
+        return jsonify(result)
     except ValueError as exc:
+        _audit("reject requisition", "Requisition", str(payload.get("Requisition_ID", "")), None, payload, "Failed", str(exc))
         return _json_error(exc, 400)
     except Exception as exc:
         logging.exception("Failed to reject requisition request: %s", exc)
@@ -1137,11 +1306,22 @@ def reject_requisition_route():
 
 @app.post("/submit_requisition")
 @app.post("/api/requisition")
+@require_role("Admin", "School_User")
 def submit_requisition_route():
+    payload = {}
     try:
-        payload = request.get_json(silent=True) or {}
-        return jsonify(submit_requisition(payload))
+        payload = _request_payload()
+        user = current_user() or {}
+        requested_school = str(payload.get("School_ID") or payload.get("school_id") or "").strip()
+        assigned_school = str(user.get("School_ID", "")).strip()
+        if user.get("Role") == "School_User" and (not assigned_school or requested_school != assigned_school):
+            return _json_error(PermissionError("School users may submit requisitions only for their assigned school."), 403)
+        payload["Requested_By"] = user.get("Full_Name") or user.get("Email") or user.get("User_ID")
+        result = submit_requisition(payload)
+        _audit("submit requisition", "Requisition", result["requisition_id"], None, result)
+        return jsonify(result)
     except ValueError as exc:
+        _audit("submit requisition", "Requisition", "", None, payload, "Failed", str(exc))
         return _json_error(exc, 400)
     except Exception as exc:
         logging.exception("Failed to submit requisition request: %s", exc)
@@ -1150,11 +1330,16 @@ def submit_requisition_route():
 
 @app.post("/submit_receive_stock")
 @app.post("/api/receive-stock")
+@require_role("Admin", "Store_Officer")
 def submit_receive_stock_route():
+    payload = {}
     try:
-        payload = request.get_json(silent=True) or {}
-        return jsonify(submit_receive_stock(payload))
+        payload = _request_payload()
+        result = submit_receive_stock(payload)
+        _audit("receive stock", "Transaction", result["transaction_id"], None, result)
+        return jsonify(result)
     except ValueError as exc:
+        _audit("receive stock", "Transaction", "", None, payload, "Failed", str(exc))
         return _json_error(exc, 400)
     except Exception as exc:
         logging.exception("Failed to submit receive stock request: %s", exc)
@@ -1163,11 +1348,18 @@ def submit_receive_stock_route():
 
 @app.post("/submit_issue_stock")
 @app.post("/api/issue-stock")
+@require_role("Admin", "Store_Officer")
 def submit_issue_stock_route():
+    payload = {}
     try:
-        payload = request.get_json(silent=True) or {}
-        return jsonify(submit_issue_stock(payload))
+        payload = _request_payload()
+        result = submit_issue_stock(payload)
+        _audit("issue stock", "Transaction", result["transaction_id"], None, result)
+        if result.get("requisition_id"):
+            _audit("fulfillment update", "Requisition", result["requisition_id"], None, {"Status": result.get("fulfillment_status"), "Transaction_ID": result["transaction_id"]})
+        return jsonify(result)
     except ValueError as exc:
+        _audit("issue stock", "Transaction", "", None, payload, "Failed", str(exc))
         return _json_error(exc, 400)
     except Exception as exc:
         logging.exception("Failed to submit issue stock request: %s", exc)
