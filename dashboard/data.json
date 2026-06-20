@@ -1,9 +1,9 @@
 {
-  "generated_at": "2026-06-14T02:07:12.661851+00:00",
+  "generated_at": "2026-06-20T13:42:17.194229+00:00",
   "kpis": {
     "inventory_accuracy": 66.67,
     "total_items": 3,
-    "total_stock_units": 375,
+    "total_stock_units": 315,
     "low_stock_items": 1,
     "total_requisitions": 5,
     "pending_requisitions": 2,
@@ -14,7 +14,7 @@
     "partially_fulfilled_requisitions": 1,
     "average_fulfillment_days": 0.0,
     "total_inventory_items": 3,
-    "total_available_stock": 375,
+    "total_available_stock": 315,
     "out_of_stock_items": 1,
     "damaged_items": 0,
     "schools_served": 1,
@@ -26,26 +26,26 @@
     "all_schools": [
       {
         "school": "Modern Primary School",
-        "quantity": 625
+        "quantity": 685
       }
     ],
     "top_10_schools": [
       {
         "school": "Modern Primary School",
-        "quantity": 625
+        "quantity": 685
       }
     ],
     "bottom_10_schools": [
       {
         "school": "Modern Primary School",
-        "quantity": 625
+        "quantity": 685
       }
     ]
   },
   "lga_distribution": [
     {
       "lga": "Makurdi",
-      "quantity": 625
+      "quantity": 685
     }
   ],
   "warehouse_analytics": {
@@ -53,16 +53,16 @@
       {
         "warehouse_id": "WH-001",
         "warehouse": "Makurdi Central Store",
-        "stock_level": 375,
-        "total_outflows": 625
+        "stock_level": 315,
+        "total_outflows": 685
       }
     ],
     "total_outflows": [
       {
         "warehouse_id": "WH-001",
         "warehouse": "Makurdi Central Store",
-        "stock_level": 375,
-        "total_outflows": 625
+        "stock_level": 315,
+        "total_outflows": 685
       }
     ]
   },
@@ -70,14 +70,14 @@
     {
       "month": "2026-06",
       "in_quantity": 1000,
-      "out_quantity": 520
+      "out_quantity": 580
     }
   ],
   "charts": {
     "inventory_by_category": [
       {
         "category": "Textbooks",
-        "quantity": 875
+        "quantity": 815
       },
       {
         "category": "Furniture",
@@ -87,13 +87,13 @@
     "distribution_by_lga": [
       {
         "lga": "Makurdi",
-        "quantity": 625
+        "quantity": 685
       }
     ],
     "distribution_by_school_type": [
       {
         "school_type": "Unknown",
-        "quantity": 625
+        "quantity": 685
       }
     ],
     "top_distributed_items": [
@@ -103,7 +103,7 @@
       },
       {
         "item": "Mathematics Textbook",
-        "quantity": 100
+        "quantity": 160
       },
       {
         "item": "English Textbook",
@@ -113,13 +113,13 @@
     "top_schools": [
       {
         "school": "Modern Primary School",
-        "quantity": 625
+        "quantity": 685
       }
     ],
     "bottom_schools": [
       {
         "school": "Modern Primary School",
-        "quantity": 625
+        "quantity": 685
       }
     ],
     "stock_source_analysis": [
@@ -132,23 +132,23 @@
       {
         "warehouse_id": "WH-001",
         "warehouse": "Makurdi Central Store",
-        "stock_level": 375,
-        "total_outflows": 625
+        "stock_level": 315,
+        "total_outflows": 685
       }
     ],
     "warehouse_outflows": [
       {
         "warehouse_id": "WH-001",
         "warehouse": "Makurdi Central Store",
-        "stock_level": 375,
-        "total_outflows": 625
+        "stock_level": 315,
+        "total_outflows": 685
       }
     ],
     "monthly_stock_movements": [
       {
         "month": "2026-06",
         "in_quantity": 1000,
-        "out_quantity": 520
+        "out_quantity": 580
       }
     ]
   },
@@ -172,7 +172,7 @@
         "Item_ID": "ITEM-001",
         "Item_Name": "Mathematics Textbook",
         "Category": "Textbooks",
-        "Current_Stock": 400,
+        "Current_Stock": 340,
         "Reorder_Level": 0
       }
     ],
@@ -186,6 +186,30 @@
       }
     ],
     "recent_movements": [
+      {
+        "Transaction_ID": "TXN-2026-000014",
+        "Transaction_Date": "2026-06-20T11:35:34.623179+00:00",
+        "Transaction_Type": "OUT",
+        "School_Name": "Modern Primary School",
+        "Warehouse_Name": "Makurdi Central Store",
+        "Total_Items": 20
+      },
+      {
+        "Transaction_ID": "TXN-2026-000013",
+        "Transaction_Date": "2026-06-20T11:11:09.299292+00:00",
+        "Transaction_Type": "OUT",
+        "School_Name": "Modern Primary School",
+        "Warehouse_Name": "Makurdi Central Store",
+        "Total_Items": 20
+      },
+      {
+        "Transaction_ID": "TXN-2026-000012",
+        "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
+        "Transaction_Type": "OUT",
+        "School_Name": "Modern Primary School",
+        "Warehouse_Name": "Makurdi Central Store",
+        "Total_Items": 20
+      },
       {
         "Transaction_ID": "TXN-2026-000011",
         "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",

@@ -27,118 +27,53 @@
 
   <main id="main-content" class="dashboard-shell">
     <section id="loading-state" class="state-panel" role="status">
-      <strong>Loading dashboard data</strong>
-      <span>Preparing the latest accountability report.</span>
+      <span class="loading-indicator" aria-hidden="true"></span>
+      <div><strong>Loading dashboard data</strong><span>Preparing the latest accountability report.</span></div>
     </section>
-
     <section id="error-state" class="state-panel state-panel--error" role="alert" hidden>
       <strong>Data unavailable</strong>
-      <span>Dashboard data could not be loaded from dashboard/data.json.</span>
+      <span>Dashboard data could not be loaded. Please try again later.</span>
     </section>
 
     <div id="dashboard-content" hidden>
       <section class="section-block" aria-labelledby="kpi-heading">
-        <div class="section-heading">
-          <h2 id="kpi-heading">Key Performance Indicators</h2>
-        </div>
-        <div id="kpi-grid" class="kpi-grid"></div>
+        <div class="section-heading"><h2 id="kpi-heading">Executive Performance Overview</h2></div>
+        <div id="kpi-groups"></div>
       </section>
 
-      <section class="section-block" aria-labelledby="charts-heading">
-        <div class="section-heading">
-          <h2 id="charts-heading">Accountability Charts</h2>
-        </div>
+      <section class="section-block" aria-labelledby="requisition-charts-heading">
+        <div class="section-heading"><h2 id="requisition-charts-heading">Requisition Accountability</h2></div>
         <div class="chart-grid">
-          <article class="chart-panel">
-            <h3>Inventory by Category</h3>
-            <div class="chart-frame"><canvas id="inventory-by-category"></canvas></div>
-          </article>
-          <article class="chart-panel">
-            <h3>Distribution by LGA</h3>
-            <div class="chart-frame"><canvas id="distribution-by-lga"></canvas></div>
-          </article>
-          <article class="chart-panel">
-            <h3>Distribution by School Type</h3>
-            <div class="chart-frame"><canvas id="distribution-by-school-type"></canvas></div>
-          </article>
-          <article class="chart-panel">
-            <h3>Top Distributed Items</h3>
-            <div class="chart-frame"><canvas id="top-distributed-items"></canvas></div>
-          </article>
-          <article class="chart-panel">
-            <h3>Top Schools</h3>
-            <div class="chart-frame"><canvas id="top-schools"></canvas></div>
-          </article>
-          <article class="chart-panel">
-            <h3>Bottom Schools</h3>
-            <div class="chart-frame"><canvas id="bottom-schools"></canvas></div>
-          </article>
-          <article class="chart-panel chart-panel--wide">
-            <h3>Stock Source Analysis</h3>
-            <div class="chart-frame"><canvas id="stock-source-analysis"></canvas></div>
-          </article>
+          <article class="chart-panel"><h3>Requisition Status Breakdown</h3><div class="chart-frame" data-chart="requisition-status"><canvas id="requisition-status"></canvas></div></article>
+          <article class="chart-panel"><h3>Requested vs Approved vs Fulfilled Quantities</h3><div class="chart-frame" data-chart="requisition-quantities"><canvas id="requisition-quantities"></canvas></div></article>
+          <article class="chart-panel"><h3>Top Requested Items</h3><div class="chart-frame" data-chart="top-requested-items"><canvas id="top-requested-items"></canvas></div></article>
+          <article class="chart-panel"><h3>Requests by LGA</h3><div class="chart-frame" data-chart="requests-by-lga"><canvas id="requests-by-lga"></canvas></div></article>
+        </div>
+      </section>
+
+      <section class="section-block" aria-labelledby="distribution-charts-heading">
+        <div class="section-heading"><h2 id="distribution-charts-heading">Distribution Accountability</h2></div>
+        <div class="chart-grid">
+          <article class="chart-panel"><h3>Distribution by LGA</h3><div class="chart-frame" data-chart="distribution-by-lga"><canvas id="distribution-by-lga"></canvas></div></article>
+          <article class="chart-panel"><h3>Distribution by School Type</h3><div class="chart-frame" data-chart="distribution-by-school-type"><canvas id="distribution-by-school-type"></canvas></div></article>
+          <article class="chart-panel"><h3>Top Schools</h3><div class="chart-frame" data-chart="top-schools"><canvas id="top-schools"></canvas></div></article>
+          <article class="chart-panel"><h3>Bottom Schools</h3><div class="chart-frame" data-chart="bottom-schools"><canvas id="bottom-schools"></canvas></div></article>
+          <article class="chart-panel chart-panel--wide"><h3>Top Distributed Items</h3><div class="chart-frame" data-chart="top-distributed-items"><canvas id="top-distributed-items"></canvas></div></article>
+        </div>
+      </section>
+
+      <section class="section-block" aria-labelledby="inventory-charts-heading">
+        <div class="section-heading"><h2 id="inventory-charts-heading">Inventory Accountability</h2></div>
+        <div class="chart-grid">
+          <article class="chart-panel"><h3>Inventory by Category</h3><div class="chart-frame" data-chart="inventory-by-category"><canvas id="inventory-by-category"></canvas></div></article>
+          <article class="chart-panel"><h3>Stock Source Analysis</h3><div class="chart-frame" data-chart="stock-source-analysis"><canvas id="stock-source-analysis"></canvas></div></article>
+          <article class="chart-panel chart-panel--wide"><h3>Monthly Stock Movements</h3><div class="chart-frame" data-chart="monthly-stock-movements"><canvas id="monthly-stock-movements"></canvas></div></article>
         </div>
       </section>
 
       <section class="section-block" aria-labelledby="tables-heading">
-        <div class="section-heading">
-          <h2 id="tables-heading">Accountability Tables</h2>
-        </div>
-
-        <article class="table-panel">
-          <h3>Stock Levels</h3>
-          <div class="table-scroll">
-            <table>
-              <thead>
-                <tr>
-                  <th>Item ID</th>
-                  <th>Item Name</th>
-                  <th>Category</th>
-                  <th>Current Stock</th>
-                  <th>Reorder Level</th>
-                </tr>
-              </thead>
-              <tbody id="stock-levels-table"></tbody>
-            </table>
-          </div>
-        </article>
-
-        <article class="table-panel">
-          <h3>Low Stock Alerts</h3>
-          <div class="table-scroll">
-            <table>
-              <thead>
-                <tr>
-                  <th>Item ID</th>
-                  <th>Item Name</th>
-                  <th>Category</th>
-                  <th>Current Stock</th>
-                  <th>Reorder Level</th>
-                </tr>
-              </thead>
-              <tbody id="low-stock-alerts-table"></tbody>
-            </table>
-          </div>
-        </article>
-
-        <article class="table-panel">
-          <h3>Recent Inventory Movements</h3>
-          <div class="table-scroll">
-            <table>
-              <thead>
-                <tr>
-                  <th>Transaction ID</th>
-                  <th>Date</th>
-                  <th>Type</th>
-                  <th>School</th>
-                  <th>Warehouse</th>
-                  <th>Total Items</th>
-                </tr>
-              </thead>
-              <tbody id="recent-movements-table"></tbody>
-            </table>
-          </div>
-        </article>
+        <div class="section-heading"><h2 id="tables-heading">Accountability Records</h2></div>
+        <div id="accountability-tables" class="tables-grid"></div>
       </section>
     </div>
   </main>
