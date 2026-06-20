@@ -163,28 +163,20 @@
     <form id="requisition-form">
       <div class="grid">
         <label>
-          Requisition date
-          <input type="date" name="Requisition_Date" required>
-        </label>
-        <label>
           School
           <select name="School_ID" id="school-select" required>
             <option value="">Select school</option>
           </select>
         </label>
         <label>
-          Status
-          <select name="Status">
-            <option value="Pending">Pending</option>
-            <option value="Approved">Approved</option>
-            <option value="Rejected">Rejected</option>
-          </select>
+          Requested by
+          <input type="text" name="Requested_By" required>
         </label>
       </div>
 
       <label style="margin-top: 16px;">
-        Remarks
-        <textarea name="Remarks" placeholder="Reason for request or optional notes"></textarea>
+        Reason
+        <textarea name="Reason" placeholder="Reason for request" required></textarea>
       </label>
 
       <section class="details" aria-label="Requested items">
@@ -193,7 +185,6 @@
             <tr>
               <th>Item</th>
               <th>Quantity</th>
-              <th>Condition</th>
               <th>Action</th>
             </tr>
           </thead>
@@ -220,12 +211,6 @@
         <input type="number" name="Quantity" min="1" step="1" required>
       </td>
       <td>
-        <select name="Condition">
-          <option value="Requested">Requested</option>
-          <option value="Good">Good</option>
-        </select>
-      </td>
-      <td>
         <button type="button" class="remove">Remove</button>
       </td>
     </tr>
@@ -236,12 +221,24 @@
     const rows = document.querySelector("#item-rows");
     const template = document.querySelector("#item-row-template");
     const statusText = document.querySelector("#status");
+    const API_BASE = "http://127.0.0.1:5000";
     let items = [];
 
     async function loadJson(url) {
       const response = await fetch(url);
-      if (!response.ok) throw new Error(`Failed to load ${url}`);
-      return response.json();
+      let result = null;
+      try {
+        result = await response.json();
+      } catch (error) {
+        throw new Error("The API returned an unreadable response.");
+      }
+      if (!response.ok) {
+        throw new Error(result.error || `Request failed with status ${response.status}.`);
+      }
+      if (!Array.isArray(result)) {
+        throw new Error("The API did not return a dropdown list.");
+      }
+      return result;
     }
 
     function optionLabel(record, idKey, nameKeys) {
@@ -250,7 +247,9 @@
     }
 
     function fillSelect(select, records, idKey, nameKeys) {
+      select.options.length = 1;
       records.forEach((record) => {
+        if (!record[idKey]) return;
         const option = document.createElement("option");
         option.value = record[idKey];
         option.textContent = optionLabel(record, idKey, nameKeys);
@@ -270,14 +269,12 @@
     function collectPayload() {
       const formData = new FormData(form);
       return {
-        Requisition_Date: formData.get("Requisition_Date"),
         School_ID: formData.get("School_ID"),
-        Status: formData.get("Status"),
-        Remarks: formData.get("Remarks"),
+        Requested_By: formData.get("Requested_By"),
+        Reason: formData.get("Reason"),
         items: Array.from(rows.querySelectorAll("tr")).map((row) => ({
           Item_ID: row.querySelector("[name='Item_ID']").value,
-          Quantity: Number(row.querySelector("[name='Quantity']").value),
-          Condition: row.querySelector("[name='Condition']").value
+          Quantity: Number(row.querySelector("[name='Quantity']").value)
         }))
       };
     }
@@ -285,13 +282,14 @@
     async function init() {
       try {
         const [loadedItems, schools] = await Promise.all([
-          loadJson("/api/items"),
-          loadJson("/api/schools")
+          loadJson(`${API_BASE}/items`),
+          loadJson(`${API_BASE}/schools`)
         ]);
         items = loadedItems;
         fillSelect(document.querySelector("#school-select"), schools, "School_ID", ["School_Name", "School"]);
+        statusText.textContent = "";
       } catch (error) {
-        statusText.textContent = "Dropdown data could not be loaded. Connect this form to the form API endpoints.";
+        statusText.textContent = `Dropdown data could not be loaded. Start form_api.py and refresh this page. Details: ${error.message}`;
       }
       addRow();
     }
@@ -301,16 +299,19 @@
       event.preventDefault();
       statusText.textContent = "Submitting...";
       try {
-        const response = await fetch("/api/requisition", {
+        const response = await fetch(`${API_BASE}/submit_requisition`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(collectPayload())
         });
-        if (!response.ok) throw new Error(await response.text());
+        const result = await response.json();
+        if (!response.ok || !result.success) {
+          throw new Error(result.error || "Requisition was not accepted.");
+        }
         form.reset();
         rows.innerHTML = "";
         addRow();
-        statusText.textContent = "Requisition submitted successfully.";
+        statusText.textContent = `Requisition ${result.requisition_id} submitted successfully.`;
       } catch (error) {
         statusText.textContent = `Submission failed: ${error.message}`;
       }

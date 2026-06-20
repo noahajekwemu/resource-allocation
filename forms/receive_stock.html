@@ -174,7 +174,14 @@
         </label>
         <label>
           Source
-          <input type="text" name="Source" placeholder="Supplier, donor, or source">
+          <select name="Source" required>
+            <option value="">Select source</option>
+            <option value="Subeb">Subeb</option>
+            <option value="Benue State Government">Benue State Government</option>
+            <option value="NGO">NGO</option>
+            <option value="Direct Procurement">Direct Procurement</option>
+            <option value="Others">Others</option>
+          </select>
         </label>
         <label>
           Status
@@ -240,12 +247,24 @@
     const rows = document.querySelector("#item-rows");
     const template = document.querySelector("#item-row-template");
     const statusText = document.querySelector("#status");
+    const API_BASE = "http://127.0.0.1:5000";
     let items = [];
 
     async function loadJson(url) {
       const response = await fetch(url);
-      if (!response.ok) throw new Error(`Failed to load ${url}`);
-      return response.json();
+      let result = null;
+      try {
+        result = await response.json();
+      } catch (error) {
+        throw new Error("The API returned an unreadable response.");
+      }
+      if (!response.ok) {
+        throw new Error(result.error || `Request failed with status ${response.status}.`);
+      }
+      if (!Array.isArray(result)) {
+        throw new Error("The API did not return a dropdown list.");
+      }
+      return result;
     }
 
     function optionLabel(record, idKey, nameKeys) {
@@ -254,7 +273,9 @@
     }
 
     function fillSelect(select, records, idKey, nameKeys) {
+      select.options.length = 1;
       records.forEach((record) => {
+        if (!record[idKey]) return;
         const option = document.createElement("option");
         option.value = record[idKey];
         option.textContent = optionLabel(record, idKey, nameKeys);
@@ -290,13 +311,14 @@
     async function init() {
       try {
         const [loadedItems, warehouses] = await Promise.all([
-          loadJson("/api/items"),
-          loadJson("/api/warehouses")
+          loadJson(`${API_BASE}/items`),
+          loadJson(`${API_BASE}/warehouses`)
         ]);
         items = loadedItems;
         fillSelect(document.querySelector("#warehouse-select"), warehouses, "Warehouse_ID", ["Warehouse_Name", "Warehouse"]);
+        statusText.textContent = "";
       } catch (error) {
-        statusText.textContent = "Dropdown data could not be loaded. Connect this form to the form API endpoints.";
+        statusText.textContent = `Dropdown data could not be loaded. Start form_api.py and refresh this page. Details: ${error.message}`;
       }
       addRow();
     }
@@ -306,12 +328,15 @@
       event.preventDefault();
       statusText.textContent = "Submitting...";
       try {
-        const response = await fetch("/api/receive-stock", {
+        const response = await fetch(`${API_BASE}/submit_receive_stock`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(collectPayload())
         });
-        if (!response.ok) throw new Error(await response.text());
+        const result = await response.json();
+        if (!response.ok || result.success === false) {
+          throw new Error(result.error || "Receive stock was not submitted.");
+        }
         form.reset();
         rows.innerHTML = "";
         addRow();

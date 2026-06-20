@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Requisition Approval</title>
+  <style>
+    :root {
+      --border: #d7dde8;
+      --ink: #1f2937;
+      --muted: #667085;
+      --surface: #f6f8fb;
+      --panel: #ffffff;
+      --primary: #075985;
+      --primary-hover: #0369a1;
+      --danger: #b42318;
+      --danger-bg: #fee4e2;
+      --success-bg: #dcfce7;
+      --warning-bg: #fef3c7;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--surface);
+      color: var(--ink);
+      font-family: Arial, sans-serif;
+      line-height: 1.5;
+    }
+
+    main {
+      width: min(1180px, calc(100% - 32px));
+      margin: 32px auto;
+    }
+
+    h1 {
+      margin: 0 0 24px;
+      font-size: clamp(1.6rem, 3vw, 2.25rem);
+    }
+
+    .panel {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(260px, 340px) minmax(0, 1fr);
+      gap: 18px;
+      align-items: start;
+    }
+
+    label {
+      display: grid;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--ink);
+      font: inherit;
+      padding: 10px 12px;
+    }
+
+    textarea {
+      min-height: 96px;
+      resize: vertical;
+    }
+
+    dl {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 18px;
+      margin: 0;
+    }
+
+    dt {
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    dd {
+      margin: 2px 0 0;
+      min-height: 24px;
+      overflow-wrap: anywhere;
+    }
+
+    .details {
+      margin-top: 20px;
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--border);
+      padding: 10px;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+    }
+
+    .number {
+      max-width: 140px;
+    }
+
+    .badge {
+      border-radius: 999px;
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      padding: 4px 10px;
+    }
+
+    .ok {
+      background: var(--success-bg);
+      color: #166534;
+    }
+
+    .low {
+      background: var(--warning-bg);
+      color: #92400e;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: flex-end;
+      margin-top: 20px;
+    }
+
+    button {
+      border: 0;
+      border-radius: 6px;
+      cursor: pointer;
+      font: inherit;
+      font-weight: 700;
+      min-height: 42px;
+      padding: 10px 16px;
+    }
+
+    button:disabled {
+      cursor: not-allowed;
+      opacity: 0.55;
+    }
+
+    .primary {
+      background: var(--primary);
+      color: #fff;
+    }
+
+    .primary:hover:not(:disabled) {
+      background: var(--primary-hover);
+    }
+
+    .danger {
+      background: var(--danger-bg);
+      color: var(--danger);
+    }
+
+    .secondary {
+      background: #e7edf6;
+      color: var(--ink);
+    }
+
+    #status {
+      color: var(--muted);
+      margin: 16px 0 0;
+    }
+
+    @media (max-width: 860px) {
+      main {
+        width: min(100% - 20px, 1180px);
+        margin: 20px auto;
+      }
+
+      .panel {
+        padding: 16px;
+      }
+
+      .layout,
+      dl {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Requisition Approval</h1>
+    <div class="layout">
+      <section class="panel">
+        <label>
+          Pending requisition
+          <select id="requisition-select">
+            <option value="">Select requisition</option>
+          </select>
+        </label>
+        <button type="button" class="secondary" id="refresh" style="margin-top: 14px;">Refresh</button>
+      </section>
+
+      <form class="panel" id="approval-form">
+        <dl>
+          <div>
+            <dt>Requisition ID</dt>
+            <dd id="header-id"></dd>
+          </div>
+          <div>
+            <dt>Status</dt>
+            <dd id="header-status"></dd>
+          </div>
+          <div>
+            <dt>School</dt>
+            <dd id="header-school"></dd>
+          </div>
+          <div>
+            <dt>Request Date</dt>
+            <dd id="header-date"></dd>
+          </div>
+          <div>
+            <dt>Requested By</dt>
+            <dd id="header-requested-by"></dd>
+          </div>
+          <div>
+            <dt>Reason</dt>
+            <dd id="header-reason"></dd>
+          </div>
+        </dl>
+
+        <section class="details" aria-label="Requisition details">
+          <table>
+            <thead>
+              <tr>
+                <th>Item</th>
+                <th>Requested Qty</th>
+                <th>Available Stock</th>
+                <th>Approved Qty</th>
+              </tr>
+            </thead>
+            <tbody id="detail-rows">
+              <tr>
+                <td colspan="4">No requisition selected.</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <div class="layout" style="grid-template-columns: 1fr 1fr; margin-top: 18px;">
+          <label>
+            Approved by
+            <input type="text" id="approved-by" required>
+          </label>
+          <label>
+            Remarks
+            <textarea id="remarks"></textarea>
+          </label>
+        </div>
+
+        <div class="actions">
+          <button type="button" class="danger" id="reject" disabled>Reject</button>
+          <button type="submit" class="primary" id="approve" disabled>Approve</button>
+        </div>
+        <p id="status" role="status"></p>
+      </form>
+    </div>
+  </main>
+
+  <script>
+    const API_BASE = "http://127.0.0.1:5000";
+    const requisitionSelect = document.querySelector("#requisition-select");
+    const detailRows = document.querySelector("#detail-rows");
+    const form = document.querySelector("#approval-form");
+    const statusText = document.querySelector("#status");
+    const approveButton = document.querySelector("#approve");
+    const rejectButton = document.querySelector("#reject");
+    const approvedByInput = document.querySelector("#approved-by");
+    const remarksInput = document.querySelector("#remarks");
+    let currentRequisition = null;
+
+    async function loadJson(url, options) {
+      const response = await fetch(url, options);
+      const result = await response.json();
+      if (!response.ok || result.success === false) {
+        throw new Error(result.error || `Request failed: ${url}`);
+      }
+      return result;
+    }
+
+    function value(record, keys) {
+      return keys.map((key) => record?.[key]).find((entry) => entry !== undefined && entry !== null && entry !== "") || "";
+    }
+
+    function setHeader(header) {
+      document.querySelector("#header-id").textContent = value(header, ["Requisition_ID", "Requisition ID"]);
+      document.querySelector("#header-status").textContent = value(header, ["Status"]);
+      document.querySelector("#header-school").textContent = value(header, ["School_ID", "School ID"]);
+      document.querySelector("#header-date").textContent = value(header, ["Request_Date", "Request Date"]);
+      document.querySelector("#header-requested-by").textContent = value(header, ["Requested_By", "Requested By"]);
+      document.querySelector("#header-reason").textContent = value(header, ["Reason", "Remarks"]);
+    }
+
+    function renderDetails(details) {
+      detailRows.innerHTML = "";
+      details.forEach((detail) => {
+        const requested = Number(detail.Quantity_Requested || 0);
+        const available = Number(detail.Available_Stock || 0);
+        const approved = Math.min(requested, available);
+        const row = document.createElement("tr");
+        row.dataset.detailId = detail.Req_Detail_ID;
+        row.innerHTML = `
+          <td>${detail.Item_ID || ""}</td>
+          <td>${requested}</td>
+          <td><span class="badge ${available >= requested ? "ok" : "low"}">${available}</span></td>
+          <td>
+            <input class="number" type="number" min="0" step="1" max="${Math.min(requested, available)}" value="${Math.max(approved, 0)}" required>
+          </td>
+        `;
+        detailRows.appendChild(row);
+      });
+    }
+
+    function clearCurrent(message) {
+      currentRequisition = null;
+      setHeader({});
+      detailRows.innerHTML = `<tr><td colspan="4">${message}</td></tr>`;
+      approveButton.disabled = true;
+      rejectButton.disabled = true;
+    }
+
+    async function loadPendingRequisitions() {
+      statusText.textContent = "Loading pending requisitions...";
+      const result = await loadJson(`${API_BASE}/pending_requisitions`);
+      requisitionSelect.innerHTML = '<option value="">Select requisition</option>';
+      result.requisitions.forEach((requisition) => {
+        const id = value(requisition, ["Requisition_ID", "Requisition ID"]);
+        const school = value(requisition, ["School_ID", "School ID"]);
+        const option = document.createElement("option");
+        option.value = id;
+        option.textContent = school ? `${id} - ${school}` : id;
+        requisitionSelect.appendChild(option);
+      });
+      clearCurrent(result.requisitions.length ? "No requisition selected." : "No pending requisitions.");
+      statusText.textContent = "";
+    }
+
+    async function loadRequisition(requisitionId) {
+      if (!requisitionId) {
+        clearCurrent("No requisition selected.");
+        return;
+      }
+      statusText.textContent = "Loading requisition...";
+      const result = await loadJson(`${API_BASE}/requisition/${encodeURIComponent(requisitionId)}`);
+      currentRequisition = result;
+      setHeader(result.header);
+      renderDetails(result.details);
+      approveButton.disabled = false;
+      rejectButton.disabled = false;
+      statusText.textContent = "";
+    }
+
+    function approvalItems() {
+      return Array.from(detailRows.querySelectorAll("tr[data-detail-id]")).map((row) => ({
+        Req_Detail_ID: row.dataset.detailId,
+        Quantity_Approved: Number(row.querySelector("input").value)
+      }));
+    }
+
+    async function submitDecision(url, payload, successMessage) {
+      statusText.textContent = "Submitting...";
+      const result = await loadJson(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      });
+      statusText.textContent = successMessage(result.requisition_id);
+      requisitionSelect.value = "";
+      await loadPendingRequisitions();
+    }
+
+    document.querySelector("#refresh").addEventListener("click", async () => {
+      try {
+        await loadPendingRequisitions();
+      } catch (error) {
+        statusText.textContent = `Load failed: ${error.message}`;
+      }
+    });
+
+    requisitionSelect.addEventListener("change", async () => {
+      try {
+        await loadRequisition(requisitionSelect.value);
+      } catch (error) {
+        statusText.textContent = `Load failed: ${error.message}`;
+      }
+    });
+
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      if (!currentRequisition) return;
+
+      try {
+        await submitDecision(
+          `${API_BASE}/approve_requisition`,
+          {
+            Requisition_ID: value(currentRequisition.header, ["Requisition_ID", "Requisition ID"]),
+            Approved_By: approvedByInput.value,
+            Remarks: remarksInput.value,
+            items: approvalItems()
+          },
+          (id) => `Requisition ${id} approved.`
+        );
+      } catch (error) {
+        statusText.textContent = `Approval failed: ${error.message}`;
+      }
+    });
+
+    rejectButton.addEventListener("click", async () => {
+      if (!currentRequisition) return;
+
+      try {
+        await submitDecision(
+          `${API_BASE}/reject_requisition`,
+          {
+            Requisition_ID: value(currentRequisition.header, ["Requisition_ID", "Requisition ID"]),
+            Remarks: remarksInput.value
+          },
+          (id) => `Requisition ${id} rejected.`
+        );
+      } catch (error) {
+        statusText.textContent = `Rejection failed: ${error.message}`;
+      }
+    });
+
+    loadPendingRequisitions().catch((error) => {
+      statusText.textContent = `Load failed: ${error.message}`;
+    });
+  </script>
+</body>
+</html>

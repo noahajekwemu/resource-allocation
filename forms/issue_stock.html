@@ -185,12 +185,39 @@
             <option value="Pending">Pending</option>
           </select>
         </label>
+        <label>
+          Requisition
+          <select name="Requisition_ID" id="requisition-select">
+            <option value="">Select open requisition</option>
+          </select>
+        </label>
       </div>
 
       <label style="margin-top: 16px;">
         Remarks
         <textarea name="Remarks" placeholder="Optional notes"></textarea>
       </label>
+
+      <section class="details" aria-label="Open requisitions">
+        <table>
+          <thead>
+            <tr>
+              <th>Requisition</th>
+              <th>School</th>
+              <th>Status</th>
+              <th>Item</th>
+              <th>Approved</th>
+              <th>Fulfilled</th>
+              <th>Remaining</th>
+            </tr>
+          </thead>
+          <tbody id="open-requisition-rows">
+            <tr>
+              <td colspan="7">Loading open requisitions...</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
 
       <section class="details" aria-label="Issued items">
         <table>
@@ -242,12 +269,35 @@
     const rows = document.querySelector("#item-rows");
     const template = document.querySelector("#item-row-template");
     const statusText = document.querySelector("#status");
+    const requisitionSelect = document.querySelector("#requisition-select");
+    const openRequisitionRows = document.querySelector("#open-requisition-rows");
+    const API_BASE = "http://127.0.0.1:5000";
     let items = [];
+    let openRequisitions = [];
 
     async function loadJson(url) {
       const response = await fetch(url);
-      if (!response.ok) throw new Error(`Failed to load ${url}`);
-      return response.json();
+      let result = null;
+      try {
+        result = await response.json();
+      } catch (error) {
+        throw new Error("The API returned an unreadable response.");
+      }
+      if (!response.ok) {
+        throw new Error(result.error || `Request failed with status ${response.status}.`);
+      }
+      return result;
+    }
+
+    async function loadList(url, listKey) {
+      const result = await loadJson(url);
+      if (Array.isArray(result)) return result;
+      if (Array.isArray(result[listKey])) return result[listKey];
+      throw new Error("The API did not return a list.");
+    }
+
+    function value(record, keys) {
+      return keys.map((key) => record?.[key]).find((entry) => entry !== undefined && entry !== null && entry !== "") || "";
     }
 
     function optionLabel(record, idKey, nameKeys) {
@@ -256,11 +306,66 @@
     }
 
     function fillSelect(select, records, idKey, nameKeys) {
+      select.options.length = 1;
       records.forEach((record) => {
+        if (!record[idKey]) return;
         const option = document.createElement("option");
         option.value = record[idKey];
         option.textContent = optionLabel(record, idKey, nameKeys);
         select.appendChild(option);
+      });
+    }
+
+    function itemLabel(itemId) {
+      const item = items.find((record) => record.Item_ID === itemId);
+      return item ? optionLabel(item, "Item_ID", ["Item_Name", "Item"]) : itemId;
+    }
+
+    function fillRequisitionSelect() {
+      requisitionSelect.options.length = 1;
+      openRequisitions.forEach((requisition) => {
+        const id = value(requisition, ["Requisition_ID", "Requisition ID"]);
+        const schoolName = value(requisition, ["School_Name", "School Name"]);
+        const schoolId = value(requisition, ["School_ID", "School ID"]);
+        const status = value(requisition, ["Status"]);
+        if (!id) return;
+        const option = document.createElement("option");
+        option.value = id;
+        option.textContent = `${id} - ${schoolName || schoolId} (${status})`;
+        requisitionSelect.appendChild(option);
+      });
+    }
+
+    function renderOpenRequisitions() {
+      openRequisitionRows.innerHTML = "";
+      if (!openRequisitions.length) {
+        const row = document.createElement("tr");
+        row.innerHTML = '<td colspan="7">No open requisitions.</td>';
+        openRequisitionRows.appendChild(row);
+        return;
+      }
+
+      openRequisitions.forEach((requisition) => {
+        const id = value(requisition, ["Requisition_ID", "Requisition ID"]);
+        const school = value(requisition, ["School_Name", "School Name"]) || value(requisition, ["School_ID", "School ID"]);
+        const status = value(requisition, ["Status"]);
+        (requisition.details || []).forEach((detail) => {
+          const row = document.createElement("tr");
+          [
+            id,
+            school,
+            status,
+            itemLabel(value(detail, ["Item_ID", "Item ID"])),
+            value(detail, ["Quantity_Approved", "Approved Quantity"]),
+            value(detail, ["Quantity_Fulfilled", "Fulfilled Quantity"]) || "0",
+            value(detail, ["Quantity_Remaining", "Remaining Quantity"])
+          ].forEach((text) => {
+            const cell = document.createElement("td");
+            cell.textContent = text;
+            row.appendChild(cell);
+          });
+          openRequisitionRows.appendChild(row);
+        });
       });
     }
 
@@ -273,12 +378,38 @@
       rows.appendChild(row);
     }
 
+    function addRequisitionDetailRow(detail) {
+      const row = template.content.firstElementChild.cloneNode(true);
+      const itemSelect = row.querySelector(".item-select");
+      fillSelect(itemSelect, items, "Item_ID", ["Item_Name", "Item"]);
+      itemSelect.value = value(detail, ["Item_ID", "Item ID"]);
+      row.querySelector("[name='Quantity']").value = value(detail, ["Quantity_Remaining", "Remaining Quantity"]);
+      row.querySelector(".remove").addEventListener("click", () => {
+        if (rows.children.length > 1) row.remove();
+      });
+      rows.appendChild(row);
+    }
+
+    function applySelectedRequisition() {
+      const requisition = openRequisitions.find((record) => value(record, ["Requisition_ID", "Requisition ID"]) === requisitionSelect.value);
+      if (!requisition) return;
+
+      const schoolId = value(requisition, ["School_ID", "School ID"]);
+      const schoolSelect = document.querySelector("#school-select");
+      if (schoolId) schoolSelect.value = schoolId;
+
+      rows.innerHTML = "";
+      (requisition.details || []).forEach(addRequisitionDetailRow);
+      if (!rows.children.length) addRow();
+    }
+
     function collectPayload() {
       const formData = new FormData(form);
       return {
         Transaction_Date: formData.get("Transaction_Date"),
         Warehouse_ID: formData.get("Warehouse_ID"),
         Destination_School_ID: formData.get("Destination_School_ID"),
+        Requisition_ID: formData.get("Requisition_ID"),
         Status: formData.get("Status"),
         Remarks: formData.get("Remarks"),
         items: Array.from(rows.querySelectorAll("tr")).map((row) => ({
@@ -291,16 +422,21 @@
 
     async function init() {
       try {
-        const [loadedItems, warehouses, schools] = await Promise.all([
-          loadJson("/api/items"),
-          loadJson("/api/warehouses"),
-          loadJson("/api/schools")
+        const [loadedItems, warehouses, schools, requisitions] = await Promise.all([
+          loadList(`${API_BASE}/items`, "items"),
+          loadList(`${API_BASE}/warehouses`, "warehouses"),
+          loadList(`${API_BASE}/schools`, "schools"),
+          loadList(`${API_BASE}/open_requisitions`, "requisitions")
         ]);
         items = loadedItems;
+        openRequisitions = requisitions;
         fillSelect(document.querySelector("#warehouse-select"), warehouses, "Warehouse_ID", ["Warehouse_Name", "Warehouse"]);
         fillSelect(document.querySelector("#school-select"), schools, "School_ID", ["School_Name", "School"]);
+        fillRequisitionSelect();
+        renderOpenRequisitions();
+        statusText.textContent = "";
       } catch (error) {
-        statusText.textContent = "Dropdown data could not be loaded. Connect this form to the form API endpoints.";
+        statusText.textContent = `Dropdown data could not be loaded. Start form_api.py and refresh this page. Details: ${error.message}`;
       }
       addRow();
     }
@@ -310,20 +446,28 @@
       event.preventDefault();
       statusText.textContent = "Validating and submitting...";
       try {
-        const response = await fetch("/api/issue-stock", {
+        const response = await fetch(`${API_BASE}/submit_issue_stock`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(collectPayload())
         });
-        if (!response.ok) throw new Error(await response.text());
+        const result = await response.json();
+        if (!response.ok || result.success === false) {
+          throw new Error(result.error || "Issue stock was not submitted.");
+        }
         form.reset();
         rows.innerHTML = "";
         addRow();
+        openRequisitions = await loadList(`${API_BASE}/open_requisitions`, "requisitions");
+        fillRequisitionSelect();
+        renderOpenRequisitions();
         statusText.textContent = "Issued stock submitted successfully.";
       } catch (error) {
         statusText.textContent = `Submission failed: ${error.message}`;
       }
     });
+
+    requisitionSelect.addEventListener("change", applySelectedRequisition);
 
     init();
   </script>
