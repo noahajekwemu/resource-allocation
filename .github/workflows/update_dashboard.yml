@@ -36,7 +36,8 @@ jobs:
 
       - name: Sync dashboard to docs folder
         run: |
-          mkdir docs
+          rm -rf docs
+          mkdir -p docs
           cp -r dashboard/* docs/
 
       - name: Commit updated dashboard data
