@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-20T22:17:24.498273+00:00",
+  "generated_at": "2026-06-20T23:56:16.748121+00:00",
   "kpis": {
     "inventory_accuracy": 66.67,
     "total_items": 3,
@@ -19,7 +19,7 @@
     "damaged_items": 0,
     "schools_served": 1,
     "total_warehouses": 1,
-    "total_schools": 3,
+    "total_schools": 4,
     "total_categories": 2
   },
   "school_distribution": {
