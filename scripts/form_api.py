@@ -47,6 +47,25 @@ try:
 except (ImportError, ModuleNotFoundError):
     from inventory_utils import calculate_available_stock
 
+try:
+    from scripts.report_utils import (
+        get_audit_report,
+        get_executive_summary,
+        get_fulfillment_report,
+        get_requisition_report,
+        get_stock_report,
+        records_to_csv_response,
+    )
+except (ImportError, ModuleNotFoundError):
+    from report_utils import (
+        get_audit_report,
+        get_executive_summary,
+        get_fulfillment_report,
+        get_requisition_report,
+        get_stock_report,
+        records_to_csv_response,
+    )
+
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 app = Flask(__name__, template_folder=str(Path(__file__).resolve().parents[1] / "forms"))
@@ -82,6 +101,8 @@ FORM_PAGE_ROLES = {
     "issue_stock.html": {"Admin", "Store_Officer"},
     "requisition_form.html": {"Admin", "School_User"},
     "user_management.html": {"Admin"},
+    "reports.html": {"Admin", "Viewer", "Approver", "Store_Officer", "School_User"},
+    "print_executive_summary.html": {"Admin", "Viewer", "Approver", "Store_Officer"},
 }
 ROLE_DEFAULT_REDIRECTS = {
     "Admin": "/forms/approve_requisition.html",
@@ -98,10 +119,27 @@ def health_check():
     return jsonify({"status": "ok"})
 
 
+@app.get("/api/me")
+def current_user_route():
+    user = current_user()
+    if user is None:
+        return jsonify({"authenticated": False})
+    return jsonify({
+        "authenticated": True,
+        "user_id": user.get("User_ID", ""),
+        "email": user.get("Email", ""),
+        "full_name": user.get("Full_Name", ""),
+        "role": user.get("Role", ""),
+        "school_id": user.get("School_ID", ""),
+    })
+
+
 @app.after_request
 def add_no_cache_headers(response):
     is_protected_form = request.path.startswith("/forms/")
-    is_authenticated_response = current_user() is not None and response.is_json
+    is_authenticated_response = (
+        current_user() is not None and request.path.startswith("/api/")
+    )
     if is_protected_form or is_authenticated_response:
         response.headers["Cache-Control"] = "no-store"
     return response
@@ -1457,6 +1495,100 @@ def reset_user_password_route(user_id):
             "RESET_USER_PASSWORD", "User", user_id, None, None,
             "Failed", str(exc),
         )
+        return _json_error(exc, 500)
+
+
+def _report_format() -> str:
+    report_format = request.args.get("format", "json").strip().lower()
+    if report_format not in {"json", "csv"}:
+        raise ValueError("format must be json or csv.")
+    return report_format
+
+
+def _report_response(report_name: str, payload: Any, report_format: str):
+    _audit(
+        "EXPORT_REPORT", "Report", report_name, None,
+        {"Report_Name": report_name, "Format": report_format},
+    )
+    if report_format == "csv":
+        records = payload if isinstance(payload, list) else [payload]
+        return records_to_csv_response(records, f"{report_name}_report.csv")
+    return jsonify(payload)
+
+
+@app.get("/api/reports/executive-summary")
+@require_role("Admin", "Viewer", "Approver", "Store_Officer")
+def executive_summary_report_route():
+    try:
+        report_format = _report_format()
+        return _report_response(
+            "executive_summary", get_executive_summary(), report_format
+        )
+    except ValueError as exc:
+        return _json_error(exc, 400)
+    except Exception as exc:
+        logging.exception("Failed to generate executive summary report: %s", exc)
+        return _json_error(exc, 500)
+
+
+@app.get("/api/reports/stock")
+@require_role("Admin", "Viewer", "Store_Officer")
+def stock_report_route():
+    try:
+        report_format = _report_format()
+        return _report_response("stock", get_stock_report(), report_format)
+    except ValueError as exc:
+        return _json_error(exc, 400)
+    except Exception as exc:
+        logging.exception("Failed to generate stock report: %s", exc)
+        return _json_error(exc, 500)
+
+
+@app.get("/api/reports/requisitions")
+@require_role("Admin", "Viewer", "Approver", "School_User")
+def requisition_report_route():
+    try:
+        report_format = _report_format()
+        user = current_user() or {}
+        school_id = str(user.get("School_ID", "")).strip() if user.get("Role") == "School_User" else None
+        records = [] if school_id == "" else get_requisition_report(school_id=school_id)
+        return _report_response("requisitions", records, report_format)
+    except ValueError as exc:
+        return _json_error(exc, 400)
+    except Exception as exc:
+        logging.exception("Failed to generate requisition report: %s", exc)
+        return _json_error(exc, 500)
+
+
+@app.get("/api/reports/fulfillment")
+@require_role("Admin", "Viewer", "Approver", "Store_Officer", "School_User")
+def fulfillment_report_route():
+    try:
+        report_format = _report_format()
+        user = current_user() or {}
+        school_id = str(user.get("School_ID", "")).strip() if user.get("Role") == "School_User" else None
+        records = [] if school_id == "" else get_fulfillment_report(school_id=school_id)
+        return _report_response("fulfillment", records, report_format)
+    except ValueError as exc:
+        return _json_error(exc, 400)
+    except Exception as exc:
+        logging.exception("Failed to generate fulfillment report: %s", exc)
+        return _json_error(exc, 500)
+
+
+@app.get("/api/reports/audit")
+@require_role("Admin")
+def audit_report_route():
+    try:
+        report_format = _report_format()
+        records = get_audit_report(
+            action=request.args.get("action"), user_id=request.args.get("user_id")
+        )
+        return _report_response("audit", records, report_format)
+    except ValueError as exc:
+        return _json_error(exc, 400)
+    except Exception as exc:
+        logging.exception("Failed to generate audit report: %s", exc)
         return _json_error(exc, 500)
 
 

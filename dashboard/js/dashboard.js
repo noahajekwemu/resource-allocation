@@ -213,6 +213,8 @@ function configureApiNavigation() {
   });
   const userManagementLink = document.querySelector(".admin-nav-link");
   if (userManagementLink) userManagementLink.title = "Admin access required";
+  const reportsLink = document.querySelector(".secure-nav-link");
+  if (reportsLink) reportsLink.title = "Secure login required";
 }
 
 async function checkApiStatus() {

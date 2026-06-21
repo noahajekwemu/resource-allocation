@@ -34,6 +34,7 @@
     .form-nav { align-items: center; background: var(--primary); color: #fff; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; padding: 12px max(16px, calc((100% - 1180px) / 2)); }
     .form-nav__links { display: flex; gap: 16px; }
     .form-nav a { color: #fff; font-weight: 700; }
+    .portal-user { font-size: .85rem; opacity: .9; }
 
     main {
       width: min(1180px, calc(100% - 32px));
@@ -217,7 +218,8 @@
 <body>
   <nav class="form-nav" aria-label="Form navigation">
     <strong>Approve Requests</strong>
-    <span class="form-nav__links"><a href="https://noahajekwemu.github.io/resource-allocation/">Dashboard</a><a href="/logout">Logout</a></span>
+    <span class="portal-user" data-current-user>Loading user...</span>
+    <span class="form-nav__links"><a href="https://noahajekwemu.github.io/resource-allocation/">Dashboard</a><a href="/forms/reports.html">Reports</a><a data-nav-roles="Admin" href="/forms/user_management.html" hidden>User Management</a><a data-nav-roles="Admin,School_User" href="/forms/requisition_form.html" hidden>Submit Requisition</a><a data-nav-roles="Admin,Store_Officer" href="/forms/receive_stock.html" hidden>Receive Stock</a><a data-nav-roles="Admin,Store_Officer" href="/forms/issue_stock.html" hidden>Issue Stock</a><a data-nav-roles="Admin,Approver" href="/forms/approve_requisition.html" hidden>Approve Requests</a><a href="/logout">Logout</a></span>
   </nav>
   <main>
     <h1>Requisition Approval</h1>
@@ -299,6 +301,15 @@
   </main>
 
   <script>
+    async function loadPortalNavigation() {
+      const response = await fetch("/api/me", { cache: "no-store", credentials: "same-origin" });
+      const me = await response.json();
+      const identity = document.querySelector("[data-current-user]");
+      identity.textContent = me.authenticated ? `${me.full_name || me.email} (${me.role})` : "Not signed in";
+      document.querySelectorAll("[data-nav-roles]").forEach((link) => { link.hidden = !link.dataset.navRoles.split(",").includes(me.role); });
+    }
+    loadPortalNavigation().catch(() => { document.querySelector("[data-current-user]").textContent = "User details unavailable"; });
+
     const API_BASE = "";
     const requisitionSelect = document.querySelector("#requisition-select");
     const detailRows = document.querySelector("#detail-rows");

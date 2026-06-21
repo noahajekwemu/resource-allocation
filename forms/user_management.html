@@ -8,9 +8,12 @@
     :root { color-scheme: light; font-family: Arial, Helvetica, sans-serif; --blue: #0b6fb8; --light: #eaf6ff; --red: #b91c1c; --green: #166534; }
     * { box-sizing: border-box; }
     body { margin: 0; background: var(--light); color: #1f2937; }
-    header { background: var(--blue); color: white; padding: 1.2rem max(1rem, calc((100% - 1200px) / 2)); }
+    header { align-items: center; background: var(--blue); color: white; display: flex; flex-wrap: wrap; justify-content: space-between; padding: 1.2rem max(1rem, calc((100% - 1200px) / 2)); }
     header h1 { margin: 0 0 .25rem; }
     header a { color: white; }
+    .header-meta { align-items: flex-end; display: flex; flex-direction: column; gap: .35rem; }
+    .header-links { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .portal-user { font-size: .85rem; opacity: .9; }
     main { margin: 0 auto; max-width: 1200px; padding: 1.5rem 1rem 3rem; }
     section, dialog { background: white; border: 1px solid #cbd5e1; border-radius: 8px; box-shadow: 0 6px 20px rgb(15 23 42 / 10%); padding: 1.25rem; }
     section + section { margin-top: 1.5rem; }
@@ -41,7 +44,7 @@
 <body>
   <header>
     <h1>User Management</h1>
-    <a href="/forms/approve_requisition.html">Back to administration</a>
+    <div class="header-meta"><span class="portal-user" data-current-user>Loading user...</span><nav class="header-links" aria-label="Form navigation"><a href="https://noahajekwemu.github.io/resource-allocation/">Dashboard</a><a href="/forms/reports.html">Reports</a><a data-nav-roles="Admin" href="/forms/user_management.html" hidden>User Management</a><a data-nav-roles="Admin,School_User" href="/forms/requisition_form.html" hidden>Submit Requisition</a><a data-nav-roles="Admin,Store_Officer" href="/forms/receive_stock.html" hidden>Receive Stock</a><a data-nav-roles="Admin,Store_Officer" href="/forms/issue_stock.html" hidden>Issue Stock</a><a data-nav-roles="Admin,Approver" href="/forms/approve_requisition.html" hidden>Approve Requests</a><a href="/logout">Logout</a></nav></div>
   </header>
   <main>
     <section aria-labelledby="create-heading">
@@ -87,6 +90,14 @@
   </dialog>
 
   <script>
+    async function loadPortalNavigation() {
+      const response = await fetch("/api/me", { cache: "no-store", credentials: "same-origin" });
+      const me = await response.json();
+      document.querySelector("[data-current-user]").textContent = me.authenticated ? `${me.full_name || me.email} (${me.role})` : "Not signed in";
+      document.querySelectorAll("[data-nav-roles]").forEach((link) => { link.hidden = !link.dataset.navRoles.split(",").includes(me.role); });
+    }
+    loadPortalNavigation().catch(() => { document.querySelector("[data-current-user]").textContent = "User details unavailable"; });
+
     const ROLES = ["Admin", "Approver", "Store_Officer", "School_User", "Viewer"];
     let users = [];
 

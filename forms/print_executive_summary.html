@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Executive Summary Report</title>
+  <style>
+    :root { --blue: #0b6fb8; --sky: #1e9bea; --ink: #172033; font-family: Arial, Helvetica, sans-serif; }
+    * { box-sizing: border-box; }
+    body { background: #eef7fd; color: var(--ink); margin: 0; line-height: 1.45; }
+    .screen-nav { background: var(--blue); color: white; display: flex; justify-content: space-between; padding: .8rem max(1rem, calc((100% - 960px) / 2)); }
+    .screen-nav div { display: flex; gap: 1rem; }
+    .screen-nav a { color: white; font-weight: 700; }
+    .screen-nav button { background: white; border: 0; border-radius: 4px; color: var(--blue); cursor: pointer; font: inherit; font-weight: 700; padding: .45rem .8rem; }
+    .portal-user { font-size: .85rem; opacity: .9; }
+    .report { background: white; box-shadow: 0 8px 24px rgb(15 23 42 / 12%); margin: 2rem auto; max-width: 960px; padding: 2.5rem; }
+    .report-header { border-bottom: 4px solid var(--sky); margin-bottom: 1.5rem; padding-bottom: 1rem; text-align: center; }
+    .report-header p { color: var(--blue); font-weight: 700; margin: 0; }
+    .report-header h1 { color: var(--blue); font-size: 1.8rem; margin: .3rem 0; }
+    .generated { color: #475569; }
+    h2 { color: var(--blue); font-size: 1.2rem; margin-top: 1.7rem; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #cbd5e1; padding: .65rem .75rem; text-align: left; }
+    th { background: #eaf6ff; color: var(--blue); width: 65%; }
+    .summary-grid { display: grid; gap: 1rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .summary { border-left: 5px solid var(--sky); background: #f8fafc; padding: 1rem; }
+    .summary h3 { color: var(--blue); margin-top: 0; }
+    .summary p { margin-bottom: 0; }
+    .error { color: #b91c1c; font-weight: 700; }
+    @media (max-width: 700px) { .report { margin: 0; padding: 1.25rem; } .summary-grid { grid-template-columns: 1fr; } }
+    @media print {
+      @page { margin: 14mm; }
+      html, body { background: white; }
+      .screen-nav, button { display: none !important; }
+      .report { box-shadow: none; margin: 0; max-width: none; padding: 0; }
+      .report-header { break-after: avoid; }
+      table, .summary { break-inside: avoid; }
+      .summary-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <nav class="screen-nav" aria-label="Report navigation">
+    <div><a href="https://noahajekwemu.github.io/resource-allocation/">Dashboard</a><a href="/forms/reports.html">Reports</a><a data-nav-roles="Admin" href="/forms/user_management.html" hidden>User Management</a><a data-nav-roles="Admin,School_User" href="/forms/requisition_form.html" hidden>Submit Requisition</a><a data-nav-roles="Admin,Store_Officer" href="/forms/receive_stock.html" hidden>Receive Stock</a><a data-nav-roles="Admin,Store_Officer" href="/forms/issue_stock.html" hidden>Issue Stock</a><a data-nav-roles="Admin,Approver" href="/forms/approve_requisition.html" hidden>Approve Requests</a><a href="/logout">Logout</a></div>
+    <span class="portal-user" data-current-user>Loading user...</span>
+    <button type="button" id="print-report">Print Report</button>
+  </nav>
+  <main class="report">
+    <header class="report-header">
+      <p>Benue SUBEB Resource Allocation System</p>
+      <h1>Executive Summary Report</h1>
+      <div class="generated">Generated: <span id="generated-date">Loading...</span></div>
+    </header>
+    <p id="status" role="status">Loading report data...</p>
+    <div id="report-content" hidden>
+      <section><h2>Key Performance Indicators</h2><table><tbody id="kpi-rows"></tbody></table></section>
+      <section><h2>Summary</h2><div class="summary-grid">
+        <article class="summary"><h3>Coverage</h3><p id="coverage-summary"></p></article>
+        <article class="summary"><h3>Requisitions</h3><p id="requisition-summary"></p></article>
+        <article class="summary"><h3>Stock and Fulfillment</h3><p id="stock-summary"></p></article>
+      </div></section>
+    </div>
+  </main>
+  <script>
+    const KPI_FIELDS = [
+      ["total_items", "Total Items"], ["total_schools", "Total Schools"], ["total_warehouses", "Total Warehouses"],
+      ["total_requisitions", "Total Requisitions"], ["pending_requisitions", "Pending Requisitions"],
+      ["approved_requisitions", "Approved Requisitions"], ["rejected_requisitions", "Rejected Requisitions"],
+      ["fulfilled_requisitions", "Fulfilled Requisitions"], ["partially_fulfilled_requisitions", "Partially Fulfilled"],
+      ["total_stock_received", "Total Stock Received"], ["total_stock_issued", "Total Stock Issued"],
+      ["fulfillment_rate_percent", "Fulfillment Rate", true], ["low_stock_items", "Low Stock Items"]
+    ];
+    async function loadPortalNavigation() {
+      const response = await fetch("/api/me", { cache: "no-store", credentials: "same-origin" });
+      const me = await response.json();
+      document.querySelector("[data-current-user]").textContent = me.authenticated ? `${me.full_name || me.email} (${me.role})` : "Not signed in";
+      document.querySelectorAll("[data-nav-roles]").forEach((link) => { link.hidden = !link.dataset.navRoles.split(",").includes(me.role); });
+    }
+    const number = (value) => new Intl.NumberFormat("en-NG", { maximumFractionDigits: 2 }).format(Number(value || 0));
+    async function loadReport() {
+      const status = document.querySelector("#status");
+      try {
+        const response = await fetch("/api/reports/executive-summary", { cache: "no-store", credentials: "same-origin" });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(data.error || "Executive summary could not be loaded.");
+        document.querySelector("#generated-date").textContent = new Intl.DateTimeFormat("en-NG", { dateStyle: "long", timeStyle: "short" }).format(new Date(data.generated_at));
+        const rows = document.querySelector("#kpi-rows");
+        KPI_FIELDS.forEach(([key, label, percent]) => {
+          const row = document.createElement("tr"); const heading = document.createElement("th"); const value = document.createElement("td");
+          heading.scope = "row"; heading.textContent = label; value.textContent = `${number(data[key])}${percent ? "%" : ""}`; row.append(heading, value); rows.appendChild(row);
+        });
+        document.querySelector("#coverage-summary").textContent = `${number(data.total_items)} inventory items are managed across ${number(data.total_schools)} schools and ${number(data.total_warehouses)} warehouses.`;
+        document.querySelector("#requisition-summary").textContent = `${number(data.total_requisitions)} requisitions recorded: ${number(data.pending_requisitions)} pending, ${number(data.approved_requisitions)} approved, and ${number(data.fulfilled_requisitions)} fulfilled.`;
+        document.querySelector("#stock-summary").textContent = `${number(data.total_stock_received)} units received and ${number(data.total_stock_issued)} issued, with a fulfillment rate of ${number(data.fulfillment_rate_percent)}%.`;
+        status.hidden = true; document.querySelector("#report-content").hidden = false;
+      } catch (error) { status.textContent = error.message; status.className = "error"; }
+    }
+    document.querySelector("#print-report").addEventListener("click", () => window.print());
+    loadPortalNavigation().catch(() => { document.querySelector("[data-current-user]").textContent = "User details unavailable"; });
+    loadReport();
+  </script>
+</body>
+</html>

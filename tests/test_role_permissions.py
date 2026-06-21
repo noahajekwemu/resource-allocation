@@ -70,6 +70,30 @@ class RolePermissionTests(unittest.TestCase):
         )
         self.assertNotIn("Access-Control-Allow-Origin", response.headers)
 
+    def test_api_me_returns_unauthenticated_without_session(self):
+        response = self.client.get("/api/me")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.get_json(), {"authenticated": False})
+
+    def test_api_me_returns_safe_authenticated_user(self):
+        with self.client.session_transaction() as flask_session:
+            flask_session["user"] = {
+                "User_ID": "USR001", "Email": "admin@example.com",
+                "Full_Name": "Admin User", "Role": "Admin", "School_ID": "",
+                "Password_Hash": "must-not-leak", "Secret": "hidden",
+            }
+        response = self.client.get("/api/me")
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.get_json(), {
+            "authenticated": True,
+            "user_id": "USR001",
+            "email": "admin@example.com",
+            "full_name": "Admin User",
+            "role": "Admin",
+            "school_id": "",
+        })
+        self.assertNotIn("Password_Hash", response.get_data(as_text=True))
+
     def test_protected_write_endpoint_has_no_cors_access(self):
         response = self.client.post(
             "/submit_receive_stock",
@@ -320,6 +344,129 @@ class RolePermissionTests(unittest.TestCase):
                     data={"email": user["Email"], "password": "secret"},
                 )
             self.assertEqual(response.location, "/forms/approve_requisition.html")
+
+    def test_admin_can_access_all_reports(self):
+        self.login_as("Admin")
+        patches = [
+            patch("scripts.form_api.get_executive_summary", return_value={"total_items": 1}),
+            patch("scripts.form_api.get_stock_report", return_value=[]),
+            patch("scripts.form_api.get_requisition_report", return_value=[]),
+            patch("scripts.form_api.get_fulfillment_report", return_value=[]),
+            patch("scripts.form_api.get_audit_report", return_value=[]),
+            patch("scripts.form_api._audit"),
+        ]
+        for active_patch in patches:
+            active_patch.start()
+            self.addCleanup(active_patch.stop)
+        for path in (
+            "/api/reports/executive-summary", "/api/reports/stock",
+            "/api/reports/requisitions", "/api/reports/fulfillment",
+            "/api/reports/audit",
+        ):
+            with self.subTest(path=path):
+                self.assertEqual(self.client.get(path).status_code, 200)
+
+    def test_viewer_cannot_access_audit_report(self):
+        self.login_as("Viewer")
+        response = self.client.get("/api/reports/audit")
+        self.assertEqual(response.status_code, 403)
+
+    def test_school_user_cannot_access_stock_report(self):
+        self.login_as("School_User", "SCH-001")
+        response = self.client.get("/api/reports/stock")
+        self.assertEqual(response.status_code, 403)
+
+    def test_school_user_reports_are_filtered_to_own_school(self):
+        self.login_as("School_User", "SCH-001")
+        with patch(
+            "scripts.form_api.get_requisition_report", return_value=[]
+        ) as requisitions, patch(
+            "scripts.form_api.get_fulfillment_report", return_value=[]
+        ) as fulfillment, patch("scripts.form_api._audit"):
+            requisition_response = self.client.get("/api/reports/requisitions")
+            fulfillment_response = self.client.get("/api/reports/fulfillment")
+        self.assertEqual(requisition_response.status_code, 200)
+        self.assertEqual(fulfillment_response.status_code, 200)
+        requisitions.assert_called_once_with(school_id="SCH-001")
+        fulfillment.assert_called_once_with(school_id="SCH-001")
+
+    def test_csv_report_has_csv_content_type_and_is_audited(self):
+        self.login_as("Viewer")
+        with patch(
+            "scripts.form_api.get_stock_report",
+            return_value=[{"Item_ID": "ITEM-1", "Current_Stock": 5}],
+        ), patch("scripts.form_api._audit") as audit:
+            response = self.client.get("/api/reports/stock?format=csv")
+        self.assertEqual(response.status_code, 200)
+        self.assertTrue(response.content_type.startswith("text/csv"))
+        self.assertEqual(audit.call_args.args[0], "EXPORT_REPORT")
+        self.assertEqual(audit.call_args.args[4]["Format"], "csv")
+
+    def test_all_roles_can_access_reports_page(self):
+        for role in ("Admin", "Viewer", "Approver", "Store_Officer", "School_User"):
+            with self.subTest(role=role):
+                self.client = form_api.app.test_client()
+                self.login_as(role, "SCH-001")
+                response = self.client.get("/forms/reports.html")
+                self.assertEqual(response.status_code, 200)
+                self.assertIn(b"Reports and Exports", response.data)
+                self.assertNotIn(b"Password_Hash", response.data)
+
+    def test_executive_print_page_role_access(self):
+        for role in ("Admin", "Viewer", "Approver", "Store_Officer"):
+            with self.subTest(role=role):
+                self.client = form_api.app.test_client()
+                self.login_as(role)
+                response = self.client.get("/forms/print_executive_summary.html")
+                self.assertEqual(response.status_code, 200)
+                self.assertIn(b"Executive Summary Report", response.data)
+
+    def test_school_user_cannot_access_executive_print_page(self):
+        self.login_as("School_User", "SCH-001")
+        response = self.client.get("/forms/print_executive_summary.html")
+        self.assertEqual(response.status_code, 403)
+
+    def test_reports_pages_redirect_unauthenticated_user(self):
+        for path in ("/forms/reports.html", "/forms/print_executive_summary.html"):
+            with self.subTest(path=path):
+                response = self.client.get(path)
+                self.assertEqual(response.status_code, 302)
+                self.assertIn(f"/login?next={path}", response.location)
+
+    def test_secured_forms_include_dashboard_reports_and_logout_navigation(self):
+        pages_and_roles = {
+            "approve_requisition.html": "Admin",
+            "receive_stock.html": "Store_Officer",
+            "issue_stock.html": "Store_Officer",
+            "requisition_form.html": "School_User",
+            "user_management.html": "Admin",
+        }
+        for page, role in pages_and_roles.items():
+            with self.subTest(page=page):
+                self.client = form_api.app.test_client()
+                self.login_as(role, "SCH-001")
+                response = self.client.get(f"/forms/{page}")
+                self.assertEqual(response.status_code, 200)
+                self.assertIn(b"Dashboard", response.data)
+                self.assertIn(b'href="/forms/reports.html"', response.data)
+                self.assertIn(b'href="/logout"', response.data)
+                self.assertIn(b'fetch("/api/me"', response.data)
+                self.assertIn(b"data-current-user", response.data)
+
+    def test_report_cards_have_role_visibility_rules(self):
+        self.login_as("Viewer")
+        response = self.client.get("/forms/reports.html")
+        self.assertEqual(response.status_code, 200)
+        self.assertIn(b'data-report-roles="Admin" hidden', response.data)
+        self.assertIn(b"Access is based on your assigned system role.", response.data)
+
+    def test_unauthorized_backend_routes_still_return_403(self):
+        self.login_as("Viewer")
+        self.assertEqual(
+            self.client.get("/forms/user_management.html").status_code, 403
+        )
+        self.assertEqual(self.client.get("/api/reports/audit").status_code, 403)
+        self.assertEqual(self.client.post("/submit_receive_stock", json={}).status_code, 403)
 
 
 if __name__ == "__main__":

@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reports and Exports</title>
+  <style>
+    :root { --blue: #0b6fb8; --sky: #1e9bea; --light: #eaf6ff; --ink: #1f2937; --white: #fff; --red: #b91c1c; font-family: Arial, Helvetica, sans-serif; }
+    * { box-sizing: border-box; }
+    body { background: var(--light); color: var(--ink); margin: 0; line-height: 1.5; }
+    .brand { background: var(--white); border-bottom: 5px solid var(--sky); padding: 1.2rem max(1rem, calc((100% - 1200px) / 2)); }
+    .brand p { margin: 0; color: var(--blue); font-weight: 700; text-transform: uppercase; }
+    .brand h1 { color: var(--blue); margin: .25rem 0 0; }
+    .form-nav { align-items: center; background: var(--blue); color: white; display: flex; justify-content: space-between; padding: .8rem max(1rem, calc((100% - 1200px) / 2)); }
+    .form-nav__links { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .form-nav a { color: white; font-weight: 700; }
+    .portal-user { font-size: .85rem; opacity: .9; }
+    main { margin: 0 auto; max-width: 1200px; padding: 1.5rem 1rem 3rem; }
+    h2 { color: var(--blue); }
+    .status { background: white; border-left: 5px solid var(--sky); padding: 1rem; }
+    .status.error { border-color: var(--red); color: var(--red); }
+    .kpis { display: grid; gap: 1rem; grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .kpi, .report-card { background: white; border: 1px solid #cbd5e1; border-radius: 7px; box-shadow: 0 7px 18px rgb(15 23 42 / 9%); padding: 1rem; }
+    .kpi span { color: #475569; display: block; font-size: .8rem; font-weight: 700; text-transform: uppercase; }
+    .kpi strong { color: var(--blue); display: block; font-size: 1.8rem; margin-top: .35rem; }
+    .report-grid { display: grid; gap: 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .report-card h3 { color: var(--blue); margin-top: 0; }
+    .report-card p { min-height: 3rem; }
+    .card-actions { display: flex; flex-wrap: wrap; gap: .5rem; }
+    .card-actions a { background: var(--blue); border-radius: 4px; color: white; font-weight: 700; padding: .55rem .7rem; text-decoration: none; }
+    .card-actions a.secondary { background: white; border: 1px solid var(--blue); color: var(--blue); }
+    @media (max-width: 760px) { .kpis, .report-grid { grid-template-columns: 1fr; } .form-nav { align-items: flex-start; flex-direction: column; gap: .5rem; } }
+  </style>
+</head>
+<body>
+  <header class="brand">
+    <p>Benue State Universal Basic Education Board</p>
+    <h1>Reports and Exports</h1>
+  </header>
+  <nav class="form-nav" aria-label="Form navigation">
+    <strong>Resource Allocation System</strong>
+    <span class="portal-user" data-current-user>Loading user...</span>
+    <span class="form-nav__links"><a href="https://noahajekwemu.github.io/resource-allocation/">Dashboard</a><a href="/forms/reports.html" aria-current="page">Reports</a><a data-nav-roles="Admin" href="/forms/user_management.html" hidden>User Management</a><a data-nav-roles="Admin,School_User" href="/forms/requisition_form.html" hidden>Submit Requisition</a><a data-nav-roles="Admin,Store_Officer" href="/forms/receive_stock.html" hidden>Receive Stock</a><a data-nav-roles="Admin,Store_Officer" href="/forms/issue_stock.html" hidden>Issue Stock</a><a data-nav-roles="Admin,Approver" href="/forms/approve_requisition.html" hidden>Approve Requests</a><a href="/logout">Logout</a></span>
+  </nav>
+  <main>
+    <section aria-labelledby="summary-heading">
+      <h2 id="summary-heading">Executive Snapshot</h2>
+      <p id="summary-status" class="status" role="status">Loading executive summary...</p>
+      <div id="summary-kpis" class="kpis" hidden></div>
+    </section>
+    <section aria-labelledby="available-heading">
+      <h2 id="available-heading">Available Reports</h2>
+      <p>Access is based on your assigned system role.</p>
+      <div class="report-grid">
+        <article class="report-card" data-report-roles="Admin,Viewer,Approver,Store_Officer" hidden>
+          <h3>Executive Summary</h3><p>Headline inventory, requisition, and fulfillment indicators.</p>
+          <div class="card-actions"><a href="/api/reports/executive-summary?format=json">View JSON</a><a class="secondary" href="/api/reports/executive-summary?format=csv">Download CSV</a><a class="secondary" href="/forms/print_executive_summary.html">Print View</a></div>
+        </article>
+        <article class="report-card" data-report-roles="Admin,Viewer,Store_Officer" hidden>
+          <h3>Stock Report</h3><p>Stock received, issued, and currently available by item and warehouse.</p>
+          <div class="card-actions"><a href="/api/reports/stock?format=json">View JSON</a><a class="secondary" href="/api/reports/stock?format=csv">Download CSV</a></div>
+        </article>
+        <article class="report-card" data-report-roles="Admin,Viewer,Approver,School_User" hidden>
+          <h3>Requisition Report</h3><p>Request status and aggregated quantities, subject to school access scope.</p>
+          <div class="card-actions"><a href="/api/reports/requisitions?format=json">View JSON</a><a class="secondary" href="/api/reports/requisitions?format=csv">Download CSV</a></div>
+        </article>
+        <article class="report-card" data-report-roles="Admin,Viewer,Approver,Store_Officer,School_User" hidden>
+          <h3>Fulfillment Report</h3><p>Requested, approved, fulfilled, and outstanding quantities by item.</p>
+          <div class="card-actions"><a href="/api/reports/fulfillment?format=json">View JSON</a><a class="secondary" href="/api/reports/fulfillment?format=csv">Download CSV</a></div>
+        </article>
+        <article class="report-card" data-report-roles="Admin" hidden>
+          <h3>Audit Report</h3><p>Administrative audit trail. This report is restricted to Admin users.</p>
+          <div class="card-actions"><a href="/api/reports/audit?format=json">View JSON</a><a class="secondary" href="/api/reports/audit?format=csv">Download CSV</a></div>
+        </article>
+      </div>
+    </section>
+  </main>
+  <script>
+    const KPI_FIELDS = [
+      ["total_schools", "Total Schools"], ["total_warehouses", "Total Warehouses"],
+      ["total_requisitions", "Total Requisitions"], ["pending_requisitions", "Pending Requisitions"],
+      ["approved_requisitions", "Approved Requisitions"], ["fulfilled_requisitions", "Fulfilled Requisitions"],
+      ["total_stock_received", "Stock Received"], ["total_stock_issued", "Stock Issued"],
+      ["fulfillment_rate_percent", "Fulfillment Rate", true]
+    ];
+    async function loadPortalNavigation() {
+      const response = await fetch("/api/me", { cache: "no-store", credentials: "same-origin" });
+      const me = await response.json();
+      document.querySelector("[data-current-user]").textContent = me.authenticated ? `${me.full_name || me.email} (${me.role})` : "Not signed in";
+      document.querySelectorAll("[data-nav-roles]").forEach((link) => { link.hidden = !link.dataset.navRoles.split(",").includes(me.role); });
+      document.querySelectorAll("[data-report-roles]").forEach((card) => { card.hidden = !card.dataset.reportRoles.split(",").includes(me.role); });
+      return me;
+    }
+    async function loadSummary() {
+      const status = document.querySelector("#summary-status");
+      const container = document.querySelector("#summary-kpis");
+      try {
+        const response = await fetch("/api/reports/executive-summary", { cache: "no-store", credentials: "same-origin" });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(response.status === 403 ? "Executive summary is not available for your role." : (result.error || "Summary could not be loaded."));
+        KPI_FIELDS.forEach(([key, label, percent]) => {
+          const card = document.createElement("article"); card.className = "kpi";
+          const name = document.createElement("span"); name.textContent = label;
+          const value = document.createElement("strong"); value.textContent = `${result[key] ?? 0}${percent ? "%" : ""}`;
+          card.append(name, value); container.appendChild(card);
+        });
+        container.hidden = false; status.hidden = true;
+      } catch (error) { status.textContent = error.message; status.classList.add("error"); }
+    }
+    loadPortalNavigation().then((me) => {
+      if (["Admin", "Viewer", "Approver", "Store_Officer"].includes(me.role)) loadSummary();
+      else { const status = document.querySelector("#summary-status"); status.textContent = "Executive summary is not available for your role."; status.classList.add("error"); }
+    }).catch(() => { document.querySelector("[data-current-user]").textContent = "User details unavailable"; });
+  </script>
+</body>
+</html>

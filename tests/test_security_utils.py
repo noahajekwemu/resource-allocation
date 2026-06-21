@@ -78,6 +78,16 @@ class SecurityUtilsTests(unittest.TestCase):
                 "School_User", "secret",
             )
 
+    def test_public_user_record_uses_explicit_allowlist(self):
+        public = security_utils.public_user_record({
+            "User_ID": "USR001", "Full_Name": "User", "Email": "u@example.com",
+            "Role": "Viewer", "School_ID": "", "Active": True,
+            "Created_At": "2026-01-01", "Password_Hash": "hidden",
+            "Unexpected_Secret": "hidden-too",
+        })
+        self.assertEqual(set(public), set(security_utils.PUBLIC_USER_FIELDS))
+        self.assertNotIn("Password_Hash", public)
+
 
 if __name__ == "__main__":
     unittest.main()
