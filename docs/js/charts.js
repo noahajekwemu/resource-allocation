@@ -1,4 +1,4 @@
-const SubebCharts = (() => {
+﻿const SubebCharts = (() => {
   const chartInstances = [];
 
   function cssColor(name) {
@@ -193,3 +193,4 @@ const SubebCharts = (() => {
 
   return { render, renderEmptyState, createBarChart, createDoughnutChart, createLineChart };
 })();
+
