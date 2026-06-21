@@ -211,6 +211,8 @@ function configureApiNavigation() {
   document.querySelectorAll("[data-api-path]").forEach((link) => {
     link.href = `${API_BASE_URL}${link.dataset.apiPath}`;
   });
+  const userManagementLink = document.querySelector(".admin-nav-link");
+  if (userManagementLink) userManagementLink.title = "Admin access required";
 }
 
 async function checkApiStatus() {
