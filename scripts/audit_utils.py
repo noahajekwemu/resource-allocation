@@ -16,6 +16,13 @@ AUDIT_LOG_HEADERS = [
     "Status", "Remarks",
 ]
 AUDIT_LOG_COLUMNS = AUDIT_LOG_HEADERS
+USER_MANAGEMENT_ACTIONS = {
+    "CREATE_USER",
+    "UPDATE_USER",
+    "RESET_USER_PASSWORD",
+    "DEACTIVATE_USER",
+    "ACTIVATE_USER",
+}
 
 
 def _json_state(state: dict[str, Any] | None) -> str:

@@ -1,15 +1,19 @@
 import logging
-from datetime import datetime, timezone
+import os
+from datetime import datetime, timedelta, timezone
 from functools import wraps
 from typing import Any, Callable
 
-from flask import jsonify, session
+from flask import Flask, jsonify, session
 from werkzeug.security import check_password_hash, generate_password_hash
 
 
 USERS_WORKSHEET = "Users"
 SPREADSHEET_NAME = "Educational_Supplies_Logs"
 VALID_ROLES = {"Admin", "Approver", "Store_Officer", "School_User", "Viewer"}
+PUBLIC_USER_FIELDS = (
+    "User_ID", "Full_Name", "Email", "Role", "School_ID", "Active", "Created_At"
+)
 ROLE_PERMISSIONS = {
     "Admin": {"*"},
     "Approver": {"view_pending_requisitions", "view_open_requisitions", "approve_requisition", "reject_requisition"},
@@ -17,6 +21,37 @@ ROLE_PERMISSIONS = {
     "School_User": {"submit_requisition"},
     "Viewer": {"view_public"},
 }
+
+VALID_APP_ENVIRONMENTS = {"development", "production"}
+DEVELOPMENT_SECRET_KEY = "development-only-change-me"
+
+
+def configure_app_security(app: Flask) -> str:
+    """Apply environment-aware Flask security settings and return APP_ENV."""
+    app_env = os.environ.get("APP_ENV", "development").strip().lower()
+    if app_env not in VALID_APP_ENVIRONMENTS:
+        raise RuntimeError(
+            "APP_ENV must be either 'development' or 'production'."
+        )
+
+    secret_key = os.environ.get("FORM_API_SECRET_KEY")
+    if not secret_key and app_env == "production":
+        raise RuntimeError("FORM_API_SECRET_KEY must be set in production.")
+    if not secret_key:
+        secret_key = DEVELOPMENT_SECRET_KEY
+        logging.warning(
+            "FORM_API_SECRET_KEY is not set; using an insecure development fallback."
+        )
+
+    app.config.update(
+        APP_ENV=app_env,
+        SECRET_KEY=secret_key,
+        SESSION_COOKIE_HTTPONLY=True,
+        SESSION_COOKIE_SAMESITE="Lax",
+        SESSION_COOKIE_SECURE=app_env == "production",
+        PERMANENT_SESSION_LIFETIME=timedelta(minutes=60),
+    )
+    return app_env
 
 
 def hash_password(password: str) -> str:
@@ -42,8 +77,11 @@ def _read_users():
     return db_connector.read_worksheet(SPREADSHEET_NAME, USERS_WORKSHEET)
 
 
-def _public_user(user: dict[str, Any]) -> dict[str, Any]:
-    return {key: value for key, value in user.items() if str(key).lower() != "password_hash"}
+def public_user_record(user: dict[str, Any]) -> dict[str, Any]:
+    """Return only fields that are safe to expose outside the data layer."""
+    record = {field: user.get(field, "") for field in PUBLIC_USER_FIELDS}
+    record["Active"] = _is_active(record["Active"])
+    return record
 
 
 def get_user_by_email(email: str) -> dict[str, Any] | None:
@@ -74,7 +112,7 @@ def authenticate_user(email: str, password: str) -> dict[str, Any] | None:
         return None
     if not verify_password(password, str(user.get("Password_Hash", ""))):
         return None
-    return _public_user(user)
+    return public_user_record(user)
 
 
 def current_user() -> dict[str, Any] | None:
@@ -118,17 +156,36 @@ def require_role(*roles: str):
     return decorator
 
 
-def create_user_record(user_id: str, full_name: str, email: str, role: str, password: str, school_id: str = "") -> dict[str, Any]:
+def create_user_record(
+    user_id: str,
+    full_name: str,
+    email: str,
+    role: str,
+    password: str,
+    school_id: str = "",
+    active: bool = True,
+) -> dict[str, Any]:
     """Build a worksheet-ready initial user record with a hashed password."""
+    full_name = str(full_name or "").strip()
+    email = str(email or "").strip().lower()
+    school_id = str(school_id or "").strip()
+    if not full_name:
+        raise ValueError("Full_Name is required.")
+    if not email:
+        raise ValueError("Email is required.")
     if role not in VALID_ROLES:
         raise ValueError(f"Invalid role: {role}")
+    if role == "School_User" and not school_id:
+        raise ValueError("School_ID is required for School_User.")
+    if not isinstance(active, bool):
+        raise ValueError("Active must be true or false.")
     return {
         "User_ID": user_id,
         "Full_Name": full_name,
-        "Email": str(email).strip().lower(),
+        "Email": email,
         "Role": role,
         "School_ID": school_id,
         "Password_Hash": hash_password(password),
-        "Active": True,
+        "Active": active,
         "Created_At": datetime.now(timezone.utc).isoformat(),
     }

@@ -10,6 +10,8 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 logging.basicConfig(level=logging.INFO)
 
+SPREADSHEET_NAME = "Educational_Supplies_Logs"
+
 SCOPE = [
     "https://spreadsheets.google.com/feeds",
     "https://www.googleapis.com/auth/drive"
@@ -24,6 +26,17 @@ REQUISITIONS_WORKSHEET = "Requisitions"
 REQUISITION_DETAILS_WORKSHEET = "Requisition_Details"
 USERS_WORKSHEET = "Users"
 AUDIT_LOG_WORKSHEET = "Audit_Log"
+BACKUP_WORKSHEETS = (
+    ITEMS_WORKSHEET,
+    SCHOOLS_WORKSHEET,
+    WAREHOUSES_WORKSHEET,
+    TRANSACTIONS_WORKSHEET,
+    TRANSACTION_DETAILS_WORKSHEET,
+    REQUISITIONS_WORKSHEET,
+    REQUISITION_DETAILS_WORKSHEET,
+    USERS_WORKSHEET,
+    AUDIT_LOG_WORKSHEET,
+)
 CREDENTIALS_FILE = Path(__file__).resolve().parents[1] / "credentials" / "service_account.json"
 
 USER_COLUMNS = [

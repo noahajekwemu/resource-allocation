@@ -1,5 +1,4 @@
 import logging
-import os
 import re
 from datetime import datetime, timezone
 from pathlib import Path
@@ -20,10 +19,28 @@ from flask_cors import CORS
 
 try:
     from scripts.audit_utils import write_audit_log
-    from scripts.security_utils import authenticate_user, current_user, require_role
+    from scripts.security_utils import (
+        authenticate_user,
+        configure_app_security,
+        create_user_record,
+        current_user,
+        hash_password,
+        public_user_record,
+        require_role,
+        VALID_ROLES,
+    )
 except (ImportError, ModuleNotFoundError):
     from audit_utils import write_audit_log
-    from security_utils import authenticate_user, current_user, require_role
+    from security_utils import (
+        authenticate_user,
+        configure_app_security,
+        create_user_record,
+        current_user,
+        hash_password,
+        public_user_record,
+        require_role,
+        VALID_ROLES,
+    )
 
 try:
     from scripts.inventory_utils import calculate_available_stock
@@ -33,6 +50,7 @@ except (ImportError, ModuleNotFoundError):
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 app = Flask(__name__, template_folder=str(Path(__file__).resolve().parents[1] / "forms"))
+APP_ENV = configure_app_security(app)
 CORS(
     app,
     resources={
@@ -46,16 +64,6 @@ CORS(
         }
     },
 )
-app.secret_key = os.environ.get("FORM_API_SECRET_KEY")
-_production_environment = any(
-    os.environ.get(name)
-    for name in ("RENDER", "DYNO", "K_SERVICE", "WEBSITE_HOSTNAME")
-) or os.environ.get("FLASK_ENV", "").strip().lower() == "production"
-if not app.secret_key and _production_environment:
-    raise RuntimeError("FORM_API_SECRET_KEY must be set in production.")
-if not app.secret_key:
-    app.secret_key = "development-only-change-me"
-    logging.warning("FORM_API_SECRET_KEY is not set; using an insecure development fallback.")
 
 SPREADSHEET_NAME = "Educational_Supplies_Logs"
 ITEMS_WORKSHEET = "Items"
@@ -65,6 +73,7 @@ REQUISITIONS_WORKSHEET = "Requisitions"
 REQUISITION_DETAILS_WORKSHEET = "Requisition_Details"
 TRANSACTIONS_WORKSHEET = "Transactions"
 TRANSACTION_DETAILS_WORKSHEET = "Transaction_Details"
+USERS_WORKSHEET = "Users"
 BASE_DIR = Path(__file__).resolve().parent.parent
 FORMS_DIR = BASE_DIR / "forms"
 FORM_PAGE_ROLES = {
@@ -72,6 +81,7 @@ FORM_PAGE_ROLES = {
     "receive_stock.html": {"Admin", "Store_Officer"},
     "issue_stock.html": {"Admin", "Store_Officer"},
     "requisition_form.html": {"Admin", "School_User"},
+    "user_management.html": {"Admin"},
 }
 ROLE_DEFAULT_REDIRECTS = {
     "Admin": "/forms/approve_requisition.html",
@@ -86,6 +96,33 @@ SAFE_API_REDIRECTS = {"/api/items", "/api/schools", "/api/warehouses"}
 @app.get("/health")
 def health_check():
     return jsonify({"status": "ok"})
+
+
+@app.after_request
+def add_no_cache_headers(response):
+    is_protected_form = request.path.startswith("/forms/")
+    is_authenticated_response = current_user() is not None and response.is_json
+    if is_protected_form or is_authenticated_response:
+        response.headers["Cache-Control"] = "no-store"
+    return response
+
+
+@app.errorhandler(403)
+def forbidden_error(_error):
+    return jsonify({"success": False, "error": "Access forbidden."}), 403
+
+
+@app.errorhandler(404)
+def not_found_error(_error):
+    return jsonify({"success": False, "error": "Resource not found."}), 404
+
+
+@app.errorhandler(500)
+def internal_server_error(_error):
+    logging.error("Unhandled server error")
+    return jsonify(
+        {"success": False, "error": "An unexpected server error occurred."}
+    ), 500
 
 
 def _safe_next_path(value: Any, user: dict[str, Any] | None = None) -> str:
@@ -421,6 +458,93 @@ def get_schools() -> list[dict[str, Any]]:
 def get_warehouses() -> list[dict[str, Any]]:
     """Return warehouse records for form dropdowns."""
     return _read_worksheet(WAREHOUSES_WORKSHEET).to_dict(orient="records")
+
+
+def get_users() -> list[dict[str, Any]]:
+    """Return user records with an explicit public-field allowlist."""
+    users = _read_worksheet(USERS_WORKSHEET)
+    if users.empty:
+        return []
+    return [public_user_record(row) for row in users.fillna("").to_dict(orient="records")]
+
+
+def _user_record(user_id: str) -> dict[str, Any]:
+    users = _read_worksheet(USERS_WORKSHEET)
+    if users.empty:
+        raise ValueError(f"User not found: {user_id}")
+    id_column = _find_column(users, ["User_ID", "User ID"])
+    matches = users[
+        users[id_column].fillna("").astype(str).str.strip() == str(user_id).strip()
+    ]
+    if matches.empty:
+        raise ValueError(f"User not found: {user_id}")
+    return matches.iloc[0].fillna("").to_dict()
+
+
+def _next_user_id(users: pd.DataFrame) -> str:
+    if users.empty:
+        return "USR001"
+    id_column = _find_column(users, ["User_ID", "User ID"], required=False)
+    highest = 0
+    if id_column:
+        for value in users[id_column].fillna("").astype(str):
+            match = re.fullmatch(r"USR(\d+)", value.strip(), re.IGNORECASE)
+            if match:
+                highest = max(highest, int(match.group(1)))
+    return f"USR{highest + 1:03d}"
+
+
+def create_user(payload: dict[str, Any]) -> dict[str, Any]:
+    users = _read_worksheet(USERS_WORKSHEET)
+    email = str(payload.get("Email", "")).strip().lower()
+    if not users.empty:
+        email_column = _find_column(users, ["Email"])
+        existing = users[email_column].fillna("").astype(str).str.strip().str.lower()
+        if email and existing.eq(email).any():
+            raise ValueError("Email already exists.")
+    record = create_user_record(
+        _next_user_id(users),
+        payload.get("Full_Name", ""),
+        email,
+        str(payload.get("Role", "")).strip(),
+        payload.get("Password", ""),
+        payload.get("School_ID", ""),
+        payload.get("Active", True),
+    )
+    _append_dict_row(USERS_WORKSHEET, record)
+    return public_user_record(record)
+
+
+def update_user(user_id: str, payload: dict[str, Any]) -> tuple[dict[str, Any], dict[str, Any]]:
+    allowed_fields = {"Full_Name", "Role", "School_ID", "Active"}
+    invalid_fields = set(payload) - allowed_fields
+    if invalid_fields:
+        raise ValueError(f"Fields cannot be updated: {', '.join(sorted(invalid_fields))}.")
+    if not payload:
+        raise ValueError("At least one user field is required.")
+
+    before_record = _user_record(user_id)
+    updates = dict(payload)
+    if "Full_Name" in updates:
+        updates["Full_Name"] = str(updates["Full_Name"] or "").strip()
+        if not updates["Full_Name"]:
+            raise ValueError("Full_Name is required.")
+    if "Role" in updates:
+        updates["Role"] = str(updates["Role"] or "").strip()
+        if updates["Role"] not in VALID_ROLES:
+            raise ValueError(f"Invalid role: {updates['Role']}")
+    if "School_ID" in updates:
+        updates["School_ID"] = str(updates["School_ID"] or "").strip()
+    if "Active" in updates and not isinstance(updates["Active"], bool):
+        raise ValueError("Active must be true or false.")
+
+    after_record = {**before_record, **updates}
+    if after_record.get("Role") == "School_User" and not str(
+        after_record.get("School_ID", "")
+    ).strip():
+        raise ValueError("School_ID is required for School_User.")
+    _update_row_by_id(USERS_WORKSHEET, ["User_ID", "User ID"], user_id, updates)
+    return public_user_record(before_record), public_user_record(after_record)
 
 
 def get_available_stock(item_id: str) -> int:
@@ -1137,7 +1261,10 @@ def submit_requisition(payload: dict[str, Any]) -> dict[str, Any]:
 
 
 def _json_error(exc: Exception, status_code: int = 400):
-    return jsonify({"success": False, "error": str(exc)}), status_code
+    message = str(exc)
+    if status_code >= 500 and APP_ENV == "production":
+        message = "An unexpected server error occurred."
+    return jsonify({"success": False, "error": message}), status_code
 
 
 @app.route("/login", methods=["GET", "POST"])
@@ -1159,6 +1286,7 @@ def login_route():
             user = None
         if user:
             session.clear()
+            session.permanent = True
             session["user"] = user
             logging.info("Login succeeded for %s", email)
             _audit(
@@ -1247,6 +1375,88 @@ def warehouses_route():
         return jsonify(get_warehouses())
     except Exception as exc:
         logging.exception("Failed to load warehouses: %s", exc)
+        return _json_error(exc, 500)
+
+
+@app.get("/api/users")
+@require_role("Admin")
+def users_route():
+    try:
+        return jsonify({"success": True, "users": get_users()})
+    except Exception as exc:
+        logging.exception("Failed to load users: %s", exc)
+        return _json_error(exc, 500)
+
+
+@app.post("/api/users")
+@require_role("Admin")
+def create_user_route():
+    payload = {}
+    try:
+        payload = _request_payload()
+        user = create_user(payload)
+        _audit("CREATE_USER", "User", user["User_ID"], None, user)
+        return jsonify({"success": True, "user": user}), 201
+    except ValueError as exc:
+        _audit(
+            "CREATE_USER", "User", "", None,
+            {"Email": str(payload.get("Email", "")).strip().lower()},
+            "Failed", str(exc),
+        )
+        return _json_error(exc, 400)
+    except Exception as exc:
+        logging.exception("Failed to create user: %s", exc)
+        _audit("CREATE_USER", "User", "", None, None, "Failed", str(exc))
+        return _json_error(exc, 500)
+
+
+@app.patch("/api/users/<user_id>")
+@require_role("Admin")
+def update_user_route(user_id):
+    payload = {}
+    try:
+        payload = _request_payload()
+        before, after = update_user(user_id, payload)
+        action = "UPDATE_USER"
+        if "Active" in payload and before["Active"] != after["Active"]:
+            action = "ACTIVATE_USER" if after["Active"] else "DEACTIVATE_USER"
+        _audit(action, "User", user_id, before, after)
+        return jsonify({"success": True, "user": after})
+    except ValueError as exc:
+        _audit("UPDATE_USER", "User", user_id, None, None, "Failed", str(exc))
+        return _json_error(exc, 400)
+    except Exception as exc:
+        logging.exception("Failed to update user %s: %s", user_id, exc)
+        _audit("UPDATE_USER", "User", user_id, None, None, "Failed", str(exc))
+        return _json_error(exc, 500)
+
+
+@app.post("/api/users/<user_id>/reset-password")
+@require_role("Admin")
+def reset_user_password_route(user_id):
+    try:
+        payload = _request_payload()
+        password_hash = hash_password(payload.get("Password", ""))
+        before = public_user_record(_user_record(user_id))
+        _update_row_by_id(
+            USERS_WORKSHEET, ["User_ID", "User ID"], user_id,
+            {"Password_Hash": password_hash},
+        )
+        after = dict(before)
+        _audit("RESET_USER_PASSWORD", "User", user_id, before, after)
+        return jsonify({"success": True, "message": "Password reset successfully."})
+    except ValueError as exc:
+        _audit(
+            "RESET_USER_PASSWORD", "User", user_id, None, None,
+            "Failed", str(exc),
+        )
+        return _json_error(exc, 400)
+    except Exception as exc:
+        logging.exception("Failed to reset password for %s: %s", user_id, exc)
+        _audit(
+            "RESET_USER_PASSWORD", "User", user_id, None, None,
+            "Failed", str(exc),
+        )
         return _json_error(exc, 500)
 
 
@@ -1389,4 +1599,4 @@ def submit_issue_stock_route():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(host="0.0.0.0", port=5000, debug=APP_ENV == "development")

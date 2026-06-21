@@ -6,12 +6,19 @@ from scripts import form_api
 from scripts.audit_utils import (
     AUDIT_LOG_COLUMNS,
     AUDIT_LOG_HEADERS,
+    USER_MANAGEMENT_ACTIONS,
     build_audit_row,
     write_audit_log,
 )
 
 
 class AuditUtilsTests(unittest.TestCase):
+    def test_user_management_audit_actions_are_defined(self):
+        self.assertEqual(USER_MANAGEMENT_ACTIONS, {
+            "CREATE_USER", "UPDATE_USER", "RESET_USER_PASSWORD",
+            "DEACTIVATE_USER", "ACTIVATE_USER",
+        })
+
     def test_audit_row_formats_actor_states_and_required_columns(self):
         row = build_audit_row(
             "approve requisition", "Requisition", "REQ001",
