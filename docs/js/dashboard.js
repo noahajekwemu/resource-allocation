@@ -1,4 +1,6 @@
 const DATA_URL = "data.json";
+const API_BASE_URL = "https://YOUR-RENDER-SERVICE.onrender.com";
+const API_STATUS_TIMEOUT_MS = 8000;
 
 const KPI_GROUPS = [
   {
@@ -205,6 +207,36 @@ function setState(state) {
   document.getElementById("dashboard-content").hidden = state !== "ready";
 }
 
+function configureApiNavigation() {
+  document.querySelectorAll("[data-api-path]").forEach((link) => {
+    link.href = `${API_BASE_URL}${link.dataset.apiPath}`;
+  });
+}
+
+async function checkApiStatus() {
+  const indicator = document.getElementById("api-status");
+  if (!indicator) return;
+  const controller = new AbortController();
+  const timeoutId = window.setTimeout(() => controller.abort(), API_STATUS_TIMEOUT_MS);
+  try {
+    const response = await fetch(`${API_BASE_URL}/health`, {
+      cache: "no-store",
+      signal: controller.signal
+    });
+    if (!response.ok) throw new Error(`Health check returned ${response.status}`);
+    const result = await response.json();
+    if (result.status !== "ok") throw new Error("Health check returned an unexpected response");
+    indicator.textContent = "API Online";
+    indicator.className = "api-status api-status--online";
+  } catch (error) {
+    console.warn("API health check failed:", error);
+    indicator.textContent = "API Offline";
+    indicator.className = "api-status api-status--offline";
+  } finally {
+    window.clearTimeout(timeoutId);
+  }
+}
+
 async function loadDashboard() {
   setState("loading");
   document.getElementById("footer-year").textContent = new Date().getFullYear();
@@ -224,4 +256,8 @@ async function loadDashboard() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", loadDashboard);
+document.addEventListener("DOMContentLoaded", () => {
+  configureApiNavigation();
+  checkApiStatus();
+  loadDashboard();
+});

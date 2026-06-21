@@ -23,6 +23,14 @@ body { margin: 0; min-height: 100vh; background: var(--subeb-blue-light); color:
 .last-updated { border-left: 4px solid var(--subeb-blue); padding-left: 16px; text-align: right; }
 .last-updated span { color: var(--subeb-blue-dark); display: block; font-size: .8rem; font-weight: 700; text-transform: uppercase; }
 .last-updated strong { display: block; font-size: .95rem; max-width: 230px; }
+.portal-nav { background: var(--subeb-blue-dark); }
+.portal-nav__inner { align-items: center; display: flex; flex-wrap: wrap; gap: 2px; margin: 0 auto; max-width: 1320px; padding: 0 24px; }
+.portal-nav a { color: var(--subeb-white); font-size: .88rem; font-weight: 700; padding: 12px 10px; text-decoration: none; }
+.portal-nav a:hover, .portal-nav a:focus, .portal-nav a[aria-current="page"] { background: rgba(255, 255, 255, .16); text-decoration: underline; text-underline-offset: 3px; }
+.api-status { border: 1px solid currentColor; border-radius: 999px; color: var(--subeb-white); font-size: .78rem; font-weight: 700; margin-left: auto; padding: 4px 10px; white-space: nowrap; }
+.api-status--online { background: #166534; }
+.api-status--offline { background: var(--subeb-red); }
+.api-status--checking { background: #475569; }
 
 .dashboard-shell { margin: 0 auto; max-width: 1320px; padding: 24px; }
 .state-panel { align-items: center; background: var(--subeb-white); border: 1px solid var(--subeb-blue); border-left: 6px solid var(--subeb-blue); display: flex; gap: 14px; margin: 24px 0; padding: 20px; }
@@ -72,6 +80,9 @@ td { background: var(--subeb-white); }
   .portal-header__inner { grid-template-columns: auto 1fr; padding: 16px; }
   .portal-logo { height: 68px; width: 68px; }
   .last-updated { border-left: 0; border-top: 3px solid var(--subeb-blue); grid-column: 1 / -1; padding: 10px 0 0; text-align: left; width: 100%; }
+  .portal-nav__inner { align-items: stretch; display: grid; grid-template-columns: 1fr 1fr; padding: 8px 12px; }
+  .portal-nav a { padding: 9px 8px; }
+  .api-status { grid-column: 1 / -1; margin: 6px 8px 2px; text-align: center; }
   .dashboard-shell { padding: 16px; }
   .kpi-grid { grid-template-columns: 1fr; }
   .chart-frame { height: 280px; }
@@ -87,7 +98,7 @@ td { background: var(--subeb-white); }
 }
 @media print {
   body, html { background: var(--subeb-white); }
-  .skip-link, .loading-indicator { display: none; }
+  .skip-link, .loading-indicator, .portal-nav { display: none; }
   .portal-header, .kpi-card, .chart-panel, .table-panel { box-shadow: none; }
   .chart-grid, .kpi-grid { grid-template-columns: 1fr 1fr; }
   .chart-panel, .table-panel { break-inside: avoid; }
