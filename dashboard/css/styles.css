@@ -27,6 +27,7 @@ body { margin: 0; min-height: 100vh; background: var(--subeb-blue-light); color:
 .portal-nav__inner { align-items: center; display: flex; flex-wrap: wrap; gap: 2px; margin: 0 auto; max-width: 1320px; padding: 0 24px; }
 .portal-nav a { color: var(--subeb-white); font-size: .88rem; font-weight: 700; padding: 12px 10px; text-decoration: none; }
 .portal-nav a:hover, .portal-nav a:focus, .portal-nav a[aria-current="page"] { background: rgba(255, 255, 255, .16); text-decoration: underline; text-underline-offset: 3px; }
+.portal-nav .admin-nav-link { border-left: 1px solid rgba(255, 255, 255, .35); }
 .api-status { border: 1px solid currentColor; border-radius: 999px; color: var(--subeb-white); font-size: .78rem; font-weight: 700; margin-left: auto; padding: 4px 10px; white-space: nowrap; }
 .api-status--online { background: #166534; }
 .api-status--offline { background: var(--subeb-red); }
