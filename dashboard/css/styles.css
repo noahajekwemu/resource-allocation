@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --subeb-blue: #1E9BEA;
   --subeb-blue-dark: #0B6FB8;
   --subeb-blue-light: #EAF6FF;
@@ -104,3 +104,4 @@ td { background: var(--subeb-white); }
   .chart-panel, .table-panel { break-inside: avoid; }
   .chart-frame { height: 250px; }
 }
+

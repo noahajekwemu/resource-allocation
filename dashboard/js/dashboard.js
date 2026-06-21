@@ -1,5 +1,5 @@
-const DATA_URL = "data.json";
-const API_BASE_URL = "https://YOUR-RENDER-SERVICE.onrender.com";
+﻿const DATA_URL = "data.json";
+const API_BASE_URL = "https://resource-allocation-api.onrender.com";
 const API_STATUS_TIMEOUT_MS = 8000;
 
 const KPI_GROUPS = [
@@ -261,3 +261,4 @@ document.addEventListener("DOMContentLoaded", () => {
   checkApiStatus();
   loadDashboard();
 });
+
