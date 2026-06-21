@@ -1,4 +1,8 @@
+import json
 import logging
+import os
+from pathlib import Path
+
 import pandas as pd
 import gspread
 
@@ -20,6 +24,7 @@ REQUISITIONS_WORKSHEET = "Requisitions"
 REQUISITION_DETAILS_WORKSHEET = "Requisition_Details"
 USERS_WORKSHEET = "Users"
 AUDIT_LOG_WORKSHEET = "Audit_Log"
+CREDENTIALS_FILE = Path(__file__).resolve().parents[1] / "credentials" / "service_account.json"
 
 USER_COLUMNS = [
     "User_ID", "Full_Name", "Email", "Role", "School_ID", "Password_Hash",
@@ -211,21 +216,34 @@ def validate_requisition_data(requisitions, requisition_details, items, schools)
 
 def connect_to_sheet(sheet_name):
     try:
-        creds = ServiceAccountCredentials.from_json_keyfile_name(
-            "credentials/service_account.json",
-            SCOPE
-        )
+        credentials_json = os.environ.get("GOOGLE_CREDENTIALS")
+        if credentials_json:
+            try:
+                credentials_data = json.loads(credentials_json)
+            except json.JSONDecodeError as exc:
+                raise ValueError("GOOGLE_CREDENTIALS must contain valid JSON.") from exc
+            if not isinstance(credentials_data, dict):
+                raise ValueError("GOOGLE_CREDENTIALS must contain a JSON object.")
+            creds = ServiceAccountCredentials.from_json_keyfile_dict(
+                credentials_data,
+                SCOPE,
+            )
+        else:
+            creds = ServiceAccountCredentials.from_json_keyfile_name(
+                str(CREDENTIALS_FILE),
+                SCOPE,
+            )
 
         client = gspread.authorize(creds)
 
         return client.open(sheet_name)
 
     except FileNotFoundError:
-        logging.error("Credential file not found")
+        logging.error("Google credential file not found at %s", CREDENTIALS_FILE)
         raise
 
-    except Exception as exc:
-        logging.error(f"Connection error: {exc}")
+    except Exception:
+        logging.error("Failed to connect to Google Sheets.")
         raise
 
 

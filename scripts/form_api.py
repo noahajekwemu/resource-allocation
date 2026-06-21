@@ -33,6 +33,12 @@ except (ImportError, ModuleNotFoundError):
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 app = Flask(__name__, template_folder=str(Path(__file__).resolve().parents[1] / "forms"))
 app.secret_key = os.environ.get("FORM_API_SECRET_KEY")
+_production_environment = any(
+    os.environ.get(name)
+    for name in ("RENDER", "DYNO", "K_SERVICE", "WEBSITE_HOSTNAME")
+) or os.environ.get("FLASK_ENV", "").strip().lower() == "production"
+if not app.secret_key and _production_environment:
+    raise RuntimeError("FORM_API_SECRET_KEY must be set in production.")
 if not app.secret_key:
     app.secret_key = "development-only-change-me"
     logging.warning("FORM_API_SECRET_KEY is not set; using an insecure development fallback.")
@@ -61,6 +67,11 @@ ROLE_DEFAULT_REDIRECTS = {
     "Viewer": "/api/items",
 }
 SAFE_API_REDIRECTS = {"/api/items", "/api/schools", "/api/warehouses"}
+
+
+@app.get("/health")
+def health_check():
+    return jsonify({"status": "ok"})
 
 
 def _safe_next_path(value: Any, user: dict[str, Any] | None = None) -> str:
@@ -1149,14 +1160,20 @@ def login_route():
             session.clear()
             session["user"] = user
             logging.info("Login succeeded for %s", email)
-            _audit("login", "User", str(user.get("User_ID", "")), None, {"Email": email}, user=user)
+            _audit(
+                "login", "User", str(user.get("User_ID", "")),
+                None, {"Email": email}, status="Success", user=user,
+            )
             if request.is_json:
                 return jsonify({"success": True, "user": user})
             return redirect(
                 _safe_next_path(next_path, user) or _default_redirect_for(user)
             )
         logging.warning("Login failed for %s", email)
-        _audit("login", "User", email, None, {"Email": email}, "Failed", "Invalid credentials", user={"Email": email})
+        _audit(
+            "login", "User", email, None, {"Email": email},
+            status="Failed", remarks="Invalid credentials", user={"Email": email},
+        )
         error = "Invalid email or password, or the account is inactive."
         if request.is_json:
             return _json_error(ValueError(error), 401)

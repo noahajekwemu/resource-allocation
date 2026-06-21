@@ -3,4 +3,5 @@ oauth2client
 pandas
 jinja2
 Flask
+gunicorn
 Werkzeug
