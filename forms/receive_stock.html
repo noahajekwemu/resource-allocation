@@ -27,6 +27,10 @@
       line-height: 1.5;
     }
 
+    .form-nav { align-items: center; background: var(--primary); color: #fff; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; padding: 12px max(16px, calc((100% - 1120px) / 2)); }
+    .form-nav__links { display: flex; gap: 16px; }
+    .form-nav a { color: #fff; font-weight: 700; }
+
     main {
       width: min(1120px, calc(100% - 32px));
       margin: 32px auto;
@@ -158,6 +162,10 @@
   </style>
 </head>
 <body>
+  <nav class="form-nav" aria-label="Form navigation">
+    <strong>Receive Stock</strong>
+    <span class="form-nav__links"><a href="https://noahajekwemu.github.io/resource-allocation/">Dashboard</a><a href="/logout">Logout</a></span>
+  </nav>
   <main>
     <h1>Receive Stock</h1>
     <form id="receive-stock-form">
@@ -247,7 +255,7 @@
     const rows = document.querySelector("#item-rows");
     const template = document.querySelector("#item-row-template");
     const statusText = document.querySelector("#status");
-    const API_BASE = "http://127.0.0.1:5000";
+    const API_BASE = "";
     let items = [];
 
     async function loadJson(url) {
@@ -311,8 +319,8 @@
     async function init() {
       try {
         const [loadedItems, warehouses] = await Promise.all([
-          loadJson(`${API_BASE}/items`),
-          loadJson(`${API_BASE}/warehouses`)
+          loadJson(`${API_BASE}/api/items`),
+          loadJson(`${API_BASE}/api/warehouses`)
         ]);
         items = loadedItems;
         fillSelect(document.querySelector("#warehouse-select"), warehouses, "Warehouse_ID", ["Warehouse_Name", "Warehouse"]);
@@ -328,7 +336,7 @@
       event.preventDefault();
       statusText.textContent = "Submitting...";
       try {
-        const response = await fetch(`${API_BASE}/submit_receive_stock`, {
+        const response = await fetch(`${API_BASE}/api/receive-stock`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           credentials: "include",

@@ -3,5 +3,6 @@ oauth2client
 pandas
 jinja2
 Flask
+flask-cors
 gunicorn
 Werkzeug

@@ -16,6 +16,7 @@ from flask import (
     session,
     url_for,
 )
+from flask_cors import CORS
 
 try:
     from scripts.audit_utils import write_audit_log
@@ -32,6 +33,19 @@ except (ImportError, ModuleNotFoundError):
 
 logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
 app = Flask(__name__, template_folder=str(Path(__file__).resolve().parents[1] / "forms"))
+CORS(
+    app,
+    resources={
+        r"/health": {
+            "origins": [
+                "https://noahajekwemu.github.io",
+                "http://127.0.0.1:8000",
+                "http://localhost:8000",
+            ],
+            "methods": ["GET"],
+        }
+    },
+)
 app.secret_key = os.environ.get("FORM_API_SECRET_KEY")
 _production_environment = any(
     os.environ.get(name)
@@ -1122,19 +1136,6 @@ def submit_requisition(payload: dict[str, Any]) -> dict[str, Any]:
         raise
 
 
-@app.after_request
-def add_cors_headers(response):
-    """Allow local HTML forms to call this API directly."""
-    origin = request.headers.get("Origin")
-    response.headers["Access-Control-Allow-Origin"] = origin or "*"
-    response.headers["Access-Control-Allow-Headers"] = "Content-Type"
-    response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
-    if origin:
-        response.headers["Access-Control-Allow-Credentials"] = "true"
-        response.headers.add("Vary", "Origin")
-    return response
-
-
 def _json_error(exc: Exception, status_code: int = 400):
     return jsonify({"success": False, "error": str(exc)}), status_code
 
@@ -1165,7 +1166,11 @@ def login_route():
                 None, {"Email": email}, status="Success", user=user,
             )
             if request.is_json:
-                return jsonify({"success": True, "user": user})
+                public_user = {
+                    key: value for key, value in user.items()
+                    if key.lower() not in {"password", "password_hash"}
+                }
+                return jsonify({"success": True, "user": public_user})
             return redirect(
                 _safe_next_path(next_path, user) or _default_redirect_for(user)
             )

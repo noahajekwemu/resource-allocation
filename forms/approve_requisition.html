@@ -31,6 +31,10 @@
       line-height: 1.5;
     }
 
+    .form-nav { align-items: center; background: var(--primary); color: #fff; display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; padding: 12px max(16px, calc((100% - 1180px) / 2)); }
+    .form-nav__links { display: flex; gap: 16px; }
+    .form-nav a { color: #fff; font-weight: 700; }
+
     main {
       width: min(1180px, calc(100% - 32px));
       margin: 32px auto;
@@ -211,6 +215,10 @@
   </style>
 </head>
 <body>
+  <nav class="form-nav" aria-label="Form navigation">
+    <strong>Approve Requests</strong>
+    <span class="form-nav__links"><a href="https://noahajekwemu.github.io/resource-allocation/">Dashboard</a><a href="/logout">Logout</a></span>
+  </nav>
   <main>
     <h1>Requisition Approval</h1>
     <div class="layout">
@@ -291,7 +299,7 @@
   </main>
 
   <script>
-    const API_BASE = "http://127.0.0.1:5000";
+    const API_BASE = "";
     const requisitionSelect = document.querySelector("#requisition-select");
     const detailRows = document.querySelector("#detail-rows");
     const form = document.querySelector("#approval-form");
@@ -356,7 +364,7 @@
 
     async function loadPendingRequisitions() {
       statusText.textContent = "Loading pending requisitions...";
-      const result = await loadJson(`${API_BASE}/pending_requisitions`);
+      const result = await loadJson(`${API_BASE}/api/pending-requisitions`);
       requisitionSelect.innerHTML = '<option value="">Select requisition</option>';
       result.requisitions.forEach((requisition) => {
         const id = value(requisition, ["Requisition_ID", "Requisition ID"]);
@@ -376,7 +384,7 @@
         return;
       }
       statusText.textContent = "Loading requisition...";
-      const result = await loadJson(`${API_BASE}/requisition/${encodeURIComponent(requisitionId)}`);
+      const result = await loadJson(`${API_BASE}/api/requisition/${encodeURIComponent(requisitionId)}`);
       currentRequisition = result;
       setHeader(result.header);
       renderDetails(result.details);
@@ -426,7 +434,7 @@
 
       try {
         await submitDecision(
-          `${API_BASE}/approve_requisition`,
+          `${API_BASE}/api/approve-requisition`,
           {
             Requisition_ID: value(currentRequisition.header, ["Requisition_ID", "Requisition ID"]),
             Approved_By: approvedByInput.value,
@@ -445,7 +453,7 @@
 
       try {
         await submitDecision(
-          `${API_BASE}/reject_requisition`,
+          `${API_BASE}/api/reject-requisition`,
           {
             Requisition_ID: value(currentRequisition.header, ["Requisition_ID", "Requisition ID"]),
             Remarks: remarksInput.value

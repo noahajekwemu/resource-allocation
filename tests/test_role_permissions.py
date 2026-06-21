@@ -46,6 +46,36 @@ class RolePermissionTests(unittest.TestCase):
         self.assertEqual(response.status_code, 401)
         self.assertEqual(response.get_json()["error"], "Please log in.")
 
+    def test_health_allows_configured_dashboard_origins(self):
+        allowed_origins = [
+            "https://noahajekwemu.github.io",
+            "http://127.0.0.1:8000",
+            "http://localhost:8000",
+        ]
+        for origin in allowed_origins:
+            with self.subTest(origin=origin):
+                response = self.client.get("/health", headers={"Origin": origin})
+                self.assertEqual(response.status_code, 200)
+                self.assertEqual(response.get_json(), {"status": "ok"})
+                self.assertEqual(
+                    response.headers.get("Access-Control-Allow-Origin"), origin
+                )
+
+    def test_health_rejects_unconfigured_cors_origin(self):
+        response = self.client.get(
+            "/health", headers={"Origin": "https://example.com"}
+        )
+        self.assertNotIn("Access-Control-Allow-Origin", response.headers)
+
+    def test_protected_write_endpoint_has_no_cors_access(self):
+        response = self.client.post(
+            "/submit_receive_stock",
+            json={"items": []},
+            headers={"Origin": "https://noahajekwemu.github.io"},
+        )
+        self.assertEqual(response.status_code, 401)
+        self.assertNotIn("Access-Control-Allow-Origin", response.headers)
+
     def test_form_redirects_unauthenticated_user_to_login(self):
         response = self.client.get("/forms/issue_stock.html")
         self.assertEqual(response.status_code, 302)
