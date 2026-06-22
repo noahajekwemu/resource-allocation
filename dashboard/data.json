@@ -1,10 +1,10 @@
 {
-  "generated_at": "2026-06-22T17:45:06.095796+00:00",
+  "generated_at": "2026-06-22T21:09:46.031130+00:00",
   "kpis": {
-    "inventory_accuracy": 66.67,
-    "total_items": 3,
-    "total_stock_units": 315,
-    "low_stock_items": 1,
+    "inventory_accuracy": 100.0,
+    "total_items": 56,
+    "total_stock_units": 0,
+    "low_stock_items": 56,
     "total_requisitions": 5,
     "pending_requisitions": 2,
     "approved_requisitions": 1,
@@ -13,38 +13,38 @@
     "fulfillment_rate": 87.65,
     "partially_fulfilled_requisitions": 1,
     "average_fulfillment_days": 0.0,
-    "total_inventory_items": 3,
-    "total_available_stock": 315,
-    "out_of_stock_items": 1,
+    "total_inventory_items": 56,
+    "total_available_stock": 0,
+    "out_of_stock_items": 56,
     "damaged_items": 0,
     "schools_served": 1,
-    "total_warehouses": 1,
-    "total_schools": 4,
-    "total_categories": 2
+    "total_warehouses": 9,
+    "total_schools": 0,
+    "total_categories": 5
   },
   "school_distribution": {
     "all_schools": [
       {
-        "school": "Modern Primary School",
+        "school": "SCH-001",
         "quantity": 685
       }
     ],
     "top_10_schools": [
       {
-        "school": "Modern Primary School",
+        "school": "SCH-001",
         "quantity": 685
       }
     ],
     "bottom_10_schools": [
       {
-        "school": "Modern Primary School",
+        "school": "SCH-001",
         "quantity": 685
       }
     ]
   },
   "lga_distribution": [
     {
-      "lga": "Makurdi",
+      "lga": "Unknown",
       "quantity": 685
     }
   ],
@@ -55,6 +55,54 @@
         "warehouse": "Makurdi Central Store",
         "stock_level": 315,
         "total_outflows": 685
+      },
+      {
+        "warehouse_id": "WH-009",
+        "warehouse": "AGATU Prime",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-006",
+        "warehouse": "BURUKU Central",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-008",
+        "warehouse": "BURUKU East",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-003",
+        "warehouse": "Great Otukpo I",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-004",
+        "warehouse": "Great Otukpo II",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-007",
+        "warehouse": "LOGO Premier",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-002",
+        "warehouse": "Okpokwu Central",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-005",
+        "warehouse": "Vandeikya Central",
+        "stock_level": 0,
+        "total_outflows": 0
       }
     ],
     "total_outflows": [
@@ -63,6 +111,54 @@
         "warehouse": "Makurdi Central Store",
         "stock_level": 315,
         "total_outflows": 685
+      },
+      {
+        "warehouse_id": "WH-009",
+        "warehouse": "AGATU Prime",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-006",
+        "warehouse": "BURUKU Central",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-008",
+        "warehouse": "BURUKU East",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-003",
+        "warehouse": "Great Otukpo I",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-004",
+        "warehouse": "Great Otukpo II",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-007",
+        "warehouse": "LOGO Premier",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-002",
+        "warehouse": "Okpokwu Central",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-005",
+        "warehouse": "Vandeikya Central",
+        "stock_level": 0,
+        "total_outflows": 0
       }
     ]
   },
@@ -94,19 +190,19 @@
     ],
     "requested_vs_approved_vs_fulfilled": [
       {
-        "item": "Mathematics Textbook",
+        "item": "ITEM-001",
         "requested": 330,
         "approved": 180,
         "fulfilled": 180
       },
       {
-        "item": "Classroom Chair",
+        "item": "ITEM-003",
         "requested": 222,
         "approved": 150,
         "fulfilled": 100
       },
       {
-        "item": "English Textbook",
+        "item": "ITEM-002",
         "requested": 220,
         "approved": 75,
         "fulfilled": 75
@@ -114,45 +210,44 @@
     ],
     "top_requested_items": [
       {
-        "item": "Mathematics Textbook",
+        "item": "ITEM-001",
         "quantity": 330
       },
       {
-        "item": "Classroom Chair",
+        "item": "ITEM-003",
         "quantity": 222
       },
       {
-        "item": "English Textbook",
+        "item": "ITEM-002",
         "quantity": 220
       }
     ],
-    "requests_by_lga": [
-      {
-        "lga": "Ukum",
-        "quantity": 397
-      },
-      {
-        "lga": "Makurdi",
-        "quantity": 300
-      },
-      {
-        "lga": "Gboko",
-        "quantity": 75
-      }
-    ],
+    "requests_by_lga": [],
     "inventory_by_category": [
       {
-        "category": "Textbooks",
-        "quantity": 815
+        "category": "Cleaner",
+        "quantity": 0
       },
       {
-        "category": "Furniture",
-        "quantity": -500
+        "category": "Equipment",
+        "quantity": 0
+      },
+      {
+        "category": "IT",
+        "quantity": 0
+      },
+      {
+        "category": "Sports",
+        "quantity": 0
+      },
+      {
+        "category": "Stationery",
+        "quantity": 0
       }
     ],
     "distribution_by_lga": [
       {
-        "lga": "Makurdi",
+        "lga": "Unknown",
         "quantity": 685
       }
     ],
@@ -164,27 +259,27 @@
     ],
     "top_distributed_items": [
       {
-        "item": "Classroom Chair",
+        "item": "ITEM-003",
         "quantity": 500
       },
       {
-        "item": "Mathematics Textbook",
+        "item": "ITEM-001",
         "quantity": 160
       },
       {
-        "item": "English Textbook",
+        "item": "ITEM-002",
         "quantity": 25
       }
     ],
     "top_schools": [
       {
-        "school": "Modern Primary School",
+        "school": "SCH-001",
         "quantity": 685
       }
     ],
     "bottom_schools": [
       {
-        "school": "Modern Primary School",
+        "school": "SCH-001",
         "quantity": 685
       }
     ],
@@ -200,6 +295,54 @@
         "warehouse": "Makurdi Central Store",
         "stock_level": 315,
         "total_outflows": 685
+      },
+      {
+        "warehouse_id": "WH-009",
+        "warehouse": "AGATU Prime",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-006",
+        "warehouse": "BURUKU Central",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-008",
+        "warehouse": "BURUKU East",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-003",
+        "warehouse": "Great Otukpo I",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-004",
+        "warehouse": "Great Otukpo II",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-007",
+        "warehouse": "LOGO Premier",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-002",
+        "warehouse": "Okpokwu Central",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-005",
+        "warehouse": "Vandeikya Central",
+        "stock_level": 0,
+        "total_outflows": 0
       }
     ],
     "warehouse_outflows": [
@@ -208,6 +351,54 @@
         "warehouse": "Makurdi Central Store",
         "stock_level": 315,
         "total_outflows": 685
+      },
+      {
+        "warehouse_id": "WH-009",
+        "warehouse": "AGATU Prime",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-006",
+        "warehouse": "BURUKU Central",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-008",
+        "warehouse": "BURUKU East",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-003",
+        "warehouse": "Great Otukpo I",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-004",
+        "warehouse": "Great Otukpo II",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-007",
+        "warehouse": "LOGO Premier",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-002",
+        "warehouse": "Okpokwu Central",
+        "stock_level": 0,
+        "total_outflows": 0
+      },
+      {
+        "warehouse_id": "WH-005",
+        "warehouse": "Vandeikya Central",
+        "stock_level": 0,
+        "total_outflows": 0
       }
     ],
     "monthly_stock_movements": [
@@ -221,33 +412,789 @@
   "tables": {
     "stock_levels": [
       {
-        "Item_ID": "ITEM-003",
-        "Item_Name": "Classroom Chair",
-        "Category": "Furniture",
-        "Current_Stock": -500,
+        "Item_ID": "ITEM051",
+        "Item_Name": "Bleach (Hypo/Jik)",
+        "Category": "Cleaner",
+        "Current_Stock": 0,
         "Reorder_Level": 0
       },
       {
-        "Item_ID": "ITEM-002",
-        "Item_Name": "English Textbook",
-        "Category": "Textbooks",
-        "Current_Stock": 475,
+        "Item_ID": "ITEM048",
+        "Item_Name": "Hand Sanitizer",
+        "Category": "Cleaner",
+        "Current_Stock": 0,
         "Reorder_Level": 0
       },
       {
-        "Item_ID": "ITEM-001",
-        "Item_Name": "Mathematics Textbook",
-        "Category": "Textbooks",
-        "Current_Stock": 340,
+        "Item_ID": "ITEM053",
+        "Item_Name": "Izal",
+        "Category": "Cleaner",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM001",
+        "Item_Name": "Stain Cleaner",
+        "Category": "Cleaner",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM052",
+        "Item_Name": "Windolene",
+        "Category": "Cleaner",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM046",
+        "Item_Name": "Hand Pump",
+        "Category": "Equipment",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM047",
+        "Item_Name": "Spare Parts",
+        "Category": "Equipment",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM009",
+        "Item_Name": "External Keyboard",
+        "Category": "IT",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM007",
+        "Item_Name": "Flash Drive",
+        "Category": "IT",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM008",
+        "Item_Name": "Wireless Mouse",
+        "Category": "IT",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM024",
+        "Item_Name": "Football",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM032",
+        "Item_Name": "Hand Ball",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM034",
+        "Item_Name": "Hand Ball Canvas",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM037",
+        "Item_Name": "Hand Ball Goal keeper Gloves",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM033",
+        "Item_Name": "Hand Ball Jersey",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM036",
+        "Item_Name": "Hand Ball Nets",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM035",
+        "Item_Name": "Hand Ball Socks",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM030",
+        "Item_Name": "Hand Gloves",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM043",
+        "Item_Name": "Javeline",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM029",
+        "Item_Name": "Shin Guards",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM025",
+        "Item_Name": "Soccer Boot",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM028",
+        "Item_Name": "Soccer Jersey",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM027",
+        "Item_Name": "Soccer Net",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM031",
+        "Item_Name": "Soccer Whistle",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM026",
+        "Item_Name": "Socks",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM045",
+        "Item_Name": "Table Tennis",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM044",
+        "Item_Name": "Tug of War Ropes",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM038",
+        "Item_Name": "Volley Ball",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM042",
+        "Item_Name": "Volley Ball Canvas",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM040",
+        "Item_Name": "Volley Ball Jersey",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM039",
+        "Item_Name": "Volley Ball Nets",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM041",
+        "Item_Name": "Volley Ball Socks",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM017",
+        "Item_Name": "A4 Size Envelopes",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM018",
+        "Item_Name": "A5 Size Envelopes",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM049",
+        "Item_Name": "Carbon Paper",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM023",
+        "Item_Name": "Cash Book",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM050",
+        "Item_Name": "Duplicating Paper",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM004",
+        "Item_Name": "F9 Paper",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM014",
+        "Item_Name": "File Jacket",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM006",
+        "Item_Name": "File Tag",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM020",
+        "Item_Name": "Jar Gum",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM010",
+        "Item_Name": "Laminaring Paper",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM021",
+        "Item_Name": "Legal Paper",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM022",
+        "Item_Name": "Office Clips/Pins",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM016",
+        "Item_Name": "Open File Jacket",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM056",
+        "Item_Name": "Pencil",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM055",
+        "Item_Name": "Photocopier Sensor",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM054",
+        "Item_Name": "Plastic Ruler",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM002",
+        "Item_Name": "Punch",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM015",
+        "Item_Name": "Secret File Jacket",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM005",
+        "Item_Name": "Spiral Binding Paper",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM003",
+        "Item_Name": "Stamp",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM019",
+        "Item_Name": "Water Colour",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM011",
+        "Item_Name": "White Board",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM013",
+        "Item_Name": "White Board Eraser",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM012",
+        "Item_Name": "White Board Marker",
+        "Category": "Stationery",
+        "Current_Stock": 0,
         "Reorder_Level": 0
       }
     ],
     "low_stock_alerts": [
       {
-        "Item_ID": "ITEM-003",
-        "Item_Name": "Classroom Chair",
-        "Category": "Furniture",
-        "Current_Stock": -500,
+        "Item_ID": "ITEM051",
+        "Item_Name": "Bleach (Hypo/Jik)",
+        "Category": "Cleaner",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM048",
+        "Item_Name": "Hand Sanitizer",
+        "Category": "Cleaner",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM053",
+        "Item_Name": "Izal",
+        "Category": "Cleaner",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM001",
+        "Item_Name": "Stain Cleaner",
+        "Category": "Cleaner",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM052",
+        "Item_Name": "Windolene",
+        "Category": "Cleaner",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM046",
+        "Item_Name": "Hand Pump",
+        "Category": "Equipment",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM047",
+        "Item_Name": "Spare Parts",
+        "Category": "Equipment",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM009",
+        "Item_Name": "External Keyboard",
+        "Category": "IT",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM007",
+        "Item_Name": "Flash Drive",
+        "Category": "IT",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM008",
+        "Item_Name": "Wireless Mouse",
+        "Category": "IT",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM024",
+        "Item_Name": "Football",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM032",
+        "Item_Name": "Hand Ball",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM034",
+        "Item_Name": "Hand Ball Canvas",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM037",
+        "Item_Name": "Hand Ball Goal keeper Gloves",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM033",
+        "Item_Name": "Hand Ball Jersey",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM036",
+        "Item_Name": "Hand Ball Nets",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM035",
+        "Item_Name": "Hand Ball Socks",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM030",
+        "Item_Name": "Hand Gloves",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM043",
+        "Item_Name": "Javeline",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM029",
+        "Item_Name": "Shin Guards",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM025",
+        "Item_Name": "Soccer Boot",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM028",
+        "Item_Name": "Soccer Jersey",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM027",
+        "Item_Name": "Soccer Net",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM031",
+        "Item_Name": "Soccer Whistle",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM026",
+        "Item_Name": "Socks",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM045",
+        "Item_Name": "Table Tennis",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM044",
+        "Item_Name": "Tug of War Ropes",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM038",
+        "Item_Name": "Volley Ball",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM042",
+        "Item_Name": "Volley Ball Canvas",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM040",
+        "Item_Name": "Volley Ball Jersey",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM039",
+        "Item_Name": "Volley Ball Nets",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM041",
+        "Item_Name": "Volley Ball Socks",
+        "Category": "Sports",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM017",
+        "Item_Name": "A4 Size Envelopes",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM018",
+        "Item_Name": "A5 Size Envelopes",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM049",
+        "Item_Name": "Carbon Paper",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM023",
+        "Item_Name": "Cash Book",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM050",
+        "Item_Name": "Duplicating Paper",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM004",
+        "Item_Name": "F9 Paper",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM014",
+        "Item_Name": "File Jacket",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM006",
+        "Item_Name": "File Tag",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM020",
+        "Item_Name": "Jar Gum",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM010",
+        "Item_Name": "Laminaring Paper",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM021",
+        "Item_Name": "Legal Paper",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM022",
+        "Item_Name": "Office Clips/Pins",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM016",
+        "Item_Name": "Open File Jacket",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM056",
+        "Item_Name": "Pencil",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM055",
+        "Item_Name": "Photocopier Sensor",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM054",
+        "Item_Name": "Plastic Ruler",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM002",
+        "Item_Name": "Punch",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM015",
+        "Item_Name": "Secret File Jacket",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM005",
+        "Item_Name": "Spiral Binding Paper",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM003",
+        "Item_Name": "Stamp",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM019",
+        "Item_Name": "Water Colour",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM011",
+        "Item_Name": "White Board",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM013",
+        "Item_Name": "White Board Eraser",
+        "Category": "Stationery",
+        "Current_Stock": 0,
+        "Reorder_Level": 0
+      },
+      {
+        "Item_ID": "ITEM012",
+        "Item_Name": "White Board Marker",
+        "Category": "Stationery",
+        "Current_Stock": 0,
         "Reorder_Level": 0
       }
     ],
@@ -256,7 +1203,7 @@
         "Transaction_ID": "TXN-2026-000014",
         "Transaction_Date": "2026-06-20T11:35:34.623179+00:00",
         "Transaction_Type": "OUT",
-        "School_Name": "Modern Primary School",
+        "School_Name": "SCH-001",
         "Warehouse_Name": "Makurdi Central Store",
         "Total_Items": 20
       },
@@ -264,7 +1211,7 @@
         "Transaction_ID": "TXN-2026-000013",
         "Transaction_Date": "2026-06-20T11:11:09.299292+00:00",
         "Transaction_Type": "OUT",
-        "School_Name": "Modern Primary School",
+        "School_Name": "SCH-001",
         "Warehouse_Name": "Makurdi Central Store",
         "Total_Items": 20
       },
@@ -272,7 +1219,7 @@
         "Transaction_ID": "TXN-2026-000012",
         "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
         "Transaction_Type": "OUT",
-        "School_Name": "Modern Primary School",
+        "School_Name": "SCH-001",
         "Warehouse_Name": "Makurdi Central Store",
         "Total_Items": 20
       },
@@ -280,7 +1227,7 @@
         "Transaction_ID": "TXN-2026-000011",
         "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
         "Transaction_Type": "OUT",
-        "School_Name": "Modern Primary School",
+        "School_Name": "SCH-001",
         "Warehouse_Name": "Makurdi Central Store",
         "Total_Items": 20
       },
@@ -288,7 +1235,7 @@
         "Transaction_ID": "TXN-2026-000009",
         "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
         "Transaction_Type": "OUT",
-        "School_Name": "Modern Primary School",
+        "School_Name": "SCH-001",
         "Warehouse_Name": "Makurdi Central Store",
         "Total_Items": 500
       },
@@ -304,7 +1251,7 @@
         "Transaction_ID": "TXN-2026-000010",
         "Transaction_Date": "2026-06-11",
         "Transaction_Type": "OUT",
-        "School_Name": "Modern Primary School",
+        "School_Name": "SCH-001",
         "Warehouse_Name": "Makurdi Central Store",
         "Total_Items": 105
       }
@@ -313,8 +1260,8 @@
       {
         "Requisition_ID": "REQ003",
         "Request_Date": "22/06/2026",
-        "School_Name": "NKST Primary Schoo, Ukum",
-        "LGA": "Ukum",
+        "School_Name": NaN,
+        "LGA": NaN,
         "Status": "Partially Fulfilled",
         "Requested_Quantity": 200,
         "Fulfilled_Quantity": 100
@@ -322,8 +1269,8 @@
       {
         "Requisition_ID": "REQ002",
         "Request_Date": "21/06/2026",
-        "School_Name": "LGEA Primary School",
-        "LGA": "Gboko",
+        "School_Name": NaN,
+        "LGA": NaN,
         "Status": "Pending",
         "Requested_Quantity": 75,
         "Fulfilled_Quantity": 0
@@ -331,8 +1278,8 @@
       {
         "Requisition_ID": "REQ001",
         "Request_Date": "20/06/2026",
-        "School_Name": "Modern Primary School",
-        "LGA": "Makurdi",
+        "School_Name": NaN,
+        "LGA": NaN,
         "Status": "Approved",
         "Requested_Quantity": 150,
         "Fulfilled_Quantity": 150
@@ -340,8 +1287,8 @@
       {
         "Requisition_ID": "REQ004",
         "Request_Date": "2026-06-11T14:38:43.453148+00:00",
-        "School_Name": "Modern Primary School",
-        "LGA": "Makurdi",
+        "School_Name": NaN,
+        "LGA": NaN,
         "Status": "Fulfilled",
         "Requested_Quantity": 150,
         "Fulfilled_Quantity": 105
@@ -349,8 +1296,8 @@
       {
         "Requisition_ID": "REQ005",
         "Request_Date": "2026-06-11T15:18:27.168956+00:00",
-        "School_Name": "NKST Primary Schoo, Ukum",
-        "LGA": "Ukum",
+        "School_Name": NaN,
+        "LGA": NaN,
         "Status": "Pending",
         "Requested_Quantity": 197,
         "Fulfilled_Quantity": 0
@@ -358,28 +1305,12 @@
     ],
     "fulfillment_summary": [
       {
-        "School_Name": "LGEA Primary School",
-        "LGA": "Gboko",
-        "Requested_Quantity": 75,
-        "Approved_Quantity": 0,
-        "Fulfilled_Quantity": 0,
-        "Fulfillment_Rate": 0.0
-      },
-      {
-        "School_Name": "Modern Primary School",
-        "LGA": "Makurdi",
-        "Requested_Quantity": 300,
-        "Approved_Quantity": 255,
-        "Fulfilled_Quantity": 255,
-        "Fulfillment_Rate": 100.0
-      },
-      {
-        "School_Name": "NKST Primary Schoo, Ukum",
-        "LGA": "Ukum",
-        "Requested_Quantity": 397,
-        "Approved_Quantity": 150,
-        "Fulfilled_Quantity": 100,
-        "Fulfillment_Rate": 66.67
+        "School_Name": NaN,
+        "LGA": NaN,
+        "Requested_Quantity": 772,
+        "Approved_Quantity": 405,
+        "Fulfilled_Quantity": 355,
+        "Fulfillment_Rate": 87.65
       }
     ]
   }
