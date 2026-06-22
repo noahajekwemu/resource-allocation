@@ -12,6 +12,9 @@ credentials.json
 # Google Sheets backup exports (may contain sensitive data)
 backups/
 
+# Data import reports (may contain source paths and validation details)
+import_reports/
+
 
 # IDE
 .vscode/

@@ -1,0 +1,3 @@
+Transaction_ID,Item_ID,Quantity,Condition
+TXN001,ITEM001,500,GOOD
+TXN002,ITEM001,50,GOOD

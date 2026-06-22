@@ -27,6 +27,15 @@ REQUISITION_DETAILS_WORKSHEET = "Requisition_Details"
 USERS_WORKSHEET = "Users"
 AUDIT_LOG_WORKSHEET = "Audit_Log"
 PROTECTED_SEED_WORKSHEETS = {USERS_WORKSHEET, AUDIT_LOG_WORKSHEET}
+IMPORTABLE_WORKSHEETS = {
+    ITEMS_WORKSHEET,
+    SCHOOLS_WORKSHEET,
+    WAREHOUSES_WORKSHEET,
+    TRANSACTIONS_WORKSHEET,
+    TRANSACTION_DETAILS_WORKSHEET,
+    REQUISITIONS_WORKSHEET,
+    REQUISITION_DETAILS_WORKSHEET,
+}
 BACKUP_WORKSHEETS = (
     ITEMS_WORKSHEET,
     SCHOOLS_WORKSHEET,
@@ -323,3 +332,87 @@ def append_records(sheet_name, worksheet_name, records):
         rows.append([normalized.get(normalize_column_name(header), "") for header in headers])
     worksheet.append_rows(rows, value_input_option="USER_ENTERED")
     return len(rows)
+
+
+def apply_import_plan(sheet_name, worksheet_name, append_rows, update_rows, key_columns):
+    """Apply a fully validated import plan to one allowed worksheet."""
+    if worksheet_name not in IMPORTABLE_WORKSHEETS:
+        raise ValueError(f"Worksheet is not importable: {worksheet_name}")
+    if not append_rows and not update_rows:
+        return {"appended": 0, "updated": 0}
+
+    from scripts.import_utils import COLUMN_ALIASES, canonicalize_columns, record_key
+
+    sheet = connect_to_sheet(sheet_name)
+    worksheet = sheet.worksheet(worksheet_name)
+    headers = [str(value).strip() for value in worksheet.row_values(1)]
+    if not headers:
+        raise ValueError(f"{worksheet_name} worksheet has no header row.")
+
+    alias_lookup = {}
+    for canonical, aliases in COLUMN_ALIASES.get(worksheet_name, {}).items():
+        for alias in aliases:
+            alias_lookup[normalize_column_name(alias)] = canonical
+
+    def value_for_header(record, header):
+        canonical_header = alias_lookup.get(normalize_column_name(header), header)
+        normalized_record = {
+            normalize_column_name(key): value for key, value in record.items()
+        }
+        return normalized_record.get(normalize_column_name(canonical_header), "")
+
+    existing_records = worksheet.get_all_records()
+    existing_frame = canonicalize_columns(pd.DataFrame(existing_records), worksheet_name)
+    row_numbers = {
+        record_key(record, tuple(key_columns)): index
+        for index, record in enumerate(existing_frame.to_dict(orient="records"), start=2)
+    }
+    updates = []
+    last_column = gspread.utils.rowcol_to_a1(1, len(headers)).rstrip("1")
+    for record in update_rows:
+        row_number = row_numbers[record_key(record, tuple(key_columns))]
+        updates.append({
+            "range": f"A{row_number}:{last_column}{row_number}",
+            "values": [[value_for_header(record, header) for header in headers]],
+        })
+    if updates:
+        worksheet.batch_update(updates, value_input_option="USER_ENTERED")
+    if append_rows:
+        worksheet.append_rows(
+            [[value_for_header(record, header) for header in headers] for record in append_rows],
+            value_input_option="USER_ENTERED",
+        )
+    return {"appended": len(append_rows), "updated": len(update_rows)}
+
+
+def write_import_audit(sheet_name, details, status):
+    """Append an importer audit event without exposing or changing user data."""
+    from datetime import datetime, timezone
+    import uuid
+
+    sheet = connect_to_sheet(sheet_name)
+    worksheet = sheet.worksheet(AUDIT_LOG_WORKSHEET)
+    values = {
+        "Audit_ID": str(uuid.uuid4()),
+        "Timestamp": datetime.now(timezone.utc).isoformat(),
+        "User_ID": "SYSTEM",
+        "User_Email": "",
+        "Role": "System",
+        "Action": "IMPORT_DATA",
+        "Entity_Type": details.get("target_sheet", ""),
+        "Entity_ID": details.get("file_name", ""),
+        "Before_State": "",
+        "After_State": json.dumps(details, ensure_ascii=False),
+        "IPAddress": "",
+        "Status": status,
+        "Remarks": (
+            f"mode={details.get('mode', '')}; imported={details.get('imported_row_count', 0)}"
+        ),
+    }
+    headers = [str(value).strip() for value in worksheet.row_values(1)]
+    if not headers:
+        headers = AUDIT_LOG_COLUMNS
+    worksheet.append_row(
+        [values.get(header, "") for header in headers],
+        value_input_option="USER_ENTERED",
+    )

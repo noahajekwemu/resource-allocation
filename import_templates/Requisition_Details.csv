@@ -1,0 +1,3 @@
+Requisition_ID,Item_ID,Quantity_Requested,Quantity_Approved,Quantity_Fulfilled
+REQ001,ITEM001,50,50,50
+REQ002,ITEM002,20,0,0

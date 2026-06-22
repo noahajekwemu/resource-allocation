@@ -1,0 +1,3 @@
+Transaction_ID,Date,Type,Warehouse_ID,School_ID,Source,Requisition_ID,Remarks
+TXN001,2026-06-01,IN,WH001,,Annual Procurement,,Opening receipt
+TXN002,2026-06-05,OUT,WH001,SCH001,,REQ001,School distribution
