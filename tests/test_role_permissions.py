@@ -131,7 +131,7 @@ class RolePermissionTests(unittest.TestCase):
             "Approver": "/forms/approve_requisition.html",
             "Store_Officer": "/forms/issue_stock.html",
             "School_User": "/forms/requisition_form.html",
-            "Viewer": "/api/items",
+            "Viewer": "/forms/reports.html",
         }
         for role, expected_path in expected_paths.items():
             user = {
@@ -319,6 +319,20 @@ class RolePermissionTests(unittest.TestCase):
                 data={"email": user["Email"], "password": "secret"},
             )
         self.assertEqual(response.location, "/forms/issue_stock.html")
+
+    def test_viewer_login_returns_to_reports_page(self):
+        user = {
+            "User_ID": "U1", "Email": "viewer@subeb.local", "Role": "Viewer"
+        }
+        with patch("scripts.form_api.authenticate_user", return_value=user), patch(
+            "scripts.form_api._audit"
+        ):
+            response = self.client.post(
+                "/login?next=/forms/reports.html",
+                data={"email": user["Email"], "password": "secret"},
+            )
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.location, "/forms/reports.html")
 
     def test_login_rejects_next_form_not_permitted_for_role(self):
         user = {"User_ID": "U1", "Email": "approver@example.com", "Role": "Approver"}

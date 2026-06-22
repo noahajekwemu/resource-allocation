@@ -109,7 +109,7 @@ ROLE_DEFAULT_REDIRECTS = {
     "Approver": "/forms/approve_requisition.html",
     "Store_Officer": "/forms/issue_stock.html",
     "School_User": "/forms/requisition_form.html",
-    "Viewer": "/api/items",
+    "Viewer": "/forms/reports.html",
 }
 SAFE_API_REDIRECTS = {"/api/items", "/api/schools", "/api/warehouses"}
 
