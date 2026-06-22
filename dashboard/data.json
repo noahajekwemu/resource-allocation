@@ -1,9 +1,5 @@
 {
-<<<<<<< HEAD
-  "generated_at": "2026-06-22T12:55:31.070647+00:00",
-=======
-  "generated_at": "2026-06-22T17:14:49.705403+00:00",
->>>>>>> 352e6c1 (Phase 12: Add sample data and redesign dashboard UI)
+  "generated_at": "2026-06-22T17:45:06.095796+00:00",
   "kpis": {
     "inventory_accuracy": 66.67,
     "total_items": 3,

@@ -2,50 +2,20 @@
 const API_BASE_URL = "https://resource-allocation-api.onrender.com";
 const API_STATUS_TIMEOUT_MS = 8000;
 
-const KPI_GROUPS = [
-  {
-    title: "Inventory",
-    cards: [
-      ["total_inventory_items", "Total Inventory Items"],
-      ["total_available_stock", "Total Available Stock"],
-      ["inventory_accuracy", "Inventory Accuracy", "percent"],
-      ["low_stock_items", "Low Stock Items", "number", true],
-      ["out_of_stock_items", "Out of Stock Items", "number", true],
-      ["damaged_items", "Damaged Items", "number", true]
-    ]
-  },
-  {
-    title: "Requisitions",
-    cards: [
-      ["total_requisitions", "Total Requisitions"],
-      ["pending_requisitions", "Pending Requisitions", "number", true],
-      ["approved_requisitions", "Approved Requisitions"],
-      ["partially_fulfilled_requisitions", "Partially Fulfilled Requisitions"],
-      ["fulfilled_requisitions", "Fulfilled Requisitions"],
-      ["rejected_requisitions", "Rejected Requisitions", "number", true]
-    ]
-  },
-  {
-    title: "Fulfillment",
-    cards: [
-      ["fulfillment_rate", "Fulfillment Rate", "percent"],
-      ["average_fulfillment_days", "Average Fulfillment Days"],
-      ["schools_served", "Schools Served"],
-      ["total_schools", "Total Schools"],
-      ["total_warehouses", "Total Warehouses"]
-    ]
-  }
+const EXECUTIVE_KPIS = [
+  ["total_inventory_items", "Total Inventory Items"],
+  ["total_available_stock", "Total Available Stock"],
+  ["inventory_accuracy", "Inventory Accuracy", "percent"],
+  ["low_stock_items", "Low Stock Items", "number", true],
+  ["out_of_stock_items", "Out of Stock Items", "number", true],
+  ["pending_requisitions", "Pending Requisitions", "number", true],
+  ["approved_requisitions", "Approved Requisitions"],
+  ["fulfilled_requisitions", "Fulfilled Requisitions"],
+  ["total_schools", "Total Schools"],
+  ["total_warehouses", "Total Warehouses"]
 ];
 
 const TABLE_CONFIG = [
-  {
-    title: "Stock Levels", path: "stock_levels", alertFields: ["Current_Stock"],
-    columns: [["Item ID", ["Item_ID", "item_id"]], ["Item Name", ["Item_Name", "item_name"]], ["Category", ["Category", "category"]], ["Current Stock", ["Current_Stock", "current_stock"], "number"], ["Reorder Level", ["Reorder_Level", "reorder_level"], "number"]]
-  },
-  {
-    title: "Low Stock Alerts", path: "low_stock_alerts", alert: true,
-    columns: [["Item ID", ["Item_ID", "item_id"]], ["Item Name", ["Item_Name", "item_name"]], ["Category", ["Category", "category"]], ["Current Stock", ["Current_Stock", "current_stock"], "number"], ["Reorder Level", ["Reorder_Level", "reorder_level"], "number"]]
-  },
   {
     title: "Recent Inventory Movements", path: "recent_movements",
     columns: [["Transaction ID", ["Transaction_ID", "transaction_id"]], ["Date", ["Transaction_Date", "transaction_date", "date"], "date"], ["Type", ["Transaction_Type", "transaction_type", "type"]], ["School", ["School_Name", "school_name", "school"]], ["Warehouse", ["Warehouse_Name", "warehouse_name", "warehouse"]], ["Total Items", ["Total_Items", "total_items", "quantity"], "number"]]
@@ -111,21 +81,12 @@ function renderKpiCard(container, label, value, type = "number", alert = false) 
 function renderKpis(data) {
   const root = document.getElementById("kpi-groups");
   root.replaceChildren();
-  KPI_GROUPS.forEach((groupConfig) => {
-    const section = document.createElement("section");
-    section.className = "kpi-group";
-    const heading = document.createElement("h3");
-    heading.textContent = groupConfig.title;
-    const grid = document.createElement("div");
-    grid.className = "kpi-grid";
-    const sources = [data.kpis, data[groupConfig.title.toLowerCase()]];
-    groupConfig.cards.forEach(([key, label, type, alert]) => {
-      const value = getValue(sources[0], key, getValue(sources[1], key));
-      renderKpiCard(grid, label, value, type, alert);
-    });
-    section.append(heading, grid);
-    root.appendChild(section);
+  const grid = document.createElement("div");
+  grid.className = "kpi-grid";
+  EXECUTIVE_KPIS.forEach(([key, label, type, alert]) => {
+    renderKpiCard(grid, label, getValue(data.kpis, key), type, alert);
   });
+  root.appendChild(grid);
 }
 
 function renderEmptyState(container, message = "No records available") {
@@ -201,6 +162,81 @@ function renderTables(tables) {
   });
 }
 
+let dashboardData = null;
+
+function uniqueValues(values) {
+  return [...new Set(values.filter((value) => value !== null && value !== undefined && String(value).trim()))]
+    .map(String).sort((left, right) => left.localeCompare(right));
+}
+
+function populateSelect(id, values) {
+  const select = document.getElementById(id);
+  if (!select) return;
+  const current = select.value;
+  while (select.options.length > 1) select.remove(1);
+  uniqueValues(values).forEach((value) => select.add(new Option(value, value)));
+  if ([...select.options].some((option) => option.value === current)) select.value = current;
+}
+
+function configureFilters(data) {
+  const charts = data.charts || {};
+  const tables = data.tables || {};
+  populateSelect("filter-zone", [
+    ...(tables.recent_requisitions || []).map((row) => getValue(row, ["Zone", "zone"])),
+    ...(tables.fulfillment_summary || []).map((row) => getValue(row, ["Zone", "zone"]))
+  ]);
+  populateSelect("filter-lga", [
+    ...(charts.requests_by_lga || []).map((row) => getValue(row, ["lga", "LGA"])),
+    ...(charts.distribution_by_lga || []).map((row) => getValue(row, ["lga", "LGA"]))
+  ]);
+  populateSelect("filter-status", (charts.requisition_status_distribution || []).map((row) => getValue(row, ["status", "Status"])));
+  populateSelect("filter-category", (tables.stock_levels || []).map((row) => getValue(row, ["Category", "category"])));
+
+  document.querySelectorAll("[data-filter]").forEach((select) => select.addEventListener("change", applyFilters));
+  document.getElementById("clear-filters")?.addEventListener("click", () => {
+    document.querySelectorAll("[data-filter]").forEach((select) => { select.value = ""; });
+    applyFilters();
+  });
+}
+
+function matches(record, keys, selected) {
+  return !selected || String(getValue(record, keys, "")) === selected;
+}
+
+function applyFilters() {
+  if (!dashboardData) return;
+  const lga = document.getElementById("filter-lga")?.value || "";
+  const status = document.getElementById("filter-status")?.value || "";
+  const category = document.getElementById("filter-category")?.value || "";
+  const zone = document.getElementById("filter-zone")?.value || "";
+  const sourceCharts = dashboardData.charts || {};
+  const sourceTables = dashboardData.tables || {};
+  const filtered = {
+    ...dashboardData,
+    charts: {
+      ...sourceCharts,
+      requisition_status_distribution: (sourceCharts.requisition_status_distribution || []).filter((row) => matches(row, ["status", "Status"], status)),
+      requests_by_lga: (sourceCharts.requests_by_lga || []).filter((row) => matches(row, ["lga", "LGA"], lga)),
+      distribution_by_lga: (sourceCharts.distribution_by_lga || []).filter((row) => matches(row, ["lga", "LGA"], lga)),
+      inventory_by_category: (sourceCharts.inventory_by_category || []).filter((row) => matches(row, ["category", "Category"], category))
+    },
+    tables: {
+      ...sourceTables,
+      stock_levels: (sourceTables.stock_levels || []).filter((row) => matches(row, ["Category", "category"], category)),
+      recent_requisitions: (sourceTables.recent_requisitions || []).filter((row) =>
+        matches(row, ["LGA", "lga"], lga) && matches(row, ["Status", "status"], status) && matches(row, ["Zone", "zone"], zone)),
+      fulfillment_summary: (sourceTables.fulfillment_summary || []).filter((row) =>
+        matches(row, ["LGA", "lga"], lga) && matches(row, ["Zone", "zone"], zone))
+    }
+  };
+  SubebCharts.render(filtered);
+  renderTables(filtered.tables);
+  const active = [zone, lga, status, category].filter(Boolean);
+  document.getElementById("filter-note").textContent = active.length
+    ? `Filtered by: ${active.join(", ")}.`
+    : "Showing all available records.";
+}
+
 function setState(state) {
   document.getElementById("loading-state").hidden = state !== "loading";
   document.getElementById("error-state").hidden = state !== "error";
@@ -248,10 +284,12 @@ async function loadDashboard() {
     const response = await fetch(DATA_URL, { cache: "no-store" });
     if (!response.ok) throw new Error(`Dashboard data request failed with status ${response.status}`);
     const data = await response.json();
+    dashboardData = data;
     document.getElementById("last-updated").textContent = formatDateTime(data.generated_at);
     renderKpis(data);
     SubebCharts.render(data);
     renderTables(data.tables || {});
+    configureFilters(data);
     setState("ready");
   } catch (error) {
     console.error("Unable to load the accountability dashboard:", error);
