@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "generated_at": "2026-06-22T12:55:31.070647+00:00",
+=======
+  "generated_at": "2026-06-22T17:14:49.705403+00:00",
+>>>>>>> 352e6c1 (Phase 12: Add sample data and redesign dashboard UI)
   "kpis": {
     "inventory_accuracy": 66.67,
     "total_items": 3,
@@ -74,6 +78,72 @@
     }
   ],
   "charts": {
+    "requisition_status_distribution": [
+      {
+        "status": "Approved",
+        "quantity": 1
+      },
+      {
+        "status": "Fulfilled",
+        "quantity": 1
+      },
+      {
+        "status": "Partially Fulfilled",
+        "quantity": 1
+      },
+      {
+        "status": "Pending",
+        "quantity": 2
+      }
+    ],
+    "requested_vs_approved_vs_fulfilled": [
+      {
+        "item": "Mathematics Textbook",
+        "requested": 330,
+        "approved": 180,
+        "fulfilled": 180
+      },
+      {
+        "item": "Classroom Chair",
+        "requested": 222,
+        "approved": 150,
+        "fulfilled": 100
+      },
+      {
+        "item": "English Textbook",
+        "requested": 220,
+        "approved": 75,
+        "fulfilled": 75
+      }
+    ],
+    "top_requested_items": [
+      {
+        "item": "Mathematics Textbook",
+        "quantity": 330
+      },
+      {
+        "item": "Classroom Chair",
+        "quantity": 222
+      },
+      {
+        "item": "English Textbook",
+        "quantity": 220
+      }
+    ],
+    "requests_by_lga": [
+      {
+        "lga": "Ukum",
+        "quantity": 397
+      },
+      {
+        "lga": "Makurdi",
+        "quantity": 300
+      },
+      {
+        "lga": "Gboko",
+        "quantity": 75
+      }
+    ],
     "inventory_by_category": [
       {
         "category": "Textbooks",
@@ -241,6 +311,79 @@
         "School_Name": "Modern Primary School",
         "Warehouse_Name": "Makurdi Central Store",
         "Total_Items": 105
+      }
+    ],
+    "recent_requisitions": [
+      {
+        "Requisition_ID": "REQ003",
+        "Request_Date": "22/06/2026",
+        "School_Name": "NKST Primary Schoo, Ukum",
+        "LGA": "Ukum",
+        "Status": "Partially Fulfilled",
+        "Requested_Quantity": 200,
+        "Fulfilled_Quantity": 100
+      },
+      {
+        "Requisition_ID": "REQ002",
+        "Request_Date": "21/06/2026",
+        "School_Name": "LGEA Primary School",
+        "LGA": "Gboko",
+        "Status": "Pending",
+        "Requested_Quantity": 75,
+        "Fulfilled_Quantity": 0
+      },
+      {
+        "Requisition_ID": "REQ001",
+        "Request_Date": "20/06/2026",
+        "School_Name": "Modern Primary School",
+        "LGA": "Makurdi",
+        "Status": "Approved",
+        "Requested_Quantity": 150,
+        "Fulfilled_Quantity": 150
+      },
+      {
+        "Requisition_ID": "REQ004",
+        "Request_Date": "2026-06-11T14:38:43.453148+00:00",
+        "School_Name": "Modern Primary School",
+        "LGA": "Makurdi",
+        "Status": "Fulfilled",
+        "Requested_Quantity": 150,
+        "Fulfilled_Quantity": 105
+      },
+      {
+        "Requisition_ID": "REQ005",
+        "Request_Date": "2026-06-11T15:18:27.168956+00:00",
+        "School_Name": "NKST Primary Schoo, Ukum",
+        "LGA": "Ukum",
+        "Status": "Pending",
+        "Requested_Quantity": 197,
+        "Fulfilled_Quantity": 0
+      }
+    ],
+    "fulfillment_summary": [
+      {
+        "School_Name": "LGEA Primary School",
+        "LGA": "Gboko",
+        "Requested_Quantity": 75,
+        "Approved_Quantity": 0,
+        "Fulfilled_Quantity": 0,
+        "Fulfillment_Rate": 0.0
+      },
+      {
+        "School_Name": "Modern Primary School",
+        "LGA": "Makurdi",
+        "Requested_Quantity": 300,
+        "Approved_Quantity": 255,
+        "Fulfilled_Quantity": 255,
+        "Fulfillment_Rate": 100.0
+      },
+      {
+        "School_Name": "NKST Primary Schoo, Ukum",
+        "LGA": "Ukum",
+        "Requested_Quantity": 397,
+        "Approved_Quantity": 150,
+        "Fulfilled_Quantity": 100,
+        "Fulfillment_Rate": 66.67
       }
     ]
   }

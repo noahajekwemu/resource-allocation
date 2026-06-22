@@ -6,7 +6,7 @@
   }
 
   function colors(includeAlert = false) {
-    const standard = [cssColor("--subeb-blue"), cssColor("--subeb-blue-dark"), cssColor("--subeb-blue-light")];
+    const standard = [cssColor("--subeb-blue"), cssColor("--subeb-blue-dark"), cssColor("--subeb-green"), cssColor("--subeb-amber"), "#5b70b5", "#68b7d8"];
     return includeAlert ? [cssColor("--subeb-red"), ...standard] : standard;
   }
 
@@ -53,11 +53,11 @@
       maintainAspectRatio: false,
       indexAxis,
       plugins: {
-        legend: { position: "bottom", labels: { color: text } },
+        legend: { position: "bottom", labels: { color: text, usePointStyle: true, boxWidth: 8, padding: 16 } },
         tooltip: { callbacks: { label: (context) => `${context.dataset.label}: ${new Intl.NumberFormat("en-NG").format(context.raw ?? 0)}` } }
       },
       scales: {
-        x: { beginAtZero: true, ticks: { color: text }, grid: { color: grid } },
+        x: { beginAtZero: true, ticks: { color: text, maxRotation: 35, minRotation: 0 }, grid: { color: grid } },
         y: { beginAtZero: true, ticks: { color: text }, grid: { color: grid } }
       }
     };
@@ -76,7 +76,9 @@
           data: series.data,
           backgroundColor: palette[index % palette.length],
           borderColor: index === 0 && alert ? cssColor("--subeb-red") : cssColor("--subeb-blue-dark"),
-          borderWidth: 1
+          borderWidth: 1,
+          borderRadius: 3,
+          maxBarThickness: 42
         }))
       },
       options: chartOptions(horizontal ? "y" : "x")
@@ -101,7 +103,7 @@
           borderWidth: 2
         }]
       },
-      options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: "bottom", labels: { color: cssColor("--subeb-text") } } } }
+      options: { responsive: true, maintainAspectRatio: false, cutout: "62%", plugins: { legend: { position: "bottom", labels: { color: cssColor("--subeb-text"), usePointStyle: true, boxWidth: 8, padding: 14 } } } }
     });
     chartInstances.push(chart);
     return chart;
@@ -174,6 +176,17 @@
     };
   }
 
+  function normalizeStockLevels(dataset) {
+    if (!Array.isArray(dataset)) return { labels: [], series: [] };
+    return {
+      labels: dataset.map((record) => String(valueFrom(record, ["Item_Name", "item_name", "Item_ID", "item_id"], "Unspecified"))),
+      series: [
+        { label: "Current Stock", data: dataset.map((record) => valueFrom(record, ["Current_Stock", "current_stock"])) },
+        { label: "Reorder Level", data: dataset.map((record) => valueFrom(record, ["Reorder_Level", "reorder_level"])) }
+      ]
+    };
+  }
+
   function render(data) {
     destroyCharts();
     const charts = data?.charts || {};
@@ -181,6 +194,7 @@
     createBarChart("requisition-quantities", normalizeComparison(charts.requested_vs_approved_vs_fulfilled));
     createBarChart("top-requested-items", normalize(charts.top_requested_items, ["item", "item_name", "label"]), true);
     createBarChart("requests-by-lga", normalize(charts.requests_by_lga, ["lga", "label"]));
+    createBarChart("stock-levels", normalizeStockLevels(data?.tables?.stock_levels));
     createBarChart("distribution-by-lga", normalize(charts.distribution_by_lga, ["lga", "label"]));
     createBarChart("distribution-by-school-type", normalize(charts.distribution_by_school_type, ["school_type", "label"]));
     createBarChart("top-schools", normalize(charts.top_schools, ["school", "school_name", "label"]), true);

@@ -26,6 +26,7 @@ REQUISITIONS_WORKSHEET = "Requisitions"
 REQUISITION_DETAILS_WORKSHEET = "Requisition_Details"
 USERS_WORKSHEET = "Users"
 AUDIT_LOG_WORKSHEET = "Audit_Log"
+PROTECTED_SEED_WORKSHEETS = {USERS_WORKSHEET, AUDIT_LOG_WORKSHEET}
 BACKUP_WORKSHEETS = (
     ITEMS_WORKSHEET,
     SCHOOLS_WORKSHEET,
@@ -301,3 +302,24 @@ def append_row(sheet_name, worksheet_name, row_data):
     worksheet = sheet.worksheet(worksheet_name)
 
     worksheet.append_row(row_data)
+
+
+def append_records(sheet_name, worksheet_name, records):
+    """Append dictionaries using the worksheet's existing column order."""
+    if worksheet_name in PROTECTED_SEED_WORKSHEETS:
+        raise ValueError(f"Refusing to modify protected worksheet: {worksheet_name}")
+    if not records:
+        return 0
+
+    sheet = connect_to_sheet(sheet_name)
+    worksheet = sheet.worksheet(worksheet_name)
+    headers = [str(value).strip() for value in worksheet.row_values(1)]
+    if not headers:
+        raise ValueError(f"{worksheet_name} worksheet has no header row.")
+
+    rows = []
+    for record in records:
+        normalized = {normalize_column_name(key): value for key, value in record.items()}
+        rows.append([normalized.get(normalize_column_name(header), "") for header in headers])
+    worksheet.append_rows(rows, value_input_option="USER_ENTERED")
+    return len(rows)

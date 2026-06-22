@@ -1,8 +1,9 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#073763">
   <title>Benue SUBEB Accountability Dashboard</title>
   <link rel="stylesheet" href="css/styles.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -11,86 +12,117 @@
   <a class="skip-link" href="#main-content">Skip to content</a>
 
   <header class="portal-header">
-    <div class="portal-header__inner">
+    <div class="portal-header__brand">
       <img class="portal-logo" src="assets/Benue-SUBEB.jpg" alt="Benue SUBEB logo">
       <div class="portal-title">
         <p class="portal-label">Government Accountability Portal</p>
         <h1>Benue State Universal Basic Education Board</h1>
         <p>Educational Resource Allocation &amp; Accountability Dashboard</p>
       </div>
+    </div>
+    <div class="header-meta">
       <div class="last-updated" aria-live="polite">
         <span>Last updated</span>
         <strong id="last-updated">Loading</strong>
       </div>
+      <span id="api-status" class="api-status api-status--checking" role="status" aria-live="polite">Checking API</span>
     </div>
-    <nav class="portal-nav" aria-label="Primary navigation">
-      <div class="portal-nav__inner">
-        <a href="index.html" aria-current="page">Public Dashboard</a>
+  </header>
+
+  <div class="app-layout">
+    <aside class="sidebar" aria-label="Dashboard navigation">
+      <p class="sidebar__label">Dashboard</p>
+      <nav class="sidebar__nav">
+        <a class="is-active" href="#summary" aria-current="page">Summary</a>
+        <a href="#inventory">Inventory</a>
+        <a href="#requisitions">Requisitions</a>
+        <a href="#distribution">Distribution</a>
+      </nav>
+      <p class="sidebar__label">Operations</p>
+      <nav class="sidebar__nav sidebar__nav--external">
+        <a data-api-path="/forms/reports.html" href="#">Reports</a>
         <a data-api-path="/login" href="#">Secure Portal</a>
-        <a data-api-path="/forms/requisition_form.html" href="#">Submit School Requisition</a>
+        <a data-api-path="/forms/requisition_form.html" href="#">Submit Requisition</a>
         <a data-api-path="/forms/receive_stock.html" href="#">Receive Stock</a>
         <a data-api-path="/forms/issue_stock.html" href="#">Issue Stock</a>
         <a data-api-path="/forms/approve_requisition.html" href="#">Approve Requests</a>
-        <a class="admin-nav-link" data-api-path="/forms/user_management.html" href="#">User Management</a>
-        <a class="secure-nav-link" data-api-path="/forms/reports.html" href="#">Reports</a>
-        <a data-api-path="/health" href="#">API Status</a>
-        <span id="api-status" class="api-status api-status--checking" role="status" aria-live="polite">Checking API</span>
+      </nav>
+    </aside>
+
+    <main id="main-content" class="dashboard-shell">
+      <section id="loading-state" class="state-panel" role="status">
+        <span class="loading-indicator" aria-hidden="true"></span>
+        <div><strong>Loading dashboard data</strong><span>Preparing the latest accountability report.</span></div>
+      </section>
+      <section id="error-state" class="state-panel state-panel--error" role="alert" hidden>
+        <strong>Data unavailable</strong>
+        <span>Dashboard data could not be loaded. Please try again later.</span>
+      </section>
+
+      <div id="dashboard-content" hidden>
+        <section id="summary" class="section-block section-block--summary" aria-labelledby="kpi-heading">
+          <div class="section-heading">
+            <div><p class="section-kicker">Executive overview</p><h2 id="kpi-heading">Resource Allocation Summary</h2></div>
+          </div>
+          <div id="kpi-groups"></div>
+        </section>
+
+        <div class="workspace-layout">
+          <div class="workspace-main">
+            <section id="requisitions" class="section-block" aria-labelledby="requisition-charts-heading">
+              <div class="section-heading"><div><p class="section-kicker">Demand and approvals</p><h2 id="requisition-charts-heading">Requisition Accountability</h2></div></div>
+              <div class="chart-grid">
+                <article class="chart-panel"><h3>Requisition Status Breakdown</h3><div class="chart-frame" data-chart="requisition-status"><canvas id="requisition-status"></canvas></div></article>
+                <article class="chart-panel"><h3>Requested vs Approved vs Fulfilled</h3><div class="chart-frame" data-chart="requisition-quantities"><canvas id="requisition-quantities"></canvas></div></article>
+                <article class="chart-panel"><h3>Top Requested Items</h3><div class="chart-frame" data-chart="top-requested-items"><canvas id="top-requested-items"></canvas></div></article>
+                <article class="chart-panel"><h3>Requests by LGA</h3><div class="chart-frame" data-chart="requests-by-lga"><canvas id="requests-by-lga"></canvas></div></article>
+              </div>
+            </section>
+
+            <section id="inventory" class="section-block" aria-labelledby="inventory-charts-heading">
+              <div class="section-heading"><div><p class="section-kicker">Stock position</p><h2 id="inventory-charts-heading">Inventory Accountability</h2></div></div>
+              <div class="chart-grid">
+                <article class="chart-panel chart-panel--wide"><h3>Stock Levels by Item</h3><div class="chart-frame chart-frame--wide" data-chart="stock-levels"><canvas id="stock-levels"></canvas></div></article>
+                <article class="chart-panel"><h3>Inventory by Category</h3><div class="chart-frame" data-chart="inventory-by-category"><canvas id="inventory-by-category"></canvas></div></article>
+                <article class="chart-panel"><h3>Stock Source Analysis</h3><div class="chart-frame" data-chart="stock-source-analysis"><canvas id="stock-source-analysis"></canvas></div></article>
+                <article class="chart-panel chart-panel--wide"><h3>Inventory Movement Trend</h3><div class="chart-frame chart-frame--wide" data-chart="monthly-stock-movements"><canvas id="monthly-stock-movements"></canvas></div></article>
+              </div>
+            </section>
+
+            <section id="distribution" class="section-block" aria-labelledby="distribution-charts-heading">
+              <div class="section-heading"><div><p class="section-kicker">Equity and reach</p><h2 id="distribution-charts-heading">Distribution Accountability</h2></div></div>
+              <div class="chart-grid">
+                <article class="chart-panel"><h3>Distribution by LGA</h3><div class="chart-frame" data-chart="distribution-by-lga"><canvas id="distribution-by-lga"></canvas></div></article>
+                <article class="chart-panel"><h3>Distribution by School Type</h3><div class="chart-frame" data-chart="distribution-by-school-type"><canvas id="distribution-by-school-type"></canvas></div></article>
+                <article class="chart-panel"><h3>Top Schools</h3><div class="chart-frame" data-chart="top-schools"><canvas id="top-schools"></canvas></div></article>
+                <article class="chart-panel"><h3>Bottom Schools</h3><div class="chart-frame" data-chart="bottom-schools"><canvas id="bottom-schools"></canvas></div></article>
+                <article class="chart-panel chart-panel--wide"><h3>Top Distributed Items</h3><div class="chart-frame chart-frame--wide" data-chart="top-distributed-items"><canvas id="top-distributed-items"></canvas></div></article>
+              </div>
+            </section>
+          </div>
+
+          <aside class="filter-panel" aria-labelledby="filter-heading">
+            <div class="filter-panel__heading"><p class="section-kicker">Refine view</p><h2 id="filter-heading">Filters</h2></div>
+            <label for="filter-zone">Zone</label>
+            <select id="filter-zone" data-filter="zone"><option value="">All zones</option></select>
+            <label for="filter-lga">LGA</label>
+            <select id="filter-lga" data-filter="lga"><option value="">All LGAs</option></select>
+            <label for="filter-status">Status</label>
+            <select id="filter-status" data-filter="status"><option value="">All statuses</option></select>
+            <label for="filter-category">Item Category</label>
+            <select id="filter-category" data-filter="category"><option value="">All categories</option></select>
+            <button id="clear-filters" class="filter-reset" type="button">Clear filters</button>
+            <p id="filter-note" class="filter-note" aria-live="polite">Showing all available records.</p>
+          </aside>
+        </div>
+
+        <section id="reports" class="section-block" aria-labelledby="tables-heading">
+          <div class="section-heading"><div><p class="section-kicker">Operational detail</p><h2 id="tables-heading">Accountability Records</h2></div></div>
+          <div id="accountability-tables" class="tables-grid"></div>
+        </section>
       </div>
-    </nav>
-  </header>
-
-  <main id="main-content" class="dashboard-shell">
-    <section id="loading-state" class="state-panel" role="status">
-      <span class="loading-indicator" aria-hidden="true"></span>
-      <div><strong>Loading dashboard data</strong><span>Preparing the latest accountability report.</span></div>
-    </section>
-    <section id="error-state" class="state-panel state-panel--error" role="alert" hidden>
-      <strong>Data unavailable</strong>
-      <span>Dashboard data could not be loaded. Please try again later.</span>
-    </section>
-
-    <div id="dashboard-content" hidden>
-      <section class="section-block" aria-labelledby="kpi-heading">
-        <div class="section-heading"><h2 id="kpi-heading">Executive Performance Overview</h2></div>
-        <div id="kpi-groups"></div>
-      </section>
-
-      <section class="section-block" aria-labelledby="requisition-charts-heading">
-        <div class="section-heading"><h2 id="requisition-charts-heading">Requisition Accountability</h2></div>
-        <div class="chart-grid">
-          <article class="chart-panel"><h3>Requisition Status Breakdown</h3><div class="chart-frame" data-chart="requisition-status"><canvas id="requisition-status"></canvas></div></article>
-          <article class="chart-panel"><h3>Requested vs Approved vs Fulfilled Quantities</h3><div class="chart-frame" data-chart="requisition-quantities"><canvas id="requisition-quantities"></canvas></div></article>
-          <article class="chart-panel"><h3>Top Requested Items</h3><div class="chart-frame" data-chart="top-requested-items"><canvas id="top-requested-items"></canvas></div></article>
-          <article class="chart-panel"><h3>Requests by LGA</h3><div class="chart-frame" data-chart="requests-by-lga"><canvas id="requests-by-lga"></canvas></div></article>
-        </div>
-      </section>
-
-      <section class="section-block" aria-labelledby="distribution-charts-heading">
-        <div class="section-heading"><h2 id="distribution-charts-heading">Distribution Accountability</h2></div>
-        <div class="chart-grid">
-          <article class="chart-panel"><h3>Distribution by LGA</h3><div class="chart-frame" data-chart="distribution-by-lga"><canvas id="distribution-by-lga"></canvas></div></article>
-          <article class="chart-panel"><h3>Distribution by School Type</h3><div class="chart-frame" data-chart="distribution-by-school-type"><canvas id="distribution-by-school-type"></canvas></div></article>
-          <article class="chart-panel"><h3>Top Schools</h3><div class="chart-frame" data-chart="top-schools"><canvas id="top-schools"></canvas></div></article>
-          <article class="chart-panel"><h3>Bottom Schools</h3><div class="chart-frame" data-chart="bottom-schools"><canvas id="bottom-schools"></canvas></div></article>
-          <article class="chart-panel chart-panel--wide"><h3>Top Distributed Items</h3><div class="chart-frame" data-chart="top-distributed-items"><canvas id="top-distributed-items"></canvas></div></article>
-        </div>
-      </section>
-
-      <section class="section-block" aria-labelledby="inventory-charts-heading">
-        <div class="section-heading"><h2 id="inventory-charts-heading">Inventory Accountability</h2></div>
-        <div class="chart-grid">
-          <article class="chart-panel"><h3>Inventory by Category</h3><div class="chart-frame" data-chart="inventory-by-category"><canvas id="inventory-by-category"></canvas></div></article>
-          <article class="chart-panel"><h3>Stock Source Analysis</h3><div class="chart-frame" data-chart="stock-source-analysis"><canvas id="stock-source-analysis"></canvas></div></article>
-          <article class="chart-panel chart-panel--wide"><h3>Monthly Stock Movements</h3><div class="chart-frame" data-chart="monthly-stock-movements"><canvas id="monthly-stock-movements"></canvas></div></article>
-        </div>
-      </section>
-
-      <section class="section-block" aria-labelledby="tables-heading">
-        <div class="section-heading"><h2 id="tables-heading">Accountability Records</h2></div>
-        <div id="accountability-tables" class="tables-grid"></div>
-      </section>
-    </div>
-  </main>
+    </main>
+  </div>
 
   <footer class="portal-footer">
     <strong>Benue State Universal Basic Education Board</strong>
@@ -102,4 +134,3 @@
   <script src="js/dashboard.js"></script>
 </body>
 </html>
-

@@ -556,6 +556,132 @@ def build_recent_movements_table(enriched: pd.DataFrame, limit: int = 50) -> lis
     ]
 
 
+def build_requisition_analytics(
+    requisitions: pd.DataFrame,
+    details: pd.DataFrame,
+    items: pd.DataFrame,
+    schools: pd.DataFrame,
+) -> dict[str, list[dict[str, Any]]]:
+    status_rows = (
+        requisitions.groupby("Status").size().reset_index(name="quantity")
+        if not requisitions.empty else pd.DataFrame(columns=["Status", "quantity"])
+    )
+    status_distribution = [
+        {"status": str(row["Status"]), "quantity": int(row["quantity"])}
+        for _, row in status_rows.sort_values("Status").iterrows()
+    ]
+
+    detail_items = details.merge(
+        items[["Item_ID", "Item_Name"]], on="Item_ID", how="left"
+    )
+    detail_items["Item_Name"] = detail_items["Item_Name"].fillna(
+        detail_items["Item_ID"]
+    )
+    by_item = (
+        detail_items.groupby("Item_Name")[[
+            "Quantity_Requested", "Quantity_Approved", "Quantity_Fulfilled"
+        ]].sum().reset_index()
+        if not detail_items.empty
+        else pd.DataFrame(columns=[
+            "Item_Name", "Quantity_Requested", "Quantity_Approved",
+            "Quantity_Fulfilled",
+        ])
+    )
+    by_item = by_item.sort_values(
+        ["Quantity_Requested", "Item_Name"], ascending=[False, True]
+    )
+    requested_comparison = [
+        {
+            "item": row["Item_Name"],
+            "requested": int(row["Quantity_Requested"]),
+            "approved": int(row["Quantity_Approved"]),
+            "fulfilled": int(row["Quantity_Fulfilled"]),
+        }
+        for _, row in by_item.iterrows()
+    ]
+    top_requested = [
+        {"item": row["Item_Name"], "quantity": int(row["Quantity_Requested"])}
+        for _, row in by_item.head(10).iterrows()
+    ]
+
+    totals = (
+        details.groupby("Requisition_ID")[[
+            "Quantity_Requested", "Quantity_Approved", "Quantity_Fulfilled"
+        ]].sum().reset_index()
+        if not details.empty
+        else pd.DataFrame(columns=[
+            "Requisition_ID", "Quantity_Requested", "Quantity_Approved",
+            "Quantity_Fulfilled",
+        ])
+    )
+    requisition_rows = requisitions.merge(totals, on="Requisition_ID", how="left").merge(
+        schools, on="School_ID", how="left"
+    )
+    for column in ("Quantity_Requested", "Quantity_Approved", "Quantity_Fulfilled"):
+        requisition_rows[column] = requisition_rows[column].fillna(0)
+
+    requests_by_lga_frame = (
+        requisition_rows.groupby("LGA")["Quantity_Requested"].sum().reset_index()
+        if not requisition_rows.empty
+        else pd.DataFrame(columns=["LGA", "Quantity_Requested"])
+    )
+    requests_by_lga = [
+        {"lga": str(row["LGA"]), "quantity": int(row["Quantity_Requested"])}
+        for _, row in requests_by_lga_frame.sort_values(
+            ["Quantity_Requested", "LGA"], ascending=[False, True]
+        ).iterrows()
+    ]
+
+    recent_frame = requisition_rows.copy()
+    recent_frame["_date"] = pd.to_datetime(
+        recent_frame["Request_Date"], errors="coerce", utc=True
+    )
+    recent_requisitions = [
+        {
+            "Requisition_ID": row["Requisition_ID"],
+            "Request_Date": row["Request_Date"],
+            "School_Name": row["School_Name"], "LGA": row["LGA"],
+            "Status": row["Status"],
+            "Requested_Quantity": int(row["Quantity_Requested"]),
+            "Fulfilled_Quantity": int(row["Quantity_Fulfilled"]),
+        }
+        for _, row in recent_frame.sort_values(
+            "_date", ascending=False, na_position="last"
+        ).head(50).iterrows()
+    ]
+
+    fulfillment_frame = (
+        requisition_rows.groupby(["School_Name", "LGA"], dropna=False)[[
+            "Quantity_Requested", "Quantity_Approved", "Quantity_Fulfilled"
+        ]].sum().reset_index()
+        if not requisition_rows.empty
+        else pd.DataFrame(columns=[
+            "School_Name", "LGA", "Quantity_Requested", "Quantity_Approved",
+            "Quantity_Fulfilled",
+        ])
+    )
+    fulfillment_summary = []
+    for _, row in fulfillment_frame.iterrows():
+        approved = float(row["Quantity_Approved"])
+        fulfilled = float(row["Quantity_Fulfilled"])
+        fulfillment_summary.append({
+            "School_Name": row["School_Name"], "LGA": row["LGA"],
+            "Requested_Quantity": int(row["Quantity_Requested"]),
+            "Approved_Quantity": int(approved), "Fulfilled_Quantity": int(fulfilled),
+            "Fulfillment_Rate": round(fulfilled / approved * 100, 2)
+            if approved > 0 else 0.0,
+        })
+
+    return {
+        "requisition_status_distribution": status_distribution,
+        "requested_vs_approved_vs_fulfilled": requested_comparison,
+        "top_requested_items": top_requested,
+        "requests_by_lga": requests_by_lga,
+        "recent_requisitions": recent_requisitions,
+        "fulfillment_summary": fulfillment_summary,
+    }
+
+
 def build_dashboard_data(data: dict[str, pd.DataFrame]) -> dict[str, Any]:
     transactions = prepare_transactions(data.get("transactions", pd.DataFrame()))
     transaction_details = prepare_transaction_details(
@@ -581,8 +707,19 @@ def build_dashboard_data(data: dict[str, pd.DataFrame]) -> dict[str, Any]:
     lga_distribution = quantity_records(outflows, "LGA", "Out_Quantity", "lga")
     warehouse_analytics = build_warehouse_analytics(enriched, warehouses)
     monthly_movements = build_monthly_stock_movements(enriched)
+    requisition_analytics = build_requisition_analytics(
+        requisitions, requisition_details, items, schools
+    )
 
     charts = {
+        "requisition_status_distribution": requisition_analytics[
+            "requisition_status_distribution"
+        ],
+        "requested_vs_approved_vs_fulfilled": requisition_analytics[
+            "requested_vs_approved_vs_fulfilled"
+        ],
+        "top_requested_items": requisition_analytics["top_requested_items"],
+        "requests_by_lga": requisition_analytics["requests_by_lga"],
         "inventory_by_category": quantity_records(
             stock, "Category", "Current_Stock", "category"
         ),
@@ -625,6 +762,8 @@ def build_dashboard_data(data: dict[str, pd.DataFrame]) -> dict[str, Any]:
             "stock_levels": stock_levels,
             "low_stock_alerts": build_stock_levels_table(low_stock),
             "recent_movements": build_recent_movements_table(enriched),
+            "recent_requisitions": requisition_analytics["recent_requisitions"],
+            "fulfillment_summary": requisition_analytics["fulfillment_summary"],
         },
     }
 
