@@ -48,6 +48,13 @@ class SeedSampleDataTests(unittest.TestCase):
             self.assertIn(row["Requisition_ID"], requisition_ids)
             self.assertIn(row["Item_ID"], item_ids)
 
+    def test_sample_data_uses_official_optional_schema_names(self):
+        self.assertIn("Minimum_Stock", self.data["Items"][0])
+        self.assertNotIn("Reorder_Level", self.data["Items"][0])
+        self.assertIn("LGA", self.data["Warehouses"][0])
+        self.assertIn("Zone", self.data["Warehouses"][0])
+        self.assertNotIn("Location", self.data["Warehouses"][0])
+
     def test_dry_run_does_not_connect_or_write(self):
         with patch("scripts.seed_sample_data.append_demo_data") as append, redirect_stdout(
             StringIO()
@@ -103,10 +110,10 @@ class SeedSampleDataTests(unittest.TestCase):
         stocks = {row["Item_ID"]: row for row in dashboard["tables"]["stock_levels"]}
         self.assertEqual(stocks["ITEM012"]["Current_Stock"], 0)
         self.assertLessEqual(
-            stocks["ITEM011"]["Current_Stock"], stocks["ITEM011"]["Reorder_Level"]
+            stocks["ITEM011"]["Current_Stock"], stocks["ITEM011"]["Minimum_Stock"]
         )
         self.assertGreater(
-            stocks["ITEM005"]["Current_Stock"], stocks["ITEM005"]["Reorder_Level"]
+            stocks["ITEM005"]["Current_Stock"], stocks["ITEM005"]["Minimum_Stock"]
         )
 
 

@@ -46,8 +46,8 @@ class ImportUtilsTests(unittest.TestCase):
 
     def test_invalid_and_negative_quantities(self):
         data = pd.DataFrame([
-            {"Transaction_ID": "TXN001", "Item_ID": "ITEM001", "Quantity": "1.5", "Condition": "GOOD"},
-            {"Transaction_ID": "TXN001", "Item_ID": "ITEM002", "Quantity": -1, "Condition": "GOOD"},
+            {"Detail_ID": "TD001", "Transaction_ID": "TXN001", "Item_ID": "ITEM001", "Quantity": "1.5", "Condition": "GOOD"},
+            {"Detail_ID": "TD002", "Transaction_ID": "TXN001", "Item_ID": "ITEM002", "Quantity": -1, "Condition": "GOOD"},
         ])
         errors = validate_import(data, "Transaction_Details", self.context)
         self.assertTrue(any("valid integer" in error for error in errors))
@@ -55,15 +55,17 @@ class ImportUtilsTests(unittest.TestCase):
 
     def test_invalid_requisition_status(self):
         data = pd.DataFrame([{
-            "Requisition_ID": "REQ002", "Date": "2026-06-01", "School_ID": "SCH001",
-            "Requested_By": "Officer", "Status": "Unknown", "Approved_By": "",
-            "Approved_At": "", "Remarks": "",
+            "Requisition_ID": "REQ002", "Request_Date": "2026-06-01",
+            "School_ID": "SCH001", "Requested_By": "Officer",
+            "Status": "Unknown", "Approved_By": "", "Approval_Date": "",
+            "Remarks": "",
         }])
         self.assertTrue(any("Invalid requisition Status" in error for error in validate_import(data, "Requisitions", self.context)))
 
     def test_foreign_keys_use_existing_and_batch_data(self):
         details = pd.DataFrame([{
-            "Transaction_ID": "TXN002", "Item_ID": "ITEM003", "Quantity": 2, "Condition": "GOOD",
+            "Detail_ID": "TD003", "Transaction_ID": "TXN002", "Item_ID": "ITEM003",
+            "Quantity": 2, "Condition": "GOOD",
         }])
         errors = validate_import(details, "Transaction_Details", self.context)
         self.assertTrue(any("Unknown Transaction_ID" in error for error in errors))
@@ -72,6 +74,31 @@ class ImportUtilsTests(unittest.TestCase):
             "Items": pd.DataFrame([{"Item_ID": "ITEM003", "Item_Name": "Desk", "Category": "Furniture"}]),
         }
         self.assertEqual(validate_import(details, "Transaction_Details", self.context, batch), [])
+
+    def test_official_transaction_schema_is_validated(self):
+        data = pd.DataFrame([{
+            "Transaction_ID": "TXN002",
+            "Transaction_Date": "2026-06-01",
+            "Transaction_Type": "OUT",
+            "Warehouse_ID": "WH001",
+            "Destination_School_ID": "",
+        }])
+        errors = validate_import(data, "Transactions", self.context)
+        self.assertIn(
+            "Destination_School_ID is required for OUT transaction on row 2",
+            errors,
+        )
+
+    def test_legacy_transaction_aliases_canonicalize_to_official_names(self):
+        data = pd.DataFrame([{
+            "Transaction_ID": "TXN002",
+            "Date": "2026-06-01",
+            "Type": "IN",
+            "Warehouse_ID": "WH001",
+            "School_ID": "",
+        }])
+        errors = validate_import(data, "Transactions", self.context)
+        self.assertEqual(errors, [])
 
     def test_append_rejects_existing_and_upsert_splits_plan(self):
         incoming = pd.DataFrame([

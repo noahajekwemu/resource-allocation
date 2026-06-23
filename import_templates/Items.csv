@@ -1,3 +1,57 @@
-Item_ID,Item_Name,Category
-ITEM001,Mathematics Textbook,Textbooks
-ITEM002,Classroom Chair,Furniture
+﻿Item_ID,Item_Name,Category
+ITEM001,Stain Cleaner,Cleaner
+ITEM002,Punch,Stationery
+ITEM003,Stamp,Stationery
+ITEM004,F9 Paper,Stationery
+ITEM005,Spiral Binding Paper,Stationery
+ITEM006,File Tag,Stationery
+ITEM007,Flash Drive,IT
+ITEM008,Wireless Mouse,IT
+ITEM009,External Keyboard,IT
+ITEM010,Laminaring Paper,Stationery
+ITEM011,White Board,Stationery
+ITEM012,White Board Marker,Stationery
+ITEM013,White Board Eraser,Stationery
+ITEM014,File Jacket,Stationery
+ITEM015,Secret File Jacket,Stationery
+ITEM016,Open File Jacket,Stationery
+ITEM017,A4 Size Envelopes,Stationery
+ITEM018,A5 Size Envelopes,Stationery
+ITEM019,Water Colour,Stationery
+ITEM020,Jar Gum,Stationery
+ITEM021,Legal Paper,Stationery
+ITEM022,Office Clips/Pins,Stationery
+ITEM023,Cash Book,Stationery
+ITEM024,Football,Sports
+ITEM025,Soccer Boot,Sports
+ITEM026,Socks,Sports
+ITEM027,Soccer Net,Sports
+ITEM028,Soccer Jersey,Sports
+ITEM029,Shin Guards,Sports
+ITEM030,Hand Gloves,Sports
+ITEM031,Soccer Whistle,Sports
+ITEM032,Hand Ball,Sports
+ITEM033,Hand Ball Jersey,Sports
+ITEM034,Hand Ball Canvas,Sports
+ITEM035,Hand Ball Socks,Sports
+ITEM036,Hand Ball Nets,Sports
+ITEM037,Hand Ball Goal keeper Gloves,Sports
+ITEM038,Volley Ball,Sports
+ITEM039,Volley Ball Nets,Sports
+ITEM040,Volley Ball Jersey,Sports
+ITEM041,Volley Ball Socks,Sports
+ITEM042,Volley Ball Canvas,Sports
+ITEM043,Javeline,Sports
+ITEM044,Tug of War Ropes,Sports
+ITEM045,Table Tennis,Sports
+ITEM046,Hand Pump,Equipment
+ITEM047,Spare Parts,Equipment
+ITEM048,Hand Sanitizer,Cleaner
+ITEM049,Carbon Paper,Stationery
+ITEM050,Duplicating Paper,Stationery
+ITEM051,Bleach (Hypo/Jik),Cleaner
+ITEM052,Windolene,Cleaner
+ITEM053,Izal,Cleaner
+ITEM054,Plastic Ruler,Stationery
+ITEM055,Photocopier Sensor,Stationery
+ITEM056,Pencil,Stationery

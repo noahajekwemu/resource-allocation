@@ -15,20 +15,19 @@ SUPPORTED_SHEETS = (
 
 REQUIRED_COLUMNS = {
     "Items": ("Item_ID", "Item_Name", "Category"),
-    "Schools": ("School_ID", "School_Name", "LGA", "Zone", "School_Type", "Status"),
-    "Warehouses": ("Warehouse_ID", "Warehouse_Name", "LGA", "Zone", "Status"),
+    "Schools": ("School_ID", "School_Name", "LGA"),
+    "Warehouses": ("Warehouse_ID", "Warehouse_Name"),
     "Transactions": (
-        "Transaction_ID", "Date", "Type", "Warehouse_ID", "School_ID", "Source",
-        "Requisition_ID", "Remarks",
+        "Transaction_ID", "Transaction_Date", "Transaction_Type", "Warehouse_ID",
+        "Destination_School_ID",
     ),
-    "Transaction_Details": ("Transaction_ID", "Item_ID", "Quantity", "Condition"),
+    "Transaction_Details": ("Detail_ID", "Transaction_ID", "Item_ID", "Quantity"),
     "Requisitions": (
-        "Requisition_ID", "Date", "School_ID", "Requested_By", "Status",
-        "Approved_By", "Approved_At", "Remarks",
+        "Requisition_ID", "School_ID", "Request_Date", "Status",
     ),
     "Requisition_Details": (
-        "Requisition_ID", "Item_ID", "Quantity_Requested", "Quantity_Approved",
-        "Quantity_Fulfilled",
+        "Req_Detail_ID", "Requisition_ID", "Item_ID", "Quantity_Requested",
+        "Quantity_Approved", "Quantity_Fulfilled",
     ),
 }
 
@@ -37,20 +36,28 @@ KEY_COLUMNS = {
     "Schools": ("School_ID",),
     "Warehouses": ("Warehouse_ID",),
     "Transactions": ("Transaction_ID",),
-    "Transaction_Details": ("Transaction_ID", "Item_ID"),
+    "Transaction_Details": ("Detail_ID",),
     "Requisitions": ("Requisition_ID",),
-    "Requisition_Details": ("Requisition_ID", "Item_ID"),
+    "Requisition_Details": ("Req_Detail_ID",),
 }
 
 COLUMN_ALIASES = {
+    "Items": {
+        "Minimum_Stock": ("Minimum_Stock", "Minimum Stock", "Reorder_Level", "Reorder Level"),
+    },
     "Transactions": {
-        "Date": ("Date", "Transaction_Date"),
-        "Type": ("Type", "Transaction_Type"),
-        "School_ID": ("School_ID", "Destination_School_ID"),
+        "Transaction_Date": ("Transaction_Date", "Transaction Date", "Date"),
+        "Transaction_Type": ("Transaction_Type", "Transaction Type", "Type"),
+        "Destination_School_ID": (
+            "Destination_School_ID", "Destination School ID", "School_ID", "School ID"
+        ),
     },
     "Requisitions": {
-        "Date": ("Date", "Request_Date"),
-        "Approved_At": ("Approved_At", "Approval_Date"),
+        "Request_Date": ("Request_Date", "Request Date", "Date"),
+        "Approval_Date": ("Approval_Date", "Approval Date", "Approved_At", "Approved At"),
+    },
+    "Requisition_Details": {
+        "Req_Detail_ID": ("Req_Detail_ID", "Req Detail ID", "Detail_ID", "Detail ID"),
     },
 }
 
@@ -62,8 +69,8 @@ NUMERIC_COLUMNS = {
 }
 
 DATE_COLUMNS = {
-    "Transactions": ("Date",),
-    "Requisitions": ("Date", "Approved_At"),
+    "Transactions": ("Transaction_Date",),
+    "Requisitions": ("Request_Date", "Approval_Date"),
 }
 
 REQUISITION_STATUSES = {
@@ -80,7 +87,11 @@ def canonicalize_columns(dataframe: pd.DataFrame, sheet_name: str) -> pd.DataFra
     canonical = dataframe.copy()
     lookup = {normalize_column_name(column): column for column in canonical.columns}
     renames = {}
-    for target in REQUIRED_COLUMNS.get(sheet_name, ()):
+    targets = list(REQUIRED_COLUMNS.get(sheet_name, ()))
+    for target in COLUMN_ALIASES.get(sheet_name, {}):
+        if target not in targets:
+            targets.append(target)
+    for target in targets:
         candidates = COLUMN_ALIASES.get(sheet_name, {}).get(target, (target,))
         for candidate in candidates:
             source = lookup.get(normalize_column_name(candidate))
@@ -184,17 +195,19 @@ def validate_import(
                 errors.append(f"{column} must be a valid integer on row {index}")
 
     for column in DATE_COLUMNS.get(sheet_name, ()):
+        if column not in data.columns:
+            continue
         for index, value in enumerate(data[column], start=2):
             text = _text(value)
-            if not text and column == "Approved_At":
+            if not text and column == "Approval_Date":
                 continue
             if not text or pd.isna(pd.to_datetime(text, errors="coerce")):
                 errors.append(f"{column} must contain a parseable date on row {index}")
 
     if sheet_name == "Transactions":
-        for index, value in enumerate(data["Type"], start=2):
+        for index, value in enumerate(data["Transaction_Type"], start=2):
             if _text(value).upper() not in {"IN", "OUT"}:
-                errors.append(f"Type must be IN or OUT on row {index}")
+                errors.append(f"Transaction_Type must be IN or OUT on row {index}")
     if sheet_name == "Requisitions":
         for index, value in enumerate(data["Status"], start=2):
             if _text(value) not in REQUISITION_STATUSES:
@@ -227,12 +240,14 @@ def validate_import(
     if sheet_name == "Transactions":
         valid_schools = _ids(reference_context, "Schools", "School_ID")
         for index, record in enumerate(data.to_dict(orient="records"), start=2):
-            school_id = _text(record["School_ID"])
-            transaction_type = _text(record["Type"]).upper()
+            school_id = _text(record["Destination_School_ID"])
+            transaction_type = _text(record["Transaction_Type"]).upper()
             if transaction_type == "OUT" and not school_id:
-                errors.append(f"School_ID is required for OUT transaction on row {index}")
+                errors.append(
+                    f"Destination_School_ID is required for OUT transaction on row {index}"
+                )
             elif school_id and school_id not in valid_schools:
-                errors.append(f"Unknown School_ID on row {index}: {school_id}")
+                errors.append(f"Unknown Destination_School_ID on row {index}: {school_id}")
 
     return errors
 

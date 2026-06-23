@@ -55,7 +55,7 @@ def build_sample_data() -> dict[str, list[dict[str, Any]]]:
         {
             "Item_ID": f"ITEM{index:03d}", "Item_Name": name,
             "Category": categories[index - 1], "Unit": "Unit",
-            "Reorder_Level": reorder_levels[index - 1], "Status": "Active",
+            "Minimum_Stock": reorder_levels[index - 1], "Status": "Active",
         }
         for index, name in enumerate(item_names, 1)
     ]
@@ -79,11 +79,16 @@ def build_sample_data() -> dict[str, list[dict[str, Any]]]:
         "Makurdi Central Store", "Gboko Zonal Store", "Otukpo Zonal Store",
         "Katsina-Ala Zonal Store", "Vandeikya Zonal Store",
     )
-    warehouses = [
-        {"Warehouse_ID": f"WH{index:03d}", "Warehouse_Name": name,
-         "Location": name.replace(" Store", ""), "Status": "Active"}
-        for index, name in enumerate(warehouse_names, 1)
-    ]
+    warehouses = []
+    for index, name in enumerate(warehouse_names, 1):
+        lga = name.split()[0]
+        warehouses.append({
+            "Warehouse_ID": f"WH{index:03d}",
+            "Warehouse_Name": name,
+            "LGA": lga,
+            "Zone": f"Zone {index}",
+            "Status": "Active",
+        })
 
     statuses = (
         ["Fulfilled"] * 5 + ["Partially Fulfilled"] * 3 + ["Pending"] * 3
@@ -109,11 +114,11 @@ def build_sample_data() -> dict[str, list[dict[str, Any]]]:
         requisitions.append({
             "Requisition_ID": f"REQ{index:03d}", "School_ID": f"SCH{index:03d}",
             "Request_Date": request_date.isoformat(), "Status": status,
-            "Requested_By": f"School Officer {index}", "Reason": "Term supplies",
+            "Requested_By": f"School Officer {index}",
             "Approved_By": "Demo Approver" if status not in {"Pending", "Rejected"} else "",
             "Approval_Date": (request_date + timedelta(days=1)).isoformat()
             if status not in {"Pending", "Rejected"} else "",
-            "Remarks": "Demo data",
+            "Remarks": "Term supplies",
         })
         for offset in range(2):
             item_id = f"ITEM{((index + offset - 1) % 12) + 1:03d}"

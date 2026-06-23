@@ -1,11 +1,17 @@
 import json
+import math
 import tempfile
 import unittest
 from pathlib import Path
 
+import numpy as np
 import pandas as pd
 
-from scripts.calculate_metrics import build_dashboard_data, write_dashboard_data
+from scripts.calculate_metrics import (
+    build_dashboard_data,
+    sanitize_for_json,
+    write_dashboard_data,
+)
 
 
 def sample_data():
@@ -16,13 +22,13 @@ def sample_data():
                     "Item_ID": "ITEM-1",
                     "Item_Name": "Book",
                     "Category": "Learning",
-                    "Reorder_Level": 10,
+                    "Minimum_Stock": 10,
                 },
                 {
                     "Item_ID": "ITEM-2",
                     "Item_Name": "Chair",
                     "Category": "Furniture",
-                    "Reorder_Level": 5,
+                    "Minimum_Stock": 5,
                 },
             ]
         ),
@@ -224,6 +230,138 @@ class DashboardMetricsTests(unittest.TestCase):
             with output.open(encoding="utf-8") as data_file:
                 written = json.load(data_file)
         self.assertEqual(written["kpis"]["total_items"], 2)
+
+    def test_dashboard_contains_official_top_level_sections(self):
+        expected = {
+            "inventory",
+            "requisitions",
+            "distribution",
+            "accountability",
+            "stock_levels",
+            "requisition_status_breakdown",
+            "requested_vs_approved_vs_fulfilled",
+            "top_requested_items",
+            "requests_by_lga",
+            "recent_inventory_movements",
+            "recent_requisitions",
+            "fulfillment_summary",
+            "last_updated",
+        }
+        self.assertTrue(expected.issubset(self.dashboard))
+
+    def test_flat_transaction_rows_are_used_when_details_are_missing(self):
+        data = sample_data()
+        data["transactions"] = pd.DataFrame([
+            {
+                "Transaction_ID": "TX-FLAT-1",
+                "Transaction_Date": "2026-03-01",
+                "Transaction_Type": "IN",
+                "Warehouse_ID": "WH-1",
+                "Destination_School_ID": "",
+                "Item_ID": "ITEM-1",
+                "Quantity": 12,
+            }
+        ])
+        data["transaction_details"] = pd.DataFrame()
+
+        dashboard = build_dashboard_data(data)
+
+        self.assertEqual(dashboard["kpis"]["total_stock_units"], 12)
+        book_stock = next(row for row in dashboard["stock_levels"] if row["Item_ID"] == "ITEM-1")
+        self.assertEqual(book_stock["Minimum_Stock"], 10)
+
+    def test_missing_minimum_stock_uses_default_threshold(self):
+        data = sample_data()
+        data["items"] = pd.DataFrame([
+            {"Item_ID": "ITEM-1", "Item_Name": "Book", "Category": "Learning"}
+        ])
+        data["transactions"] = pd.DataFrame([
+            {
+                "Transaction_ID": "TX-1",
+                "Transaction_Date": "2026-01-01",
+                "Transaction_Type": "IN",
+                "Warehouse_ID": "WH-1",
+                "Destination_School_ID": "",
+            }
+        ])
+        data["transaction_details"] = pd.DataFrame([
+            {"Detail_ID": "TD-1", "Transaction_ID": "TX-1", "Item_ID": "ITEM-1", "Quantity": 8}
+        ])
+
+        dashboard = build_dashboard_data(data)
+
+        self.assertEqual(dashboard["kpis"]["low_stock_items"], 1)
+        self.assertEqual(dashboard["stock_levels"][0]["Minimum_Stock"], 10)
+
+    def test_sanitize_for_json_converts_invalid_numbers_to_none(self):
+        sanitized = sanitize_for_json(
+            {
+                "float_nan": float("nan"),
+                "numpy_nan": np.float64(np.nan),
+                "positive_infinity": float("inf"),
+                "negative_infinity": np.float64(-np.inf),
+            }
+        )
+
+        self.assertEqual(
+            sanitized,
+            {
+                "float_nan": None,
+                "numpy_nan": None,
+                "positive_infinity": None,
+                "negative_infinity": None,
+            },
+        )
+
+    def test_sanitize_for_json_converts_nat_and_dates(self):
+        sanitized = sanitize_for_json(
+            {
+                "pandas_nat": pd.NaT,
+                "numpy_nat": np.datetime64("NaT"),
+                "timestamp": pd.Timestamp("2026-01-02T03:04:05Z"),
+            }
+        )
+
+        self.assertIsNone(sanitized["pandas_nat"])
+        self.assertIsNone(sanitized["numpy_nat"])
+        self.assertEqual(sanitized["timestamp"], "2026-01-02T03:04:05+00:00")
+
+    def test_sanitize_for_json_recurses_nested_dictionaries_and_lists(self):
+        sanitized = sanitize_for_json(
+            {
+                "outer": [
+                    {"value": np.float64(np.nan)},
+                    (float("inf"), pd.Timestamp("2026-01-01")),
+                ],
+                "series": pd.Series([1, np.nan]),
+                "frame": pd.DataFrame([{"Date": pd.NaT, "Quantity": np.int64(3)}]),
+            }
+        )
+
+        self.assertEqual(sanitized["outer"][0]["value"], None)
+        self.assertEqual(sanitized["outer"][1], [None, "2026-01-01T00:00:00"])
+        self.assertEqual(sanitized["series"], [1, None])
+        self.assertEqual(sanitized["frame"], [{"Date": None, "Quantity": 3}])
+
+    def test_write_dashboard_data_outputs_parseable_strict_json(self):
+        dashboard = {
+            "generated_at": pd.Timestamp("2026-01-01T00:00:00Z"),
+            "rows": [{"Date": np.nan, "Quantity": np.float64(np.inf)}],
+        }
+
+        with tempfile.TemporaryDirectory() as directory:
+            output = Path(directory) / "data.json"
+            write_dashboard_data(dashboard, output)
+            raw_json = output.read_text(encoding="utf-8")
+
+        parsed = json.loads(raw_json)
+        self.assertNotIn("NaN", raw_json)
+        self.assertNotIn("Infinity", raw_json)
+        self.assertEqual(parsed["rows"], [{"Date": None, "Quantity": None}])
+
+    def test_strict_json_dump_rejects_unsanitized_nan(self):
+        with self.assertRaises(ValueError):
+            json.dumps({"value": math.nan}, allow_nan=False)
 
 
 if __name__ == "__main__":

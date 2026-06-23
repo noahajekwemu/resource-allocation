@@ -1,9 +1,12 @@
 import json
 import logging
+import math
+from datetime import date
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+import numpy as np
 import pandas as pd
 
 
@@ -85,7 +88,7 @@ def safe_numeric_column(dataframe: pd.DataFrame, column: str | None) -> pd.Serie
 
 
 def prepare_items(items: pd.DataFrame) -> pd.DataFrame:
-    columns = ["Item_ID", "Item_Name", "Category", "Reorder_Level"]
+    columns = ["Item_ID", "Item_Name", "Category", "Minimum_Stock"]
     if items.empty:
         return pd.DataFrame(columns=columns)
     item_id = find_column(items, ["Item_ID", "Item ID"], required=True)
@@ -97,16 +100,24 @@ def prepare_items(items: pd.DataFrame) -> pd.DataFrame:
     prepared["Category"] = safe_text_column(
         items, find_column(items, ["Category", "Item_Category", "Item Category"])
     )
-    prepared["Reorder_Level"] = safe_numeric_column(
-        items, find_column(items, ["Reorder_Level", "Reorder Level", "Minimum_Stock"])
+    minimum_stock_column = find_column(
+        items, ["Minimum_Stock", "Minimum Stock", "Reorder_Level", "Reorder Level"]
     )
+    prepared["Minimum_Stock"] = safe_numeric_column(items, minimum_stock_column)
+    if minimum_stock_column:
+        raw_minimum_stock = safe_text_column(items, minimum_stock_column)
+        prepared["Minimum_Stock"] = prepared["Minimum_Stock"].where(
+            raw_minimum_stock != "", 10
+        )
+    else:
+        prepared["Minimum_Stock"] = 10
     prepared["Item_Name"] = prepared["Item_Name"].where(
         prepared["Item_Name"] != "", prepared["Item_ID"]
     )
     prepared["Category"] = prepared["Category"].where(
         prepared["Category"] != "", "Uncategorized"
     )
-    prepared["Reorder_Level"] = prepared["Reorder_Level"].round().astype(int)
+    prepared["Minimum_Stock"] = prepared["Minimum_Stock"].round().astype(int)
     return prepared[prepared["Item_ID"] != ""].drop_duplicates("Item_ID", keep="last")
 
 
@@ -276,6 +287,44 @@ def prepare_transaction_details(details: pd.DataFrame) -> pd.DataFrame:
     ]
 
 
+def prepare_legacy_flat_transaction_details(
+    transactions: pd.DataFrame,
+    existing_details: pd.DataFrame,
+) -> pd.DataFrame:
+    """Build fallback details from old flat Transactions rows without details."""
+    columns = ["Detail_ID", "Transaction_ID", "Item_ID", "Quantity", "Condition"]
+    if transactions.empty:
+        return pd.DataFrame(columns=columns)
+
+    item_id_column = find_column(transactions, ["Item_ID", "Item ID"], required=False)
+    quantity_column = find_column(transactions, ["Quantity", "Qty"], required=False)
+    transaction_id_column = find_column(
+        transactions, ["Transaction_ID", "Transaction ID"], required=False
+    )
+    if not item_id_column or not quantity_column or not transaction_id_column:
+        return pd.DataFrame(columns=columns)
+
+    detail_transaction_ids = (
+        set(existing_details["Transaction_ID"].fillna("").astype(str).str.strip())
+        if not existing_details.empty and "Transaction_ID" in existing_details
+        else set()
+    )
+    prepared = pd.DataFrame(index=transactions.index)
+    prepared["Transaction_ID"] = clean_id_series(transactions[transaction_id_column])
+    prepared["Item_ID"] = safe_text_column(transactions, item_id_column)
+    prepared["Quantity"] = safe_numeric_column(transactions, quantity_column)
+    prepared["Condition"] = safe_text_column(
+        transactions, find_column(transactions, ["Condition"], required=False)
+    ).str.upper()
+    prepared["Detail_ID"] = prepared["Transaction_ID"].map(lambda value: f"{value}-FLAT")
+    prepared = prepared[
+        (prepared["Transaction_ID"] != "")
+        & (prepared["Item_ID"] != "")
+        & ~prepared["Transaction_ID"].isin(detail_transaction_ids)
+    ]
+    return prepared[columns]
+
+
 def build_movements(transactions: pd.DataFrame, details: pd.DataFrame) -> pd.DataFrame:
     if transactions.empty or details.empty:
         movements = details.merge(transactions, how="left", on="Transaction_ID")
@@ -285,7 +334,7 @@ def build_movements(transactions: pd.DataFrame, details: pd.DataFrame) -> pd.Dat
         return movements
     movements = details.merge(transactions, how="left", on="Transaction_ID")
     movement_type = movements["Transaction_Type"].fillna("").str.upper()
-    quantity = movements["Quantity"].fillna(0)
+    quantity = pd.to_numeric(movements["Quantity"], errors="coerce").fillna(0)
     movements["Signed_Quantity"] = 0.0
     movements.loc[movement_type.eq("IN"), "Signed_Quantity"] = quantity.abs()
     movements.loc[movement_type.eq("OUT"), "Signed_Quantity"] = -quantity.abs()
@@ -294,7 +343,7 @@ def build_movements(transactions: pd.DataFrame, details: pd.DataFrame) -> pd.Dat
 
 
 def build_stock_balances(items: pd.DataFrame, movements: pd.DataFrame) -> pd.DataFrame:
-    stock = items[["Item_ID", "Item_Name", "Category", "Reorder_Level"]].copy()
+    stock = items[["Item_ID", "Item_Name", "Category", "Minimum_Stock"]].copy()
     balances = (
         movements.groupby("Item_ID")["Signed_Quantity"].sum().rename("Current_Stock")
         if not movements.empty
@@ -391,7 +440,7 @@ def build_kpis(
         "inventory_accuracy": calculate_inventory_accuracy(total_items, negative_stock_items),
         "total_items": total_items,
         "total_stock_units": total_stock_units,
-        "low_stock_items": int(stock["Current_Stock"].le(stock["Reorder_Level"]).sum()),
+        "low_stock_items": int(stock["Current_Stock"].le(stock["Minimum_Stock"]).sum()),
         "total_requisitions": int(len(requisitions)),
         "pending_requisitions": status_count(requisitions, "Pending"),
         "approved_requisitions": status_count(requisitions, "Approved"),
@@ -515,8 +564,11 @@ def build_stock_levels_table(stock: pd.DataFrame) -> list[dict[str, Any]]:
             "Category": row["Category"],
             "Current_Stock": int(row["Current_Stock"]),
             "Reorder_Level": int(row["Reorder_Level"]),
+            "Minimum_Stock": int(row["Minimum_Stock"]),
         }
-        for _, row in stock.sort_values(["Category", "Item_Name"]).iterrows()
+        for _, row in stock.assign(Reorder_Level=stock["Minimum_Stock"])
+        .sort_values(["Category", "Item_Name"])
+        .iterrows()
     ]
 
 
@@ -683,10 +735,18 @@ def build_requisition_analytics(
 
 
 def build_dashboard_data(data: dict[str, pd.DataFrame]) -> dict[str, Any]:
-    transactions = prepare_transactions(data.get("transactions", pd.DataFrame()))
+    raw_transactions = data.get("transactions", pd.DataFrame())
+    transactions = prepare_transactions(raw_transactions)
     transaction_details = prepare_transaction_details(
         data.get("transaction_details", pd.DataFrame())
     )
+    legacy_details = prepare_legacy_flat_transaction_details(
+        raw_transactions, transaction_details
+    )
+    if not legacy_details.empty:
+        transaction_details = pd.concat(
+            [transaction_details, legacy_details], ignore_index=True
+        )
     items = prepare_items(data.get("items", pd.DataFrame()))
     schools = prepare_schools(data.get("schools", pd.DataFrame()))
     warehouses = prepare_warehouses(data.get("warehouses", pd.DataFrame()))
@@ -740,19 +800,61 @@ def build_dashboard_data(data: dict[str, pd.DataFrame]) -> dict[str, Any]:
         "monthly_stock_movements": monthly_movements,
     }
     stock_levels = build_stock_levels_table(stock)
-    low_stock = stock[stock["Current_Stock"].le(stock["Reorder_Level"])]
+    low_stock = stock[stock["Current_Stock"].le(stock["Minimum_Stock"])]
 
+    generated_at = datetime.now(timezone.utc).isoformat()
+    kpis = build_kpis(
+        stock,
+        movements,
+        schools,
+        warehouses,
+        requisitions,
+        requisition_details,
+        transactions,
+    )
     return {
-        "generated_at": datetime.now(timezone.utc).isoformat(),
-        "kpis": build_kpis(
-            stock,
-            movements,
-            schools,
-            warehouses,
-            requisitions,
-            requisition_details,
-            transactions,
-        ),
+        "generated_at": generated_at,
+        "last_updated": generated_at,
+        "kpis": kpis,
+        "inventory": {
+            "total_items": kpis["total_items"],
+            "total_stock_units": kpis["total_stock_units"],
+            "low_stock_items": kpis["low_stock_items"],
+            "out_of_stock_items": kpis["out_of_stock_items"],
+        },
+        "requisitions": {
+            "total_requisitions": kpis["total_requisitions"],
+            "pending_requisitions": kpis["pending_requisitions"],
+            "approved_requisitions": kpis["approved_requisitions"],
+            "fulfilled_requisitions": kpis["fulfilled_requisitions"],
+            "rejected_requisitions": kpis["rejected_requisitions"],
+            "partially_fulfilled_requisitions": kpis[
+                "partially_fulfilled_requisitions"
+            ],
+            "fulfillment_rate": kpis["fulfillment_rate"],
+        },
+        "distribution": {
+            "by_lga": lga_distribution,
+            "by_school_type": charts["distribution_by_school_type"],
+            "by_school": school_distribution,
+        },
+        "accountability": {
+            "inventory_accuracy": kpis["inventory_accuracy"],
+            "damaged_items": kpis["damaged_items"],
+            "average_fulfillment_days": kpis["average_fulfillment_days"],
+        },
+        "stock_levels": stock_levels,
+        "requisition_status_breakdown": requisition_analytics[
+            "requisition_status_distribution"
+        ],
+        "requested_vs_approved_vs_fulfilled": requisition_analytics[
+            "requested_vs_approved_vs_fulfilled"
+        ],
+        "top_requested_items": requisition_analytics["top_requested_items"],
+        "requests_by_lga": requisition_analytics["requests_by_lga"],
+        "recent_inventory_movements": build_recent_movements_table(enriched),
+        "recent_requisitions": requisition_analytics["recent_requisitions"],
+        "fulfillment_summary": requisition_analytics["fulfillment_summary"],
         "school_distribution": school_distribution,
         "lga_distribution": lga_distribution,
         "warehouse_analytics": warehouse_analytics,
@@ -768,10 +870,47 @@ def build_dashboard_data(data: dict[str, pd.DataFrame]) -> dict[str, Any]:
     }
 
 
+def sanitize_for_json(value: Any) -> Any:
+    if value is None:
+        return None
+    if value is pd.NA or value is pd.NaT:
+        return None
+    if isinstance(value, pd.DataFrame):
+        return sanitize_for_json(value.to_dict(orient="records"))
+    if isinstance(value, pd.Series):
+        return sanitize_for_json(value.tolist())
+    if isinstance(value, dict):
+        return {
+            str(sanitize_for_json(key)): sanitize_for_json(item)
+            for key, item in value.items()
+        }
+    if isinstance(value, (list, tuple)):
+        return [sanitize_for_json(item) for item in value]
+    if isinstance(value, pd.Timestamp):
+        return None if pd.isna(value) else value.isoformat()
+    if isinstance(value, (datetime, date)):
+        return value.isoformat()
+    if isinstance(value, np.datetime64):
+        return None if np.isnat(value) else str(value)
+    if isinstance(value, np.generic):
+        return sanitize_for_json(value.item())
+    if isinstance(value, float):
+        return value if math.isfinite(value) else None
+    if isinstance(value, (int, str, bool)):
+        return value
+    try:
+        if pd.isna(value):
+            return None
+    except (TypeError, ValueError):
+        pass
+    return value
+
+
 def write_dashboard_data(data: dict[str, Any], output_path: Path = OUTPUT_PATH) -> None:
     output_path.parent.mkdir(parents=True, exist_ok=True)
+    sanitized_data = sanitize_for_json(data)
     with output_path.open("w", encoding="utf-8") as output_file:
-        json.dump(data, output_file, indent=2)
+        json.dump(sanitized_data, output_file, indent=2, allow_nan=False)
 
 
 def main() -> None:

@@ -72,7 +72,7 @@ def _movement_data(data: dict[str, pd.DataFrame] | None = None) -> tuple[pd.Data
         "Item_ID": ["Item_ID", "Item ID"],
         "Item_Name": ["Item_Name", "Item Name"],
         "Category": ["Category"],
-        "Reorder_Level": ["Reorder_Level", "Reorder Level", "Minimum_Stock"],
+        "Minimum_Stock": ["Minimum_Stock", "Minimum Stock", "Reorder_Level", "Reorder Level"],
     })
     warehouses = _canonical(source["warehouses"], {
         "Warehouse_ID": ["Warehouse_ID", "Warehouse ID"],
@@ -126,9 +126,9 @@ def _requisition_sources(data: dict[str, pd.DataFrame] | None = None) -> tuple[p
         "School_ID": ["School_ID", "School ID"],
         "Requested_By": ["Requested_By", "Requested By"],
         "Status": ["Status"],
-        "Created_At": ["Created_At", "Created At", "Request_Date", "Request Date"],
+        "Request_Date": ["Request_Date", "Request Date", "Date", "Created_At", "Created At"],
         "Approved_By": ["Approved_By", "Approved By"],
-        "Approved_At": ["Approved_At", "Approved At", "Approval_Date", "Approval Date"],
+        "Approval_Date": ["Approval_Date", "Approval Date", "Approved_At", "Approved At"],
     })
     details = _canonical(source["requisition_details"], {
         "Requisition_ID": ["Requisition_ID", "Requisition ID"],
@@ -177,7 +177,7 @@ def get_requisition_report(
     report["School_Name"] = report["School_Name"].fillna("")
     return _records(report[[
         "Requisition_ID", "School_ID", "School_Name", "Requested_By", "Status",
-        "Created_At", "Approved_By", "Approved_At", "Total_Requested",
+        "Request_Date", "Approved_By", "Approval_Date", "Total_Requested",
         "Total_Approved", "Total_Fulfilled", "Fulfillment_Percent",
     ]])
 
@@ -225,13 +225,16 @@ def get_executive_summary(data: dict[str, pd.DataFrame] | None = None) -> dict[s
     fulfilled = float(_number(details["Fulfilled"]).sum())
     items = _canonical(source["items"], {
         "Item_ID": ["Item_ID", "Item ID"],
-        "Reorder_Level": ["Reorder_Level", "Reorder Level", "Minimum_Stock"],
+        "Minimum_Stock": ["Minimum_Stock", "Minimum Stock", "Reorder_Level", "Reorder Level"],
     })
+    items["Minimum_Stock"] = _number(items["Minimum_Stock"]).where(
+        items["Minimum_Stock"].astype(str).str.strip() != "", 10
+    )
     current_by_item = {}
     for row in stock_rows:
         current_by_item[row["Item_ID"]] = current_by_item.get(row["Item_ID"], 0) + int(row["Current_Stock"])
     low_stock = sum(
-        current_by_item.get(str(row["Item_ID"]), 0) <= float(row["Reorder_Level"] or 0)
+        current_by_item.get(str(row["Item_ID"]), 0) <= float(row["Minimum_Stock"] or 10)
         for row in items.to_dict(orient="records")
     )
     return {

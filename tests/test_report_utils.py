@@ -17,8 +17,8 @@ from scripts.report_utils import (
 def report_data():
     return {
         "items": pd.DataFrame([
-            {"Item_ID": "ITEM-1", "Item_Name": "Book", "Category": "Learning", "Reorder_Level": 10},
-            {"Item_ID": "ITEM-2", "Item_Name": "Chair", "Category": "Furniture", "Reorder_Level": 5},
+            {"Item_ID": "ITEM-1", "Item_Name": "Book", "Category": "Learning", "Minimum_Stock": 10},
+            {"Item_ID": "ITEM-2", "Item_Name": "Chair", "Category": "Furniture", "Minimum_Stock": 5},
         ]),
         "schools": pd.DataFrame([
             {"School_ID": "SCH-1", "School_Name": "Alpha School"},
@@ -102,6 +102,9 @@ class ReportUtilsTests(unittest.TestCase):
         rows = get_requisition_report(school_id="SCH-1", data=report_data())
         self.assertEqual(len(rows), 1)
         self.assertEqual(rows[0]["School_Name"], "Alpha School")
+        self.assertIn("Request_Date", rows[0])
+        self.assertIn("Approval_Date", rows[0])
+        self.assertNotIn("Approved_At", rows[0])
         self.assertEqual(rows[0]["Total_Requested"], 10)
         self.assertEqual(rows[0]["Fulfillment_Percent"], 50.0)
 
