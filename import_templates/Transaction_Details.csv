@@ -1,3 +1,2 @@
-Transaction_ID,Item_ID,Quantity,Condition
-TXN001,ITEM001,500,GOOD
-TXN002,ITEM001,50,GOOD
+Detail_ID,Transaction_ID,Item_ID,Quantity,Condition
+TD-2026-00011,TXN007,ITEM029,421

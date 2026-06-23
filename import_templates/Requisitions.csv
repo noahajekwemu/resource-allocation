@@ -1,3 +1,2 @@
-Requisition_ID,Date,School_ID,Requested_By,Status,Approved_By,Approved_At,Remarks
-REQ001,2026-06-03,SCH001,Head Teacher,Fulfilled,Supply Director,2026-06-04,Term supplies
-REQ002,2026-06-06,SCH002,Principal,Pending,,,Awaiting review
+Requisition_ID,School_ID,Request_Date,Requested_By,Status,Approved_By,Approval_Date,Remarks
+REQ006,C-AP-PR-005,2026-06-03,Head Teacher,Fulfilled,Supply Director,2026-06-04,Term supplies
