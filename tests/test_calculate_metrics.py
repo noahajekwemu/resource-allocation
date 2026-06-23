@@ -38,12 +38,14 @@ def sample_data():
                     "School_ID": "SCH-1",
                     "School_Name": "Alpha School",
                     "LGA": "North",
+                    "Zone": "Zone A",
                     "School_Type": "Primary",
                 },
                 {
                     "School_ID": "SCH-2",
                     "School_Name": "Beta School",
                     "LGA": "South",
+                    "Zone": "Zone B",
                     "School_Type": "Primary",
                 },
             ]
@@ -233,6 +235,7 @@ class DashboardMetricsTests(unittest.TestCase):
 
     def test_dashboard_contains_official_top_level_sections(self):
         expected = {
+            "filters",
             "inventory",
             "requisitions",
             "distribution",
@@ -248,6 +251,52 @@ class DashboardMetricsTests(unittest.TestCase):
             "last_updated",
         }
         self.assertTrue(expected.issubset(self.dashboard))
+
+    def test_dashboard_includes_filter_option_arrays(self):
+        self.assertEqual(self.dashboard["filters"]["lgas"], ["North", "South"])
+        self.assertEqual(self.dashboard["filters"]["zones"], ["Zone A", "Zone B"])
+        self.assertEqual(
+            self.dashboard["filters"]["warehouses"],
+            ["Central", "South Store"],
+        )
+        self.assertEqual(
+            self.dashboard["filters"]["schools"],
+            ["Alpha School", "Beta School"],
+        )
+        self.assertEqual(self.dashboard["filters"]["items"], ["Book", "Chair"])
+        self.assertEqual(
+            self.dashboard["filters"]["categories"],
+            ["Furniture", "Learning"],
+        )
+        self.assertEqual(
+            self.dashboard["filters"]["requisition_statuses"],
+            ["Approved", "Fulfilled", "Partially Fulfilled", "Pending", "Rejected"],
+        )
+
+    def test_filterable_rows_include_location_item_and_status_fields(self):
+        movement = next(
+            row for row in self.dashboard["tables"]["recent_movements"]
+            if row["Transaction_ID"] == "TX-2"
+        )
+        self.assertEqual(movement["LGA"], "North")
+        self.assertEqual(movement["Zone"], "Zone A")
+        self.assertEqual(movement["Warehouse_ID"], "WH-1")
+        self.assertEqual(movement["Warehouse_Name"], "Central")
+        self.assertEqual(movement["School_ID"], "SCH-1")
+        self.assertEqual(movement["School_Name"], "Alpha School")
+        self.assertEqual(movement["Item_ID"], "ITEM-1")
+        self.assertEqual(movement["Item_Name"], "Book")
+        self.assertEqual(movement["Category"], "Learning")
+
+        requisition_item = self.dashboard["tables"]["requisition_items"][0]
+        self.assertEqual(requisition_item["LGA"], "North")
+        self.assertEqual(requisition_item["Zone"], "Zone A")
+        self.assertEqual(requisition_item["School_ID"], "SCH-1")
+        self.assertEqual(requisition_item["School_Name"], "Alpha School")
+        self.assertEqual(requisition_item["Item_ID"], "ITEM-1")
+        self.assertEqual(requisition_item["Item_Name"], "Book")
+        self.assertEqual(requisition_item["Category"], "Learning")
+        self.assertEqual(requisition_item["Status"], "Fulfilled")
 
     def test_flat_transaction_rows_are_used_when_details_are_missing(self):
         data = sample_data()

@@ -1,10 +1,148 @@
 {
-  "generated_at": "2026-06-23T18:07:52.298313+00:00",
+  "generated_at": "2026-06-23T19:45:53.608653+00:00",
+  "last_updated": "2026-06-23T19:45:53.608653+00:00",
+  "filters": {
+    "lgas": [
+      "AGATU",
+      "APA",
+      "BURUKU",
+      "GBOKO",
+      "GUMA",
+      "KATSINA-ALA",
+      "KONSHISHA",
+      "LOGO",
+      "MAKURDI",
+      "OTUKPO",
+      "UKUM",
+      "VANDEIKYA"
+    ],
+    "zones": [
+      "A",
+      "B",
+      "C"
+    ],
+    "warehouses": [
+      "AGATU Prime",
+      "BURUKU Central",
+      "BURUKU East",
+      "Great Otukpo I",
+      "Great Otukpo II",
+      "LOGO Premier",
+      "Makurdi Central Store",
+      "Okpokwu Central",
+      "Vandeikya Central"
+    ],
+    "schools": [
+      "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+      "72 UNICORD PRIMARY SCHOOL NORTH BANK",
+      "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
+      "ANGLICAN PRIMARY SCHOOL ADA",
+      "ANGLICAN PRIMARY SCHOOL ALABAR",
+      "ANGLICAN PRIMARY SCHOOL ANGOUGH",
+      "ANGLICAN PRIMARY SCHOOL IMENGER",
+      "ANGLICAN PRIMARY SCHOOL INGBIAN",
+      "ANGLICAN PRIMARY SCHOOL INYOM",
+      "ANGLICAN PRIMARY SCHOOL OBAGAJI",
+      "ANGLICAN PRIMARY SCHOOL TSUWE",
+      "ANGLICAN PRIMARY SCHOOL TYOAMBGHIR",
+      "ANGLICAN PRIMARY SCHOOL UGANGESE",
+      "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
+      "ANGLICAN PRIMARYSCHOOL SEVAV",
+      "APS PRIMARY SCHOOL AJIBE OJIJI",
+      "APS PRIMARY SCHOOL IGA OKPAYA",
+      "APS PRIMARY SCHOOL OJINAGWU CAMP",
+      "APS PRIMARY SCHOOL OLADOGA",
+      "APS PRIMARY SCHOOL OPE IKOBI",
+      "APS PRIMARY SCHOOL OSHODI OIJI",
+      "ARABIC PRIMARY SCHOOL MAKURDI",
+      "ASSEMBLIES OF GOD PRIMARY SCHOOL YANDEV",
+      "BAPTIST PRIMARY SCHOOL II OPA",
+      "BAPTIST PRIMARY SCHOOL UDEI",
+      "BPS PRIMARY SCHOOL IGA OKPAYA",
+      "CAC PRIMARYMARYARY SCHOOL WADATA MAKURDI",
+      "CENTRAL UBE JUNIOR SECONDARY SCHOOL KATSINA-ALA",
+      "ECCDE AGERAGA",
+      "ECCDE MBAIFU",
+      "EKAN PRIMARYMARYARY SCHOOL MAKURDI",
+      "HOLY EMMANUEL PRIMARY SCHOOL TSEBEGHA UTE"
+    ],
+    "items": [
+      "A4 Size Envelopes",
+      "A5 Size Envelopes",
+      "Bleach (Hypo/Jik)",
+      "Carbon Paper",
+      "Cash Book",
+      "Duplicating Paper",
+      "External Keyboard",
+      "F9 Paper",
+      "File Jacket",
+      "File Tag",
+      "Flash Drive",
+      "Football",
+      "Hand Ball",
+      "Hand Ball Canvas",
+      "Hand Ball Goal keeper Gloves",
+      "Hand Ball Jersey",
+      "Hand Ball Nets",
+      "Hand Ball Socks",
+      "Hand Gloves",
+      "Hand Pump",
+      "Hand Sanitizer",
+      "Izal",
+      "Jar Gum",
+      "Javeline",
+      "Laminaring Paper",
+      "Legal Paper",
+      "Office Clips/Pins",
+      "Open File Jacket",
+      "Pencil",
+      "Photocopier Sensor",
+      "Plastic Ruler",
+      "Punch",
+      "Secret File Jacket",
+      "Shin Guards",
+      "Soccer Boot",
+      "Soccer Jersey",
+      "Soccer Net",
+      "Soccer Whistle",
+      "Socks",
+      "Spare Parts",
+      "Spiral Binding Paper",
+      "Stain Cleaner",
+      "Stamp",
+      "Table Tennis",
+      "Tug of War Ropes",
+      "Volley Ball",
+      "Volley Ball Canvas",
+      "Volley Ball Jersey",
+      "Volley Ball Nets",
+      "Volley Ball Socks",
+      "Water Colour",
+      "White Board",
+      "White Board Eraser",
+      "White Board Marker",
+      "Windolene",
+      "Wireless Mouse"
+    ],
+    "categories": [
+      "Cleaner",
+      "Equipment",
+      "IT",
+      "Sports",
+      "Stationery"
+    ],
+    "requisition_statuses": [
+      "Approved",
+      "Fulfilled",
+      "Partially Fulfilled",
+      "Pending"
+    ]
+  },
   "kpis": {
-    "inventory_accuracy": 66.07,
+    "inventory_accuracy": 62.5,
     "total_items": 56,
-    "total_stock_units": -1491,
-    "low_stock_items": 50,
+    "total_stock_units": -12012,
+    "low_stock_items": 52,
     "total_requisitions": 5,
     "pending_requisitions": 2,
     "approved_requisitions": 1,
@@ -15,109 +153,1755 @@
     "average_fulfillment_days": 0.0,
     "total_inventory_items": 56,
     "total_available_stock": 0,
-    "out_of_stock_items": 50,
+    "out_of_stock_items": 52,
     "damaged_items": 0,
     "schools_served": 6,
     "total_warehouses": 9,
     "total_schools": 32,
     "total_categories": 5
   },
+  "inventory": {
+    "total_items": 56,
+    "total_stock_units": -12012,
+    "low_stock_items": 52,
+    "out_of_stock_items": 52
+  },
+  "requisitions": {
+    "total_requisitions": 5,
+    "pending_requisitions": 2,
+    "approved_requisitions": 1,
+    "fulfilled_requisitions": 1,
+    "rejected_requisitions": 0,
+    "partially_fulfilled_requisitions": 1,
+    "fulfillment_rate": 87.65
+  },
+  "distribution": {
+    "by_lga": [
+      {
+        "lga": "UKUM",
+        "quantity": 5644
+      },
+      {
+        "lga": "BURUKU",
+        "quantity": 4667
+      },
+      {
+        "lga": "MAKURDI",
+        "quantity": 3787
+      },
+      {
+        "lga": "LOGO",
+        "quantity": 1982
+      }
+    ],
+    "by_school_type": [
+      {
+        "school_type": "PRI",
+        "quantity": 10784
+      },
+      {
+        "school_type": "UBE-JSS",
+        "quantity": 5296
+      }
+    ],
+    "by_school": {
+      "all_schools": [
+        {
+          "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
+          "quantity": 5644
+        },
+        {
+          "school": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+          "quantity": 4667
+        },
+        {
+          "school": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+          "quantity": 3314
+        },
+        {
+          "school": "ANGLICAN PRIMARYSCHOOL SEVAV",
+          "quantity": 1982
+        },
+        {
+          "school": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
+          "quantity": 421
+        },
+        {
+          "school": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
+          "quantity": 52
+        }
+      ],
+      "top_10_schools": [
+        {
+          "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
+          "quantity": 5644
+        },
+        {
+          "school": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+          "quantity": 4667
+        },
+        {
+          "school": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+          "quantity": 3314
+        },
+        {
+          "school": "ANGLICAN PRIMARYSCHOOL SEVAV",
+          "quantity": 1982
+        },
+        {
+          "school": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
+          "quantity": 421
+        },
+        {
+          "school": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
+          "quantity": 52
+        }
+      ],
+      "bottom_10_schools": [
+        {
+          "school": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
+          "quantity": 52
+        },
+        {
+          "school": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
+          "quantity": 421
+        },
+        {
+          "school": "ANGLICAN PRIMARYSCHOOL SEVAV",
+          "quantity": 1982
+        },
+        {
+          "school": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+          "quantity": 3314
+        },
+        {
+          "school": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+          "quantity": 4667
+        },
+        {
+          "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
+          "quantity": 5644
+        }
+      ]
+    }
+  },
+  "accountability": {
+    "inventory_accuracy": 62.5,
+    "damaged_items": 0,
+    "average_fulfillment_days": 0.0
+  },
+  "stock_levels": [
+    {
+      "Item_ID": "ITEM051",
+      "Item_Name": "Bleach (Hypo/Jik)",
+      "Category": "Cleaner",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM048",
+      "Item_Name": "Hand Sanitizer",
+      "Category": "Cleaner",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM053",
+      "Item_Name": "Izal",
+      "Category": "Cleaner",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM001",
+      "Item_Name": "Stain Cleaner",
+      "Category": "Cleaner",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM052",
+      "Item_Name": "Windolene",
+      "Category": "Cleaner",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM046",
+      "Item_Name": "Hand Pump",
+      "Category": "Equipment",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM047",
+      "Item_Name": "Spare Parts",
+      "Category": "Equipment",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM009",
+      "Item_Name": "External Keyboard",
+      "Category": "IT",
+      "Current_Stock": -384,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM007",
+      "Item_Name": "Flash Drive",
+      "Category": "IT",
+      "Current_Stock": -243,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM008",
+      "Item_Name": "Wireless Mouse",
+      "Category": "IT",
+      "Current_Stock": -121,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM024",
+      "Item_Name": "Football",
+      "Category": "Sports",
+      "Current_Stock": -1522,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM032",
+      "Item_Name": "Hand Ball",
+      "Category": "Sports",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM034",
+      "Item_Name": "Hand Ball Canvas",
+      "Category": "Sports",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM037",
+      "Item_Name": "Hand Ball Goal keeper Gloves",
+      "Category": "Sports",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM033",
+      "Item_Name": "Hand Ball Jersey",
+      "Category": "Sports",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM036",
+      "Item_Name": "Hand Ball Nets",
+      "Category": "Sports",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM035",
+      "Item_Name": "Hand Ball Socks",
+      "Category": "Sports",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM030",
+      "Item_Name": "Hand Gloves",
+      "Category": "Sports",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM043",
+      "Item_Name": "Javeline",
+      "Category": "Sports",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM029",
+      "Item_Name": "Shin Guards",
+      "Category": "Sports",
+      "Current_Stock": -496,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM025",
+      "Item_Name": "Soccer Boot",
+      "Category": "Sports",
+      "Current_Stock": -19,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM028",
+      "Item_Name": "Soccer Jersey",
+      "Category": "Sports",
+      "Current_Stock": -174,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM027",
+      "Item_Name": "Soccer Net",
+      "Category": "Sports",
+      "Current_Stock": -170,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM031",
+      "Item_Name": "Soccer Whistle",
+      "Category": "Sports",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM026",
+      "Item_Name": "Socks",
+      "Category": "Sports",
+      "Current_Stock": -566,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM045",
+      "Item_Name": "Table Tennis",
+      "Category": "Sports",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM044",
+      "Item_Name": "Tug of War Ropes",
+      "Category": "Sports",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM038",
+      "Item_Name": "Volley Ball",
+      "Category": "Sports",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM042",
+      "Item_Name": "Volley Ball Canvas",
+      "Category": "Sports",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM040",
+      "Item_Name": "Volley Ball Jersey",
+      "Category": "Sports",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM039",
+      "Item_Name": "Volley Ball Nets",
+      "Category": "Sports",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM041",
+      "Item_Name": "Volley Ball Socks",
+      "Category": "Sports",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM017",
+      "Item_Name": "A4 Size Envelopes",
+      "Category": "Stationery",
+      "Current_Stock": -206,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM018",
+      "Item_Name": "A5 Size Envelopes",
+      "Category": "Stationery",
+      "Current_Stock": -811,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM049",
+      "Item_Name": "Carbon Paper",
+      "Category": "Stationery",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM023",
+      "Item_Name": "Cash Book",
+      "Category": "Stationery",
+      "Current_Stock": 372,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM050",
+      "Item_Name": "Duplicating Paper",
+      "Category": "Stationery",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM004",
+      "Item_Name": "F9 Paper",
+      "Category": "Stationery",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM014",
+      "Item_Name": "File Jacket",
+      "Category": "Stationery",
+      "Current_Stock": -583,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM006",
+      "Item_Name": "File Tag",
+      "Category": "Stationery",
+      "Current_Stock": 200,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM020",
+      "Item_Name": "Jar Gum",
+      "Category": "Stationery",
+      "Current_Stock": -589,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM010",
+      "Item_Name": "Laminaring Paper",
+      "Category": "Stationery",
+      "Current_Stock": -1455,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM021",
+      "Item_Name": "Legal Paper",
+      "Category": "Stationery",
+      "Current_Stock": -970,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM022",
+      "Item_Name": "Office Clips/Pins",
+      "Category": "Stationery",
+      "Current_Stock": -925,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM016",
+      "Item_Name": "Open File Jacket",
+      "Category": "Stationery",
+      "Current_Stock": -30,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM056",
+      "Item_Name": "Pencil",
+      "Category": "Stationery",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM055",
+      "Item_Name": "Photocopier Sensor",
+      "Category": "Stationery",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM054",
+      "Item_Name": "Plastic Ruler",
+      "Category": "Stationery",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM002",
+      "Item_Name": "Punch",
+      "Category": "Stationery",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM015",
+      "Item_Name": "Secret File Jacket",
+      "Category": "Stationery",
+      "Current_Stock": 367,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM005",
+      "Item_Name": "Spiral Binding Paper",
+      "Category": "Stationery",
+      "Current_Stock": -1446,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM003",
+      "Item_Name": "Stamp",
+      "Category": "Stationery",
+      "Current_Stock": 0,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM019",
+      "Item_Name": "Water Colour",
+      "Category": "Stationery",
+      "Current_Stock": -65,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM011",
+      "Item_Name": "White Board",
+      "Category": "Stationery",
+      "Current_Stock": 38,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM013",
+      "Item_Name": "White Board Eraser",
+      "Category": "Stationery",
+      "Current_Stock": -547,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    },
+    {
+      "Item_ID": "ITEM012",
+      "Item_Name": "White Board Marker",
+      "Category": "Stationery",
+      "Current_Stock": -1667,
+      "Reorder_Level": 10,
+      "Minimum_Stock": 10
+    }
+  ],
+  "requisition_status_breakdown": [
+    {
+      "status": "Approved",
+      "quantity": 1
+    },
+    {
+      "status": "Fulfilled",
+      "quantity": 1
+    },
+    {
+      "status": "Partially Fulfilled",
+      "quantity": 1
+    },
+    {
+      "status": "Pending",
+      "quantity": 2
+    }
+  ],
+  "requested_vs_approved_vs_fulfilled": [
+    {
+      "Item_ID": "",
+      "item": "F9 Paper",
+      "Item_Name": "F9 Paper",
+      "Category": "",
+      "requested": 200,
+      "approved": 150,
+      "fulfilled": 100
+    },
+    {
+      "Item_ID": "",
+      "item": "Punch",
+      "Item_Name": "Punch",
+      "Category": "",
+      "requested": 200,
+      "approved": 175,
+      "fulfilled": 175
+    },
+    {
+      "Item_ID": "",
+      "item": "Spiral Binding Paper",
+      "Item_Name": "Spiral Binding Paper",
+      "Category": "",
+      "requested": 100,
+      "approved": 80,
+      "fulfilled": 80
+    },
+    {
+      "Item_ID": "",
+      "item": "Stamp",
+      "Item_Name": "Stamp",
+      "Category": "",
+      "requested": 75,
+      "approved": 0,
+      "fulfilled": 0
+    }
+  ],
+  "top_requested_items": [
+    {
+      "Item_ID": "",
+      "item": "F9 Paper",
+      "Item_Name": "F9 Paper",
+      "Category": "",
+      "quantity": 200
+    },
+    {
+      "Item_ID": "",
+      "item": "Punch",
+      "Item_Name": "Punch",
+      "Category": "",
+      "quantity": 200
+    },
+    {
+      "Item_ID": "",
+      "item": "Spiral Binding Paper",
+      "Item_Name": "Spiral Binding Paper",
+      "Category": "",
+      "quantity": 100
+    },
+    {
+      "Item_ID": "",
+      "item": "Stamp",
+      "Item_Name": "Stamp",
+      "Category": "",
+      "quantity": 75
+    }
+  ],
+  "requests_by_lga": [
+    {
+      "lga": "MAKURDI",
+      "quantity": 425
+    },
+    {
+      "lga": "LOGO",
+      "quantity": 150
+    },
+    {
+      "lga": "UKUM",
+      "quantity": 0
+    }
+  ],
+  "recent_inventory_movements": [
+    {
+      "Transaction_ID": "TXN007",
+      "Transaction_Date": "2026-06-20T11:35:34.623179+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-008",
+      "Warehouse_Name": "BURUKU East",
+      "School_ID": "B-MA-PR-003",
+      "School_Name": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
+      "LGA": "MAKURDI",
+      "Zone": "B",
+      "School_Type": "PRI",
+      "Item_ID": "ITEM029",
+      "Item_Name": "Shin Guards",
+      "Category": "Sports",
+      "Total_Items": 421
+    },
+    {
+      "Transaction_ID": "TXN006",
+      "Transaction_Date": "2026-06-20T11:11:09.299292+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-009",
+      "Warehouse_Name": "AGATU Prime",
+      "School_ID": "B-MA-PR-002",
+      "School_Name": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
+      "LGA": "MAKURDI",
+      "Zone": "B",
+      "School_Type": "PRI",
+      "Item_ID": "ITEM028",
+      "Item_Name": "Soccer Jersey",
+      "Category": "Sports",
+      "Total_Items": 52
+    },
+    {
+      "Transaction_ID": "TXN005",
+      "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-007",
+      "Warehouse_Name": "LOGO Premier",
+      "School_ID": "B-MA-PR-001",
+      "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+      "LGA": "MAKURDI",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM018",
+      "Item_Name": "A5 Size Envelopes",
+      "Category": "Stationery",
+      "Total_Items": 22
+    },
+    {
+      "Transaction_ID": "TXN005",
+      "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-007",
+      "Warehouse_Name": "LOGO Premier",
+      "School_ID": "B-MA-PR-001",
+      "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+      "LGA": "MAKURDI",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM005",
+      "Item_Name": "Spiral Binding Paper",
+      "Category": "Stationery",
+      "Total_Items": 875
+    },
+    {
+      "Transaction_ID": "TXN005",
+      "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-007",
+      "Warehouse_Name": "LOGO Premier",
+      "School_ID": "B-MA-PR-001",
+      "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+      "LGA": "MAKURDI",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM006",
+      "Item_Name": "File Tag",
+      "Category": "Stationery",
+      "Total_Items": 52
+    },
+    {
+      "Transaction_ID": "TXN005",
+      "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-007",
+      "Warehouse_Name": "LOGO Premier",
+      "School_ID": "B-MA-PR-001",
+      "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+      "LGA": "MAKURDI",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM008",
+      "Item_Name": "Wireless Mouse",
+      "Category": "IT",
+      "Total_Items": 22
+    },
+    {
+      "Transaction_ID": "TXN005",
+      "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-007",
+      "Warehouse_Name": "LOGO Premier",
+      "School_ID": "B-MA-PR-001",
+      "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+      "LGA": "MAKURDI",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM013",
+      "Item_Name": "White Board Eraser",
+      "Category": "Stationery",
+      "Total_Items": 25
+    },
+    {
+      "Transaction_ID": "TXN005",
+      "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-007",
+      "Warehouse_Name": "LOGO Premier",
+      "School_ID": "B-MA-PR-001",
+      "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+      "LGA": "MAKURDI",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM015",
+      "Item_Name": "Secret File Jacket",
+      "Category": "Stationery",
+      "Total_Items": 102
+    },
+    {
+      "Transaction_ID": "TXN005",
+      "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-007",
+      "Warehouse_Name": "LOGO Premier",
+      "School_ID": "B-MA-PR-001",
+      "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+      "LGA": "MAKURDI",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM010",
+      "Item_Name": "Laminaring Paper",
+      "Category": "Stationery",
+      "Total_Items": 524
+    },
+    {
+      "Transaction_ID": "TXN005",
+      "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-007",
+      "Warehouse_Name": "LOGO Premier",
+      "School_ID": "B-MA-PR-001",
+      "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+      "LGA": "MAKURDI",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM020",
+      "Item_Name": "Jar Gum",
+      "Category": "Stationery",
+      "Total_Items": 524
+    },
+    {
+      "Transaction_ID": "TXN005",
+      "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-007",
+      "Warehouse_Name": "LOGO Premier",
+      "School_ID": "B-MA-PR-001",
+      "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+      "LGA": "MAKURDI",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM024",
+      "Item_Name": "Football",
+      "Category": "Sports",
+      "Total_Items": 524
+    },
+    {
+      "Transaction_ID": "TXN005",
+      "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-007",
+      "Warehouse_Name": "LOGO Premier",
+      "School_ID": "B-MA-PR-001",
+      "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+      "LGA": "MAKURDI",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM025",
+      "Item_Name": "Soccer Boot",
+      "Category": "Sports",
+      "Total_Items": 22
+    },
+    {
+      "Transaction_ID": "TXN005",
+      "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-007",
+      "Warehouse_Name": "LOGO Premier",
+      "School_ID": "B-MA-PR-001",
+      "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+      "LGA": "MAKURDI",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM026",
+      "Item_Name": "Socks",
+      "Category": "Sports",
+      "Total_Items": 524
+    },
+    {
+      "Transaction_ID": "TXN005",
+      "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-007",
+      "Warehouse_Name": "LOGO Premier",
+      "School_ID": "B-MA-PR-001",
+      "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+      "LGA": "MAKURDI",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM027",
+      "Item_Name": "Soccer Net",
+      "Category": "Sports",
+      "Total_Items": 98
+    },
+    {
+      "Transaction_ID": "TXN004",
+      "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-006",
+      "Warehouse_Name": "BURUKU Central",
+      "School_ID": "A-LO-PR-003",
+      "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+      "LGA": "LOGO",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM009",
+      "Item_Name": "External Keyboard",
+      "Category": "IT",
+      "Total_Items": 20
+    },
+    {
+      "Transaction_ID": "TXN004",
+      "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-006",
+      "Warehouse_Name": "BURUKU Central",
+      "School_ID": "A-LO-PR-003",
+      "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+      "LGA": "LOGO",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM023",
+      "Item_Name": "Cash Book",
+      "Category": "Stationery",
+      "Total_Items": 20
+    },
+    {
+      "Transaction_ID": "TXN004",
+      "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-006",
+      "Warehouse_Name": "BURUKU Central",
+      "School_ID": "A-LO-PR-003",
+      "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+      "LGA": "LOGO",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM022",
+      "Item_Name": "Office Clips/Pins",
+      "Category": "Stationery",
+      "Total_Items": 20
+    },
+    {
+      "Transaction_ID": "TXN004",
+      "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-006",
+      "Warehouse_Name": "BURUKU Central",
+      "School_ID": "A-LO-PR-003",
+      "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+      "LGA": "LOGO",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM021",
+      "Item_Name": "Legal Paper",
+      "Category": "Stationery",
+      "Total_Items": 45
+    },
+    {
+      "Transaction_ID": "TXN004",
+      "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-006",
+      "Warehouse_Name": "BURUKU Central",
+      "School_ID": "A-LO-PR-003",
+      "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+      "LGA": "LOGO",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM019",
+      "Item_Name": "Water Colour",
+      "Category": "Stationery",
+      "Total_Items": 65
+    },
+    {
+      "Transaction_ID": "TXN004",
+      "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-006",
+      "Warehouse_Name": "BURUKU Central",
+      "School_ID": "A-LO-PR-003",
+      "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+      "LGA": "LOGO",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM017",
+      "Item_Name": "A4 Size Envelopes",
+      "Category": "Stationery",
+      "Total_Items": 52
+    },
+    {
+      "Transaction_ID": "TXN004",
+      "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-006",
+      "Warehouse_Name": "BURUKU Central",
+      "School_ID": "A-LO-PR-003",
+      "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+      "LGA": "LOGO",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM014",
+      "Item_Name": "File Jacket",
+      "Category": "Stationery",
+      "Total_Items": 64
+    },
+    {
+      "Transaction_ID": "TXN004",
+      "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-006",
+      "Warehouse_Name": "BURUKU Central",
+      "School_ID": "A-LO-PR-003",
+      "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+      "LGA": "LOGO",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM012",
+      "Item_Name": "White Board Marker",
+      "Category": "Stationery",
+      "Total_Items": 1048
+    },
+    {
+      "Transaction_ID": "TXN004",
+      "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-006",
+      "Warehouse_Name": "BURUKU Central",
+      "School_ID": "A-LO-PR-003",
+      "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+      "LGA": "LOGO",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM010",
+      "Item_Name": "Laminaring Paper",
+      "Category": "Stationery",
+      "Total_Items": 52
+    },
+    {
+      "Transaction_ID": "TXN004",
+      "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-006",
+      "Warehouse_Name": "BURUKU Central",
+      "School_ID": "A-LO-PR-003",
+      "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+      "LGA": "LOGO",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM026",
+      "Item_Name": "Socks",
+      "Category": "Sports",
+      "Total_Items": 52
+    },
+    {
+      "Transaction_ID": "TXN004",
+      "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-006",
+      "Warehouse_Name": "BURUKU Central",
+      "School_ID": "A-LO-PR-003",
+      "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+      "LGA": "LOGO",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM007",
+      "Item_Name": "Flash Drive",
+      "Category": "IT",
+      "Total_Items": 75
+    },
+    {
+      "Transaction_ID": "TXN004",
+      "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-006",
+      "Warehouse_Name": "BURUKU Central",
+      "School_ID": "A-LO-PR-003",
+      "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+      "LGA": "LOGO",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM005",
+      "Item_Name": "Spiral Binding Paper",
+      "Category": "Stationery",
+      "Total_Items": 98
+    },
+    {
+      "Transaction_ID": "TXN004",
+      "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-006",
+      "Warehouse_Name": "BURUKU Central",
+      "School_ID": "A-LO-PR-003",
+      "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+      "LGA": "LOGO",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM-001",
+      "Item_Name": "ITEM-001",
+      "Category": "Uncategorized",
+      "Total_Items": 80
+    },
+    {
+      "Transaction_ID": "TXN004",
+      "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-006",
+      "Warehouse_Name": "BURUKU Central",
+      "School_ID": "A-LO-PR-003",
+      "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+      "LGA": "LOGO",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM024",
+      "Item_Name": "Football",
+      "Category": "Sports",
+      "Total_Items": 98
+    },
+    {
+      "Transaction_ID": "TXN004",
+      "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-006",
+      "Warehouse_Name": "BURUKU Central",
+      "School_ID": "A-LO-PR-003",
+      "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+      "LGA": "LOGO",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM025",
+      "Item_Name": "Soccer Boot",
+      "Category": "Sports",
+      "Total_Items": 20
+    },
+    {
+      "Transaction_ID": "TXN004",
+      "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-006",
+      "Warehouse_Name": "BURUKU Central",
+      "School_ID": "A-LO-PR-003",
+      "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+      "LGA": "LOGO",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM028",
+      "Item_Name": "Soccer Jersey",
+      "Category": "Sports",
+      "Total_Items": 98
+    },
+    {
+      "Transaction_ID": "TXN004",
+      "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-006",
+      "Warehouse_Name": "BURUKU Central",
+      "School_ID": "A-LO-PR-003",
+      "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+      "LGA": "LOGO",
+      "Zone": "A",
+      "School_Type": "UBE-JSS",
+      "Item_ID": "ITEM029",
+      "Item_Name": "Shin Guards",
+      "Category": "Sports",
+      "Total_Items": 75
+    },
+    {
+      "Transaction_ID": "TXN002",
+      "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-002",
+      "Warehouse_Name": "Okpokwu Central",
+      "School_ID": "B-BU-PR-005",
+      "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+      "LGA": "BURUKU",
+      "Zone": "A",
+      "School_Type": "PRI",
+      "Item_ID": "ITEM024",
+      "Item_Name": "Football",
+      "Category": "Sports",
+      "Total_Items": 25
+    },
+    {
+      "Transaction_ID": "TXN002",
+      "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-002",
+      "Warehouse_Name": "Okpokwu Central",
+      "School_ID": "B-BU-PR-005",
+      "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+      "LGA": "BURUKU",
+      "Zone": "A",
+      "School_Type": "PRI",
+      "Item_ID": "ITEM028",
+      "Item_Name": "Soccer Jersey",
+      "Category": "Sports",
+      "Total_Items": 2
+    },
+    {
+      "Transaction_ID": "TXN002",
+      "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-002",
+      "Warehouse_Name": "Okpokwu Central",
+      "School_ID": "B-BU-PR-005",
+      "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+      "LGA": "BURUKU",
+      "Zone": "A",
+      "School_Type": "PRI",
+      "Item_ID": "ITEM027",
+      "Item_Name": "Soccer Net",
+      "Category": "Sports",
+      "Total_Items": 45
+    },
+    {
+      "Transaction_ID": "TXN002",
+      "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-002",
+      "Warehouse_Name": "Okpokwu Central",
+      "School_ID": "B-BU-PR-005",
+      "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+      "LGA": "BURUKU",
+      "Zone": "A",
+      "School_Type": "PRI",
+      "Item_ID": "ITEM026",
+      "Item_Name": "Socks",
+      "Category": "Sports",
+      "Total_Items": 2
+    },
+    {
+      "Transaction_ID": "TXN002",
+      "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-002",
+      "Warehouse_Name": "Okpokwu Central",
+      "School_ID": "B-BU-PR-005",
+      "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+      "LGA": "BURUKU",
+      "Zone": "A",
+      "School_Type": "PRI",
+      "Item_ID": "ITEM014",
+      "Item_Name": "File Jacket",
+      "Category": "Stationery",
+      "Total_Items": 521
+    },
+    {
+      "Transaction_ID": "TXN002",
+      "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-002",
+      "Warehouse_Name": "Okpokwu Central",
+      "School_ID": "B-BU-PR-005",
+      "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+      "LGA": "BURUKU",
+      "Zone": "A",
+      "School_Type": "PRI",
+      "Item_ID": "ITEM023",
+      "Item_Name": "Cash Book",
+      "Category": "Stationery",
+      "Total_Items": 75
+    },
+    {
+      "Transaction_ID": "TXN002",
+      "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-002",
+      "Warehouse_Name": "Okpokwu Central",
+      "School_ID": "B-BU-PR-005",
+      "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+      "LGA": "BURUKU",
+      "Zone": "A",
+      "School_Type": "PRI",
+      "Item_ID": "ITEM022",
+      "Item_Name": "Office Clips/Pins",
+      "Category": "Stationery",
+      "Total_Items": 52
+    },
+    {
+      "Transaction_ID": "TXN002",
+      "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-002",
+      "Warehouse_Name": "Okpokwu Central",
+      "School_ID": "B-BU-PR-005",
+      "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+      "LGA": "BURUKU",
+      "Zone": "A",
+      "School_Type": "PRI",
+      "Item_ID": "ITEM-001",
+      "Item_Name": "ITEM-001",
+      "Category": "Uncategorized",
+      "Total_Items": 544
+    },
+    {
+      "Transaction_ID": "TXN002",
+      "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-002",
+      "Warehouse_Name": "Okpokwu Central",
+      "School_ID": "B-BU-PR-005",
+      "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+      "LGA": "BURUKU",
+      "Zone": "A",
+      "School_Type": "PRI",
+      "Item_ID": "ITEM-002",
+      "Item_Name": "ITEM-002",
+      "Category": "Uncategorized",
+      "Total_Items": 500
+    },
+    {
+      "Transaction_ID": "TXN002",
+      "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-002",
+      "Warehouse_Name": "Okpokwu Central",
+      "School_ID": "B-BU-PR-005",
+      "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+      "LGA": "BURUKU",
+      "Zone": "A",
+      "School_Type": "PRI",
+      "Item_ID": "ITEM005",
+      "Item_Name": "Spiral Binding Paper",
+      "Category": "Stationery",
+      "Total_Items": 421
+    },
+    {
+      "Transaction_ID": "TXN002",
+      "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-002",
+      "Warehouse_Name": "Okpokwu Central",
+      "School_ID": "B-BU-PR-005",
+      "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+      "LGA": "BURUKU",
+      "Zone": "A",
+      "School_Type": "PRI",
+      "Item_ID": "ITEM007",
+      "Item_Name": "Flash Drive",
+      "Category": "IT",
+      "Total_Items": 589
+    },
+    {
+      "Transaction_ID": "TXN002",
+      "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-002",
+      "Warehouse_Name": "Okpokwu Central",
+      "School_ID": "B-BU-PR-005",
+      "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+      "LGA": "BURUKU",
+      "Zone": "A",
+      "School_Type": "PRI",
+      "Item_ID": "ITEM008",
+      "Item_Name": "Wireless Mouse",
+      "Category": "IT",
+      "Total_Items": 20
+    },
+    {
+      "Transaction_ID": "TXN002",
+      "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-002",
+      "Warehouse_Name": "Okpokwu Central",
+      "School_ID": "B-BU-PR-005",
+      "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+      "LGA": "BURUKU",
+      "Zone": "A",
+      "School_Type": "PRI",
+      "Item_ID": "ITEM010",
+      "Item_Name": "Laminaring Paper",
+      "Category": "Stationery",
+      "Total_Items": 879
+    },
+    {
+      "Transaction_ID": "TXN002",
+      "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-002",
+      "Warehouse_Name": "Okpokwu Central",
+      "School_ID": "B-BU-PR-005",
+      "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+      "LGA": "BURUKU",
+      "Zone": "A",
+      "School_Type": "PRI",
+      "Item_ID": "ITEM012",
+      "Item_Name": "White Board Marker",
+      "Category": "Stationery",
+      "Total_Items": 619
+    },
+    {
+      "Transaction_ID": "TXN002",
+      "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-002",
+      "Warehouse_Name": "Okpokwu Central",
+      "School_ID": "B-BU-PR-005",
+      "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+      "LGA": "BURUKU",
+      "Zone": "A",
+      "School_Type": "PRI",
+      "Item_ID": "ITEM015",
+      "Item_Name": "Secret File Jacket",
+      "Category": "Stationery",
+      "Total_Items": 52
+    },
+    {
+      "Transaction_ID": "TXN002",
+      "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-002",
+      "Warehouse_Name": "Okpokwu Central",
+      "School_ID": "B-BU-PR-005",
+      "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+      "LGA": "BURUKU",
+      "Zone": "A",
+      "School_Type": "PRI",
+      "Item_ID": "ITEM016",
+      "Item_Name": "Open File Jacket",
+      "Category": "Stationery",
+      "Total_Items": 52
+    },
+    {
+      "Transaction_ID": "TXN002",
+      "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-002",
+      "Warehouse_Name": "Okpokwu Central",
+      "School_ID": "B-BU-PR-005",
+      "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+      "LGA": "BURUKU",
+      "Zone": "A",
+      "School_Type": "PRI",
+      "Item_ID": "ITEM017",
+      "Item_Name": "A4 Size Envelopes",
+      "Category": "Stationery",
+      "Total_Items": 97
+    },
+    {
+      "Transaction_ID": "TXN002",
+      "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-002",
+      "Warehouse_Name": "Okpokwu Central",
+      "School_ID": "B-BU-PR-005",
+      "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+      "LGA": "BURUKU",
+      "Zone": "A",
+      "School_Type": "PRI",
+      "Item_ID": "ITEM019",
+      "Item_Name": "Water Colour",
+      "Category": "Stationery",
+      "Total_Items": 22
+    },
+    {
+      "Transaction_ID": "TXN002",
+      "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+      "Transaction_Type": "OUT",
+      "Source": "",
+      "Warehouse_ID": "WH-002",
+      "Warehouse_Name": "Okpokwu Central",
+      "School_ID": "B-BU-PR-005",
+      "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+      "LGA": "BURUKU",
+      "Zone": "A",
+      "School_Type": "PRI",
+      "Item_ID": "ITEM020",
+      "Item_Name": "Jar Gum",
+      "Category": "Stationery",
+      "Total_Items": 75
+    }
+  ],
+  "recent_requisitions": [
+    {
+      "Requisition_ID": "REQ005",
+      "Request_Date": "2026-06-11T15:18:27.168956+00:00",
+      "School_ID": "A-UK-PR-001",
+      "School_Name": "ANGLICAN PRIMARY SCHOOL ALABAR",
+      "LGA": "UKUM",
+      "Zone": "B",
+      "Status": "Pending",
+      "Requested_Quantity": 0,
+      "Approved_Quantity": 0,
+      "Fulfilled_Quantity": 0
+    },
+    {
+      "Requisition_ID": "REQ001",
+      "Request_Date": "2026-06-11T14:38:43.453148+00:00",
+      "School_ID": "B-MA-PR-001",
+      "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+      "LGA": "MAKURDI",
+      "Zone": "A",
+      "Status": "Approved",
+      "Requested_Quantity": 150,
+      "Approved_Quantity": 150,
+      "Fulfilled_Quantity": 150
+    },
+    {
+      "Requisition_ID": "REQ004",
+      "Request_Date": "2026-06-11T14:38:43.453148+00:00",
+      "School_ID": "A-LO-PR-001",
+      "School_Name": "ANGLICAN PRIMARY SCHOOL ADA",
+      "LGA": "LOGO",
+      "Zone": "B",
+      "Status": "Fulfilled",
+      "Requested_Quantity": 150,
+      "Approved_Quantity": 105,
+      "Fulfilled_Quantity": 105
+    },
+    {
+      "Requisition_ID": "REQ002",
+      "Request_Date": "2026-06-11T14:38:43.453148+00:01",
+      "School_ID": "B-MA-PR-002",
+      "School_Name": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
+      "LGA": "MAKURDI",
+      "Zone": "B",
+      "Status": "Pending",
+      "Requested_Quantity": 75,
+      "Approved_Quantity": 0,
+      "Fulfilled_Quantity": 0
+    },
+    {
+      "Requisition_ID": "REQ003",
+      "Request_Date": "2026-06-11T14:38:43.453148+00:02",
+      "School_ID": "B-MA-PR-003",
+      "School_Name": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
+      "LGA": "MAKURDI",
+      "Zone": "B",
+      "Status": "Partially Fulfilled",
+      "Requested_Quantity": 200,
+      "Approved_Quantity": 150,
+      "Fulfilled_Quantity": 100
+    }
+  ],
+  "fulfillment_summary": [
+    {
+      "School_ID": "A-LO-PR-001",
+      "School_Name": "ANGLICAN PRIMARY SCHOOL ADA",
+      "LGA": "LOGO",
+      "Zone": "B",
+      "Requested_Quantity": 150,
+      "Approved_Quantity": 105,
+      "Fulfilled_Quantity": 105,
+      "Fulfillment_Rate": 100.0
+    },
+    {
+      "School_ID": "A-UK-PR-001",
+      "School_Name": "ANGLICAN PRIMARY SCHOOL ALABAR",
+      "LGA": "UKUM",
+      "Zone": "B",
+      "Requested_Quantity": 0,
+      "Approved_Quantity": 0,
+      "Fulfilled_Quantity": 0,
+      "Fulfillment_Rate": 0.0
+    },
+    {
+      "School_ID": "B-MA-PR-001",
+      "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+      "LGA": "MAKURDI",
+      "Zone": "A",
+      "Requested_Quantity": 150,
+      "Approved_Quantity": 150,
+      "Fulfilled_Quantity": 150,
+      "Fulfillment_Rate": 100.0
+    },
+    {
+      "School_ID": "B-MA-PR-002",
+      "School_Name": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
+      "LGA": "MAKURDI",
+      "Zone": "B",
+      "Requested_Quantity": 75,
+      "Approved_Quantity": 0,
+      "Fulfilled_Quantity": 0,
+      "Fulfillment_Rate": 0.0
+    },
+    {
+      "School_ID": "B-MA-PR-003",
+      "School_Name": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
+      "LGA": "MAKURDI",
+      "Zone": "B",
+      "Requested_Quantity": 200,
+      "Approved_Quantity": 150,
+      "Fulfilled_Quantity": 100,
+      "Fulfillment_Rate": 66.67
+    }
+  ],
   "school_distribution": {
     "all_schools": [
       {
-        "school": "ANGLICAN PRIMARYSCHOOL SEVAV",
-        "quantity": 1739
+        "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
+        "quantity": 5644
       },
       {
         "school": "ANGLICAN PRIMARY SCHOOL UGANGESE",
-        "quantity": 1366
-      },
-      {
-        "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
-        "quantity": 1341
-      },
-      {
-        "school": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
-        "quantity": 950
+        "quantity": 4667
       },
       {
         "school": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
-        "quantity": 196
+        "quantity": 3314
+      },
+      {
+        "school": "ANGLICAN PRIMARYSCHOOL SEVAV",
+        "quantity": 1982
       },
       {
         "school": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
-        "quantity": 20
+        "quantity": 421
+      },
+      {
+        "school": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
+        "quantity": 52
       }
     ],
     "top_10_schools": [
       {
-        "school": "ANGLICAN PRIMARYSCHOOL SEVAV",
-        "quantity": 1739
+        "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
+        "quantity": 5644
       },
       {
         "school": "ANGLICAN PRIMARY SCHOOL UGANGESE",
-        "quantity": 1366
-      },
-      {
-        "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
-        "quantity": 1341
-      },
-      {
-        "school": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
-        "quantity": 950
+        "quantity": 4667
       },
       {
         "school": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
-        "quantity": 196
+        "quantity": 3314
+      },
+      {
+        "school": "ANGLICAN PRIMARYSCHOOL SEVAV",
+        "quantity": 1982
       },
       {
         "school": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
-        "quantity": 20
+        "quantity": 421
+      },
+      {
+        "school": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
+        "quantity": 52
       }
     ],
     "bottom_10_schools": [
       {
-        "school": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
-        "quantity": 20
-      },
-      {
-        "school": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
-        "quantity": 196
-      },
-      {
         "school": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
-        "quantity": 950
+        "quantity": 52
       },
       {
-        "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
-        "quantity": 1341
-      },
-      {
-        "school": "ANGLICAN PRIMARY SCHOOL UGANGESE",
-        "quantity": 1366
+        "school": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
+        "quantity": 421
       },
       {
         "school": "ANGLICAN PRIMARYSCHOOL SEVAV",
-        "quantity": 1739
+        "quantity": 1982
+      },
+      {
+        "school": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+        "quantity": 3314
+      },
+      {
+        "school": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+        "quantity": 4667
+      },
+      {
+        "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
+        "quantity": 5644
       }
     ]
   },
   "lga_distribution": [
     {
-      "lga": "LOGO",
-      "quantity": 1739
+      "lga": "UKUM",
+      "quantity": 5644
     },
     {
       "lga": "BURUKU",
-      "quantity": 1366
-    },
-    {
-      "lga": "UKUM",
-      "quantity": 1341
+      "quantity": 4667
     },
     {
       "lga": "MAKURDI",
-      "quantity": 1166
+      "quantity": 3787
+    },
+    {
+      "lga": "LOGO",
+      "quantity": 1982
     }
   ],
   "warehouse_analytics": {
@@ -125,7 +1909,7 @@
       {
         "warehouse_id": "WH-001",
         "warehouse": "Makurdi Central Store",
-        "stock_level": 2972,
+        "stock_level": 2969,
         "total_outflows": 0
       },
       {
@@ -141,78 +1925,78 @@
         "total_outflows": 0
       },
       {
-        "warehouse_id": "WH-008",
-        "warehouse": "BURUKU East",
-        "stock_level": -20,
-        "total_outflows": 20
-      },
-      {
-        "warehouse_id": "WH-007",
-        "warehouse": "LOGO Premier",
-        "stock_level": -196,
-        "total_outflows": 196
-      },
-      {
         "warehouse_id": "WH-009",
         "warehouse": "AGATU Prime",
-        "stock_level": -950,
-        "total_outflows": 950
+        "stock_level": -52,
+        "total_outflows": 52
       },
       {
-        "warehouse_id": "WH-004",
-        "warehouse": "Great Otukpo II",
-        "stock_level": -1341,
-        "total_outflows": 1341
-      },
-      {
-        "warehouse_id": "WH-002",
-        "warehouse": "Okpokwu Central",
-        "stock_level": -1366,
-        "total_outflows": 1366
+        "warehouse_id": "WH-008",
+        "warehouse": "BURUKU East",
+        "stock_level": -421,
+        "total_outflows": 421
       },
       {
         "warehouse_id": "WH-006",
         "warehouse": "BURUKU Central",
-        "stock_level": -1739,
-        "total_outflows": 1739
+        "stock_level": -1982,
+        "total_outflows": 1982
+      },
+      {
+        "warehouse_id": "WH-007",
+        "warehouse": "LOGO Premier",
+        "stock_level": -3314,
+        "total_outflows": 3314
+      },
+      {
+        "warehouse_id": "WH-002",
+        "warehouse": "Okpokwu Central",
+        "stock_level": -4667,
+        "total_outflows": 4667
+      },
+      {
+        "warehouse_id": "WH-004",
+        "warehouse": "Great Otukpo II",
+        "stock_level": -5644,
+        "total_outflows": 5644
       }
     ],
     "total_outflows": [
       {
-        "warehouse_id": "WH-006",
-        "warehouse": "BURUKU Central",
-        "stock_level": -1739,
-        "total_outflows": 1739
+        "warehouse_id": "WH-004",
+        "warehouse": "Great Otukpo II",
+        "stock_level": -5644,
+        "total_outflows": 5644
       },
       {
         "warehouse_id": "WH-002",
         "warehouse": "Okpokwu Central",
-        "stock_level": -1366,
-        "total_outflows": 1366
-      },
-      {
-        "warehouse_id": "WH-004",
-        "warehouse": "Great Otukpo II",
-        "stock_level": -1341,
-        "total_outflows": 1341
-      },
-      {
-        "warehouse_id": "WH-009",
-        "warehouse": "AGATU Prime",
-        "stock_level": -950,
-        "total_outflows": 950
+        "stock_level": -4667,
+        "total_outflows": 4667
       },
       {
         "warehouse_id": "WH-007",
         "warehouse": "LOGO Premier",
-        "stock_level": -196,
-        "total_outflows": 196
+        "stock_level": -3314,
+        "total_outflows": 3314
+      },
+      {
+        "warehouse_id": "WH-006",
+        "warehouse": "BURUKU Central",
+        "stock_level": -1982,
+        "total_outflows": 1982
       },
       {
         "warehouse_id": "WH-008",
         "warehouse": "BURUKU East",
-        "stock_level": -20,
-        "total_outflows": 20
+        "stock_level": -421,
+        "total_outflows": 421
+      },
+      {
+        "warehouse_id": "WH-009",
+        "warehouse": "AGATU Prime",
+        "stock_level": -52,
+        "total_outflows": 52
       },
       {
         "warehouse_id": "WH-003",
@@ -223,7 +2007,7 @@
       {
         "warehouse_id": "WH-001",
         "warehouse": "Makurdi Central Store",
-        "stock_level": 2972,
+        "stock_level": 2969,
         "total_outflows": 0
       },
       {
@@ -237,8 +2021,8 @@
   "monthly_stock_movements": [
     {
       "month": "2026-06",
-      "in_quantity": 2972,
-      "out_quantity": 5612
+      "in_quantity": 2969,
+      "out_quantity": 16080
     }
   ],
   "charts": {
@@ -262,25 +2046,37 @@
     ],
     "requested_vs_approved_vs_fulfilled": [
       {
+        "Item_ID": "",
         "item": "F9 Paper",
+        "Item_Name": "F9 Paper",
+        "Category": "",
         "requested": 200,
         "approved": 150,
         "fulfilled": 100
       },
       {
+        "Item_ID": "",
         "item": "Punch",
+        "Item_Name": "Punch",
+        "Category": "",
         "requested": 200,
         "approved": 175,
         "fulfilled": 175
       },
       {
+        "Item_ID": "",
         "item": "Spiral Binding Paper",
+        "Item_Name": "Spiral Binding Paper",
+        "Category": "",
         "requested": 100,
         "approved": 80,
         "fulfilled": 80
       },
       {
+        "Item_ID": "",
         "item": "Stamp",
+        "Item_Name": "Stamp",
+        "Category": "",
         "requested": 75,
         "approved": 0,
         "fulfilled": 0
@@ -288,19 +2084,31 @@
     ],
     "top_requested_items": [
       {
+        "Item_ID": "",
         "item": "F9 Paper",
+        "Item_Name": "F9 Paper",
+        "Category": "",
         "quantity": 200
       },
       {
+        "Item_ID": "",
         "item": "Punch",
+        "Item_Name": "Punch",
+        "Category": "",
         "quantity": 200
       },
       {
+        "Item_ID": "",
         "item": "Spiral Binding Paper",
+        "Item_Name": "Spiral Binding Paper",
+        "Category": "",
         "quantity": 100
       },
       {
+        "Item_ID": "",
         "item": "Stamp",
+        "Item_Name": "Stamp",
+        "Category": "",
         "quantity": 75
       }
     ],
@@ -320,14 +2128,6 @@
     ],
     "inventory_by_category": [
       {
-        "category": "Sports",
-        "quantity": 356
-      },
-      {
-        "category": "IT",
-        "quantity": 49
-      },
-      {
         "category": "Cleaner",
         "quantity": 0
       },
@@ -336,143 +2136,151 @@
         "quantity": 0
       },
       {
+        "category": "IT",
+        "quantity": -748
+      },
+      {
+        "category": "Sports",
+        "quantity": -2947
+      },
+      {
         "category": "Stationery",
-        "quantity": -1896
+        "quantity": -8317
       }
     ],
     "distribution_by_lga": [
       {
-        "lga": "LOGO",
-        "quantity": 1739
+        "lga": "UKUM",
+        "quantity": 5644
       },
       {
         "lga": "BURUKU",
-        "quantity": 1366
-      },
-      {
-        "lga": "UKUM",
-        "quantity": 1341
+        "quantity": 4667
       },
       {
         "lga": "MAKURDI",
-        "quantity": 1166
+        "quantity": 3787
+      },
+      {
+        "lga": "LOGO",
+        "quantity": 1982
       }
     ],
     "distribution_by_school_type": [
       {
         "school_type": "PRI",
-        "quantity": 3677
+        "quantity": 10784
       },
       {
         "school_type": "UBE-JSS",
-        "quantity": 1935
+        "quantity": 5296
       }
     ],
     "top_distributed_items": [
       {
+        "item": "White Board Marker",
+        "quantity": 1667
+      },
+      {
+        "item": "Football",
+        "quantity": 1522
+      },
+      {
+        "item": "Laminaring Paper",
+        "quantity": 1455
+      },
+      {
+        "item": "Spiral Binding Paper",
+        "quantity": 1446
+      },
+      {
+        "item": "Legal Paper",
+        "quantity": 995
+      },
+      {
+        "item": "Office Clips/Pins",
+        "quantity": 947
+      },
+      {
         "item": "A5 Size Envelopes",
-        "quantity": 875
+        "quantity": 909
+      },
+      {
+        "item": "Flash Drive",
+        "quantity": 664
       },
       {
         "item": "ITEM-001",
         "quantity": 644
       },
       {
-        "item": "White Board Marker",
-        "quantity": 622
-      },
-      {
-        "item": "File Jacket",
-        "quantity": 533
-      },
-      {
-        "item": "ITEM-002",
-        "quantity": 525
-      },
-      {
-        "item": "Socks",
-        "quantity": 524
-      },
-      {
-        "item": "ITEM-003",
-        "quantity": 500
-      },
-      {
-        "item": "Flash Drive",
-        "quantity": 486
-      },
-      {
-        "item": "Spiral Binding Paper",
-        "quantity": 150
-      },
-      {
-        "item": "A4 Size Envelopes",
-        "quantity": 132
+        "item": "Jar Gum",
+        "quantity": 611
       }
     ],
     "top_schools": [
       {
-        "school": "ANGLICAN PRIMARYSCHOOL SEVAV",
-        "quantity": 1739
+        "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
+        "quantity": 5644
       },
       {
         "school": "ANGLICAN PRIMARY SCHOOL UGANGESE",
-        "quantity": 1366
-      },
-      {
-        "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
-        "quantity": 1341
-      },
-      {
-        "school": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
-        "quantity": 950
+        "quantity": 4667
       },
       {
         "school": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
-        "quantity": 196
+        "quantity": 3314
+      },
+      {
+        "school": "ANGLICAN PRIMARYSCHOOL SEVAV",
+        "quantity": 1982
       },
       {
         "school": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
-        "quantity": 20
+        "quantity": 421
+      },
+      {
+        "school": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
+        "quantity": 52
       }
     ],
     "bottom_schools": [
       {
-        "school": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
-        "quantity": 20
-      },
-      {
-        "school": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
-        "quantity": 196
-      },
-      {
         "school": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
-        "quantity": 950
+        "quantity": 52
       },
       {
-        "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
-        "quantity": 1341
-      },
-      {
-        "school": "ANGLICAN PRIMARY SCHOOL UGANGESE",
-        "quantity": 1366
+        "school": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
+        "quantity": 421
       },
       {
         "school": "ANGLICAN PRIMARYSCHOOL SEVAV",
-        "quantity": 1739
+        "quantity": 1982
+      },
+      {
+        "school": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+        "quantity": 3314
+      },
+      {
+        "school": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+        "quantity": 4667
+      },
+      {
+        "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
+        "quantity": 5644
       }
     ],
     "stock_source_analysis": [
       {
         "source": "",
-        "quantity": 2972
+        "quantity": 2969
       }
     ],
     "warehouse_stock_levels": [
       {
         "warehouse_id": "WH-001",
         "warehouse": "Makurdi Central Store",
-        "stock_level": 2972,
+        "stock_level": 2969,
         "total_outflows": 0
       },
       {
@@ -488,78 +2296,78 @@
         "total_outflows": 0
       },
       {
-        "warehouse_id": "WH-008",
-        "warehouse": "BURUKU East",
-        "stock_level": -20,
-        "total_outflows": 20
-      },
-      {
-        "warehouse_id": "WH-007",
-        "warehouse": "LOGO Premier",
-        "stock_level": -196,
-        "total_outflows": 196
-      },
-      {
         "warehouse_id": "WH-009",
         "warehouse": "AGATU Prime",
-        "stock_level": -950,
-        "total_outflows": 950
+        "stock_level": -52,
+        "total_outflows": 52
       },
       {
-        "warehouse_id": "WH-004",
-        "warehouse": "Great Otukpo II",
-        "stock_level": -1341,
-        "total_outflows": 1341
-      },
-      {
-        "warehouse_id": "WH-002",
-        "warehouse": "Okpokwu Central",
-        "stock_level": -1366,
-        "total_outflows": 1366
+        "warehouse_id": "WH-008",
+        "warehouse": "BURUKU East",
+        "stock_level": -421,
+        "total_outflows": 421
       },
       {
         "warehouse_id": "WH-006",
         "warehouse": "BURUKU Central",
-        "stock_level": -1739,
-        "total_outflows": 1739
+        "stock_level": -1982,
+        "total_outflows": 1982
+      },
+      {
+        "warehouse_id": "WH-007",
+        "warehouse": "LOGO Premier",
+        "stock_level": -3314,
+        "total_outflows": 3314
+      },
+      {
+        "warehouse_id": "WH-002",
+        "warehouse": "Okpokwu Central",
+        "stock_level": -4667,
+        "total_outflows": 4667
+      },
+      {
+        "warehouse_id": "WH-004",
+        "warehouse": "Great Otukpo II",
+        "stock_level": -5644,
+        "total_outflows": 5644
       }
     ],
     "warehouse_outflows": [
       {
-        "warehouse_id": "WH-006",
-        "warehouse": "BURUKU Central",
-        "stock_level": -1739,
-        "total_outflows": 1739
+        "warehouse_id": "WH-004",
+        "warehouse": "Great Otukpo II",
+        "stock_level": -5644,
+        "total_outflows": 5644
       },
       {
         "warehouse_id": "WH-002",
         "warehouse": "Okpokwu Central",
-        "stock_level": -1366,
-        "total_outflows": 1366
-      },
-      {
-        "warehouse_id": "WH-004",
-        "warehouse": "Great Otukpo II",
-        "stock_level": -1341,
-        "total_outflows": 1341
-      },
-      {
-        "warehouse_id": "WH-009",
-        "warehouse": "AGATU Prime",
-        "stock_level": -950,
-        "total_outflows": 950
+        "stock_level": -4667,
+        "total_outflows": 4667
       },
       {
         "warehouse_id": "WH-007",
         "warehouse": "LOGO Premier",
-        "stock_level": -196,
-        "total_outflows": 196
+        "stock_level": -3314,
+        "total_outflows": 3314
+      },
+      {
+        "warehouse_id": "WH-006",
+        "warehouse": "BURUKU Central",
+        "stock_level": -1982,
+        "total_outflows": 1982
       },
       {
         "warehouse_id": "WH-008",
         "warehouse": "BURUKU East",
-        "stock_level": -20,
-        "total_outflows": 20
+        "stock_level": -421,
+        "total_outflows": 421
+      },
+      {
+        "warehouse_id": "WH-009",
+        "warehouse": "AGATU Prime",
+        "stock_level": -52,
+        "total_outflows": 52
       },
       {
         "warehouse_id": "WH-003",
@@ -570,7 +2378,7 @@
       {
         "warehouse_id": "WH-001",
         "warehouse": "Makurdi Central Store",
-        "stock_level": 2972,
+        "stock_level": 2969,
         "total_outflows": 0
       },
       {
@@ -583,8 +2391,8 @@
     "monthly_stock_movements": [
       {
         "month": "2026-06",
-        "in_quantity": 2972,
-        "out_quantity": 5612
+        "in_quantity": 2969,
+        "out_quantity": 16080
       }
     ]
   },
@@ -595,392 +2403,448 @@
         "Item_Name": "Bleach (Hypo/Jik)",
         "Category": "Cleaner",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM048",
         "Item_Name": "Hand Sanitizer",
         "Category": "Cleaner",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM053",
         "Item_Name": "Izal",
         "Category": "Cleaner",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM001",
         "Item_Name": "Stain Cleaner",
         "Category": "Cleaner",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM052",
         "Item_Name": "Windolene",
         "Category": "Cleaner",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM046",
         "Item_Name": "Hand Pump",
         "Category": "Equipment",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM047",
         "Item_Name": "Spare Parts",
         "Category": "Equipment",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM009",
         "Item_Name": "External Keyboard",
         "Category": "IT",
-        "Current_Stock": 609,
-        "Reorder_Level": 0
+        "Current_Stock": -384,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM007",
         "Item_Name": "Flash Drive",
         "Category": "IT",
-        "Current_Stock": -486,
-        "Reorder_Level": 0
+        "Current_Stock": -243,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM008",
         "Item_Name": "Wireless Mouse",
         "Category": "IT",
-        "Current_Stock": -74,
-        "Reorder_Level": 0
+        "Current_Stock": -121,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM024",
         "Item_Name": "Football",
         "Category": "Sports",
-        "Current_Stock": 875,
-        "Reorder_Level": 0
+        "Current_Stock": -1522,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM032",
         "Item_Name": "Hand Ball",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM034",
         "Item_Name": "Hand Ball Canvas",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM037",
         "Item_Name": "Hand Ball Goal keeper Gloves",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM033",
         "Item_Name": "Hand Ball Jersey",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM036",
         "Item_Name": "Hand Ball Nets",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM035",
         "Item_Name": "Hand Ball Socks",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM030",
         "Item_Name": "Hand Gloves",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM043",
         "Item_Name": "Javeline",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM029",
         "Item_Name": "Shin Guards",
         "Category": "Sports",
-        "Current_Stock": 52,
-        "Reorder_Level": 0
+        "Current_Stock": -496,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM025",
         "Item_Name": "Soccer Boot",
         "Category": "Sports",
-        "Current_Stock": -20,
-        "Reorder_Level": 0
+        "Current_Stock": -19,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM028",
         "Item_Name": "Soccer Jersey",
         "Category": "Sports",
-        "Current_Stock": -2,
-        "Reorder_Level": 0
+        "Current_Stock": -174,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM027",
         "Item_Name": "Soccer Net",
         "Category": "Sports",
-        "Current_Stock": -25,
-        "Reorder_Level": 0
+        "Current_Stock": -170,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM031",
         "Item_Name": "Soccer Whistle",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM026",
         "Item_Name": "Socks",
         "Category": "Sports",
-        "Current_Stock": -524,
-        "Reorder_Level": 0
+        "Current_Stock": -566,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM045",
         "Item_Name": "Table Tennis",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM044",
         "Item_Name": "Tug of War Ropes",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM038",
         "Item_Name": "Volley Ball",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM042",
         "Item_Name": "Volley Ball Canvas",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM040",
         "Item_Name": "Volley Ball Jersey",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM039",
         "Item_Name": "Volley Ball Nets",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM041",
         "Item_Name": "Volley Ball Socks",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM017",
         "Item_Name": "A4 Size Envelopes",
         "Category": "Stationery",
-        "Current_Stock": -132,
-        "Reorder_Level": 0
+        "Current_Stock": -206,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM018",
         "Item_Name": "A5 Size Envelopes",
         "Category": "Stationery",
-        "Current_Stock": -777,
-        "Reorder_Level": 0
+        "Current_Stock": -811,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM049",
         "Item_Name": "Carbon Paper",
         "Category": "Stationery",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM023",
         "Item_Name": "Cash Book",
         "Category": "Stationery",
-        "Current_Stock": -75,
-        "Reorder_Level": 0
+        "Current_Stock": 372,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM050",
         "Item_Name": "Duplicating Paper",
         "Category": "Stationery",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM004",
         "Item_Name": "F9 Paper",
         "Category": "Stationery",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM014",
         "Item_Name": "File Jacket",
         "Category": "Stationery",
-        "Current_Stock": -533,
-        "Reorder_Level": 0
+        "Current_Stock": -583,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM006",
         "Item_Name": "File Tag",
         "Category": "Stationery",
-        "Current_Stock": 202,
-        "Reorder_Level": 0
+        "Current_Stock": 200,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM020",
         "Item_Name": "Jar Gum",
         "Category": "Stationery",
-        "Current_Stock": -12,
-        "Reorder_Level": 0
+        "Current_Stock": -589,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM010",
         "Item_Name": "Laminaring Paper",
         "Category": "Stationery",
-        "Current_Stock": -56,
-        "Reorder_Level": 0
+        "Current_Stock": -1455,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM021",
         "Item_Name": "Legal Paper",
         "Category": "Stationery",
-        "Current_Stock": -45,
-        "Reorder_Level": 0
+        "Current_Stock": -970,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM022",
         "Item_Name": "Office Clips/Pins",
         "Category": "Stationery",
-        "Current_Stock": -22,
-        "Reorder_Level": 0
+        "Current_Stock": -925,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM016",
         "Item_Name": "Open File Jacket",
         "Category": "Stationery",
-        "Current_Stock": -74,
-        "Reorder_Level": 0
+        "Current_Stock": -30,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM056",
         "Item_Name": "Pencil",
         "Category": "Stationery",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM055",
         "Item_Name": "Photocopier Sensor",
         "Category": "Stationery",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM054",
         "Item_Name": "Plastic Ruler",
         "Category": "Stationery",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM002",
         "Item_Name": "Punch",
         "Category": "Stationery",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM015",
         "Item_Name": "Secret File Jacket",
         "Category": "Stationery",
-        "Current_Stock": 476,
-        "Reorder_Level": 0
+        "Current_Stock": 367,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM005",
         "Item_Name": "Spiral Binding Paper",
         "Category": "Stationery",
-        "Current_Stock": -150,
-        "Reorder_Level": 0
+        "Current_Stock": -1446,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM003",
         "Item_Name": "Stamp",
         "Category": "Stationery",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM019",
         "Item_Name": "Water Colour",
         "Category": "Stationery",
-        "Current_Stock": -42,
-        "Reorder_Level": 0
+        "Current_Stock": -65,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM011",
         "Item_Name": "White Board",
         "Category": "Stationery",
-        "Current_Stock": -77,
-        "Reorder_Level": 0
+        "Current_Stock": 38,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM013",
         "Item_Name": "White Board Eraser",
         "Category": "Stationery",
-        "Current_Stock": 43,
-        "Reorder_Level": 0
+        "Current_Stock": -547,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM012",
         "Item_Name": "White Board Marker",
         "Category": "Stationery",
-        "Current_Stock": -622,
-        "Reorder_Level": 0
+        "Current_Stock": -1667,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       }
     ],
     "low_stock_alerts": [
@@ -989,350 +2853,416 @@
         "Item_Name": "Bleach (Hypo/Jik)",
         "Category": "Cleaner",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM048",
         "Item_Name": "Hand Sanitizer",
         "Category": "Cleaner",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM053",
         "Item_Name": "Izal",
         "Category": "Cleaner",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM001",
         "Item_Name": "Stain Cleaner",
         "Category": "Cleaner",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM052",
         "Item_Name": "Windolene",
         "Category": "Cleaner",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM046",
         "Item_Name": "Hand Pump",
         "Category": "Equipment",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM047",
         "Item_Name": "Spare Parts",
         "Category": "Equipment",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
+      },
+      {
+        "Item_ID": "ITEM009",
+        "Item_Name": "External Keyboard",
+        "Category": "IT",
+        "Current_Stock": -384,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM007",
         "Item_Name": "Flash Drive",
         "Category": "IT",
-        "Current_Stock": -486,
-        "Reorder_Level": 0
+        "Current_Stock": -243,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM008",
         "Item_Name": "Wireless Mouse",
         "Category": "IT",
-        "Current_Stock": -74,
-        "Reorder_Level": 0
+        "Current_Stock": -121,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
+      },
+      {
+        "Item_ID": "ITEM024",
+        "Item_Name": "Football",
+        "Category": "Sports",
+        "Current_Stock": -1522,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM032",
         "Item_Name": "Hand Ball",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM034",
         "Item_Name": "Hand Ball Canvas",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM037",
         "Item_Name": "Hand Ball Goal keeper Gloves",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM033",
         "Item_Name": "Hand Ball Jersey",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM036",
         "Item_Name": "Hand Ball Nets",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM035",
         "Item_Name": "Hand Ball Socks",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM030",
         "Item_Name": "Hand Gloves",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM043",
         "Item_Name": "Javeline",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
+      },
+      {
+        "Item_ID": "ITEM029",
+        "Item_Name": "Shin Guards",
+        "Category": "Sports",
+        "Current_Stock": -496,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM025",
         "Item_Name": "Soccer Boot",
         "Category": "Sports",
-        "Current_Stock": -20,
-        "Reorder_Level": 0
+        "Current_Stock": -19,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM028",
         "Item_Name": "Soccer Jersey",
         "Category": "Sports",
-        "Current_Stock": -2,
-        "Reorder_Level": 0
+        "Current_Stock": -174,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM027",
         "Item_Name": "Soccer Net",
         "Category": "Sports",
-        "Current_Stock": -25,
-        "Reorder_Level": 0
+        "Current_Stock": -170,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM031",
         "Item_Name": "Soccer Whistle",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM026",
         "Item_Name": "Socks",
         "Category": "Sports",
-        "Current_Stock": -524,
-        "Reorder_Level": 0
+        "Current_Stock": -566,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM045",
         "Item_Name": "Table Tennis",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM044",
         "Item_Name": "Tug of War Ropes",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM038",
         "Item_Name": "Volley Ball",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM042",
         "Item_Name": "Volley Ball Canvas",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM040",
         "Item_Name": "Volley Ball Jersey",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM039",
         "Item_Name": "Volley Ball Nets",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM041",
         "Item_Name": "Volley Ball Socks",
         "Category": "Sports",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM017",
         "Item_Name": "A4 Size Envelopes",
         "Category": "Stationery",
-        "Current_Stock": -132,
-        "Reorder_Level": 0
+        "Current_Stock": -206,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM018",
         "Item_Name": "A5 Size Envelopes",
         "Category": "Stationery",
-        "Current_Stock": -777,
-        "Reorder_Level": 0
+        "Current_Stock": -811,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM049",
         "Item_Name": "Carbon Paper",
         "Category": "Stationery",
         "Current_Stock": 0,
-        "Reorder_Level": 0
-      },
-      {
-        "Item_ID": "ITEM023",
-        "Item_Name": "Cash Book",
-        "Category": "Stationery",
-        "Current_Stock": -75,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM050",
         "Item_Name": "Duplicating Paper",
         "Category": "Stationery",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM004",
         "Item_Name": "F9 Paper",
         "Category": "Stationery",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM014",
         "Item_Name": "File Jacket",
         "Category": "Stationery",
-        "Current_Stock": -533,
-        "Reorder_Level": 0
+        "Current_Stock": -583,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM020",
         "Item_Name": "Jar Gum",
         "Category": "Stationery",
-        "Current_Stock": -12,
-        "Reorder_Level": 0
+        "Current_Stock": -589,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM010",
         "Item_Name": "Laminaring Paper",
         "Category": "Stationery",
-        "Current_Stock": -56,
-        "Reorder_Level": 0
+        "Current_Stock": -1455,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM021",
         "Item_Name": "Legal Paper",
         "Category": "Stationery",
-        "Current_Stock": -45,
-        "Reorder_Level": 0
+        "Current_Stock": -970,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM022",
         "Item_Name": "Office Clips/Pins",
         "Category": "Stationery",
-        "Current_Stock": -22,
-        "Reorder_Level": 0
+        "Current_Stock": -925,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM016",
         "Item_Name": "Open File Jacket",
         "Category": "Stationery",
-        "Current_Stock": -74,
-        "Reorder_Level": 0
+        "Current_Stock": -30,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM056",
         "Item_Name": "Pencil",
         "Category": "Stationery",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM055",
         "Item_Name": "Photocopier Sensor",
         "Category": "Stationery",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM054",
         "Item_Name": "Plastic Ruler",
         "Category": "Stationery",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM002",
         "Item_Name": "Punch",
         "Category": "Stationery",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM005",
         "Item_Name": "Spiral Binding Paper",
         "Category": "Stationery",
-        "Current_Stock": -150,
-        "Reorder_Level": 0
+        "Current_Stock": -1446,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM003",
         "Item_Name": "Stamp",
         "Category": "Stationery",
         "Current_Stock": 0,
-        "Reorder_Level": 0
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM019",
         "Item_Name": "Water Colour",
         "Category": "Stationery",
-        "Current_Stock": -42,
-        "Reorder_Level": 0
+        "Current_Stock": -65,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
-        "Item_ID": "ITEM011",
-        "Item_Name": "White Board",
+        "Item_ID": "ITEM013",
+        "Item_Name": "White Board Eraser",
         "Category": "Stationery",
-        "Current_Stock": -77,
-        "Reorder_Level": 0
+        "Current_Stock": -547,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       },
       {
         "Item_ID": "ITEM012",
         "Item_Name": "White Board Marker",
         "Category": "Stationery",
-        "Current_Stock": -622,
-        "Reorder_Level": 0
+        "Current_Stock": -1667,
+        "Reorder_Level": 10,
+        "Minimum_Stock": 10
       }
     ],
     "recent_movements": [
@@ -1340,474 +3270,1057 @@
         "Transaction_ID": "TXN007",
         "Transaction_Date": "2026-06-20T11:35:34.623179+00:00",
         "Transaction_Type": "OUT",
-        "School_Name": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
+        "Source": "",
+        "Warehouse_ID": "WH-008",
         "Warehouse_Name": "BURUKU East",
-        "Total_Items": 20
+        "School_ID": "B-MA-PR-003",
+        "School_Name": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
+        "LGA": "MAKURDI",
+        "Zone": "B",
+        "School_Type": "PRI",
+        "Item_ID": "ITEM029",
+        "Item_Name": "Shin Guards",
+        "Category": "Sports",
+        "Total_Items": 421
       },
       {
         "Transaction_ID": "TXN006",
         "Transaction_Date": "2026-06-20T11:11:09.299292+00:00",
         "Transaction_Type": "OUT",
-        "School_Name": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
+        "Source": "",
+        "Warehouse_ID": "WH-009",
         "Warehouse_Name": "AGATU Prime",
-        "Total_Items": 950
+        "School_ID": "B-MA-PR-002",
+        "School_Name": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
+        "LGA": "MAKURDI",
+        "Zone": "B",
+        "School_Type": "PRI",
+        "Item_ID": "ITEM028",
+        "Item_Name": "Soccer Jersey",
+        "Category": "Sports",
+        "Total_Items": 52
       },
       {
         "Transaction_ID": "TXN005",
         "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
         "Transaction_Type": "OUT",
-        "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+        "Source": "",
+        "Warehouse_ID": "WH-007",
         "Warehouse_Name": "LOGO Premier",
-        "Total_Items": 196
+        "School_ID": "B-MA-PR-001",
+        "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+        "LGA": "MAKURDI",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM018",
+        "Item_Name": "A5 Size Envelopes",
+        "Category": "Stationery",
+        "Total_Items": 22
+      },
+      {
+        "Transaction_ID": "TXN005",
+        "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-007",
+        "Warehouse_Name": "LOGO Premier",
+        "School_ID": "B-MA-PR-001",
+        "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+        "LGA": "MAKURDI",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM005",
+        "Item_Name": "Spiral Binding Paper",
+        "Category": "Stationery",
+        "Total_Items": 875
+      },
+      {
+        "Transaction_ID": "TXN005",
+        "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-007",
+        "Warehouse_Name": "LOGO Premier",
+        "School_ID": "B-MA-PR-001",
+        "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+        "LGA": "MAKURDI",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM006",
+        "Item_Name": "File Tag",
+        "Category": "Stationery",
+        "Total_Items": 52
+      },
+      {
+        "Transaction_ID": "TXN005",
+        "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-007",
+        "Warehouse_Name": "LOGO Premier",
+        "School_ID": "B-MA-PR-001",
+        "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+        "LGA": "MAKURDI",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM008",
+        "Item_Name": "Wireless Mouse",
+        "Category": "IT",
+        "Total_Items": 22
+      },
+      {
+        "Transaction_ID": "TXN005",
+        "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-007",
+        "Warehouse_Name": "LOGO Premier",
+        "School_ID": "B-MA-PR-001",
+        "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+        "LGA": "MAKURDI",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM013",
+        "Item_Name": "White Board Eraser",
+        "Category": "Stationery",
+        "Total_Items": 25
+      },
+      {
+        "Transaction_ID": "TXN005",
+        "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-007",
+        "Warehouse_Name": "LOGO Premier",
+        "School_ID": "B-MA-PR-001",
+        "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+        "LGA": "MAKURDI",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM015",
+        "Item_Name": "Secret File Jacket",
+        "Category": "Stationery",
+        "Total_Items": 102
+      },
+      {
+        "Transaction_ID": "TXN005",
+        "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-007",
+        "Warehouse_Name": "LOGO Premier",
+        "School_ID": "B-MA-PR-001",
+        "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+        "LGA": "MAKURDI",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM010",
+        "Item_Name": "Laminaring Paper",
+        "Category": "Stationery",
+        "Total_Items": 524
+      },
+      {
+        "Transaction_ID": "TXN005",
+        "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-007",
+        "Warehouse_Name": "LOGO Premier",
+        "School_ID": "B-MA-PR-001",
+        "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+        "LGA": "MAKURDI",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM020",
+        "Item_Name": "Jar Gum",
+        "Category": "Stationery",
+        "Total_Items": 524
+      },
+      {
+        "Transaction_ID": "TXN005",
+        "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-007",
+        "Warehouse_Name": "LOGO Premier",
+        "School_ID": "B-MA-PR-001",
+        "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+        "LGA": "MAKURDI",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM024",
+        "Item_Name": "Football",
+        "Category": "Sports",
+        "Total_Items": 524
+      },
+      {
+        "Transaction_ID": "TXN005",
+        "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-007",
+        "Warehouse_Name": "LOGO Premier",
+        "School_ID": "B-MA-PR-001",
+        "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+        "LGA": "MAKURDI",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM025",
+        "Item_Name": "Soccer Boot",
+        "Category": "Sports",
+        "Total_Items": 22
+      },
+      {
+        "Transaction_ID": "TXN005",
+        "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-007",
+        "Warehouse_Name": "LOGO Premier",
+        "School_ID": "B-MA-PR-001",
+        "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+        "LGA": "MAKURDI",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM026",
+        "Item_Name": "Socks",
+        "Category": "Sports",
+        "Total_Items": 524
+      },
+      {
+        "Transaction_ID": "TXN005",
+        "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-007",
+        "Warehouse_Name": "LOGO Premier",
+        "School_ID": "B-MA-PR-001",
+        "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+        "LGA": "MAKURDI",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM027",
+        "Item_Name": "Soccer Net",
+        "Category": "Sports",
+        "Total_Items": 98
       },
       {
         "Transaction_ID": "TXN004",
         "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
         "Transaction_Type": "OUT",
-        "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+        "Source": "",
+        "Warehouse_ID": "WH-006",
         "Warehouse_Name": "BURUKU Central",
-        "Total_Items": 1739
+        "School_ID": "A-LO-PR-003",
+        "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+        "LGA": "LOGO",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM009",
+        "Item_Name": "External Keyboard",
+        "Category": "IT",
+        "Total_Items": 20
+      },
+      {
+        "Transaction_ID": "TXN004",
+        "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-006",
+        "Warehouse_Name": "BURUKU Central",
+        "School_ID": "A-LO-PR-003",
+        "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+        "LGA": "LOGO",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM023",
+        "Item_Name": "Cash Book",
+        "Category": "Stationery",
+        "Total_Items": 20
+      },
+      {
+        "Transaction_ID": "TXN004",
+        "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-006",
+        "Warehouse_Name": "BURUKU Central",
+        "School_ID": "A-LO-PR-003",
+        "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+        "LGA": "LOGO",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM022",
+        "Item_Name": "Office Clips/Pins",
+        "Category": "Stationery",
+        "Total_Items": 20
+      },
+      {
+        "Transaction_ID": "TXN004",
+        "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-006",
+        "Warehouse_Name": "BURUKU Central",
+        "School_ID": "A-LO-PR-003",
+        "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+        "LGA": "LOGO",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM021",
+        "Item_Name": "Legal Paper",
+        "Category": "Stationery",
+        "Total_Items": 45
+      },
+      {
+        "Transaction_ID": "TXN004",
+        "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-006",
+        "Warehouse_Name": "BURUKU Central",
+        "School_ID": "A-LO-PR-003",
+        "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+        "LGA": "LOGO",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM019",
+        "Item_Name": "Water Colour",
+        "Category": "Stationery",
+        "Total_Items": 65
+      },
+      {
+        "Transaction_ID": "TXN004",
+        "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-006",
+        "Warehouse_Name": "BURUKU Central",
+        "School_ID": "A-LO-PR-003",
+        "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+        "LGA": "LOGO",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM017",
+        "Item_Name": "A4 Size Envelopes",
+        "Category": "Stationery",
+        "Total_Items": 52
+      },
+      {
+        "Transaction_ID": "TXN004",
+        "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-006",
+        "Warehouse_Name": "BURUKU Central",
+        "School_ID": "A-LO-PR-003",
+        "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+        "LGA": "LOGO",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM014",
+        "Item_Name": "File Jacket",
+        "Category": "Stationery",
+        "Total_Items": 64
+      },
+      {
+        "Transaction_ID": "TXN004",
+        "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-006",
+        "Warehouse_Name": "BURUKU Central",
+        "School_ID": "A-LO-PR-003",
+        "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+        "LGA": "LOGO",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM012",
+        "Item_Name": "White Board Marker",
+        "Category": "Stationery",
+        "Total_Items": 1048
+      },
+      {
+        "Transaction_ID": "TXN004",
+        "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-006",
+        "Warehouse_Name": "BURUKU Central",
+        "School_ID": "A-LO-PR-003",
+        "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+        "LGA": "LOGO",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM010",
+        "Item_Name": "Laminaring Paper",
+        "Category": "Stationery",
+        "Total_Items": 52
+      },
+      {
+        "Transaction_ID": "TXN004",
+        "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-006",
+        "Warehouse_Name": "BURUKU Central",
+        "School_ID": "A-LO-PR-003",
+        "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+        "LGA": "LOGO",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM026",
+        "Item_Name": "Socks",
+        "Category": "Sports",
+        "Total_Items": 52
+      },
+      {
+        "Transaction_ID": "TXN004",
+        "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-006",
+        "Warehouse_Name": "BURUKU Central",
+        "School_ID": "A-LO-PR-003",
+        "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+        "LGA": "LOGO",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM007",
+        "Item_Name": "Flash Drive",
+        "Category": "IT",
+        "Total_Items": 75
+      },
+      {
+        "Transaction_ID": "TXN004",
+        "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-006",
+        "Warehouse_Name": "BURUKU Central",
+        "School_ID": "A-LO-PR-003",
+        "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+        "LGA": "LOGO",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM005",
+        "Item_Name": "Spiral Binding Paper",
+        "Category": "Stationery",
+        "Total_Items": 98
+      },
+      {
+        "Transaction_ID": "TXN004",
+        "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-006",
+        "Warehouse_Name": "BURUKU Central",
+        "School_ID": "A-LO-PR-003",
+        "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+        "LGA": "LOGO",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM-001",
+        "Item_Name": "ITEM-001",
+        "Category": "Uncategorized",
+        "Total_Items": 80
+      },
+      {
+        "Transaction_ID": "TXN004",
+        "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-006",
+        "Warehouse_Name": "BURUKU Central",
+        "School_ID": "A-LO-PR-003",
+        "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+        "LGA": "LOGO",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM024",
+        "Item_Name": "Football",
+        "Category": "Sports",
+        "Total_Items": 98
+      },
+      {
+        "Transaction_ID": "TXN004",
+        "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-006",
+        "Warehouse_Name": "BURUKU Central",
+        "School_ID": "A-LO-PR-003",
+        "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+        "LGA": "LOGO",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM025",
+        "Item_Name": "Soccer Boot",
+        "Category": "Sports",
+        "Total_Items": 20
+      },
+      {
+        "Transaction_ID": "TXN004",
+        "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-006",
+        "Warehouse_Name": "BURUKU Central",
+        "School_ID": "A-LO-PR-003",
+        "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+        "LGA": "LOGO",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM028",
+        "Item_Name": "Soccer Jersey",
+        "Category": "Sports",
+        "Total_Items": 98
+      },
+      {
+        "Transaction_ID": "TXN004",
+        "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-006",
+        "Warehouse_Name": "BURUKU Central",
+        "School_ID": "A-LO-PR-003",
+        "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+        "LGA": "LOGO",
+        "Zone": "A",
+        "School_Type": "UBE-JSS",
+        "Item_ID": "ITEM029",
+        "Item_Name": "Shin Guards",
+        "Category": "Sports",
+        "Total_Items": 75
       },
       {
         "Transaction_ID": "TXN002",
         "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
         "Transaction_Type": "OUT",
-        "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+        "Source": "",
+        "Warehouse_ID": "WH-002",
         "Warehouse_Name": "Okpokwu Central",
-        "Total_Items": 1366
+        "School_ID": "B-BU-PR-005",
+        "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+        "LGA": "BURUKU",
+        "Zone": "A",
+        "School_Type": "PRI",
+        "Item_ID": "ITEM024",
+        "Item_Name": "Football",
+        "Category": "Sports",
+        "Total_Items": 25
       },
       {
-        "Transaction_ID": "TXN003",
-        "Transaction_Date": "2026-06-09T12:16:12.946409+00:01",
+        "Transaction_ID": "TXN002",
+        "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
         "Transaction_Type": "OUT",
-        "School_Name": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
-        "Warehouse_Name": "Great Otukpo II",
-        "Total_Items": 1341
-      },
-      {
-        "Transaction_ID": "TXN001",
-        "Transaction_Date": "2026-06-09T11:48:27.344227+00:00",
-        "Transaction_Type": "IN",
-        "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
-        "Warehouse_Name": "Makurdi Central Store",
-        "Total_Items": 2972
-      },
-      {
-        "Transaction_ID": "TXN050",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 524
-      },
-      {
-        "Transaction_ID": "TXN051",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 25
-      },
-      {
-        "Transaction_ID": "TXN052",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 52
-      },
-      {
-        "Transaction_ID": "TXN053",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 57
-      },
-      {
-        "Transaction_ID": "TXN054",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 98
-      },
-      {
-        "Transaction_ID": "TXN055",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 22
-      },
-      {
-        "Transaction_ID": "TXN056",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 12
-      },
-      {
-        "Transaction_ID": "TXN057",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 45
-      },
-      {
-        "Transaction_ID": "TXN058",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 22
-      },
-      {
-        "Transaction_ID": "TXN059",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 75
-      },
-      {
-        "Transaction_ID": "TXN060",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 875
-      },
-      {
-        "Transaction_ID": "TXN061",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 20
-      },
-      {
-        "Transaction_ID": "TXN062",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 524
-      },
-      {
-        "Transaction_ID": "TXN063",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 25
-      },
-      {
-        "Transaction_ID": "TXN064",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 20
-      },
-      {
-        "Transaction_ID": "TXN065",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 524
-      },
-      {
-        "Transaction_ID": "TXN066",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 21
-      },
-      {
-        "Transaction_ID": "TXN067",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 521
-      },
-      {
-        "Transaction_ID": "TXN068",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 521
-      },
-      {
-        "Transaction_ID": "TXN069",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 52
-      },
-      {
-        "Transaction_ID": "TXN070",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 57
-      },
-      {
-        "Transaction_ID": "TXN071",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 240
-      },
-      {
-        "Transaction_ID": "TXN072",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 750
-      },
-      {
-        "Transaction_ID": "TXN073",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 1032
-      },
-      {
-        "Transaction_ID": "TXN074",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 119
-      },
-      {
-        "Transaction_ID": "TXN075",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 1019
-      },
-      {
-        "Transaction_ID": "TXN076",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 75
-      },
-      {
-        "Transaction_ID": "TXN077",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 875
-      },
-      {
-        "Transaction_ID": "TXN078",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 20
-      },
-      {
-        "Transaction_ID": "TXN079",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 524
-      },
-      {
-        "Transaction_ID": "TXN080",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 25
-      },
-      {
-        "Transaction_ID": "TXN081",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
+        "Source": "",
+        "Warehouse_ID": "WH-002",
+        "Warehouse_Name": "Okpokwu Central",
+        "School_ID": "B-BU-PR-005",
+        "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+        "LGA": "BURUKU",
+        "Zone": "A",
+        "School_Type": "PRI",
+        "Item_ID": "ITEM028",
+        "Item_Name": "Soccer Jersey",
+        "Category": "Sports",
         "Total_Items": 2
       },
       {
-        "Transaction_ID": "TXN082",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
+        "Transaction_ID": "TXN002",
+        "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-002",
+        "Warehouse_Name": "Okpokwu Central",
+        "School_ID": "B-BU-PR-005",
+        "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+        "LGA": "BURUKU",
+        "Zone": "A",
+        "School_Type": "PRI",
+        "Item_ID": "ITEM027",
+        "Item_Name": "Soccer Net",
+        "Category": "Sports",
+        "Total_Items": 45
+      },
+      {
+        "Transaction_ID": "TXN002",
+        "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-002",
+        "Warehouse_Name": "Okpokwu Central",
+        "School_ID": "B-BU-PR-005",
+        "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+        "LGA": "BURUKU",
+        "Zone": "A",
+        "School_Type": "PRI",
+        "Item_ID": "ITEM026",
+        "Item_Name": "Socks",
+        "Category": "Sports",
+        "Total_Items": 2
+      },
+      {
+        "Transaction_ID": "TXN002",
+        "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-002",
+        "Warehouse_Name": "Okpokwu Central",
+        "School_ID": "B-BU-PR-005",
+        "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+        "LGA": "BURUKU",
+        "Zone": "A",
+        "School_Type": "PRI",
+        "Item_ID": "ITEM014",
+        "Item_Name": "File Jacket",
+        "Category": "Stationery",
+        "Total_Items": 521
+      },
+      {
+        "Transaction_ID": "TXN002",
+        "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-002",
+        "Warehouse_Name": "Okpokwu Central",
+        "School_ID": "B-BU-PR-005",
+        "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+        "LGA": "BURUKU",
+        "Zone": "A",
+        "School_Type": "PRI",
+        "Item_ID": "ITEM023",
+        "Item_Name": "Cash Book",
+        "Category": "Stationery",
+        "Total_Items": 75
+      },
+      {
+        "Transaction_ID": "TXN002",
+        "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-002",
+        "Warehouse_Name": "Okpokwu Central",
+        "School_ID": "B-BU-PR-005",
+        "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+        "LGA": "BURUKU",
+        "Zone": "A",
+        "School_Type": "PRI",
+        "Item_ID": "ITEM022",
+        "Item_Name": "Office Clips/Pins",
+        "Category": "Stationery",
         "Total_Items": 52
       },
       {
-        "Transaction_ID": "TXN083",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 98
+        "Transaction_ID": "TXN002",
+        "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-002",
+        "Warehouse_Name": "Okpokwu Central",
+        "School_ID": "B-BU-PR-005",
+        "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+        "LGA": "BURUKU",
+        "Zone": "A",
+        "School_Type": "PRI",
+        "Item_ID": "ITEM-001",
+        "Item_Name": "ITEM-001",
+        "Category": "Uncategorized",
+        "Total_Items": 544
       },
       {
-        "Transaction_ID": "TXN084",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 52
+        "Transaction_ID": "TXN002",
+        "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-002",
+        "Warehouse_Name": "Okpokwu Central",
+        "School_ID": "B-BU-PR-005",
+        "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+        "LGA": "BURUKU",
+        "Zone": "A",
+        "School_Type": "PRI",
+        "Item_ID": "ITEM-002",
+        "Item_Name": "ITEM-002",
+        "Category": "Uncategorized",
+        "Total_Items": 500
       },
       {
-        "Transaction_ID": "TXN085",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
+        "Transaction_ID": "TXN002",
+        "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-002",
+        "Warehouse_Name": "Okpokwu Central",
+        "School_ID": "B-BU-PR-005",
+        "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+        "LGA": "BURUKU",
+        "Zone": "A",
+        "School_Type": "PRI",
+        "Item_ID": "ITEM005",
+        "Item_Name": "Spiral Binding Paper",
+        "Category": "Stationery",
         "Total_Items": 421
       },
       {
-        "Transaction_ID": "TXN086",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
+        "Transaction_ID": "TXN002",
+        "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-002",
+        "Warehouse_Name": "Okpokwu Central",
+        "School_ID": "B-BU-PR-005",
+        "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+        "LGA": "BURUKU",
+        "Zone": "A",
+        "School_Type": "PRI",
+        "Item_ID": "ITEM007",
+        "Item_Name": "Flash Drive",
+        "Category": "IT",
+        "Total_Items": 589
+      },
+      {
+        "Transaction_ID": "TXN002",
+        "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-002",
+        "Warehouse_Name": "Okpokwu Central",
+        "School_ID": "B-BU-PR-005",
+        "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+        "LGA": "BURUKU",
+        "Zone": "A",
+        "School_Type": "PRI",
+        "Item_ID": "ITEM008",
+        "Item_Name": "Wireless Mouse",
+        "Category": "IT",
+        "Total_Items": 20
+      },
+      {
+        "Transaction_ID": "TXN002",
+        "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-002",
+        "Warehouse_Name": "Okpokwu Central",
+        "School_ID": "B-BU-PR-005",
+        "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+        "LGA": "BURUKU",
+        "Zone": "A",
+        "School_Type": "PRI",
+        "Item_ID": "ITEM010",
+        "Item_Name": "Laminaring Paper",
+        "Category": "Stationery",
+        "Total_Items": 879
+      },
+      {
+        "Transaction_ID": "TXN002",
+        "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-002",
+        "Warehouse_Name": "Okpokwu Central",
+        "School_ID": "B-BU-PR-005",
+        "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+        "LGA": "BURUKU",
+        "Zone": "A",
+        "School_Type": "PRI",
+        "Item_ID": "ITEM012",
+        "Item_Name": "White Board Marker",
+        "Category": "Stationery",
+        "Total_Items": 619
+      },
+      {
+        "Transaction_ID": "TXN002",
+        "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-002",
+        "Warehouse_Name": "Okpokwu Central",
+        "School_ID": "B-BU-PR-005",
+        "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+        "LGA": "BURUKU",
+        "Zone": "A",
+        "School_Type": "PRI",
+        "Item_ID": "ITEM015",
+        "Item_Name": "Secret File Jacket",
+        "Category": "Stationery",
+        "Total_Items": 52
+      },
+      {
+        "Transaction_ID": "TXN002",
+        "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-002",
+        "Warehouse_Name": "Okpokwu Central",
+        "School_ID": "B-BU-PR-005",
+        "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+        "LGA": "BURUKU",
+        "Zone": "A",
+        "School_Type": "PRI",
+        "Item_ID": "ITEM016",
+        "Item_Name": "Open File Jacket",
+        "Category": "Stationery",
+        "Total_Items": 52
+      },
+      {
+        "Transaction_ID": "TXN002",
+        "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-002",
+        "Warehouse_Name": "Okpokwu Central",
+        "School_ID": "B-BU-PR-005",
+        "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+        "LGA": "BURUKU",
+        "Zone": "A",
+        "School_Type": "PRI",
+        "Item_ID": "ITEM017",
+        "Item_Name": "A4 Size Envelopes",
+        "Category": "Stationery",
+        "Total_Items": 97
+      },
+      {
+        "Transaction_ID": "TXN002",
+        "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-002",
+        "Warehouse_Name": "Okpokwu Central",
+        "School_ID": "B-BU-PR-005",
+        "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+        "LGA": "BURUKU",
+        "Zone": "A",
+        "School_Type": "PRI",
+        "Item_ID": "ITEM019",
+        "Item_Name": "Water Colour",
+        "Category": "Stationery",
         "Total_Items": 22
       },
       {
-        "Transaction_ID": "TXN087",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
+        "Transaction_ID": "TXN002",
+        "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
+        "Transaction_Type": "OUT",
+        "Source": "",
+        "Warehouse_ID": "WH-002",
+        "Warehouse_Name": "Okpokwu Central",
+        "School_ID": "B-BU-PR-005",
+        "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+        "LGA": "BURUKU",
+        "Zone": "A",
+        "School_Type": "PRI",
+        "Item_ID": "ITEM020",
+        "Item_Name": "Jar Gum",
+        "Category": "Stationery",
         "Total_Items": 75
-      },
-      {
-        "Transaction_ID": "TXN088",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 22
-      },
-      {
-        "Transaction_ID": "TXN089",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 75
-      },
-      {
-        "Transaction_ID": "TXN090",
-        "Transaction_Date": NaN,
-        "Transaction_Type": NaN,
-        "School_Name": NaN,
-        "Warehouse_Name": NaN,
-        "Total_Items": 875
       }
     ],
     "recent_requisitions": [
       {
         "Requisition_ID": "REQ005",
         "Request_Date": "2026-06-11T15:18:27.168956+00:00",
+        "School_ID": "A-UK-PR-001",
         "School_Name": "ANGLICAN PRIMARY SCHOOL ALABAR",
         "LGA": "UKUM",
+        "Zone": "B",
         "Status": "Pending",
         "Requested_Quantity": 0,
+        "Approved_Quantity": 0,
         "Fulfilled_Quantity": 0
       },
       {
         "Requisition_ID": "REQ001",
         "Request_Date": "2026-06-11T14:38:43.453148+00:00",
+        "School_ID": "B-MA-PR-001",
         "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
         "LGA": "MAKURDI",
+        "Zone": "A",
         "Status": "Approved",
         "Requested_Quantity": 150,
+        "Approved_Quantity": 150,
         "Fulfilled_Quantity": 150
       },
       {
         "Requisition_ID": "REQ004",
         "Request_Date": "2026-06-11T14:38:43.453148+00:00",
+        "School_ID": "A-LO-PR-001",
         "School_Name": "ANGLICAN PRIMARY SCHOOL ADA",
         "LGA": "LOGO",
+        "Zone": "B",
         "Status": "Fulfilled",
         "Requested_Quantity": 150,
+        "Approved_Quantity": 105,
         "Fulfilled_Quantity": 105
       },
       {
         "Requisition_ID": "REQ002",
         "Request_Date": "2026-06-11T14:38:43.453148+00:01",
+        "School_ID": "B-MA-PR-002",
         "School_Name": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
         "LGA": "MAKURDI",
+        "Zone": "B",
         "Status": "Pending",
         "Requested_Quantity": 75,
+        "Approved_Quantity": 0,
         "Fulfilled_Quantity": 0
       },
       {
         "Requisition_ID": "REQ003",
         "Request_Date": "2026-06-11T14:38:43.453148+00:02",
+        "School_ID": "B-MA-PR-003",
         "School_Name": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
         "LGA": "MAKURDI",
+        "Zone": "B",
         "Status": "Partially Fulfilled",
         "Requested_Quantity": 200,
+        "Approved_Quantity": 150,
         "Fulfilled_Quantity": 100
       }
     ],
     "fulfillment_summary": [
       {
-        "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
-        "LGA": "MAKURDI",
-        "Requested_Quantity": 150,
-        "Approved_Quantity": 150,
-        "Fulfilled_Quantity": 150,
-        "Fulfillment_Rate": 100.0
-      },
-      {
-        "School_Name": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
-        "LGA": "MAKURDI",
-        "Requested_Quantity": 75,
-        "Approved_Quantity": 0,
-        "Fulfilled_Quantity": 0,
-        "Fulfillment_Rate": 0.0
-      },
-      {
-        "School_Name": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
-        "LGA": "MAKURDI",
-        "Requested_Quantity": 200,
-        "Approved_Quantity": 150,
-        "Fulfilled_Quantity": 100,
-        "Fulfillment_Rate": 66.67
-      },
-      {
+        "School_ID": "A-LO-PR-001",
         "School_Name": "ANGLICAN PRIMARY SCHOOL ADA",
         "LGA": "LOGO",
+        "Zone": "B",
         "Requested_Quantity": 150,
         "Approved_Quantity": 105,
         "Fulfilled_Quantity": 105,
         "Fulfillment_Rate": 100.0
       },
       {
+        "School_ID": "A-UK-PR-001",
         "School_Name": "ANGLICAN PRIMARY SCHOOL ALABAR",
         "LGA": "UKUM",
+        "Zone": "B",
         "Requested_Quantity": 0,
         "Approved_Quantity": 0,
         "Fulfilled_Quantity": 0,
         "Fulfillment_Rate": 0.0
+      },
+      {
+        "School_ID": "B-MA-PR-001",
+        "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+        "LGA": "MAKURDI",
+        "Zone": "A",
+        "Requested_Quantity": 150,
+        "Approved_Quantity": 150,
+        "Fulfilled_Quantity": 150,
+        "Fulfillment_Rate": 100.0
+      },
+      {
+        "School_ID": "B-MA-PR-002",
+        "School_Name": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
+        "LGA": "MAKURDI",
+        "Zone": "B",
+        "Requested_Quantity": 75,
+        "Approved_Quantity": 0,
+        "Fulfilled_Quantity": 0,
+        "Fulfillment_Rate": 0.0
+      },
+      {
+        "School_ID": "B-MA-PR-003",
+        "School_Name": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
+        "LGA": "MAKURDI",
+        "Zone": "B",
+        "Requested_Quantity": 200,
+        "Approved_Quantity": 150,
+        "Fulfilled_Quantity": 100,
+        "Fulfillment_Rate": 66.67
+      }
+    ],
+    "requisition_items": [
+      {
+        "Requisition_ID": "REQ001",
+        "Request_Date": "2026-06-11T14:38:43.453148+00:00",
+        "Status": "Approved",
+        "School_ID": "B-MA-PR-001",
+        "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+        "LGA": "MAKURDI",
+        "Zone": "A",
+        "Item_ID": "ITEM002",
+        "Item_Name": "Punch",
+        "Category": "Stationery",
+        "Quantity_Requested": 100,
+        "Quantity_Approved": 100,
+        "Quantity_Fulfilled": 100
+      },
+      {
+        "Requisition_ID": "REQ001",
+        "Request_Date": "2026-06-11T14:38:43.453148+00:00",
+        "Status": "Approved",
+        "School_ID": "B-MA-PR-001",
+        "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+        "LGA": "MAKURDI",
+        "Zone": "A",
+        "Item_ID": "ITEM002",
+        "Item_Name": "Punch",
+        "Category": "Stationery",
+        "Quantity_Requested": 50,
+        "Quantity_Approved": 50,
+        "Quantity_Fulfilled": 50
+      },
+      {
+        "Requisition_ID": "REQ002",
+        "Request_Date": "2026-06-11T14:38:43.453148+00:01",
+        "Status": "Pending",
+        "School_ID": "B-MA-PR-002",
+        "School_Name": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
+        "LGA": "MAKURDI",
+        "Zone": "B",
+        "Item_ID": "ITEM003",
+        "Item_Name": "Stamp",
+        "Category": "Stationery",
+        "Quantity_Requested": 75,
+        "Quantity_Approved": 0,
+        "Quantity_Fulfilled": 0
+      },
+      {
+        "Requisition_ID": "REQ003",
+        "Request_Date": "2026-06-11T14:38:43.453148+00:02",
+        "Status": "Partially Fulfilled",
+        "School_ID": "B-MA-PR-003",
+        "School_Name": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
+        "LGA": "MAKURDI",
+        "Zone": "B",
+        "Item_ID": "ITEM004",
+        "Item_Name": "F9 Paper",
+        "Category": "Stationery",
+        "Quantity_Requested": 200,
+        "Quantity_Approved": 150,
+        "Quantity_Fulfilled": 100
+      },
+      {
+        "Requisition_ID": "REQ004",
+        "Request_Date": "2026-06-11T14:38:43.453148+00:00",
+        "Status": "Fulfilled",
+        "School_ID": "A-LO-PR-001",
+        "School_Name": "ANGLICAN PRIMARY SCHOOL ADA",
+        "LGA": "LOGO",
+        "Zone": "B",
+        "Item_ID": "ITEM005",
+        "Item_Name": "Spiral Binding Paper",
+        "Category": "Stationery",
+        "Quantity_Requested": 100,
+        "Quantity_Approved": 80,
+        "Quantity_Fulfilled": 80
+      },
+      {
+        "Requisition_ID": "REQ004",
+        "Request_Date": "2026-06-11T14:38:43.453148+00:00",
+        "Status": "Fulfilled",
+        "School_ID": "A-LO-PR-001",
+        "School_Name": "ANGLICAN PRIMARY SCHOOL ADA",
+        "LGA": "LOGO",
+        "Zone": "B",
+        "Item_ID": "ITEM002",
+        "Item_Name": "Punch",
+        "Category": "Stationery",
+        "Quantity_Requested": 50,
+        "Quantity_Approved": 25,
+        "Quantity_Fulfilled": 25
       }
     ]
   }

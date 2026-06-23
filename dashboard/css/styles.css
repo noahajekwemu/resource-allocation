@@ -112,10 +112,9 @@ td { background: white; font-size: .84rem; }
   .sidebar__nav:not(:first-of-type) { border-top: 1px solid rgba(255,255,255,.15); margin-top: 8px; padding-top: 8px; }
   .sidebar__nav a { padding: 7px 9px; }
   .workspace-layout { grid-template-columns: 1fr; }
-  .filter-panel { display: grid; gap: 7px 12px; grid-template-columns: repeat(4, 1fr); position: static; }
+  .filter-panel { display: grid; gap: 7px 12px; grid-template-columns: repeat(3, 1fr); position: static; }
   .filter-panel__heading, .filter-note { grid-column: 1 / -1; }
   .filter-panel label { margin: 0; }
-  .filter-panel select { grid-row: 3; }
   .filter-reset { grid-column: 1 / -1; margin-top: 8px; width: auto; }
 }
 @media (max-width: 700px) {

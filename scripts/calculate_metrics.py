@@ -122,7 +122,7 @@ def prepare_items(items: pd.DataFrame) -> pd.DataFrame:
 
 
 def prepare_schools(schools: pd.DataFrame) -> pd.DataFrame:
-    columns = ["School_ID", "School_Name", "LGA", "School_Type"]
+    columns = ["School_ID", "School_Name", "LGA", "Zone", "School_Type"]
     if schools.empty:
         return pd.DataFrame(columns=columns)
     school_id = find_column(schools, ["School_ID", "School ID"], required=True)
@@ -134,6 +134,9 @@ def prepare_schools(schools: pd.DataFrame) -> pd.DataFrame:
     prepared["LGA"] = safe_text_column(
         schools, find_column(schools, ["LGA", "Local_Government", "Local Government"])
     )
+    prepared["Zone"] = safe_text_column(
+        schools, find_column(schools, ["Zone", "Education_Zone", "Education Zone"])
+    )
     prepared["School_Type"] = safe_text_column(
         schools, find_column(schools, ["School_Type", "School Type", "Type"])
     )
@@ -141,6 +144,7 @@ def prepare_schools(schools: pd.DataFrame) -> pd.DataFrame:
         prepared["School_Name"] != "", prepared["School_ID"]
     )
     prepared["LGA"] = prepared["LGA"].where(prepared["LGA"] != "", "Unknown")
+    prepared["Zone"] = prepared["Zone"].where(prepared["Zone"] != "", "Unknown")
     prepared["School_Type"] = prepared["School_Type"].where(
         prepared["School_Type"] != "", "Unknown"
     )
@@ -148,7 +152,7 @@ def prepare_schools(schools: pd.DataFrame) -> pd.DataFrame:
 
 
 def prepare_warehouses(warehouses: pd.DataFrame) -> pd.DataFrame:
-    columns = ["Warehouse_ID", "Warehouse_Name"]
+    columns = ["Warehouse_ID", "Warehouse_Name", "Zone"]
     if warehouses.empty:
         return pd.DataFrame(columns=columns)
     warehouse_id = find_column(warehouses, ["Warehouse_ID", "Warehouse ID"], required=True)
@@ -158,9 +162,13 @@ def prepare_warehouses(warehouses: pd.DataFrame) -> pd.DataFrame:
         warehouses,
         find_column(warehouses, ["Warehouse_Name", "Warehouse Name", "Warehouse"]),
     )
+    prepared["Zone"] = safe_text_column(
+        warehouses, find_column(warehouses, ["Zone", "Warehouse_Zone", "Warehouse Zone"])
+    )
     prepared["Warehouse_Name"] = prepared["Warehouse_Name"].where(
         prepared["Warehouse_Name"] != "", prepared["Warehouse_ID"]
     )
+    prepared["Zone"] = prepared["Zone"].where(prepared["Zone"] != "", "")
     return prepared[prepared["Warehouse_ID"] != ""].drop_duplicates(
         "Warehouse_ID", keep="last"
     )
@@ -366,14 +374,18 @@ def enrich_movements(
     enriched = enriched.merge(
         schools, how="left", left_on="Destination_School_ID", right_on="School_ID"
     )
-    enriched = enriched.merge(warehouses, how="left", on="Warehouse_ID")
+    warehouse_columns = warehouses.rename(columns={"Zone": "Warehouse_Zone"})
+    enriched = enriched.merge(warehouse_columns, how="left", on="Warehouse_ID")
     defaults = {
         "Item_Name": enriched.get("Item_ID", ""),
         "Category": "Uncategorized",
+        "School_ID": enriched.get("Destination_School_ID", ""),
         "School_Name": enriched.get("Destination_School_ID", ""),
         "LGA": "Unknown",
+        "Zone": "Unknown",
         "School_Type": "Unknown",
         "Warehouse_Name": enriched.get("Warehouse_ID", ""),
+        "Warehouse_Zone": "",
     }
     for column, default in defaults.items():
         if column not in enriched:
@@ -556,6 +568,41 @@ def build_monthly_stock_movements(enriched: pd.DataFrame) -> list[dict[str, Any]
     ]
 
 
+def unique_filter_values(values: pd.Series) -> list[str]:
+    return sorted(
+        {
+            str(value).strip()
+            for value in values.dropna()
+            if str(value).strip() and str(value).strip().lower() != "unknown"
+        }
+    )
+
+
+def build_filter_options(
+    schools: pd.DataFrame,
+    warehouses: pd.DataFrame,
+    items: pd.DataFrame,
+    requisitions: pd.DataFrame,
+) -> dict[str, list[str]]:
+    return {
+        "lgas": unique_filter_values(schools["LGA"]) if "LGA" in schools else [],
+        "zones": unique_filter_values(schools["Zone"]) if "Zone" in schools else [],
+        "warehouses": unique_filter_values(warehouses["Warehouse_Name"])
+        if "Warehouse_Name" in warehouses
+        else [],
+        "schools": unique_filter_values(schools["School_Name"])
+        if "School_Name" in schools
+        else [],
+        "items": unique_filter_values(items["Item_Name"]) if "Item_Name" in items else [],
+        "categories": unique_filter_values(items["Category"])
+        if "Category" in items
+        else [],
+        "requisition_statuses": unique_filter_values(requisitions["Status"])
+        if "Status" in requisitions
+        else [],
+    }
+
+
 def build_stock_levels_table(stock: pd.DataFrame) -> list[dict[str, Any]]:
     return [
         {
@@ -583,8 +630,18 @@ def build_recent_movements_table(enriched: pd.DataFrame, limit: int = 50) -> lis
                 "Transaction_ID",
                 "Transaction_Date",
                 "Transaction_Type",
+                "Source",
+                "Warehouse_ID",
+                "Destination_School_ID",
+                "School_ID",
                 "School_Name",
+                "LGA",
+                "Zone",
+                "School_Type",
                 "Warehouse_Name",
+                "Item_ID",
+                "Item_Name",
+                "Category",
             ],
             dropna=False,
         )["Quantity"]
@@ -600,8 +657,17 @@ def build_recent_movements_table(enriched: pd.DataFrame, limit: int = 50) -> lis
             "Transaction_ID": row["Transaction_ID"],
             "Transaction_Date": row["Transaction_Date"],
             "Transaction_Type": row["Transaction_Type"],
-            "School_Name": row["School_Name"],
+            "Source": row["Source"],
+            "Warehouse_ID": row["Warehouse_ID"],
             "Warehouse_Name": row["Warehouse_Name"],
+            "School_ID": row["School_ID"] or row["Destination_School_ID"],
+            "School_Name": row["School_Name"],
+            "LGA": row["LGA"],
+            "Zone": row["Zone"],
+            "School_Type": row["School_Type"],
+            "Item_ID": row["Item_ID"],
+            "Item_Name": row["Item_Name"],
+            "Category": row["Category"],
             "Total_Items": int(row["Total_Items"]),
         }
         for _, row in summaries.iterrows()
@@ -624,11 +690,12 @@ def build_requisition_analytics(
     ]
 
     detail_items = details.merge(
-        items[["Item_ID", "Item_Name"]], on="Item_ID", how="left"
+        items[["Item_ID", "Item_Name", "Category"]], on="Item_ID", how="left"
     )
     detail_items["Item_Name"] = detail_items["Item_Name"].fillna(
         detail_items["Item_ID"]
     )
+    detail_items["Category"] = detail_items["Category"].fillna("Uncategorized")
     by_item = (
         detail_items.groupby("Item_Name")[[
             "Quantity_Requested", "Quantity_Approved", "Quantity_Fulfilled"
@@ -644,7 +711,10 @@ def build_requisition_analytics(
     )
     requested_comparison = [
         {
+            "Item_ID": "",
             "item": row["Item_Name"],
+            "Item_Name": row["Item_Name"],
+            "Category": "",
             "requested": int(row["Quantity_Requested"]),
             "approved": int(row["Quantity_Approved"]),
             "fulfilled": int(row["Quantity_Fulfilled"]),
@@ -652,7 +722,13 @@ def build_requisition_analytics(
         for _, row in by_item.iterrows()
     ]
     top_requested = [
-        {"item": row["Item_Name"], "quantity": int(row["Quantity_Requested"])}
+        {
+            "Item_ID": "",
+            "item": row["Item_Name"],
+            "Item_Name": row["Item_Name"],
+            "Category": "",
+            "quantity": int(row["Quantity_Requested"]),
+        }
         for _, row in by_item.head(10).iterrows()
     ]
 
@@ -692,9 +768,13 @@ def build_requisition_analytics(
         {
             "Requisition_ID": row["Requisition_ID"],
             "Request_Date": row["Request_Date"],
-            "School_Name": row["School_Name"], "LGA": row["LGA"],
+            "School_ID": row["School_ID"],
+            "School_Name": row["School_Name"],
+            "LGA": row["LGA"],
+            "Zone": row["Zone"],
             "Status": row["Status"],
             "Requested_Quantity": int(row["Quantity_Requested"]),
+            "Approved_Quantity": int(row["Quantity_Approved"]),
             "Fulfilled_Quantity": int(row["Quantity_Fulfilled"]),
         }
         for _, row in recent_frame.sort_values(
@@ -703,13 +783,13 @@ def build_requisition_analytics(
     ]
 
     fulfillment_frame = (
-        requisition_rows.groupby(["School_Name", "LGA"], dropna=False)[[
+        requisition_rows.groupby(["School_ID", "School_Name", "LGA", "Zone"], dropna=False)[[
             "Quantity_Requested", "Quantity_Approved", "Quantity_Fulfilled"
         ]].sum().reset_index()
         if not requisition_rows.empty
         else pd.DataFrame(columns=[
-            "School_Name", "LGA", "Quantity_Requested", "Quantity_Approved",
-            "Quantity_Fulfilled",
+            "School_ID", "School_Name", "LGA", "Zone", "Quantity_Requested",
+            "Quantity_Approved", "Quantity_Fulfilled",
         ])
     )
     fulfillment_summary = []
@@ -717,12 +797,37 @@ def build_requisition_analytics(
         approved = float(row["Quantity_Approved"])
         fulfilled = float(row["Quantity_Fulfilled"])
         fulfillment_summary.append({
-            "School_Name": row["School_Name"], "LGA": row["LGA"],
+            "School_ID": row["School_ID"], "School_Name": row["School_Name"],
+            "LGA": row["LGA"], "Zone": row["Zone"],
             "Requested_Quantity": int(row["Quantity_Requested"]),
             "Approved_Quantity": int(approved), "Fulfilled_Quantity": int(fulfilled),
             "Fulfillment_Rate": round(fulfilled / approved * 100, 2)
             if approved > 0 else 0.0,
         })
+
+    requisition_item_rows_frame = detail_items.merge(
+        requisitions[["Requisition_ID", "School_ID", "Request_Date", "Status"]],
+        on="Requisition_ID",
+        how="left",
+    ).merge(schools, on="School_ID", how="left")
+    requisition_items = [
+        {
+            "Requisition_ID": row["Requisition_ID"],
+            "Request_Date": row["Request_Date"],
+            "Status": row["Status"],
+            "School_ID": row["School_ID"],
+            "School_Name": row["School_Name"],
+            "LGA": row["LGA"],
+            "Zone": row["Zone"],
+            "Item_ID": row["Item_ID"],
+            "Item_Name": row["Item_Name"],
+            "Category": row["Category"],
+            "Quantity_Requested": int(row["Quantity_Requested"]),
+            "Quantity_Approved": int(row["Quantity_Approved"]),
+            "Quantity_Fulfilled": int(row["Quantity_Fulfilled"]),
+        }
+        for _, row in requisition_item_rows_frame.iterrows()
+    ]
 
     return {
         "requisition_status_distribution": status_distribution,
@@ -731,6 +836,7 @@ def build_requisition_analytics(
         "requests_by_lga": requests_by_lga,
         "recent_requisitions": recent_requisitions,
         "fulfillment_summary": fulfillment_summary,
+        "requisition_items": requisition_items,
     }
 
 
@@ -767,6 +873,7 @@ def build_dashboard_data(data: dict[str, pd.DataFrame]) -> dict[str, Any]:
     lga_distribution = quantity_records(outflows, "LGA", "Out_Quantity", "lga")
     warehouse_analytics = build_warehouse_analytics(enriched, warehouses)
     monthly_movements = build_monthly_stock_movements(enriched)
+    filters = build_filter_options(schools, warehouses, items, requisitions)
     requisition_analytics = build_requisition_analytics(
         requisitions, requisition_details, items, schools
     )
@@ -815,6 +922,7 @@ def build_dashboard_data(data: dict[str, pd.DataFrame]) -> dict[str, Any]:
     return {
         "generated_at": generated_at,
         "last_updated": generated_at,
+        "filters": filters,
         "kpis": kpis,
         "inventory": {
             "total_items": kpis["total_items"],
@@ -866,6 +974,7 @@ def build_dashboard_data(data: dict[str, pd.DataFrame]) -> dict[str, Any]:
             "recent_movements": build_recent_movements_table(enriched),
             "recent_requisitions": requisition_analytics["recent_requisitions"],
             "fulfillment_summary": requisition_analytics["fulfillment_summary"],
+            "requisition_items": requisition_analytics["requisition_items"],
         },
     }
 
