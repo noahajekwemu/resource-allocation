@@ -134,6 +134,52 @@ class RequisitionFulfillmentTests(unittest.TestCase):
                 transaction_details_dataframe(quantity=4),
             )
 
+    def test_issue_stock_notification_failure_does_not_block_route(self):
+        client = form_api.app.test_client()
+        with client.session_transaction() as session:
+            session["user"] = {
+                "User_ID": "USR002",
+                "Full_Name": "Store Officer",
+                "Email": "store@example.com",
+                "Role": "Store_Officer",
+            }
+
+        result = {
+            "transaction_id": "TXN001",
+            "status": "success",
+            "requisition_id": "REQ001",
+            "fulfillment_status": "Fulfilled",
+        }
+        with patch.object(form_api, "submit_issue_stock", return_value=result), patch.object(
+            form_api, "_audit"
+        ), patch.object(
+            form_api,
+            "_notification_users",
+            return_value=[
+                {"Email": "store@example.com", "Role": "Store_Officer"},
+                {"Email": "school@example.com", "Role": "School_User", "School_ID": "SCH-001"},
+            ],
+        ), patch.object(
+            form_api,
+            "send_stock_issued_notification",
+            side_effect=RuntimeError("email unavailable"),
+        ), patch.object(
+            form_api,
+            "send_requisition_decision_notification",
+            side_effect=RuntimeError("email unavailable"),
+        ):
+            response = client.post(
+                "/api/issue-stock",
+                json={
+                    "Requisition_ID": "REQ001",
+                    "School_ID": "SCH-001",
+                    "items": [{"Item_ID": "ITEM-001", "Quantity": 4}],
+                },
+            )
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.get_json()["transaction_id"], "TXN001")
+
 
 if __name__ == "__main__":
     unittest.main()

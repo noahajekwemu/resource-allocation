@@ -48,6 +48,21 @@ except (ImportError, ModuleNotFoundError):
     from inventory_utils import calculate_available_stock
 
 try:
+    from scripts.email_utils import (
+        email_notifications_enabled,
+        send_requisition_decision_notification,
+        send_requisition_submitted_notification,
+        send_stock_issued_notification,
+    )
+except (ImportError, ModuleNotFoundError):
+    from email_utils import (
+        email_notifications_enabled,
+        send_requisition_decision_notification,
+        send_requisition_submitted_notification,
+        send_stock_issued_notification,
+    )
+
+try:
     from scripts.report_utils import (
         get_audit_report,
         get_executive_summary,
@@ -504,6 +519,22 @@ def get_users() -> list[dict[str, Any]]:
     if users.empty:
         return []
     return [public_user_record(row) for row in users.fillna("").to_dict(orient="records")]
+
+
+def _notification_users() -> list[dict[str, Any]]:
+    if not email_notifications_enabled():
+        return []
+    users = _read_worksheet(USERS_WORKSHEET)
+    if users.empty:
+        return []
+    return users.fillna("").to_dict(orient="records")
+
+
+def _safe_notify(notification_func, *args, **kwargs) -> None:
+    try:
+        notification_func(*args, **kwargs)
+    except Exception as exc:
+        logging.warning("Email notification failed without blocking workflow: %s", exc)
 
 
 def _user_record(user_id: str) -> dict[str, Any]:
@@ -1639,6 +1670,14 @@ def approve_requisition_route():
         before = get_requisition(entity_id) if entity_id else None
         result = approve_requisition(payload)
         _audit("approve requisition", "Requisition", entity_id, before, result)
+        if before:
+            _safe_notify(
+                send_requisition_decision_notification,
+                {**before.get("header", {}), **result},
+                _notification_users(),
+                "Approved",
+                str(payload.get("Remarks") or payload.get("remarks") or ""),
+            )
         return jsonify(result)
     except ValueError as exc:
         _audit("approve requisition", "Requisition", str(payload.get("Requisition_ID", "")), None, payload, "Failed", str(exc))
@@ -1659,6 +1698,14 @@ def reject_requisition_route():
         before = get_requisition(entity_id) if entity_id else None
         result = reject_requisition(payload)
         _audit("reject requisition", "Requisition", entity_id, before, result)
+        if before:
+            _safe_notify(
+                send_requisition_decision_notification,
+                {**before.get("header", {}), **result},
+                _notification_users(),
+                "Rejected",
+                str(payload.get("Remarks") or payload.get("remarks") or ""),
+            )
         return jsonify(result)
     except ValueError as exc:
         _audit("reject requisition", "Requisition", str(payload.get("Requisition_ID", "")), None, payload, "Failed", str(exc))
@@ -1683,6 +1730,14 @@ def submit_requisition_route():
         payload["Requested_By"] = user.get("Full_Name") or user.get("Email") or user.get("User_ID")
         result = submit_requisition(payload)
         _audit("submit requisition", "Requisition", result["requisition_id"], None, result)
+        _safe_notify(
+            send_requisition_submitted_notification,
+            {
+                **result,
+                "School_ID": payload.get("School_ID") or payload.get("school_id") or "",
+            },
+            _notification_users(),
+        )
         return jsonify(result)
     except ValueError as exc:
         _audit("submit requisition", "Requisition", "", None, payload, "Failed", str(exc))
@@ -1719,8 +1774,35 @@ def submit_issue_stock_route():
         payload = _request_payload()
         result = submit_issue_stock(payload)
         _audit("issue stock", "Transaction", result["transaction_id"], None, result)
+        _safe_notify(
+            send_stock_issued_notification,
+            {
+                **result,
+                "School_ID": payload.get("School_ID")
+                or payload.get("school_id")
+                or payload.get("Destination_School_ID")
+                or payload.get("destination_school_id")
+                or "",
+            },
+            _notification_users(),
+        )
         if result.get("requisition_id"):
             _audit("fulfillment update", "Requisition", result["requisition_id"], None, {"Status": result.get("fulfillment_status"), "Transaction_ID": result["transaction_id"]})
+            if result.get("fulfillment_status") == "Fulfilled":
+                _safe_notify(
+                    send_requisition_decision_notification,
+                    {
+                        "Requisition_ID": result["requisition_id"],
+                        "School_ID": payload.get("School_ID")
+                        or payload.get("school_id")
+                        or payload.get("Destination_School_ID")
+                        or payload.get("destination_school_id")
+                        or "",
+                    },
+                    _notification_users(),
+                    "Fulfilled",
+                    f"Fulfilled by transaction {result['transaction_id']}",
+                )
         return jsonify(result)
     except ValueError as exc:
         _audit("issue stock", "Transaction", "", None, payload, "Failed", str(exc))
