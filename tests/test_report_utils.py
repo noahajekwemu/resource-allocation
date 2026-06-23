@@ -8,8 +8,11 @@ from scripts.report_utils import (
     get_audit_report,
     get_executive_summary,
     get_fulfillment_report,
+    get_monthly_executive_summary,
     get_requisition_report,
     get_stock_report,
+    monthly_summary_to_csv_rows,
+    monthly_summary_to_html,
     records_to_csv_response,
 )
 
@@ -28,8 +31,14 @@ def report_data():
             {"Warehouse_ID": "WH-1", "Warehouse_Name": "Central Store"},
         ]),
         "transactions": pd.DataFrame([
-            {"Transaction_ID": "TX-1", "Transaction_Type": "IN", "Warehouse_ID": "WH-1"},
-            {"Transaction_ID": "TX-2", "Transaction_Type": "OUT", "Warehouse_ID": "WH-1"},
+            {
+                "Transaction_ID": "TX-1", "Transaction_Type": "IN",
+                "Transaction_Date": "2026-06-05", "Warehouse_ID": "WH-1",
+            },
+            {
+                "Transaction_ID": "TX-2", "Transaction_Type": "OUT",
+                "Transaction_Date": "2026-06-10", "Warehouse_ID": "WH-1",
+            },
         ]),
         "transaction_details": pd.DataFrame([
             {"Transaction_ID": "TX-1", "Item_ID": "ITEM-1", "Quantity": 20},
@@ -136,6 +145,32 @@ class ReportUtilsTests(unittest.TestCase):
             "audit": rows,
         }
         self.assertNotIn("Password_Hash", str(combined))
+
+    def test_monthly_executive_summary_contains_required_metrics(self):
+        summary = get_monthly_executive_summary("2026-06", report_data())
+        self.assertEqual(summary["report_month"], "2026-06")
+        self.assertEqual(summary["total_stock_received"], 20)
+        self.assertEqual(summary["total_stock_issued"], 5)
+        self.assertEqual(
+            summary["requisitions_by_status"],
+            {"Partially Fulfilled": 1, "Rejected": 1},
+        )
+        self.assertEqual(summary["fulfillment_rate_percent"], 50.0)
+        self.assertEqual(summary["top_requested_items"][0]["Item_Name"], "Book")
+        self.assertIn("generated_at", summary)
+        self.assertTrue(summary["low_stock_items"])
+
+    def test_monthly_summary_export_helpers_escape_structured_values(self):
+        summary = {
+            "report_month": "2026-06",
+            "top_requested_items": [{"Item_Name": "<Book>", "quantity_requested": 10}],
+        }
+        rows = monthly_summary_to_csv_rows(summary)
+        html = monthly_summary_to_html(summary)
+
+        self.assertEqual(rows[1]["metric"], "top_requested_items")
+        self.assertIn("&lt;Book&gt;", html)
+        self.assertNotIn("<Book>", html)
 
 
 if __name__ == "__main__":

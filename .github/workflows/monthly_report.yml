@@ -1,0 +1,43 @@
+name: Monthly Executive Report
+
+on:
+  schedule:
+    - cron: '30 2 1 * *'
+  workflow_dispatch:
+    inputs:
+      report_month:
+        description: 'Optional report month in YYYY-MM format'
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  monthly-report:
+    runs-on: ubuntu-latest
+    env:
+      GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+      REPORT_MONTH: ${{ github.event.inputs.report_month }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Generate monthly report
+        run: python -m scripts.generate_monthly_report
+
+      - name: Upload monthly report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: monthly-executive-report
+          path: reports/monthly/
+          if-no-files-found: error
+          retention-days: 90

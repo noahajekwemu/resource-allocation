@@ -1,6 +1,7 @@
 """Read-only reporting helpers for API JSON and CSV exports."""
 
 import csv
+import html
 import io
 import json
 from datetime import datetime, timezone
@@ -60,6 +61,21 @@ def _canonical(frame: pd.DataFrame, fields: dict[str, list[str]]) -> pd.DataFram
 
 def _number(series: pd.Series) -> pd.Series:
     return pd.to_numeric(series, errors="coerce").fillna(0)
+
+
+def _month_period(report_month: str) -> pd.Period:
+    try:
+        return pd.Period(report_month, freq="M")
+    except ValueError as exc:
+        raise ValueError("report_month must use YYYY-MM format.") from exc
+
+
+def _filter_month(frame: pd.DataFrame, date_column: str, report_month: str) -> pd.DataFrame:
+    if frame.empty or date_column not in frame:
+        return frame.copy()
+    parsed = pd.to_datetime(frame[date_column], errors="coerce")
+    period = _month_period(report_month)
+    return frame[parsed.dt.to_period("M").eq(period)].copy()
 
 
 def _records(frame: pd.DataFrame) -> list[dict[str, Any]]:
@@ -253,6 +269,157 @@ def get_executive_summary(data: dict[str, pd.DataFrame] | None = None) -> dict[s
         "low_stock_items": int(low_stock),
         "generated_at": datetime.now(timezone.utc).isoformat(),
     }
+
+
+def get_monthly_executive_summary(
+    report_month: str,
+    data: dict[str, pd.DataFrame] | None = None,
+    generated_at: datetime | None = None,
+) -> dict[str, Any]:
+    source = _load((
+        "items", "requisitions", "requisition_details", "transactions",
+        "transaction_details",
+    ), data)
+    generated = generated_at or datetime.now(timezone.utc)
+    items = _canonical(source["items"], {
+        "Item_ID": ["Item_ID", "Item ID"],
+        "Item_Name": ["Item_Name", "Item Name", "Item"],
+        "Category": ["Category"],
+        "Minimum_Stock": ["Minimum_Stock", "Minimum Stock", "Reorder_Level", "Reorder Level"],
+    })
+    items["Minimum_Stock"] = _number(items["Minimum_Stock"]).where(
+        items["Minimum_Stock"].astype(str).str.strip() != "", 10
+    )
+    transactions = _canonical(source["transactions"], {
+        "Transaction_ID": ["Transaction_ID", "Transaction ID"],
+        "Transaction_Type": ["Transaction_Type", "Transaction Type", "Type"],
+        "Transaction_Date": ["Transaction_Date", "Transaction Date", "Date"],
+    })
+    transaction_details = _canonical(source["transaction_details"], {
+        "Transaction_ID": ["Transaction_ID", "Transaction ID"],
+        "Item_ID": ["Item_ID", "Item ID"],
+        "Quantity": ["Quantity", "Qty"],
+    })
+    movements = transaction_details.merge(transactions, on="Transaction_ID", how="left")
+    movements = _filter_month(movements, "Transaction_Date", report_month)
+    movements["Quantity"] = _number(movements["Quantity"])
+    movements["Transaction_Type"] = movements["Transaction_Type"].astype(str).str.upper().str.strip()
+    total_received = int(movements.loc[
+        movements["Transaction_Type"].eq("IN"), "Quantity"
+    ].sum())
+    total_issued = int(movements.loc[
+        movements["Transaction_Type"].eq("OUT"), "Quantity"
+    ].sum())
+
+    requisitions = _canonical(source["requisitions"], {
+        "Requisition_ID": ["Requisition_ID", "Requisition ID"],
+        "Status": ["Status"],
+        "Request_Date": ["Request_Date", "Request Date", "Date", "Created_At", "Created At"],
+    })
+    requisitions = _filter_month(requisitions, "Request_Date", report_month)
+    statuses = requisitions["Status"].astype(str).str.strip()
+    requisitions_by_status = {
+        str(status): int(count)
+        for status, count in statuses[statuses.ne("")].value_counts().sort_index().items()
+    }
+
+    details = _canonical(source["requisition_details"], {
+        "Requisition_ID": ["Requisition_ID", "Requisition ID"],
+        "Item_ID": ["Item_ID", "Item ID"],
+        "Quantity_Requested": ["Quantity_Requested", "Quantity Requested"],
+        "Quantity_Approved": ["Quantity_Approved", "Quantity Approved"],
+        "Quantity_Fulfilled": ["Quantity_Fulfilled", "Quantity Fulfilled"],
+    })
+    details = details.merge(
+        requisitions[["Requisition_ID"]], on="Requisition_ID", how="inner"
+    )
+    for column in ("Quantity_Requested", "Quantity_Approved", "Quantity_Fulfilled"):
+        details[column] = _number(details[column])
+    approved = float(details["Quantity_Approved"].sum())
+    fulfilled = float(details["Quantity_Fulfilled"].sum())
+
+    requested = details.merge(items[["Item_ID", "Item_Name", "Category"]], on="Item_ID", how="left")
+    requested["Item_Name"] = requested["Item_Name"].fillna(requested["Item_ID"])
+    top_requested_items = [
+        {
+            "Item_ID": row["Item_ID"],
+            "Item_Name": row["Item_Name"],
+            "Category": row["Category"],
+            "quantity_requested": int(row["Quantity_Requested"]),
+        }
+        for _, row in requested.groupby(
+            ["Item_ID", "Item_Name", "Category"], as_index=False, dropna=False
+        )["Quantity_Requested"].sum().sort_values(
+            ["Quantity_Requested", "Item_Name"], ascending=[False, True]
+        ).head(10).iterrows()
+    ]
+
+    current_stock = pd.Series(dtype="float64", name="Current_Stock")
+    if not movements.empty:
+        signed = movements.copy()
+        signed["Signed_Quantity"] = 0
+        signed.loc[signed["Transaction_Type"].eq("IN"), "Signed_Quantity"] = signed["Quantity"]
+        signed.loc[signed["Transaction_Type"].eq("OUT"), "Signed_Quantity"] = -signed["Quantity"]
+        current_stock = signed.groupby("Item_ID")["Signed_Quantity"].sum()
+    stock_frame = items.merge(
+        current_stock.rename("Current_Stock"), on="Item_ID", how="left"
+    )
+    stock_frame["Current_Stock"] = _number(stock_frame["Current_Stock"]).round().astype(int)
+    low_stock_items = [
+        {
+            "Item_ID": row["Item_ID"],
+            "Item_Name": row["Item_Name"],
+            "Category": row["Category"],
+            "current_stock": int(row["Current_Stock"]),
+            "minimum_stock": int(row["Minimum_Stock"]),
+        }
+        for _, row in stock_frame[
+            stock_frame["Current_Stock"].le(stock_frame["Minimum_Stock"])
+        ].sort_values(["Category", "Item_Name"]).iterrows()
+    ]
+
+    return {
+        "report_month": report_month,
+        "generated_at": generated.isoformat(),
+        "total_stock_received": total_received,
+        "total_stock_issued": total_issued,
+        "requisitions_by_status": requisitions_by_status,
+        "fulfillment_rate_percent": round((fulfilled / approved * 100) if approved else 0, 2),
+        "top_requested_items": top_requested_items,
+        "low_stock_items": low_stock_items,
+    }
+
+
+def monthly_summary_to_csv_rows(summary: dict[str, Any]) -> list[dict[str, Any]]:
+    rows = []
+    for key, value in summary.items():
+        rows.append({
+            "metric": key,
+            "value": json.dumps(value, ensure_ascii=False)
+            if isinstance(value, (dict, list))
+            else value,
+        })
+    return rows
+
+
+def monthly_summary_to_html(summary: dict[str, Any]) -> str:
+    rows = "\n".join(
+        f"<tr><th>{html.escape(str(row['metric']))}</th><td>{html.escape(str(row['value']))}</td></tr>"
+        for row in monthly_summary_to_csv_rows(summary)
+    )
+    return (
+        "<!doctype html>\n"
+        "<html lang=\"en\">\n"
+        "<head><meta charset=\"utf-8\"><title>Monthly Executive Summary</title>"
+        "<style>body{font-family:Arial,sans-serif;line-height:1.5;margin:32px;}"
+        "table{border-collapse:collapse;width:100%;}th,td{border:1px solid #d9e6ed;"
+        "padding:8px;text-align:left;vertical-align:top;}th{background:#073763;color:white;}"
+        "</style></head>\n"
+        "<body>\n"
+        f"<h1>Monthly Executive Summary - {html.escape(str(summary.get('report_month', '')))}</h1>\n"
+        f"<table><tbody>{rows}</tbody></table>\n"
+        "</body></html>\n"
+    )
 
 
 def get_audit_report(

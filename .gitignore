@@ -12,6 +12,9 @@ credentials.json
 # Google Sheets backup exports (may contain sensitive data)
 backups/
 
+# Generated monthly executive reports
+reports/monthly/
+
 # Data import reports (may contain source paths and validation details)
 import_reports/
 

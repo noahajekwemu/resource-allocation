@@ -1,0 +1,37 @@
+name: Scheduled Google Sheets Backup
+
+on:
+  schedule:
+    - cron: '0 2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  backup-google-sheets:
+    runs-on: ubuntu-latest
+    env:
+      GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Create backup
+        run: python -m scripts.backup_google_sheets
+
+      - name: Upload backup artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: google-sheets-backup
+          path: backups/
+          if-no-files-found: error
+          retention-days: 30
