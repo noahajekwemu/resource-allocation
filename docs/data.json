@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-23T12:12:30.555079+00:00",
+  "generated_at": "2026-06-23T15:57:13.644466+00:00",
   "kpis": {
     "inventory_accuracy": 66.07,
     "total_items": 56,
@@ -25,134 +25,112 @@
   "school_distribution": {
     "all_schools": [
       {
-        "school": "ARABIC PRIMARY SCHOOL MAKURDI",
+        "school": "ANGLICAN PRIMARYSCHOOL SEVAV",
         "quantity": 1739
       },
       {
-        "school": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
+        "school": "ANGLICAN PRIMARY SCHOOL UGANGESE",
         "quantity": 1366
       },
       {
-        "school": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
+        "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
         "quantity": 1341
       },
       {
-        "school": "EKAN PRIMARYMARYARY SCHOOL MAKURDI",
+        "school": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
         "quantity": 950
       },
       {
-        "school": "CAC PRIMARYMARYARY SCHOOL WADATA MAKURDI",
+        "school": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
         "quantity": 196
       },
       {
-        "school": "ANGLICAN PRIMARY SCHOOL IMENGER",
+        "school": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
         "quantity": 20
       }
     ],
     "top_10_schools": [
       {
-        "school": "ARABIC PRIMARY SCHOOL MAKURDI",
+        "school": "ANGLICAN PRIMARYSCHOOL SEVAV",
         "quantity": 1739
       },
       {
-        "school": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
+        "school": "ANGLICAN PRIMARY SCHOOL UGANGESE",
         "quantity": 1366
       },
       {
-        "school": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
+        "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
         "quantity": 1341
       },
       {
-        "school": "EKAN PRIMARYMARYARY SCHOOL MAKURDI",
+        "school": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
         "quantity": 950
       },
       {
-        "school": "CAC PRIMARYMARYARY SCHOOL WADATA MAKURDI",
+        "school": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
         "quantity": 196
       },
       {
-        "school": "ANGLICAN PRIMARY SCHOOL IMENGER",
+        "school": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
         "quantity": 20
       }
     ],
     "bottom_10_schools": [
       {
-        "school": "ANGLICAN PRIMARY SCHOOL IMENGER",
+        "school": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
         "quantity": 20
       },
       {
-        "school": "CAC PRIMARYMARYARY SCHOOL WADATA MAKURDI",
+        "school": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
         "quantity": 196
       },
       {
-        "school": "EKAN PRIMARYMARYARY SCHOOL MAKURDI",
+        "school": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
         "quantity": 950
       },
       {
-        "school": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
+        "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
         "quantity": 1341
       },
       {
-        "school": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
+        "school": "ANGLICAN PRIMARY SCHOOL UGANGESE",
         "quantity": 1366
       },
       {
-        "school": "ARABIC PRIMARY SCHOOL MAKURDI",
+        "school": "ANGLICAN PRIMARYSCHOOL SEVAV",
         "quantity": 1739
       }
     ]
   },
   "lga_distribution": [
     {
-      "lga": "MAKURDI",
-      "quantity": 5592
+      "lga": "LOGO",
+      "quantity": 1739
     },
     {
       "lga": "BURUKU",
-      "quantity": 20
+      "quantity": 1366
+    },
+    {
+      "lga": "UKUM",
+      "quantity": 1341
+    },
+    {
+      "lga": "MAKURDI",
+      "quantity": 1166
     }
   ],
   "warehouse_analytics": {
     "stock_levels": [
       {
-        "warehouse_id": "WH-009",
-        "warehouse": "AGATU Prime",
-        "stock_level": 0,
-        "total_outflows": 0
-      },
-      {
-        "warehouse_id": "WH-006",
-        "warehouse": "BURUKU Central",
-        "stock_level": 0,
-        "total_outflows": 0
-      },
-      {
-        "warehouse_id": "WH-008",
-        "warehouse": "BURUKU East",
-        "stock_level": 0,
+        "warehouse_id": "WH-001",
+        "warehouse": "Makurdi Central Store",
+        "stock_level": 2972,
         "total_outflows": 0
       },
       {
         "warehouse_id": "WH-003",
         "warehouse": "Great Otukpo I",
-        "stock_level": 0,
-        "total_outflows": 0
-      },
-      {
-        "warehouse_id": "WH-004",
-        "warehouse": "Great Otukpo II",
-        "stock_level": 0,
-        "total_outflows": 0
-      },
-      {
-        "warehouse_id": "WH-007",
-        "warehouse": "LOGO Premier",
-        "stock_level": 0,
-        "total_outflows": 0
-      },
-      {
-        "warehouse_id": "WH-002",
-        "warehouse": "Okpokwu Central",
         "stock_level": 0,
         "total_outflows": 0
       },
@@ -163,36 +141,78 @@
         "total_outflows": 0
       },
       {
-        "warehouse_id": "WH-001",
-        "warehouse": "Makurdi Central Store",
-        "stock_level": -2640,
-        "total_outflows": 5612
-      }
-    ],
-    "total_outflows": [
+        "warehouse_id": "WH-008",
+        "warehouse": "BURUKU East",
+        "stock_level": -20,
+        "total_outflows": 20
+      },
       {
-        "warehouse_id": "WH-001",
-        "warehouse": "Makurdi Central Store",
-        "stock_level": -2640,
-        "total_outflows": 5612
+        "warehouse_id": "WH-007",
+        "warehouse": "LOGO Premier",
+        "stock_level": -196,
+        "total_outflows": 196
       },
       {
         "warehouse_id": "WH-009",
         "warehouse": "AGATU Prime",
-        "stock_level": 0,
-        "total_outflows": 0
+        "stock_level": -950,
+        "total_outflows": 950
+      },
+      {
+        "warehouse_id": "WH-004",
+        "warehouse": "Great Otukpo II",
+        "stock_level": -1341,
+        "total_outflows": 1341
+      },
+      {
+        "warehouse_id": "WH-002",
+        "warehouse": "Okpokwu Central",
+        "stock_level": -1366,
+        "total_outflows": 1366
       },
       {
         "warehouse_id": "WH-006",
         "warehouse": "BURUKU Central",
-        "stock_level": 0,
-        "total_outflows": 0
+        "stock_level": -1739,
+        "total_outflows": 1739
+      }
+    ],
+    "total_outflows": [
+      {
+        "warehouse_id": "WH-006",
+        "warehouse": "BURUKU Central",
+        "stock_level": -1739,
+        "total_outflows": 1739
+      },
+      {
+        "warehouse_id": "WH-002",
+        "warehouse": "Okpokwu Central",
+        "stock_level": -1366,
+        "total_outflows": 1366
+      },
+      {
+        "warehouse_id": "WH-004",
+        "warehouse": "Great Otukpo II",
+        "stock_level": -1341,
+        "total_outflows": 1341
+      },
+      {
+        "warehouse_id": "WH-009",
+        "warehouse": "AGATU Prime",
+        "stock_level": -950,
+        "total_outflows": 950
+      },
+      {
+        "warehouse_id": "WH-007",
+        "warehouse": "LOGO Premier",
+        "stock_level": -196,
+        "total_outflows": 196
       },
       {
         "warehouse_id": "WH-008",
         "warehouse": "BURUKU East",
-        "stock_level": 0,
-        "total_outflows": 0
+        "stock_level": -20,
+        "total_outflows": 20
       },
       {
         "warehouse_id": "WH-003",
@@ -201,21 +221,9 @@
         "total_outflows": 0
       },
       {
-        "warehouse_id": "WH-004",
-        "warehouse": "Great Otukpo II",
-        "stock_level": 0,
-        "total_outflows": 0
-      },
-      {
-        "warehouse_id": "WH-007",
-        "warehouse": "LOGO Premier",
-        "stock_level": 0,
-        "total_outflows": 0
-      },
-      {
-        "warehouse_id": "WH-002",
-        "warehouse": "Okpokwu Central",
-        "stock_level": 0,
+        "warehouse_id": "WH-001",
+        "warehouse": "Makurdi Central Store",
+        "stock_level": 2972,
         "total_outflows": 0
       },
       {
@@ -230,7 +238,7 @@
     {
       "month": "2026-06",
       "in_quantity": 2972,
-      "out_quantity": 4271
+      "out_quantity": 5612
     }
   ],
   "charts": {
@@ -334,18 +342,30 @@
     ],
     "distribution_by_lga": [
       {
-        "lga": "MAKURDI",
-        "quantity": 5592
+        "lga": "LOGO",
+        "quantity": 1739
       },
       {
         "lga": "BURUKU",
-        "quantity": 20
+        "quantity": 1366
+      },
+      {
+        "lga": "UKUM",
+        "quantity": 1341
+      },
+      {
+        "lga": "MAKURDI",
+        "quantity": 1166
       }
     ],
     "distribution_by_school_type": [
       {
-        "school_type": "Unknown",
-        "quantity": 5612
+        "school_type": "PRI",
+        "quantity": 3677
+      },
+      {
+        "school_type": "UBE-JSS",
+        "quantity": 1935
       }
     ],
     "top_distributed_items": [
@@ -392,102 +412,72 @@
     ],
     "top_schools": [
       {
-        "school": "ARABIC PRIMARY SCHOOL MAKURDI",
+        "school": "ANGLICAN PRIMARYSCHOOL SEVAV",
         "quantity": 1739
       },
       {
-        "school": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
+        "school": "ANGLICAN PRIMARY SCHOOL UGANGESE",
         "quantity": 1366
       },
       {
-        "school": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
+        "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
         "quantity": 1341
       },
       {
-        "school": "EKAN PRIMARYMARYARY SCHOOL MAKURDI",
+        "school": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
         "quantity": 950
       },
       {
-        "school": "CAC PRIMARYMARYARY SCHOOL WADATA MAKURDI",
+        "school": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
         "quantity": 196
       },
       {
-        "school": "ANGLICAN PRIMARY SCHOOL IMENGER",
+        "school": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
         "quantity": 20
       }
     ],
     "bottom_schools": [
       {
-        "school": "ANGLICAN PRIMARY SCHOOL IMENGER",
+        "school": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
         "quantity": 20
       },
       {
-        "school": "CAC PRIMARYMARYARY SCHOOL WADATA MAKURDI",
+        "school": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
         "quantity": 196
       },
       {
-        "school": "EKAN PRIMARYMARYARY SCHOOL MAKURDI",
+        "school": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
         "quantity": 950
       },
       {
-        "school": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
+        "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
         "quantity": 1341
       },
       {
-        "school": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
+        "school": "ANGLICAN PRIMARY SCHOOL UGANGESE",
         "quantity": 1366
       },
       {
-        "school": "ARABIC PRIMARY SCHOOL MAKURDI",
+        "school": "ANGLICAN PRIMARYSCHOOL SEVAV",
         "quantity": 1739
       }
     ],
     "stock_source_analysis": [
       {
-        "source": "UBEC",
+        "source": "",
         "quantity": 2972
       }
     ],
     "warehouse_stock_levels": [
       {
-        "warehouse_id": "WH-009",
-        "warehouse": "AGATU Prime",
-        "stock_level": 0,
-        "total_outflows": 0
-      },
-      {
-        "warehouse_id": "WH-006",
-        "warehouse": "BURUKU Central",
-        "stock_level": 0,
-        "total_outflows": 0
-      },
-      {
-        "warehouse_id": "WH-008",
-        "warehouse": "BURUKU East",
-        "stock_level": 0,
+        "warehouse_id": "WH-001",
+        "warehouse": "Makurdi Central Store",
+        "stock_level": 2972,
         "total_outflows": 0
       },
       {
         "warehouse_id": "WH-003",
         "warehouse": "Great Otukpo I",
-        "stock_level": 0,
-        "total_outflows": 0
-      },
-      {
-        "warehouse_id": "WH-004",
-        "warehouse": "Great Otukpo II",
-        "stock_level": 0,
-        "total_outflows": 0
-      },
-      {
-        "warehouse_id": "WH-007",
-        "warehouse": "LOGO Premier",
-        "stock_level": 0,
-        "total_outflows": 0
-      },
-      {
-        "warehouse_id": "WH-002",
-        "warehouse": "Okpokwu Central",
         "stock_level": 0,
         "total_outflows": 0
       },
@@ -498,36 +488,78 @@
         "total_outflows": 0
       },
       {
-        "warehouse_id": "WH-001",
-        "warehouse": "Makurdi Central Store",
-        "stock_level": -2640,
-        "total_outflows": 5612
-      }
-    ],
-    "warehouse_outflows": [
+        "warehouse_id": "WH-008",
+        "warehouse": "BURUKU East",
+        "stock_level": -20,
+        "total_outflows": 20
+      },
       {
-        "warehouse_id": "WH-001",
-        "warehouse": "Makurdi Central Store",
-        "stock_level": -2640,
-        "total_outflows": 5612
+        "warehouse_id": "WH-007",
+        "warehouse": "LOGO Premier",
+        "stock_level": -196,
+        "total_outflows": 196
       },
       {
         "warehouse_id": "WH-009",
         "warehouse": "AGATU Prime",
-        "stock_level": 0,
-        "total_outflows": 0
+        "stock_level": -950,
+        "total_outflows": 950
+      },
+      {
+        "warehouse_id": "WH-004",
+        "warehouse": "Great Otukpo II",
+        "stock_level": -1341,
+        "total_outflows": 1341
+      },
+      {
+        "warehouse_id": "WH-002",
+        "warehouse": "Okpokwu Central",
+        "stock_level": -1366,
+        "total_outflows": 1366
       },
       {
         "warehouse_id": "WH-006",
         "warehouse": "BURUKU Central",
-        "stock_level": 0,
-        "total_outflows": 0
+        "stock_level": -1739,
+        "total_outflows": 1739
+      }
+    ],
+    "warehouse_outflows": [
+      {
+        "warehouse_id": "WH-006",
+        "warehouse": "BURUKU Central",
+        "stock_level": -1739,
+        "total_outflows": 1739
+      },
+      {
+        "warehouse_id": "WH-002",
+        "warehouse": "Okpokwu Central",
+        "stock_level": -1366,
+        "total_outflows": 1366
+      },
+      {
+        "warehouse_id": "WH-004",
+        "warehouse": "Great Otukpo II",
+        "stock_level": -1341,
+        "total_outflows": 1341
+      },
+      {
+        "warehouse_id": "WH-009",
+        "warehouse": "AGATU Prime",
+        "stock_level": -950,
+        "total_outflows": 950
+      },
+      {
+        "warehouse_id": "WH-007",
+        "warehouse": "LOGO Premier",
+        "stock_level": -196,
+        "total_outflows": 196
       },
       {
         "warehouse_id": "WH-008",
         "warehouse": "BURUKU East",
-        "stock_level": 0,
-        "total_outflows": 0
+        "stock_level": -20,
+        "total_outflows": 20
       },
       {
         "warehouse_id": "WH-003",
@@ -536,21 +568,9 @@
         "total_outflows": 0
       },
       {
-        "warehouse_id": "WH-004",
-        "warehouse": "Great Otukpo II",
-        "stock_level": 0,
-        "total_outflows": 0
-      },
-      {
-        "warehouse_id": "WH-007",
-        "warehouse": "LOGO Premier",
-        "stock_level": 0,
-        "total_outflows": 0
-      },
-      {
-        "warehouse_id": "WH-002",
-        "warehouse": "Okpokwu Central",
-        "stock_level": 0,
+        "warehouse_id": "WH-001",
+        "warehouse": "Makurdi Central Store",
+        "stock_level": 2972,
         "total_outflows": 0
       },
       {
@@ -564,7 +584,7 @@
       {
         "month": "2026-06",
         "in_quantity": 2972,
-        "out_quantity": 4271
+        "out_quantity": 5612
       }
     ]
   },
@@ -1320,41 +1340,49 @@
         "Transaction_ID": "TXN007",
         "Transaction_Date": "2026-06-20T11:35:34.623179+00:00",
         "Transaction_Type": "OUT",
-        "School_Name": "ANGLICAN PRIMARY SCHOOL IMENGER",
-        "Warehouse_Name": "Makurdi Central Store",
+        "School_Name": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
+        "Warehouse_Name": "BURUKU East",
         "Total_Items": 20
       },
       {
         "Transaction_ID": "TXN006",
         "Transaction_Date": "2026-06-20T11:11:09.299292+00:00",
         "Transaction_Type": "OUT",
-        "School_Name": "EKAN PRIMARYMARYARY SCHOOL MAKURDI",
-        "Warehouse_Name": "Makurdi Central Store",
+        "School_Name": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
+        "Warehouse_Name": "AGATU Prime",
         "Total_Items": 950
       },
       {
         "Transaction_ID": "TXN005",
         "Transaction_Date": "2026-06-14T02:07:54.291871+00:00",
         "Transaction_Type": "OUT",
-        "School_Name": "CAC PRIMARYMARYARY SCHOOL WADATA MAKURDI",
-        "Warehouse_Name": "Makurdi Central Store",
+        "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
+        "Warehouse_Name": "LOGO Premier",
         "Total_Items": 196
       },
       {
         "Transaction_ID": "TXN004",
         "Transaction_Date": "2026-06-12T20:35:35.937293+00:00",
         "Transaction_Type": "OUT",
-        "School_Name": "ARABIC PRIMARY SCHOOL MAKURDI",
-        "Warehouse_Name": "Makurdi Central Store",
+        "School_Name": "ANGLICAN PRIMARYSCHOOL SEVAV",
+        "Warehouse_Name": "BURUKU Central",
         "Total_Items": 1739
       },
       {
         "Transaction_ID": "TXN002",
         "Transaction_Date": "2026-06-09T12:16:12.946409+00:00",
         "Transaction_Type": "OUT",
-        "School_Name": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
-        "Warehouse_Name": "Makurdi Central Store",
+        "School_Name": "ANGLICAN PRIMARY SCHOOL UGANGESE",
+        "Warehouse_Name": "Okpokwu Central",
         "Total_Items": 1366
+      },
+      {
+        "Transaction_ID": "TXN003",
+        "Transaction_Date": "2026-06-09T12:16:12.946409+00:01",
+        "Transaction_Type": "OUT",
+        "School_Name": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
+        "Warehouse_Name": "Great Otukpo II",
+        "Total_Items": 1341
       },
       {
         "Transaction_ID": "TXN001",
@@ -1363,14 +1391,6 @@
         "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
         "Warehouse_Name": "Makurdi Central Store",
         "Total_Items": 2972
-      },
-      {
-        "Transaction_ID": "TXN003",
-        "Transaction_Date": "2026-06-11",
-        "Transaction_Type": "OUT",
-        "School_Name": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
-        "Warehouse_Name": "Makurdi Central Store",
-        "Total_Items": 1341
       },
       {
         "Transaction_ID": "TXN050",
@@ -1703,26 +1723,17 @@
     ],
     "recent_requisitions": [
       {
-        "Requisition_ID": "REQ003",
-        "Request_Date": "22/06/2026",
-        "School_Name": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
-        "LGA": "MAKURDI",
-        "Status": "Partially Fulfilled",
-        "Requested_Quantity": 200,
-        "Fulfilled_Quantity": 100
-      },
-      {
-        "Requisition_ID": "REQ002",
-        "Request_Date": "21/06/2026",
-        "School_Name": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
-        "LGA": "MAKURDI",
+        "Requisition_ID": "REQ005",
+        "Request_Date": "2026-06-11T15:18:27.168956+00:00",
+        "School_Name": "ANGLICAN PRIMARY SCHOOL ALABAR",
+        "LGA": "UKUM",
         "Status": "Pending",
-        "Requested_Quantity": 75,
+        "Requested_Quantity": 0,
         "Fulfilled_Quantity": 0
       },
       {
         "Requisition_ID": "REQ001",
-        "Request_Date": "20/06/2026",
+        "Request_Date": "2026-06-11T14:38:43.453148+00:00",
         "School_Name": "31 AB BDE PRIMARY SCHOOL NORTH BANK",
         "LGA": "MAKURDI",
         "Status": "Approved",
@@ -1739,13 +1750,22 @@
         "Fulfilled_Quantity": 105
       },
       {
-        "Requisition_ID": "REQ005",
-        "Request_Date": "2026-06-11T15:18:27.168956+00:00",
-        "School_Name": "ANGLICAN PRIMARY SCHOOL ALABAR",
-        "LGA": "UKUM",
+        "Requisition_ID": "REQ002",
+        "Request_Date": "2026-06-11T14:38:43.453148+00:01",
+        "School_Name": "72 UNICORD PRIMARY SCHOOL NORTH BANK",
+        "LGA": "MAKURDI",
         "Status": "Pending",
-        "Requested_Quantity": 0,
+        "Requested_Quantity": 75,
         "Fulfilled_Quantity": 0
+      },
+      {
+        "Requisition_ID": "REQ003",
+        "Request_Date": "2026-06-11T14:38:43.453148+00:02",
+        "School_Name": "ALL SAINTS ANGLICAN PRIMARY SCHOOL MAKURDI",
+        "LGA": "MAKURDI",
+        "Status": "Partially Fulfilled",
+        "Requested_Quantity": 200,
+        "Fulfilled_Quantity": 100
       }
     ],
     "fulfillment_summary": [
