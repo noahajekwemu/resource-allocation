@@ -14,7 +14,7 @@
     while (chartInstances.length) chartInstances.pop().destroy();
   }
 
-  function renderEmptyState(canvasId, message = "No chart data available") {
+  function renderEmptyState(canvasId, message = "No data for selected filters") {
     const canvas = document.getElementById(canvasId);
     const frame = canvas?.closest(".chart-frame");
     if (!frame) return;
