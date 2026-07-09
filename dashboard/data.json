@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-07-08T23:16:59.200263+00:00",
-  "last_updated": "2026-07-08T23:16:59.200263+00:00",
+  "generated_at": "2026-07-09T04:02:00.105467+00:00",
+  "last_updated": "2026-07-09T04:02:00.105467+00:00",
   "filters": {
     "lgas": [
       "AGATU",
@@ -266,9 +266,9 @@
     ]
   },
   "kpis": {
-    "inventory_accuracy": 87.79,
+    "inventory_accuracy": 18.02,
     "total_items": 172,
-    "total_stock_units": -12012,
+    "total_stock_units": -90888,
     "low_stock_items": 168,
     "total_requisitions": 5,
     "pending_requisitions": 2,
@@ -282,14 +282,14 @@
     "total_available_stock": 0,
     "out_of_stock_items": 168,
     "damaged_items": 0,
-    "schools_served": 6,
+    "schools_served": 7,
     "total_warehouses": 10,
     "total_schools": 33,
     "total_categories": 12
   },
   "inventory": {
     "total_items": 172,
-    "total_stock_units": -12012,
+    "total_stock_units": -90888,
     "low_stock_items": 168,
     "out_of_stock_items": 168
   },
@@ -304,6 +304,10 @@
   },
   "distribution": {
     "by_lga": [
+      {
+        "lga": "NA",
+        "quantity": 78876
+      },
       {
         "lga": "UKUM",
         "quantity": 5644
@@ -323,6 +327,10 @@
     ],
     "by_school_type": [
       {
+        "school_type": "NA",
+        "quantity": 78876
+      },
+      {
         "school_type": "PRI",
         "quantity": 10784
       },
@@ -333,6 +341,10 @@
     ],
     "by_school": {
       "all_schools": [
+        {
+          "school": "ADMIN",
+          "quantity": 78876
+        },
         {
           "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
           "quantity": 5644
@@ -359,6 +371,10 @@
         }
       ],
       "top_10_schools": [
+        {
+          "school": "ADMIN",
+          "quantity": 78876
+        },
         {
           "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
           "quantity": 5644
@@ -408,12 +424,16 @@
         {
           "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
           "quantity": 5644
+        },
+        {
+          "school": "ADMIN",
+          "quantity": 78876
         }
       ]
     }
   },
   "accountability": {
-    "inventory_accuracy": 87.79,
+    "inventory_accuracy": 18.02,
     "damaged_items": 0,
     "average_fulfillment_days": 0.0
   },
@@ -422,7 +442,7 @@
       "Item_ID": "ITEM009",
       "Item_Name": "Ballon",
       "Category": "Arts",
-      "Current_Stock": -384,
+      "Current_Stock": -395,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -430,7 +450,7 @@
       "Item_ID": "ITEM010",
       "Item_Name": "Banners",
       "Category": "Arts",
-      "Current_Stock": -1455,
+      "Current_Stock": -1472,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -438,7 +458,7 @@
       "Item_ID": "ITEM012",
       "Item_Name": "Basket Making",
       "Category": "Arts",
-      "Current_Stock": -1667,
+      "Current_Stock": -1670,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -446,7 +466,7 @@
       "Item_ID": "ITEM014",
       "Item_Name": "Beads Accessories",
       "Category": "Arts",
-      "Current_Stock": -583,
+      "Current_Stock": -586,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -454,7 +474,7 @@
       "Item_ID": "ITEM020",
       "Item_Name": "Building Materials",
       "Category": "Arts",
-      "Current_Stock": -589,
+      "Current_Stock": -966,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -462,7 +482,7 @@
       "Item_ID": "ITEM005",
       "Item_Name": "Air Freshner",
       "Category": "Cleaner",
-      "Current_Stock": -1446,
+      "Current_Stock": -1599,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -470,7 +490,7 @@
       "Item_ID": "ITEM011",
       "Item_Name": "Bar Soap",
       "Category": "Cleaner",
-      "Current_Stock": 38,
+      "Current_Stock": 33,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -478,7 +498,7 @@
       "Item_ID": "ITEM018",
       "Item_Name": "Bleach (Hypo/Jik)",
       "Category": "Cleaner",
-      "Current_Stock": -811,
+      "Current_Stock": -859,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -486,7 +506,7 @@
       "Item_ID": "ITEM019",
       "Item_Name": "Brooms",
       "Category": "Cleaner",
-      "Current_Stock": -65,
+      "Current_Stock": -73,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -494,7 +514,7 @@
       "Item_ID": "ITEM048",
       "Item_Name": "Extension Cable",
       "Category": "Cleaner",
-      "Current_Stock": 0,
+      "Current_Stock": -7,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -502,7 +522,7 @@
       "Item_ID": "ITEM051",
       "Item_Name": "External Mouse",
       "Category": "Cleaner",
-      "Current_Stock": 0,
+      "Current_Stock": -1,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -510,7 +530,7 @@
       "Item_ID": "ITEM052",
       "Item_Name": "F9 Paper",
       "Category": "Cleaner",
-      "Current_Stock": 0,
+      "Current_Stock": -100,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -518,7 +538,7 @@
       "Item_ID": "ITEM053",
       "Item_Name": "File Jacket",
       "Category": "Cleaner",
-      "Current_Stock": 0,
+      "Current_Stock": -500,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -526,7 +546,7 @@
       "Item_ID": "ITEM110",
       "Item_Name": "Plastic Containers",
       "Category": "Cleaner",
-      "Current_Stock": 0,
+      "Current_Stock": -4,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -534,7 +554,7 @@
       "Item_ID": "ITEM115",
       "Item_Name": "Rake",
       "Category": "Cleaner",
-      "Current_Stock": 0,
+      "Current_Stock": -2,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -542,7 +562,7 @@
       "Item_ID": "ITEM116",
       "Item_Name": "Rakes",
       "Category": "Cleaner",
-      "Current_Stock": 0,
+      "Current_Stock": -9,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -550,7 +570,7 @@
       "Item_ID": "ITEM142",
       "Item_Name": "Stain Cleaner",
       "Category": "Cleaner",
-      "Current_Stock": 0,
+      "Current_Stock": -11,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -558,7 +578,7 @@
       "Item_ID": "ITEM147",
       "Item_Name": "Stick Broom",
       "Category": "Cleaner",
-      "Current_Stock": 0,
+      "Current_Stock": -7,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -566,7 +586,7 @@
       "Item_ID": "ITEM148",
       "Item_Name": "Sticky Pad",
       "Category": "Cleaner",
-      "Current_Stock": 0,
+      "Current_Stock": -192,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -574,7 +594,7 @@
       "Item_ID": "ITEM153",
       "Item_Name": "Tissue Paper",
       "Category": "Cleaner",
-      "Current_Stock": 0,
+      "Current_Stock": -499,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -582,7 +602,7 @@
       "Item_ID": "ITEM154",
       "Item_Name": "Toilet Brush",
       "Category": "Cleaner",
-      "Current_Stock": 0,
+      "Current_Stock": -3,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -590,7 +610,7 @@
       "Item_ID": "ITEM016",
       "Item_Name": "BiscuIts",
       "Category": "Edibles",
-      "Current_Stock": -30,
+      "Current_Stock": -277,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -606,7 +626,7 @@
       "Item_ID": "ITEM022",
       "Item_Name": "Candy",
       "Category": "Edibles",
-      "Current_Stock": -925,
+      "Current_Stock": -946,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -614,7 +634,7 @@
       "Item_ID": "ITEM107",
       "Item_Name": "Phone Stand",
       "Category": "Electricals",
-      "Current_Stock": 0,
+      "Current_Stock": -3,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -630,7 +650,7 @@
       "Item_ID": "ITEM113",
       "Item_Name": "Powwr Bank",
       "Category": "Electricals",
-      "Current_Stock": 0,
+      "Current_Stock": -1,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -638,7 +658,7 @@
       "Item_ID": "ITEM128",
       "Item_Name": "Sensor",
       "Category": "Electricals",
-      "Current_Stock": 0,
+      "Current_Stock": -1,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -646,7 +666,7 @@
       "Item_ID": "ITEM137",
       "Item_Name": "Sockets",
       "Category": "Electricals",
-      "Current_Stock": 0,
+      "Current_Stock": -2,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -654,7 +674,7 @@
       "Item_ID": "ITEM139",
       "Item_Name": "Solar Lamp",
       "Category": "Electricals",
-      "Current_Stock": 0,
+      "Current_Stock": -36,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -662,7 +682,7 @@
       "Item_ID": "ITEM046",
       "Item_Name": "Exercise Book",
       "Category": "Equipment",
-      "Current_Stock": 0,
+      "Current_Stock": -116,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -670,7 +690,7 @@
       "Item_ID": "ITEM047",
       "Item_Name": "Extension",
       "Category": "Equipment",
-      "Current_Stock": 0,
+      "Current_Stock": -6,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -678,7 +698,7 @@
       "Item_ID": "ITEM013",
       "Item_Name": "Battery",
       "Category": "IT",
-      "Current_Stock": -547,
+      "Current_Stock": -562,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -686,7 +706,7 @@
       "Item_ID": "ITEM024",
       "Item_Name": "Cartridges",
       "Category": "IT",
-      "Current_Stock": -1522,
+      "Current_Stock": -1868,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -694,7 +714,7 @@
       "Item_ID": "ITEM150",
       "Item_Name": "Tablet",
       "Category": "IT",
-      "Current_Stock": 0,
+      "Current_Stock": -1,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -702,7 +722,7 @@
       "Item_ID": "ITEM169",
       "Item_Name": "Wireless Mouse",
       "Category": "IT",
-      "Current_Stock": 0,
+      "Current_Stock": -2,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -710,7 +730,7 @@
       "Item_ID": "ITEM151",
       "Item_Name": "Tea Cups",
       "Category": "Kitchen",
-      "Current_Stock": 0,
+      "Current_Stock": -10,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -718,7 +738,7 @@
       "Item_ID": "ITEM152",
       "Item_Name": "Tea Spoons",
       "Category": "Kitchen",
-      "Current_Stock": 0,
+      "Current_Stock": -26,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -726,7 +746,7 @@
       "Item_ID": "ITEM058",
       "Item_Name": "Foot Mat",
       "Category": "Other",
-      "Current_Stock": 0,
+      "Current_Stock": -1,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -742,7 +762,7 @@
       "Item_ID": "ITEM168",
       "Item_Name": "Window Blind",
       "Category": "Other",
-      "Current_Stock": 0,
+      "Current_Stock": -2,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -750,7 +770,7 @@
       "Item_ID": "ITEM027",
       "Item_Name": "Cement Block",
       "Category": "Sports",
-      "Current_Stock": -170,
+      "Current_Stock": -182,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -758,7 +778,7 @@
       "Item_ID": "ITEM028",
       "Item_Name": "Certificate",
       "Category": "Sports",
-      "Current_Stock": -174,
+      "Current_Stock": -2725,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -766,7 +786,7 @@
       "Item_ID": "ITEM029",
       "Item_Name": "Cleaning Blade",
       "Category": "Sports",
-      "Current_Stock": -496,
+      "Current_Stock": -582,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -774,7 +794,7 @@
       "Item_ID": "ITEM030",
       "Item_Name": "Computer Paper Line",
       "Category": "Sports",
-      "Current_Stock": 0,
+      "Current_Stock": -125,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -782,7 +802,7 @@
       "Item_ID": "ITEM031",
       "Item_Name": "Contract Payment Form",
       "Category": "Sports",
-      "Current_Stock": 0,
+      "Current_Stock": -20,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -790,7 +810,7 @@
       "Item_ID": "ITEM032",
       "Item_Name": "Contract Payment Register",
       "Category": "Sports",
-      "Current_Stock": 0,
+      "Current_Stock": -100,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -798,7 +818,7 @@
       "Item_ID": "ITEM033",
       "Item_Name": "Contractors Ledger",
       "Category": "Sports",
-      "Current_Stock": 0,
+      "Current_Stock": -200,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -806,7 +826,7 @@
       "Item_ID": "ITEM034",
       "Item_Name": "Correction Pen",
       "Category": "Sports",
-      "Current_Stock": 0,
+      "Current_Stock": -28,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -814,7 +834,7 @@
       "Item_ID": "ITEM035",
       "Item_Name": "Crayon",
       "Category": "Sports",
-      "Current_Stock": 0,
+      "Current_Stock": -30,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -822,7 +842,7 @@
       "Item_ID": "ITEM036",
       "Item_Name": "Customized Gift Bags",
       "Category": "Sports",
-      "Current_Stock": 0,
+      "Current_Stock": -750,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -830,7 +850,7 @@
       "Item_ID": "ITEM042",
       "Item_Name": "DVEA Book",
       "Category": "Sports",
-      "Current_Stock": 0,
+      "Current_Stock": -100,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -838,7 +858,7 @@
       "Item_ID": "ITEM037",
       "Item_Name": "Detergent",
       "Category": "Sports",
-      "Current_Stock": 0,
+      "Current_Stock": -223,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -846,7 +866,7 @@
       "Item_ID": "ITEM038",
       "Item_Name": "Detol",
       "Category": "Sports",
-      "Current_Stock": 0,
+      "Current_Stock": -6,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -854,7 +874,7 @@
       "Item_ID": "ITEM039",
       "Item_Name": "Developer",
       "Category": "Sports",
-      "Current_Stock": 0,
+      "Current_Stock": -1,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -862,7 +882,7 @@
       "Item_ID": "ITEM040",
       "Item_Name": "Door Key",
       "Category": "Sports",
-      "Current_Stock": 0,
+      "Current_Stock": -1,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -878,7 +898,7 @@
       "Item_ID": "ITEM043",
       "Item_Name": "Electric Bulb",
       "Category": "Sports",
-      "Current_Stock": 0,
+      "Current_Stock": -2,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -886,7 +906,7 @@
       "Item_ID": "ITEM044",
       "Item_Name": "Eraser",
       "Category": "Sports",
-      "Current_Stock": 0,
+      "Current_Stock": -96,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -894,7 +914,7 @@
       "Item_ID": "ITEM045",
       "Item_Name": "Executor",
       "Category": "Sports",
-      "Current_Stock": 0,
+      "Current_Stock": -300,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -918,7 +938,7 @@
       "Item_ID": "ITEM132",
       "Item_Name": "Skipping Rope",
       "Category": "Sports",
-      "Current_Stock": 0,
+      "Current_Stock": -18,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -958,7 +978,7 @@
       "Item_ID": "ITEM138",
       "Item_Name": "Socks",
       "Category": "Sports",
-      "Current_Stock": 0,
+      "Current_Stock": -300,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -982,7 +1002,7 @@
       "Item_ID": "ITEM157",
       "Item_Name": "Twine Rope",
       "Category": "Sports",
-      "Current_Stock": 0,
+      "Current_Stock": -47,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1030,7 +1050,7 @@
       "Item_ID": "ITEM001",
       "Item_Name": "A3 Paper",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -210,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1038,7 +1058,7 @@
       "Item_ID": "ITEM002",
       "Item_Name": "A4 Paper",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -1602,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1046,7 +1066,7 @@
       "Item_ID": "ITEM003",
       "Item_Name": "A4 Size Envelopes",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -111,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1054,7 +1074,7 @@
       "Item_ID": "ITEM004",
       "Item_Name": "A5 Size Envelopes",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -3,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1062,7 +1082,7 @@
       "Item_ID": "ITEM006",
       "Item_Name": "Arc File",
       "Category": "Stationery",
-      "Current_Stock": 200,
+      "Current_Stock": 196,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1070,7 +1090,7 @@
       "Item_ID": "ITEM007",
       "Item_Name": "Art Paper",
       "Category": "Stationery",
-      "Current_Stock": -243,
+      "Current_Stock": -252,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1078,7 +1098,7 @@
       "Item_ID": "ITEM008",
       "Item_Name": "Baking Colour",
       "Category": "Stationery",
-      "Current_Stock": -121,
+      "Current_Stock": -132,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1086,7 +1106,7 @@
       "Item_ID": "ITEM015",
       "Item_Name": "Beads Manual",
       "Category": "Stationery",
-      "Current_Stock": 367,
+      "Current_Stock": 331,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1094,7 +1114,7 @@
       "Item_ID": "ITEM021",
       "Item_Name": "Calculator",
       "Category": "Stationery",
-      "Current_Stock": -970,
+      "Current_Stock": -997,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1110,7 +1130,7 @@
       "Item_ID": "ITEM025",
       "Item_Name": "Cash Book",
       "Category": "Stationery",
-      "Current_Stock": -19,
+      "Current_Stock": -20,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1118,7 +1138,7 @@
       "Item_ID": "ITEM049",
       "Item_Name": "External Hard Drive",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -7,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1126,7 +1146,7 @@
       "Item_ID": "ITEM050",
       "Item_Name": "External Keyboard",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -2,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1134,7 +1154,7 @@
       "Item_ID": "ITEM054",
       "Item_Name": "File Tag",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -1,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1142,7 +1162,7 @@
       "Item_ID": "ITEM055",
       "Item_Name": "Flash Drive",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -17,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1150,7 +1170,7 @@
       "Item_ID": "ITEM056",
       "Item_Name": "Flip Chart",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -201,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1158,7 +1178,7 @@
       "Item_ID": "ITEM057",
       "Item_Name": "Folder",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -478,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1166,7 +1186,7 @@
       "Item_ID": "ITEM109",
       "Item_Name": "Pin Remover",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -12,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1174,7 +1194,7 @@
       "Item_ID": "ITEM111",
       "Item_Name": "Plastic Ruler",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -36,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1182,7 +1202,7 @@
       "Item_ID": "ITEM114",
       "Item_Name": "Punch",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -7,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1190,7 +1210,7 @@
       "Item_ID": "ITEM117",
       "Item_Name": "Razor Blade",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -12,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1198,7 +1218,7 @@
       "Item_ID": "ITEM118",
       "Item_Name": "Ribbon",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -16,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1206,7 +1226,7 @@
       "Item_ID": "ITEM119",
       "Item_Name": "Router Network",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -4,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1214,7 +1234,7 @@
       "Item_ID": "ITEM120",
       "Item_Name": "Rubber",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -10,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1222,7 +1242,7 @@
       "Item_ID": "ITEM121",
       "Item_Name": "Rubber Band",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -6,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1230,7 +1250,7 @@
       "Item_ID": "ITEM122",
       "Item_Name": "Rubber Bucket",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -2,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1238,7 +1258,7 @@
       "Item_ID": "ITEM123",
       "Item_Name": "School Bags",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -300,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1246,7 +1266,7 @@
       "Item_ID": "ITEM124",
       "Item_Name": "School Based Manual",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -2223,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1254,7 +1274,7 @@
       "Item_ID": "ITEM125",
       "Item_Name": "School Sandals",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -300,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1262,7 +1282,7 @@
       "Item_ID": "ITEM126",
       "Item_Name": "Scissors",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -30,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1270,7 +1290,7 @@
       "Item_ID": "ITEM127",
       "Item_Name": "Secret File Jacket",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -1000,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1278,7 +1298,7 @@
       "Item_ID": "ITEM129",
       "Item_Name": "Shapeners",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -29,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1286,7 +1306,7 @@
       "Item_ID": "ITEM141",
       "Item_Name": "Spiral Binding Paper",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -182,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1294,7 +1314,7 @@
       "Item_ID": "ITEM143",
       "Item_Name": "Stamp",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -1,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1302,7 +1322,7 @@
       "Item_ID": "ITEM144",
       "Item_Name": "Stamp Machine",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -2,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1310,7 +1330,7 @@
       "Item_ID": "ITEM145",
       "Item_Name": "Staple Pin",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -201,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1318,7 +1338,7 @@
       "Item_ID": "ITEM146",
       "Item_Name": "Stapler",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -38,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1326,7 +1346,7 @@
       "Item_ID": "ITEM163",
       "Item_Name": "Water Colour",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -6,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1334,7 +1354,7 @@
       "Item_ID": "ITEM164",
       "Item_Name": "White Board",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -7000,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1342,7 +1362,7 @@
       "Item_ID": "ITEM165",
       "Item_Name": "White Board Eraser",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -7000,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1350,7 +1370,7 @@
       "Item_ID": "ITEM166",
       "Item_Name": "White Board Marker",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -7000,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1358,7 +1378,7 @@
       "Item_ID": "ITEM172",
       "Item_Name": "Writing Materials",
       "Category": "Stationery",
-      "Current_Stock": 0,
+      "Current_Stock": -350,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1366,7 +1386,7 @@
       "Item_ID": "ITEM026",
       "Item_Name": "Cement",
       "Category": "Uncategorized",
-      "Current_Stock": -566,
+      "Current_Stock": -582,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1374,7 +1394,7 @@
       "Item_ID": "ITEM065",
       "Item_Name": "GP Water Tank",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -1,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1382,7 +1402,7 @@
       "Item_ID": "ITEM061",
       "Item_Name": "Gawa",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -600,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1390,7 +1410,7 @@
       "Item_ID": "ITEM062",
       "Item_Name": "Giant Stapler",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -4,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1398,7 +1418,7 @@
       "Item_ID": "ITEM063",
       "Item_Name": "Gift Box Note",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -750,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1406,7 +1426,7 @@
       "Item_ID": "ITEM064",
       "Item_Name": "Glyphotex",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -550,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1414,7 +1434,7 @@
       "Item_ID": "ITEM066",
       "Item_Name": "Graphic Card",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -1,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1422,7 +1442,7 @@
       "Item_ID": "ITEM067",
       "Item_Name": "Gravel",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -1,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1502,7 +1522,7 @@
       "Item_ID": "ITEM077",
       "Item_Name": "Hard Cover Note Book",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -184,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1510,7 +1530,7 @@
       "Item_ID": "ITEM078",
       "Item_Name": "Harpic",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -174,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1518,7 +1538,7 @@
       "Item_ID": "ITEM079",
       "Item_Name": "Head Teacher Manual",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -326,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1526,7 +1546,7 @@
       "Item_ID": "ITEM080",
       "Item_Name": "Ink Cartridges",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -448,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1534,7 +1554,7 @@
       "Item_ID": "ITEM081",
       "Item_Name": "Insecticide",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -39,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1542,7 +1562,7 @@
       "Item_ID": "ITEM082",
       "Item_Name": "Izal",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -13,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1550,7 +1570,7 @@
       "Item_ID": "ITEM083",
       "Item_Name": "Jar Gum",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -13,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1566,7 +1586,7 @@
       "Item_ID": "ITEM085",
       "Item_Name": "Jotter",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -2270,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1574,7 +1594,7 @@
       "Item_ID": "ITEM086",
       "Item_Name": "Juice",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -222,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1582,7 +1602,7 @@
       "Item_ID": "ITEM087",
       "Item_Name": "Knife",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -6,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1590,7 +1610,7 @@
       "Item_ID": "ITEM088",
       "Item_Name": "Knitting",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -75,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1598,7 +1618,7 @@
       "Item_ID": "ITEM089",
       "Item_Name": "Knitting Accessories",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -75,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1606,7 +1626,7 @@
       "Item_ID": "ITEM090",
       "Item_Name": "Laminaring Paper",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -2,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1622,7 +1642,7 @@
       "Item_ID": "ITEM092",
       "Item_Name": "Letter Headed Paper",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -30000,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1630,7 +1650,7 @@
       "Item_ID": "ITEM093",
       "Item_Name": "Lipton Tea",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -68,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1638,7 +1658,7 @@
       "Item_ID": "ITEM094",
       "Item_Name": "Liquid Soap",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -2725,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1646,7 +1666,7 @@
       "Item_ID": "ITEM095",
       "Item_Name": "Manual Guides",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -683,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1654,7 +1674,7 @@
       "Item_ID": "ITEM096",
       "Item_Name": "Marker",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -144,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1662,7 +1682,7 @@
       "Item_ID": "ITEM097",
       "Item_Name": "Masking Tape",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -194,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1670,7 +1690,7 @@
       "Item_ID": "ITEM098",
       "Item_Name": "Mineral",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -388,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1678,7 +1698,7 @@
       "Item_ID": "ITEM099",
       "Item_Name": "Needle Pack",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -6,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1686,7 +1706,7 @@
       "Item_ID": "ITEM100",
       "Item_Name": "Office Clip",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -79,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1694,7 +1714,7 @@
       "Item_ID": "ITEM101",
       "Item_Name": "Office Clips/Pins",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -31,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1702,7 +1722,7 @@
       "Item_ID": "ITEM102",
       "Item_Name": "Office Towel",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -9,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1710,7 +1730,7 @@
       "Item_ID": "ITEM103",
       "Item_Name": "Oil Paint",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -2,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1718,7 +1738,7 @@
       "Item_ID": "ITEM104",
       "Item_Name": "Open File Jacket",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -1196,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1726,7 +1746,7 @@
       "Item_ID": "ITEM105",
       "Item_Name": "Pen",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -190,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1734,7 +1754,7 @@
       "Item_ID": "ITEM106",
       "Item_Name": "Pencil",
       "Category": "Uncategorized",
-      "Current_Stock": 0,
+      "Current_Stock": -33,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1742,7 +1762,7 @@
       "Item_ID": "ITEM060",
       "Item_Name": "Furniture Polish",
       "Category": "Workshop",
-      "Current_Stock": 0,
+      "Current_Stock": -16,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1750,7 +1770,7 @@
       "Item_ID": "ITEM112",
       "Item_Name": "Plumbing Materials",
       "Category": "Workshop",
-      "Current_Stock": 0,
+      "Current_Stock": -821,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1758,7 +1778,7 @@
       "Item_ID": "ITEM130",
       "Item_Name": "Sharp Sand",
       "Category": "Workshop",
-      "Current_Stock": 0,
+      "Current_Stock": -1,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1766,7 +1786,7 @@
       "Item_ID": "ITEM140",
       "Item_Name": "Spare Parts",
       "Category": "Workshop",
-      "Current_Stock": 0,
+      "Current_Stock": -188,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1774,7 +1794,7 @@
       "Item_ID": "ITEM155",
       "Item_Name": "Tripod",
       "Category": "Workshop",
-      "Current_Stock": 0,
+      "Current_Stock": -1,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1782,7 +1802,7 @@
       "Item_ID": "ITEM170",
       "Item_Name": "Wooden Polish",
       "Category": "Workshop",
-      "Current_Stock": 0,
+      "Current_Stock": -2,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     },
@@ -1790,7 +1810,7 @@
       "Item_ID": "ITEM171",
       "Item_Name": "Workshop Tag",
       "Category": "Workshop",
-      "Current_Stock": 0,
+      "Current_Stock": -50,
       "Reorder_Level": 10,
       "Minimum_Stock": 10
     }
@@ -2864,6 +2884,10 @@
   "school_distribution": {
     "all_schools": [
       {
+        "school": "ADMIN",
+        "quantity": 78876
+      },
+      {
         "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
         "quantity": 5644
       },
@@ -2889,6 +2913,10 @@
       }
     ],
     "top_10_schools": [
+      {
+        "school": "ADMIN",
+        "quantity": 78876
+      },
       {
         "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
         "quantity": 5644
@@ -2938,10 +2966,18 @@
       {
         "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
         "quantity": 5644
+      },
+      {
+        "school": "ADMIN",
+        "quantity": 78876
       }
     ]
   },
   "lga_distribution": [
+    {
+      "lga": "NA",
+      "quantity": 78876
+    },
     {
       "lga": "UKUM",
       "quantity": 5644
@@ -2970,12 +3006,6 @@
       {
         "warehouse_id": "WH-003",
         "warehouse": "Great Otukpo I",
-        "stock_level": 0,
-        "total_outflows": 0
-      },
-      {
-        "warehouse_id": "NA",
-        "warehouse": "NA",
         "stock_level": 0,
         "total_outflows": 0
       },
@@ -3020,9 +3050,21 @@
         "warehouse": "Great Otukpo II",
         "stock_level": -5644,
         "total_outflows": 5644
+      },
+      {
+        "warehouse_id": "NA",
+        "warehouse": "NA",
+        "stock_level": -78876,
+        "total_outflows": 78876
       }
     ],
     "total_outflows": [
+      {
+        "warehouse_id": "NA",
+        "warehouse": "NA",
+        "stock_level": -78876,
+        "total_outflows": 78876
+      },
       {
         "warehouse_id": "WH-004",
         "warehouse": "Great Otukpo II",
@@ -3069,12 +3111,6 @@
         "warehouse_id": "WH-001",
         "warehouse": "Makurdi Central Store",
         "stock_level": 2969,
-        "total_outflows": 0
-      },
-      {
-        "warehouse_id": "NA",
-        "warehouse": "NA",
-        "stock_level": 0,
         "total_outflows": 0
       },
       {
@@ -3195,55 +3231,59 @@
     ],
     "inventory_by_category": [
       {
-        "category": "Electricals",
-        "quantity": 0
-      },
-      {
-        "category": "Equipment",
-        "quantity": 0
+        "category": "Other",
+        "quantity": -3
       },
       {
         "category": "Kitchen",
-        "quantity": 0
+        "quantity": -36
       },
       {
-        "category": "Other",
-        "quantity": 0
+        "category": "Electricals",
+        "quantity": -43
+      },
+      {
+        "category": "Equipment",
+        "quantity": -122
       },
       {
         "category": "Workshop",
-        "quantity": 0
-      },
-      {
-        "category": "Stationery",
-        "quantity": -414
-      },
-      {
-        "category": "Uncategorized",
-        "quantity": -566
-      },
-      {
-        "category": "Sports",
-        "quantity": -840
+        "quantity": -1079
       },
       {
         "category": "Edibles",
-        "quantity": -1161
+        "quantity": -1429
       },
       {
         "category": "IT",
-        "quantity": -2069
+        "quantity": -2433
       },
       {
         "category": "Cleaner",
-        "quantity": -2284
+        "quantity": -3833
       },
       {
         "category": "Arts",
-        "quantity": -4678
+        "quantity": -5089
+      },
+      {
+        "category": "Sports",
+        "quantity": -5836
+      },
+      {
+        "category": "Stationery",
+        "quantity": -28901
+      },
+      {
+        "category": "Uncategorized",
+        "quantity": -42084
       }
     ],
     "distribution_by_lga": [
+      {
+        "lga": "NA",
+        "quantity": 78876
+      },
       {
         "lga": "UKUM",
         "quantity": 5644
@@ -3263,6 +3303,10 @@
     ],
     "distribution_by_school_type": [
       {
+        "school_type": "NA",
+        "quantity": 78876
+      },
+      {
         "school_type": "PRI",
         "quantity": 10784
       },
@@ -3273,47 +3317,51 @@
     ],
     "top_distributed_items": [
       {
-        "item": "Basket Making",
-        "quantity": 1667
+        "item": "Letter Headed Paper",
+        "quantity": 30000
+      },
+      {
+        "item": "White Board",
+        "quantity": 7000
+      },
+      {
+        "item": "White Board Eraser",
+        "quantity": 7000
+      },
+      {
+        "item": "White Board Marker",
+        "quantity": 7000
+      },
+      {
+        "item": "Certificate",
+        "quantity": 2725
+      },
+      {
+        "item": "Liquid Soap",
+        "quantity": 2725
+      },
+      {
+        "item": "Jotter",
+        "quantity": 2270
+      },
+      {
+        "item": "School Based Manual",
+        "quantity": 2223
       },
       {
         "item": "Cartridges",
-        "quantity": 1522
+        "quantity": 1868
       },
       {
-        "item": "Banners",
-        "quantity": 1455
-      },
-      {
-        "item": "Air Freshner",
-        "quantity": 1446
-      },
-      {
-        "item": "Calculator",
-        "quantity": 995
-      },
-      {
-        "item": "Candy",
-        "quantity": 947
-      },
-      {
-        "item": "Bleach (Hypo/Jik)",
-        "quantity": 909
-      },
-      {
-        "item": "Art Paper",
-        "quantity": 664
-      },
-      {
-        "item": "ITEM-001",
-        "quantity": 644
-      },
-      {
-        "item": "Building Materials",
-        "quantity": 611
+        "item": "Basket Making",
+        "quantity": 1670
       }
     ],
     "top_schools": [
+      {
+        "school": "ADMIN",
+        "quantity": 78876
+      },
       {
         "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
         "quantity": 5644
@@ -3363,12 +3411,20 @@
       {
         "school": "ANGLICAN PRIMARY SCHOOL ZAKIBIAM",
         "quantity": 5644
+      },
+      {
+        "school": "ADMIN",
+        "quantity": 78876
       }
     ],
     "stock_source_analysis": [
       {
         "source": "",
         "quantity": 2969
+      },
+      {
+        "source": "Procurement",
+        "quantity": 0
       }
     ],
     "warehouse_stock_levels": [
@@ -3381,12 +3437,6 @@
       {
         "warehouse_id": "WH-003",
         "warehouse": "Great Otukpo I",
-        "stock_level": 0,
-        "total_outflows": 0
-      },
-      {
-        "warehouse_id": "NA",
-        "warehouse": "NA",
         "stock_level": 0,
         "total_outflows": 0
       },
@@ -3431,9 +3481,21 @@
         "warehouse": "Great Otukpo II",
         "stock_level": -5644,
         "total_outflows": 5644
+      },
+      {
+        "warehouse_id": "NA",
+        "warehouse": "NA",
+        "stock_level": -78876,
+        "total_outflows": 78876
       }
     ],
     "warehouse_outflows": [
+      {
+        "warehouse_id": "NA",
+        "warehouse": "NA",
+        "stock_level": -78876,
+        "total_outflows": 78876
+      },
       {
         "warehouse_id": "WH-004",
         "warehouse": "Great Otukpo II",
@@ -3480,12 +3542,6 @@
         "warehouse_id": "WH-001",
         "warehouse": "Makurdi Central Store",
         "stock_level": 2969,
-        "total_outflows": 0
-      },
-      {
-        "warehouse_id": "NA",
-        "warehouse": "NA",
-        "stock_level": 0,
         "total_outflows": 0
       },
       {
@@ -3509,7 +3565,7 @@
         "Item_ID": "ITEM009",
         "Item_Name": "Ballon",
         "Category": "Arts",
-        "Current_Stock": -384,
+        "Current_Stock": -395,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3517,7 +3573,7 @@
         "Item_ID": "ITEM010",
         "Item_Name": "Banners",
         "Category": "Arts",
-        "Current_Stock": -1455,
+        "Current_Stock": -1472,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3525,7 +3581,7 @@
         "Item_ID": "ITEM012",
         "Item_Name": "Basket Making",
         "Category": "Arts",
-        "Current_Stock": -1667,
+        "Current_Stock": -1670,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3533,7 +3589,7 @@
         "Item_ID": "ITEM014",
         "Item_Name": "Beads Accessories",
         "Category": "Arts",
-        "Current_Stock": -583,
+        "Current_Stock": -586,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3541,7 +3597,7 @@
         "Item_ID": "ITEM020",
         "Item_Name": "Building Materials",
         "Category": "Arts",
-        "Current_Stock": -589,
+        "Current_Stock": -966,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3549,7 +3605,7 @@
         "Item_ID": "ITEM005",
         "Item_Name": "Air Freshner",
         "Category": "Cleaner",
-        "Current_Stock": -1446,
+        "Current_Stock": -1599,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3557,7 +3613,7 @@
         "Item_ID": "ITEM011",
         "Item_Name": "Bar Soap",
         "Category": "Cleaner",
-        "Current_Stock": 38,
+        "Current_Stock": 33,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3565,7 +3621,7 @@
         "Item_ID": "ITEM018",
         "Item_Name": "Bleach (Hypo/Jik)",
         "Category": "Cleaner",
-        "Current_Stock": -811,
+        "Current_Stock": -859,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3573,7 +3629,7 @@
         "Item_ID": "ITEM019",
         "Item_Name": "Brooms",
         "Category": "Cleaner",
-        "Current_Stock": -65,
+        "Current_Stock": -73,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3581,7 +3637,7 @@
         "Item_ID": "ITEM048",
         "Item_Name": "Extension Cable",
         "Category": "Cleaner",
-        "Current_Stock": 0,
+        "Current_Stock": -7,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3589,7 +3645,7 @@
         "Item_ID": "ITEM051",
         "Item_Name": "External Mouse",
         "Category": "Cleaner",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3597,7 +3653,7 @@
         "Item_ID": "ITEM052",
         "Item_Name": "F9 Paper",
         "Category": "Cleaner",
-        "Current_Stock": 0,
+        "Current_Stock": -100,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3605,7 +3661,7 @@
         "Item_ID": "ITEM053",
         "Item_Name": "File Jacket",
         "Category": "Cleaner",
-        "Current_Stock": 0,
+        "Current_Stock": -500,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3613,7 +3669,7 @@
         "Item_ID": "ITEM110",
         "Item_Name": "Plastic Containers",
         "Category": "Cleaner",
-        "Current_Stock": 0,
+        "Current_Stock": -4,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3621,7 +3677,7 @@
         "Item_ID": "ITEM115",
         "Item_Name": "Rake",
         "Category": "Cleaner",
-        "Current_Stock": 0,
+        "Current_Stock": -2,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3629,7 +3685,7 @@
         "Item_ID": "ITEM116",
         "Item_Name": "Rakes",
         "Category": "Cleaner",
-        "Current_Stock": 0,
+        "Current_Stock": -9,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3637,7 +3693,7 @@
         "Item_ID": "ITEM142",
         "Item_Name": "Stain Cleaner",
         "Category": "Cleaner",
-        "Current_Stock": 0,
+        "Current_Stock": -11,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3645,7 +3701,7 @@
         "Item_ID": "ITEM147",
         "Item_Name": "Stick Broom",
         "Category": "Cleaner",
-        "Current_Stock": 0,
+        "Current_Stock": -7,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3653,7 +3709,7 @@
         "Item_ID": "ITEM148",
         "Item_Name": "Sticky Pad",
         "Category": "Cleaner",
-        "Current_Stock": 0,
+        "Current_Stock": -192,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3661,7 +3717,7 @@
         "Item_ID": "ITEM153",
         "Item_Name": "Tissue Paper",
         "Category": "Cleaner",
-        "Current_Stock": 0,
+        "Current_Stock": -499,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3669,7 +3725,7 @@
         "Item_ID": "ITEM154",
         "Item_Name": "Toilet Brush",
         "Category": "Cleaner",
-        "Current_Stock": 0,
+        "Current_Stock": -3,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3677,7 +3733,7 @@
         "Item_ID": "ITEM016",
         "Item_Name": "BiscuIts",
         "Category": "Edibles",
-        "Current_Stock": -30,
+        "Current_Stock": -277,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3693,7 +3749,7 @@
         "Item_ID": "ITEM022",
         "Item_Name": "Candy",
         "Category": "Edibles",
-        "Current_Stock": -925,
+        "Current_Stock": -946,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3701,7 +3757,7 @@
         "Item_ID": "ITEM107",
         "Item_Name": "Phone Stand",
         "Category": "Electricals",
-        "Current_Stock": 0,
+        "Current_Stock": -3,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3717,7 +3773,7 @@
         "Item_ID": "ITEM113",
         "Item_Name": "Powwr Bank",
         "Category": "Electricals",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3725,7 +3781,7 @@
         "Item_ID": "ITEM128",
         "Item_Name": "Sensor",
         "Category": "Electricals",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3733,7 +3789,7 @@
         "Item_ID": "ITEM137",
         "Item_Name": "Sockets",
         "Category": "Electricals",
-        "Current_Stock": 0,
+        "Current_Stock": -2,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3741,7 +3797,7 @@
         "Item_ID": "ITEM139",
         "Item_Name": "Solar Lamp",
         "Category": "Electricals",
-        "Current_Stock": 0,
+        "Current_Stock": -36,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3749,7 +3805,7 @@
         "Item_ID": "ITEM046",
         "Item_Name": "Exercise Book",
         "Category": "Equipment",
-        "Current_Stock": 0,
+        "Current_Stock": -116,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3757,7 +3813,7 @@
         "Item_ID": "ITEM047",
         "Item_Name": "Extension",
         "Category": "Equipment",
-        "Current_Stock": 0,
+        "Current_Stock": -6,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3765,7 +3821,7 @@
         "Item_ID": "ITEM013",
         "Item_Name": "Battery",
         "Category": "IT",
-        "Current_Stock": -547,
+        "Current_Stock": -562,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3773,7 +3829,7 @@
         "Item_ID": "ITEM024",
         "Item_Name": "Cartridges",
         "Category": "IT",
-        "Current_Stock": -1522,
+        "Current_Stock": -1868,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3781,7 +3837,7 @@
         "Item_ID": "ITEM150",
         "Item_Name": "Tablet",
         "Category": "IT",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3789,7 +3845,7 @@
         "Item_ID": "ITEM169",
         "Item_Name": "Wireless Mouse",
         "Category": "IT",
-        "Current_Stock": 0,
+        "Current_Stock": -2,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3797,7 +3853,7 @@
         "Item_ID": "ITEM151",
         "Item_Name": "Tea Cups",
         "Category": "Kitchen",
-        "Current_Stock": 0,
+        "Current_Stock": -10,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3805,7 +3861,7 @@
         "Item_ID": "ITEM152",
         "Item_Name": "Tea Spoons",
         "Category": "Kitchen",
-        "Current_Stock": 0,
+        "Current_Stock": -26,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3813,7 +3869,7 @@
         "Item_ID": "ITEM058",
         "Item_Name": "Foot Mat",
         "Category": "Other",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3829,7 +3885,7 @@
         "Item_ID": "ITEM168",
         "Item_Name": "Window Blind",
         "Category": "Other",
-        "Current_Stock": 0,
+        "Current_Stock": -2,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3837,7 +3893,7 @@
         "Item_ID": "ITEM027",
         "Item_Name": "Cement Block",
         "Category": "Sports",
-        "Current_Stock": -170,
+        "Current_Stock": -182,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3845,7 +3901,7 @@
         "Item_ID": "ITEM028",
         "Item_Name": "Certificate",
         "Category": "Sports",
-        "Current_Stock": -174,
+        "Current_Stock": -2725,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3853,7 +3909,7 @@
         "Item_ID": "ITEM029",
         "Item_Name": "Cleaning Blade",
         "Category": "Sports",
-        "Current_Stock": -496,
+        "Current_Stock": -582,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3861,7 +3917,7 @@
         "Item_ID": "ITEM030",
         "Item_Name": "Computer Paper Line",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -125,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3869,7 +3925,7 @@
         "Item_ID": "ITEM031",
         "Item_Name": "Contract Payment Form",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -20,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3877,7 +3933,7 @@
         "Item_ID": "ITEM032",
         "Item_Name": "Contract Payment Register",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -100,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3885,7 +3941,7 @@
         "Item_ID": "ITEM033",
         "Item_Name": "Contractors Ledger",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -200,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3893,7 +3949,7 @@
         "Item_ID": "ITEM034",
         "Item_Name": "Correction Pen",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -28,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3901,7 +3957,7 @@
         "Item_ID": "ITEM035",
         "Item_Name": "Crayon",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -30,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3909,7 +3965,7 @@
         "Item_ID": "ITEM036",
         "Item_Name": "Customized Gift Bags",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -750,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3917,7 +3973,7 @@
         "Item_ID": "ITEM042",
         "Item_Name": "DVEA Book",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -100,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3925,7 +3981,7 @@
         "Item_ID": "ITEM037",
         "Item_Name": "Detergent",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -223,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3933,7 +3989,7 @@
         "Item_ID": "ITEM038",
         "Item_Name": "Detol",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -6,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3941,7 +3997,7 @@
         "Item_ID": "ITEM039",
         "Item_Name": "Developer",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3949,7 +4005,7 @@
         "Item_ID": "ITEM040",
         "Item_Name": "Door Key",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3965,7 +4021,7 @@
         "Item_ID": "ITEM043",
         "Item_Name": "Electric Bulb",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -2,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3973,7 +4029,7 @@
         "Item_ID": "ITEM044",
         "Item_Name": "Eraser",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -96,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -3981,7 +4037,7 @@
         "Item_ID": "ITEM045",
         "Item_Name": "Executor",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -300,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4005,7 +4061,7 @@
         "Item_ID": "ITEM132",
         "Item_Name": "Skipping Rope",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -18,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4045,7 +4101,7 @@
         "Item_ID": "ITEM138",
         "Item_Name": "Socks",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -300,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4069,7 +4125,7 @@
         "Item_ID": "ITEM157",
         "Item_Name": "Twine Rope",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -47,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4117,7 +4173,7 @@
         "Item_ID": "ITEM001",
         "Item_Name": "A3 Paper",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -210,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4125,7 +4181,7 @@
         "Item_ID": "ITEM002",
         "Item_Name": "A4 Paper",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -1602,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4133,7 +4189,7 @@
         "Item_ID": "ITEM003",
         "Item_Name": "A4 Size Envelopes",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -111,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4141,7 +4197,7 @@
         "Item_ID": "ITEM004",
         "Item_Name": "A5 Size Envelopes",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -3,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4149,7 +4205,7 @@
         "Item_ID": "ITEM006",
         "Item_Name": "Arc File",
         "Category": "Stationery",
-        "Current_Stock": 200,
+        "Current_Stock": 196,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4157,7 +4213,7 @@
         "Item_ID": "ITEM007",
         "Item_Name": "Art Paper",
         "Category": "Stationery",
-        "Current_Stock": -243,
+        "Current_Stock": -252,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4165,7 +4221,7 @@
         "Item_ID": "ITEM008",
         "Item_Name": "Baking Colour",
         "Category": "Stationery",
-        "Current_Stock": -121,
+        "Current_Stock": -132,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4173,7 +4229,7 @@
         "Item_ID": "ITEM015",
         "Item_Name": "Beads Manual",
         "Category": "Stationery",
-        "Current_Stock": 367,
+        "Current_Stock": 331,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4181,7 +4237,7 @@
         "Item_ID": "ITEM021",
         "Item_Name": "Calculator",
         "Category": "Stationery",
-        "Current_Stock": -970,
+        "Current_Stock": -997,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4197,7 +4253,7 @@
         "Item_ID": "ITEM025",
         "Item_Name": "Cash Book",
         "Category": "Stationery",
-        "Current_Stock": -19,
+        "Current_Stock": -20,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4205,7 +4261,7 @@
         "Item_ID": "ITEM049",
         "Item_Name": "External Hard Drive",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -7,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4213,7 +4269,7 @@
         "Item_ID": "ITEM050",
         "Item_Name": "External Keyboard",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -2,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4221,7 +4277,7 @@
         "Item_ID": "ITEM054",
         "Item_Name": "File Tag",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4229,7 +4285,7 @@
         "Item_ID": "ITEM055",
         "Item_Name": "Flash Drive",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -17,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4237,7 +4293,7 @@
         "Item_ID": "ITEM056",
         "Item_Name": "Flip Chart",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -201,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4245,7 +4301,7 @@
         "Item_ID": "ITEM057",
         "Item_Name": "Folder",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -478,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4253,7 +4309,7 @@
         "Item_ID": "ITEM109",
         "Item_Name": "Pin Remover",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -12,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4261,7 +4317,7 @@
         "Item_ID": "ITEM111",
         "Item_Name": "Plastic Ruler",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -36,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4269,7 +4325,7 @@
         "Item_ID": "ITEM114",
         "Item_Name": "Punch",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -7,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4277,7 +4333,7 @@
         "Item_ID": "ITEM117",
         "Item_Name": "Razor Blade",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -12,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4285,7 +4341,7 @@
         "Item_ID": "ITEM118",
         "Item_Name": "Ribbon",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -16,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4293,7 +4349,7 @@
         "Item_ID": "ITEM119",
         "Item_Name": "Router Network",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -4,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4301,7 +4357,7 @@
         "Item_ID": "ITEM120",
         "Item_Name": "Rubber",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -10,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4309,7 +4365,7 @@
         "Item_ID": "ITEM121",
         "Item_Name": "Rubber Band",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -6,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4317,7 +4373,7 @@
         "Item_ID": "ITEM122",
         "Item_Name": "Rubber Bucket",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -2,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4325,7 +4381,7 @@
         "Item_ID": "ITEM123",
         "Item_Name": "School Bags",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -300,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4333,7 +4389,7 @@
         "Item_ID": "ITEM124",
         "Item_Name": "School Based Manual",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -2223,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4341,7 +4397,7 @@
         "Item_ID": "ITEM125",
         "Item_Name": "School Sandals",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -300,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4349,7 +4405,7 @@
         "Item_ID": "ITEM126",
         "Item_Name": "Scissors",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -30,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4357,7 +4413,7 @@
         "Item_ID": "ITEM127",
         "Item_Name": "Secret File Jacket",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -1000,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4365,7 +4421,7 @@
         "Item_ID": "ITEM129",
         "Item_Name": "Shapeners",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -29,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4373,7 +4429,7 @@
         "Item_ID": "ITEM141",
         "Item_Name": "Spiral Binding Paper",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -182,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4381,7 +4437,7 @@
         "Item_ID": "ITEM143",
         "Item_Name": "Stamp",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4389,7 +4445,7 @@
         "Item_ID": "ITEM144",
         "Item_Name": "Stamp Machine",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -2,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4397,7 +4453,7 @@
         "Item_ID": "ITEM145",
         "Item_Name": "Staple Pin",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -201,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4405,7 +4461,7 @@
         "Item_ID": "ITEM146",
         "Item_Name": "Stapler",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -38,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4413,7 +4469,7 @@
         "Item_ID": "ITEM163",
         "Item_Name": "Water Colour",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -6,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4421,7 +4477,7 @@
         "Item_ID": "ITEM164",
         "Item_Name": "White Board",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -7000,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4429,7 +4485,7 @@
         "Item_ID": "ITEM165",
         "Item_Name": "White Board Eraser",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -7000,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4437,7 +4493,7 @@
         "Item_ID": "ITEM166",
         "Item_Name": "White Board Marker",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -7000,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4445,7 +4501,7 @@
         "Item_ID": "ITEM172",
         "Item_Name": "Writing Materials",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -350,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4453,7 +4509,7 @@
         "Item_ID": "ITEM026",
         "Item_Name": "Cement",
         "Category": "Uncategorized",
-        "Current_Stock": -566,
+        "Current_Stock": -582,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4461,7 +4517,7 @@
         "Item_ID": "ITEM065",
         "Item_Name": "GP Water Tank",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4469,7 +4525,7 @@
         "Item_ID": "ITEM061",
         "Item_Name": "Gawa",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -600,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4477,7 +4533,7 @@
         "Item_ID": "ITEM062",
         "Item_Name": "Giant Stapler",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -4,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4485,7 +4541,7 @@
         "Item_ID": "ITEM063",
         "Item_Name": "Gift Box Note",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -750,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4493,7 +4549,7 @@
         "Item_ID": "ITEM064",
         "Item_Name": "Glyphotex",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -550,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4501,7 +4557,7 @@
         "Item_ID": "ITEM066",
         "Item_Name": "Graphic Card",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4509,7 +4565,7 @@
         "Item_ID": "ITEM067",
         "Item_Name": "Gravel",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4589,7 +4645,7 @@
         "Item_ID": "ITEM077",
         "Item_Name": "Hard Cover Note Book",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -184,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4597,7 +4653,7 @@
         "Item_ID": "ITEM078",
         "Item_Name": "Harpic",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -174,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4605,7 +4661,7 @@
         "Item_ID": "ITEM079",
         "Item_Name": "Head Teacher Manual",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -326,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4613,7 +4669,7 @@
         "Item_ID": "ITEM080",
         "Item_Name": "Ink Cartridges",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -448,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4621,7 +4677,7 @@
         "Item_ID": "ITEM081",
         "Item_Name": "Insecticide",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -39,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4629,7 +4685,7 @@
         "Item_ID": "ITEM082",
         "Item_Name": "Izal",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -13,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4637,7 +4693,7 @@
         "Item_ID": "ITEM083",
         "Item_Name": "Jar Gum",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -13,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4653,7 +4709,7 @@
         "Item_ID": "ITEM085",
         "Item_Name": "Jotter",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -2270,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4661,7 +4717,7 @@
         "Item_ID": "ITEM086",
         "Item_Name": "Juice",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -222,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4669,7 +4725,7 @@
         "Item_ID": "ITEM087",
         "Item_Name": "Knife",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -6,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4677,7 +4733,7 @@
         "Item_ID": "ITEM088",
         "Item_Name": "Knitting",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -75,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4685,7 +4741,7 @@
         "Item_ID": "ITEM089",
         "Item_Name": "Knitting Accessories",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -75,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4693,7 +4749,7 @@
         "Item_ID": "ITEM090",
         "Item_Name": "Laminaring Paper",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -2,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4709,7 +4765,7 @@
         "Item_ID": "ITEM092",
         "Item_Name": "Letter Headed Paper",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -30000,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4717,7 +4773,7 @@
         "Item_ID": "ITEM093",
         "Item_Name": "Lipton Tea",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -68,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4725,7 +4781,7 @@
         "Item_ID": "ITEM094",
         "Item_Name": "Liquid Soap",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -2725,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4733,7 +4789,7 @@
         "Item_ID": "ITEM095",
         "Item_Name": "Manual Guides",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -683,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4741,7 +4797,7 @@
         "Item_ID": "ITEM096",
         "Item_Name": "Marker",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -144,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4749,7 +4805,7 @@
         "Item_ID": "ITEM097",
         "Item_Name": "Masking Tape",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -194,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4757,7 +4813,7 @@
         "Item_ID": "ITEM098",
         "Item_Name": "Mineral",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -388,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4765,7 +4821,7 @@
         "Item_ID": "ITEM099",
         "Item_Name": "Needle Pack",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -6,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4773,7 +4829,7 @@
         "Item_ID": "ITEM100",
         "Item_Name": "Office Clip",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -79,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4781,7 +4837,7 @@
         "Item_ID": "ITEM101",
         "Item_Name": "Office Clips/Pins",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -31,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4789,7 +4845,7 @@
         "Item_ID": "ITEM102",
         "Item_Name": "Office Towel",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -9,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4797,7 +4853,7 @@
         "Item_ID": "ITEM103",
         "Item_Name": "Oil Paint",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -2,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4805,7 +4861,7 @@
         "Item_ID": "ITEM104",
         "Item_Name": "Open File Jacket",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -1196,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4813,7 +4869,7 @@
         "Item_ID": "ITEM105",
         "Item_Name": "Pen",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -190,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4821,7 +4877,7 @@
         "Item_ID": "ITEM106",
         "Item_Name": "Pencil",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -33,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4829,7 +4885,7 @@
         "Item_ID": "ITEM060",
         "Item_Name": "Furniture Polish",
         "Category": "Workshop",
-        "Current_Stock": 0,
+        "Current_Stock": -16,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4837,7 +4893,7 @@
         "Item_ID": "ITEM112",
         "Item_Name": "Plumbing Materials",
         "Category": "Workshop",
-        "Current_Stock": 0,
+        "Current_Stock": -821,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4845,7 +4901,7 @@
         "Item_ID": "ITEM130",
         "Item_Name": "Sharp Sand",
         "Category": "Workshop",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4853,7 +4909,7 @@
         "Item_ID": "ITEM140",
         "Item_Name": "Spare Parts",
         "Category": "Workshop",
-        "Current_Stock": 0,
+        "Current_Stock": -188,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4861,7 +4917,7 @@
         "Item_ID": "ITEM155",
         "Item_Name": "Tripod",
         "Category": "Workshop",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4869,7 +4925,7 @@
         "Item_ID": "ITEM170",
         "Item_Name": "Wooden Polish",
         "Category": "Workshop",
-        "Current_Stock": 0,
+        "Current_Stock": -2,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4877,7 +4933,7 @@
         "Item_ID": "ITEM171",
         "Item_Name": "Workshop Tag",
         "Category": "Workshop",
-        "Current_Stock": 0,
+        "Current_Stock": -50,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       }
@@ -4887,7 +4943,7 @@
         "Item_ID": "ITEM009",
         "Item_Name": "Ballon",
         "Category": "Arts",
-        "Current_Stock": -384,
+        "Current_Stock": -395,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4895,7 +4951,7 @@
         "Item_ID": "ITEM010",
         "Item_Name": "Banners",
         "Category": "Arts",
-        "Current_Stock": -1455,
+        "Current_Stock": -1472,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4903,7 +4959,7 @@
         "Item_ID": "ITEM012",
         "Item_Name": "Basket Making",
         "Category": "Arts",
-        "Current_Stock": -1667,
+        "Current_Stock": -1670,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4911,7 +4967,7 @@
         "Item_ID": "ITEM014",
         "Item_Name": "Beads Accessories",
         "Category": "Arts",
-        "Current_Stock": -583,
+        "Current_Stock": -586,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4919,7 +4975,7 @@
         "Item_ID": "ITEM020",
         "Item_Name": "Building Materials",
         "Category": "Arts",
-        "Current_Stock": -589,
+        "Current_Stock": -966,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4927,7 +4983,7 @@
         "Item_ID": "ITEM005",
         "Item_Name": "Air Freshner",
         "Category": "Cleaner",
-        "Current_Stock": -1446,
+        "Current_Stock": -1599,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4935,7 +4991,7 @@
         "Item_ID": "ITEM018",
         "Item_Name": "Bleach (Hypo/Jik)",
         "Category": "Cleaner",
-        "Current_Stock": -811,
+        "Current_Stock": -859,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4943,7 +4999,7 @@
         "Item_ID": "ITEM019",
         "Item_Name": "Brooms",
         "Category": "Cleaner",
-        "Current_Stock": -65,
+        "Current_Stock": -73,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4951,7 +5007,7 @@
         "Item_ID": "ITEM048",
         "Item_Name": "Extension Cable",
         "Category": "Cleaner",
-        "Current_Stock": 0,
+        "Current_Stock": -7,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4959,7 +5015,7 @@
         "Item_ID": "ITEM051",
         "Item_Name": "External Mouse",
         "Category": "Cleaner",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4967,7 +5023,7 @@
         "Item_ID": "ITEM052",
         "Item_Name": "F9 Paper",
         "Category": "Cleaner",
-        "Current_Stock": 0,
+        "Current_Stock": -100,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4975,7 +5031,7 @@
         "Item_ID": "ITEM053",
         "Item_Name": "File Jacket",
         "Category": "Cleaner",
-        "Current_Stock": 0,
+        "Current_Stock": -500,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4983,7 +5039,7 @@
         "Item_ID": "ITEM110",
         "Item_Name": "Plastic Containers",
         "Category": "Cleaner",
-        "Current_Stock": 0,
+        "Current_Stock": -4,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4991,7 +5047,7 @@
         "Item_ID": "ITEM115",
         "Item_Name": "Rake",
         "Category": "Cleaner",
-        "Current_Stock": 0,
+        "Current_Stock": -2,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -4999,7 +5055,7 @@
         "Item_ID": "ITEM116",
         "Item_Name": "Rakes",
         "Category": "Cleaner",
-        "Current_Stock": 0,
+        "Current_Stock": -9,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5007,7 +5063,7 @@
         "Item_ID": "ITEM142",
         "Item_Name": "Stain Cleaner",
         "Category": "Cleaner",
-        "Current_Stock": 0,
+        "Current_Stock": -11,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5015,7 +5071,7 @@
         "Item_ID": "ITEM147",
         "Item_Name": "Stick Broom",
         "Category": "Cleaner",
-        "Current_Stock": 0,
+        "Current_Stock": -7,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5023,7 +5079,7 @@
         "Item_ID": "ITEM148",
         "Item_Name": "Sticky Pad",
         "Category": "Cleaner",
-        "Current_Stock": 0,
+        "Current_Stock": -192,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5031,7 +5087,7 @@
         "Item_ID": "ITEM153",
         "Item_Name": "Tissue Paper",
         "Category": "Cleaner",
-        "Current_Stock": 0,
+        "Current_Stock": -499,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5039,7 +5095,7 @@
         "Item_ID": "ITEM154",
         "Item_Name": "Toilet Brush",
         "Category": "Cleaner",
-        "Current_Stock": 0,
+        "Current_Stock": -3,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5047,7 +5103,7 @@
         "Item_ID": "ITEM016",
         "Item_Name": "BiscuIts",
         "Category": "Edibles",
-        "Current_Stock": -30,
+        "Current_Stock": -277,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5063,7 +5119,7 @@
         "Item_ID": "ITEM022",
         "Item_Name": "Candy",
         "Category": "Edibles",
-        "Current_Stock": -925,
+        "Current_Stock": -946,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5071,7 +5127,7 @@
         "Item_ID": "ITEM107",
         "Item_Name": "Phone Stand",
         "Category": "Electricals",
-        "Current_Stock": 0,
+        "Current_Stock": -3,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5087,7 +5143,7 @@
         "Item_ID": "ITEM113",
         "Item_Name": "Powwr Bank",
         "Category": "Electricals",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5095,7 +5151,7 @@
         "Item_ID": "ITEM128",
         "Item_Name": "Sensor",
         "Category": "Electricals",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5103,7 +5159,7 @@
         "Item_ID": "ITEM137",
         "Item_Name": "Sockets",
         "Category": "Electricals",
-        "Current_Stock": 0,
+        "Current_Stock": -2,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5111,7 +5167,7 @@
         "Item_ID": "ITEM139",
         "Item_Name": "Solar Lamp",
         "Category": "Electricals",
-        "Current_Stock": 0,
+        "Current_Stock": -36,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5119,7 +5175,7 @@
         "Item_ID": "ITEM046",
         "Item_Name": "Exercise Book",
         "Category": "Equipment",
-        "Current_Stock": 0,
+        "Current_Stock": -116,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5127,7 +5183,7 @@
         "Item_ID": "ITEM047",
         "Item_Name": "Extension",
         "Category": "Equipment",
-        "Current_Stock": 0,
+        "Current_Stock": -6,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5135,7 +5191,7 @@
         "Item_ID": "ITEM013",
         "Item_Name": "Battery",
         "Category": "IT",
-        "Current_Stock": -547,
+        "Current_Stock": -562,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5143,7 +5199,7 @@
         "Item_ID": "ITEM024",
         "Item_Name": "Cartridges",
         "Category": "IT",
-        "Current_Stock": -1522,
+        "Current_Stock": -1868,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5151,7 +5207,7 @@
         "Item_ID": "ITEM150",
         "Item_Name": "Tablet",
         "Category": "IT",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5159,7 +5215,7 @@
         "Item_ID": "ITEM169",
         "Item_Name": "Wireless Mouse",
         "Category": "IT",
-        "Current_Stock": 0,
+        "Current_Stock": -2,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5167,7 +5223,7 @@
         "Item_ID": "ITEM151",
         "Item_Name": "Tea Cups",
         "Category": "Kitchen",
-        "Current_Stock": 0,
+        "Current_Stock": -10,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5175,7 +5231,7 @@
         "Item_ID": "ITEM152",
         "Item_Name": "Tea Spoons",
         "Category": "Kitchen",
-        "Current_Stock": 0,
+        "Current_Stock": -26,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5183,7 +5239,7 @@
         "Item_ID": "ITEM058",
         "Item_Name": "Foot Mat",
         "Category": "Other",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5199,7 +5255,7 @@
         "Item_ID": "ITEM168",
         "Item_Name": "Window Blind",
         "Category": "Other",
-        "Current_Stock": 0,
+        "Current_Stock": -2,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5207,7 +5263,7 @@
         "Item_ID": "ITEM027",
         "Item_Name": "Cement Block",
         "Category": "Sports",
-        "Current_Stock": -170,
+        "Current_Stock": -182,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5215,7 +5271,7 @@
         "Item_ID": "ITEM028",
         "Item_Name": "Certificate",
         "Category": "Sports",
-        "Current_Stock": -174,
+        "Current_Stock": -2725,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5223,7 +5279,7 @@
         "Item_ID": "ITEM029",
         "Item_Name": "Cleaning Blade",
         "Category": "Sports",
-        "Current_Stock": -496,
+        "Current_Stock": -582,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5231,7 +5287,7 @@
         "Item_ID": "ITEM030",
         "Item_Name": "Computer Paper Line",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -125,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5239,7 +5295,7 @@
         "Item_ID": "ITEM031",
         "Item_Name": "Contract Payment Form",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -20,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5247,7 +5303,7 @@
         "Item_ID": "ITEM032",
         "Item_Name": "Contract Payment Register",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -100,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5255,7 +5311,7 @@
         "Item_ID": "ITEM033",
         "Item_Name": "Contractors Ledger",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -200,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5263,7 +5319,7 @@
         "Item_ID": "ITEM034",
         "Item_Name": "Correction Pen",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -28,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5271,7 +5327,7 @@
         "Item_ID": "ITEM035",
         "Item_Name": "Crayon",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -30,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5279,7 +5335,7 @@
         "Item_ID": "ITEM036",
         "Item_Name": "Customized Gift Bags",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -750,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5287,7 +5343,7 @@
         "Item_ID": "ITEM042",
         "Item_Name": "DVEA Book",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -100,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5295,7 +5351,7 @@
         "Item_ID": "ITEM037",
         "Item_Name": "Detergent",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -223,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5303,7 +5359,7 @@
         "Item_ID": "ITEM038",
         "Item_Name": "Detol",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -6,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5311,7 +5367,7 @@
         "Item_ID": "ITEM039",
         "Item_Name": "Developer",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5319,7 +5375,7 @@
         "Item_ID": "ITEM040",
         "Item_Name": "Door Key",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5335,7 +5391,7 @@
         "Item_ID": "ITEM043",
         "Item_Name": "Electric Bulb",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -2,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5343,7 +5399,7 @@
         "Item_ID": "ITEM044",
         "Item_Name": "Eraser",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -96,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5351,7 +5407,7 @@
         "Item_ID": "ITEM045",
         "Item_Name": "Executor",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -300,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5375,7 +5431,7 @@
         "Item_ID": "ITEM132",
         "Item_Name": "Skipping Rope",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -18,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5415,7 +5471,7 @@
         "Item_ID": "ITEM138",
         "Item_Name": "Socks",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -300,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5439,7 +5495,7 @@
         "Item_ID": "ITEM157",
         "Item_Name": "Twine Rope",
         "Category": "Sports",
-        "Current_Stock": 0,
+        "Current_Stock": -47,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5487,7 +5543,7 @@
         "Item_ID": "ITEM001",
         "Item_Name": "A3 Paper",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -210,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5495,7 +5551,7 @@
         "Item_ID": "ITEM002",
         "Item_Name": "A4 Paper",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -1602,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5503,7 +5559,7 @@
         "Item_ID": "ITEM003",
         "Item_Name": "A4 Size Envelopes",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -111,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5511,7 +5567,7 @@
         "Item_ID": "ITEM004",
         "Item_Name": "A5 Size Envelopes",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -3,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5519,7 +5575,7 @@
         "Item_ID": "ITEM007",
         "Item_Name": "Art Paper",
         "Category": "Stationery",
-        "Current_Stock": -243,
+        "Current_Stock": -252,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5527,7 +5583,7 @@
         "Item_ID": "ITEM008",
         "Item_Name": "Baking Colour",
         "Category": "Stationery",
-        "Current_Stock": -121,
+        "Current_Stock": -132,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5535,7 +5591,7 @@
         "Item_ID": "ITEM021",
         "Item_Name": "Calculator",
         "Category": "Stationery",
-        "Current_Stock": -970,
+        "Current_Stock": -997,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5543,7 +5599,7 @@
         "Item_ID": "ITEM025",
         "Item_Name": "Cash Book",
         "Category": "Stationery",
-        "Current_Stock": -19,
+        "Current_Stock": -20,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5551,7 +5607,7 @@
         "Item_ID": "ITEM049",
         "Item_Name": "External Hard Drive",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -7,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5559,7 +5615,7 @@
         "Item_ID": "ITEM050",
         "Item_Name": "External Keyboard",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -2,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5567,7 +5623,7 @@
         "Item_ID": "ITEM054",
         "Item_Name": "File Tag",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5575,7 +5631,7 @@
         "Item_ID": "ITEM055",
         "Item_Name": "Flash Drive",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -17,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5583,7 +5639,7 @@
         "Item_ID": "ITEM056",
         "Item_Name": "Flip Chart",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -201,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5591,7 +5647,7 @@
         "Item_ID": "ITEM057",
         "Item_Name": "Folder",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -478,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5599,7 +5655,7 @@
         "Item_ID": "ITEM109",
         "Item_Name": "Pin Remover",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -12,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5607,7 +5663,7 @@
         "Item_ID": "ITEM111",
         "Item_Name": "Plastic Ruler",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -36,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5615,7 +5671,7 @@
         "Item_ID": "ITEM114",
         "Item_Name": "Punch",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -7,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5623,7 +5679,7 @@
         "Item_ID": "ITEM117",
         "Item_Name": "Razor Blade",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -12,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5631,7 +5687,7 @@
         "Item_ID": "ITEM118",
         "Item_Name": "Ribbon",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -16,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5639,7 +5695,7 @@
         "Item_ID": "ITEM119",
         "Item_Name": "Router Network",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -4,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5647,7 +5703,7 @@
         "Item_ID": "ITEM120",
         "Item_Name": "Rubber",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -10,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5655,7 +5711,7 @@
         "Item_ID": "ITEM121",
         "Item_Name": "Rubber Band",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -6,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5663,7 +5719,7 @@
         "Item_ID": "ITEM122",
         "Item_Name": "Rubber Bucket",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -2,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5671,7 +5727,7 @@
         "Item_ID": "ITEM123",
         "Item_Name": "School Bags",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -300,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5679,7 +5735,7 @@
         "Item_ID": "ITEM124",
         "Item_Name": "School Based Manual",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -2223,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5687,7 +5743,7 @@
         "Item_ID": "ITEM125",
         "Item_Name": "School Sandals",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -300,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5695,7 +5751,7 @@
         "Item_ID": "ITEM126",
         "Item_Name": "Scissors",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -30,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5703,7 +5759,7 @@
         "Item_ID": "ITEM127",
         "Item_Name": "Secret File Jacket",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -1000,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5711,7 +5767,7 @@
         "Item_ID": "ITEM129",
         "Item_Name": "Shapeners",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -29,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5719,7 +5775,7 @@
         "Item_ID": "ITEM141",
         "Item_Name": "Spiral Binding Paper",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -182,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5727,7 +5783,7 @@
         "Item_ID": "ITEM143",
         "Item_Name": "Stamp",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5735,7 +5791,7 @@
         "Item_ID": "ITEM144",
         "Item_Name": "Stamp Machine",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -2,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5743,7 +5799,7 @@
         "Item_ID": "ITEM145",
         "Item_Name": "Staple Pin",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -201,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5751,7 +5807,7 @@
         "Item_ID": "ITEM146",
         "Item_Name": "Stapler",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -38,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5759,7 +5815,7 @@
         "Item_ID": "ITEM163",
         "Item_Name": "Water Colour",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -6,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5767,7 +5823,7 @@
         "Item_ID": "ITEM164",
         "Item_Name": "White Board",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -7000,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5775,7 +5831,7 @@
         "Item_ID": "ITEM165",
         "Item_Name": "White Board Eraser",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -7000,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5783,7 +5839,7 @@
         "Item_ID": "ITEM166",
         "Item_Name": "White Board Marker",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -7000,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5791,7 +5847,7 @@
         "Item_ID": "ITEM172",
         "Item_Name": "Writing Materials",
         "Category": "Stationery",
-        "Current_Stock": 0,
+        "Current_Stock": -350,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5799,7 +5855,7 @@
         "Item_ID": "ITEM026",
         "Item_Name": "Cement",
         "Category": "Uncategorized",
-        "Current_Stock": -566,
+        "Current_Stock": -582,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5807,7 +5863,7 @@
         "Item_ID": "ITEM065",
         "Item_Name": "GP Water Tank",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5815,7 +5871,7 @@
         "Item_ID": "ITEM061",
         "Item_Name": "Gawa",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -600,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5823,7 +5879,7 @@
         "Item_ID": "ITEM062",
         "Item_Name": "Giant Stapler",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -4,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5831,7 +5887,7 @@
         "Item_ID": "ITEM063",
         "Item_Name": "Gift Box Note",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -750,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5839,7 +5895,7 @@
         "Item_ID": "ITEM064",
         "Item_Name": "Glyphotex",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -550,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5847,7 +5903,7 @@
         "Item_ID": "ITEM066",
         "Item_Name": "Graphic Card",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5855,7 +5911,7 @@
         "Item_ID": "ITEM067",
         "Item_Name": "Gravel",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5935,7 +5991,7 @@
         "Item_ID": "ITEM077",
         "Item_Name": "Hard Cover Note Book",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -184,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5943,7 +5999,7 @@
         "Item_ID": "ITEM078",
         "Item_Name": "Harpic",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -174,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5951,7 +6007,7 @@
         "Item_ID": "ITEM079",
         "Item_Name": "Head Teacher Manual",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -326,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5959,7 +6015,7 @@
         "Item_ID": "ITEM080",
         "Item_Name": "Ink Cartridges",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -448,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5967,7 +6023,7 @@
         "Item_ID": "ITEM081",
         "Item_Name": "Insecticide",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -39,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5975,7 +6031,7 @@
         "Item_ID": "ITEM082",
         "Item_Name": "Izal",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -13,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5983,7 +6039,7 @@
         "Item_ID": "ITEM083",
         "Item_Name": "Jar Gum",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -13,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -5999,7 +6055,7 @@
         "Item_ID": "ITEM085",
         "Item_Name": "Jotter",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -2270,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6007,7 +6063,7 @@
         "Item_ID": "ITEM086",
         "Item_Name": "Juice",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -222,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6015,7 +6071,7 @@
         "Item_ID": "ITEM087",
         "Item_Name": "Knife",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -6,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6023,7 +6079,7 @@
         "Item_ID": "ITEM088",
         "Item_Name": "Knitting",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -75,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6031,7 +6087,7 @@
         "Item_ID": "ITEM089",
         "Item_Name": "Knitting Accessories",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -75,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6039,7 +6095,7 @@
         "Item_ID": "ITEM090",
         "Item_Name": "Laminaring Paper",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -2,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6055,7 +6111,7 @@
         "Item_ID": "ITEM092",
         "Item_Name": "Letter Headed Paper",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -30000,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6063,7 +6119,7 @@
         "Item_ID": "ITEM093",
         "Item_Name": "Lipton Tea",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -68,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6071,7 +6127,7 @@
         "Item_ID": "ITEM094",
         "Item_Name": "Liquid Soap",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -2725,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6079,7 +6135,7 @@
         "Item_ID": "ITEM095",
         "Item_Name": "Manual Guides",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -683,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6087,7 +6143,7 @@
         "Item_ID": "ITEM096",
         "Item_Name": "Marker",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -144,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6095,7 +6151,7 @@
         "Item_ID": "ITEM097",
         "Item_Name": "Masking Tape",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -194,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6103,7 +6159,7 @@
         "Item_ID": "ITEM098",
         "Item_Name": "Mineral",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -388,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6111,7 +6167,7 @@
         "Item_ID": "ITEM099",
         "Item_Name": "Needle Pack",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -6,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6119,7 +6175,7 @@
         "Item_ID": "ITEM100",
         "Item_Name": "Office Clip",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -79,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6127,7 +6183,7 @@
         "Item_ID": "ITEM101",
         "Item_Name": "Office Clips/Pins",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -31,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6135,7 +6191,7 @@
         "Item_ID": "ITEM102",
         "Item_Name": "Office Towel",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -9,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6143,7 +6199,7 @@
         "Item_ID": "ITEM103",
         "Item_Name": "Oil Paint",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -2,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6151,7 +6207,7 @@
         "Item_ID": "ITEM104",
         "Item_Name": "Open File Jacket",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -1196,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6159,7 +6215,7 @@
         "Item_ID": "ITEM105",
         "Item_Name": "Pen",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -190,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6167,7 +6223,7 @@
         "Item_ID": "ITEM106",
         "Item_Name": "Pencil",
         "Category": "Uncategorized",
-        "Current_Stock": 0,
+        "Current_Stock": -33,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6175,7 +6231,7 @@
         "Item_ID": "ITEM060",
         "Item_Name": "Furniture Polish",
         "Category": "Workshop",
-        "Current_Stock": 0,
+        "Current_Stock": -16,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6183,7 +6239,7 @@
         "Item_ID": "ITEM112",
         "Item_Name": "Plumbing Materials",
         "Category": "Workshop",
-        "Current_Stock": 0,
+        "Current_Stock": -821,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6191,7 +6247,7 @@
         "Item_ID": "ITEM130",
         "Item_Name": "Sharp Sand",
         "Category": "Workshop",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6199,7 +6255,7 @@
         "Item_ID": "ITEM140",
         "Item_Name": "Spare Parts",
         "Category": "Workshop",
-        "Current_Stock": 0,
+        "Current_Stock": -188,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6207,7 +6263,7 @@
         "Item_ID": "ITEM155",
         "Item_Name": "Tripod",
         "Category": "Workshop",
-        "Current_Stock": 0,
+        "Current_Stock": -1,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6215,7 +6271,7 @@
         "Item_ID": "ITEM170",
         "Item_Name": "Wooden Polish",
         "Category": "Workshop",
-        "Current_Stock": 0,
+        "Current_Stock": -2,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       },
@@ -6223,7 +6279,7 @@
         "Item_ID": "ITEM171",
         "Item_Name": "Workshop Tag",
         "Category": "Workshop",
-        "Current_Stock": 0,
+        "Current_Stock": -50,
         "Reorder_Level": 10,
         "Minimum_Stock": 10
       }
